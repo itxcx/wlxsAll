@@ -111,14 +111,14 @@
             <div class="row">
                 <div class="col-sm-5 col-md-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading no-collapse">历史付费<span class="label label-warning">+10</span></div>
+                        <div class="panel-heading no-collapse">历史上货数量<span class="label label-warning">+10</span></div>
                         <table class="table table-bordered table-striped">
                           <thead>
                             <tr>
                               <th>月份</th>
-                              <th>付费人数</th>
-                              <th>付费人次</th>
-                              <th>付费金额</th>
+                              <th>上货人数</th>
+                              <th>上货人次</th>
+                              <th>上货数量</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -126,25 +126,25 @@
                               <td>2017-11</td>
                               <td>20</td>
                               <td>130</td>
-                              <td>1710.9</td>
+                              <td>1710</td>
                             </tr>
                             <tr>
                               <td>2017-10</td>
                               <td>2089</td>
                               <td>130</td>
-                              <td>1710.9</td>
+                              <td>1710</td>
                             </tr>
                             <tr>
                               <td>2017-09</td>
                               <td>2089</td>
                               <td>130</td>
-                              <td>1710.9</td>
+                              <td>1710</td>
                             </tr>
                             <tr>
                               <td>2017-08</td>
                               <td>2089</td>
                               <td>130</td>
-                              <td>1710.9</td>
+                              <td>1710</td>
                             </tr>
                           </tbody>
                         </table>
@@ -152,12 +152,12 @@
                 </div>
                 <div class="col-sm-5 col-md-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading no-collapse">历史激活<span class="label label-warning">+10</span></div>
+                        <div class="panel-heading no-collapse">历史上货次数<span class="label label-warning">+10</span></div>
                         <table class="table table-bordered table-striped">
                           <thead>
                             <tr>
                               <th>月份</th>
-                              <th>激活人数</th>
+                              <th>上货次数</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -256,7 +256,7 @@
 
 
         //highcharts data
-        const topData = [{
+        const homePieData = [{
             name: '酸奶',
             y: 56.33
         }, {
@@ -325,7 +325,7 @@
             series: [{
                 name: 'Brands',
                 colorByPoint: true,
-                data: topData
+                data: homePieData
             }]
         });
 

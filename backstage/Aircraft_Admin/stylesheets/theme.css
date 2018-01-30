@@ -906,3 +906,9 @@ table.table.list tr:first-child td {
   text-decoration: none;
   display: block;
 }
+body{
+  user-select: none;
+}
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+  color: #fff;
+}

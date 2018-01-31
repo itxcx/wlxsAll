@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>未来鲜森</title>
+        <title>未来鲜森-供应商管理</title>
         <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
@@ -105,7 +105,8 @@
             <div class="panel panel-default">
                 <a href="#page-stats" class="panel-heading" data-toggle="collapse">统计数据</a>
                 <div id="page-stats" class="panel-collapse panel-body collapse in">
-                    <div id="container"></div>
+                    <div id="container1" class="col-md-6 col-xs-6"></div>
+                    <div id="container2" class="col-md-6 col-xs-6"></div>
                 </div>
             </div>
             <div class="row">
@@ -216,22 +217,33 @@
                 'iconType': 'fa fa-language',
                 'itemList': [
                     {'title': '分类', 'path': 'index.html'},
-                    {'title': 'add', 'path': 'index.html'},
-                    {'title': 'reduce', 'path': 'index.html'}
+                    {'title': '添加新商品', 'path': 'index.html'},
+                    {'title': '商品列表', 'path': 'index.html'},
+                    {'title': '商品回收站', 'path': 'index.html'}
+                ]
+            },
+            {
+                'topTip': '订单',
+                'iconType': 'fa fa-book',
+                'itemList': [
+                    {'title': '分类', 'path': 'index.html'},
+                    {'title': '订单状态', 'path': 'index.html'},
+                    {'title': '列表', 'path': 'index.html'},
+                    {'title': '历史', 'path': 'index.html'}
                 ]
             },
             {
                 'topTip': '用户',
                 'iconType': 'fa fa-child',
                 'itemList': [
-                    {'title': '管理', 'path': 'index.html'},
+                    {'title': '基本管理', 'path': 'index.html'},
                     {'title': 'add', 'path': 'index.html'},
                     {'title': 'reduce', 'path': 'index.html'}
                 ]
             },
             {
                 'topTip': '设置',
-                'iconType': 'fa fa-sun-o',
+                'iconType': 'fa fa-cog',
                 'itemList': [
 
                 ]
@@ -296,19 +308,14 @@
 
         //颜色设置
         const pieColors = (function () {
-            let colors = [],
-                base = Highcharts.getOptions().colors[0],
-                i;
-
+            let colors = [], base = Highcharts.getOptions().colors[0], i;
             for (i = 0; i < 10; i += 1) {
-                // Start out with a darkened base color (negative brighten), and end
-                // up with a much brighter color
                 colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
             }
             return colors;
         }());
 
-        Highcharts.chart('container', {
+        Highcharts.chart('container1', {
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
@@ -344,7 +351,42 @@
                 data: homePieData
             }]
         });
-
+        Highcharts.chart('container2', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            credits: {//版权信息
+                enabled: false
+            },
+            title: {
+                text: '2018年1月份销售统计'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    colors: pieColors,
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: homePieData
+            }]
+        });
 
     </script>
 

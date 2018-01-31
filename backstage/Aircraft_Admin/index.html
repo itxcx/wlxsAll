@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -79,6 +79,7 @@
               <ul class="dropdown-menu">
                 <li class="dropdown-header">个人资料</li>
                 <li><a tabindex="-1" href="reset-password.html">修改密码</a></li>
+                <li><a tabindex="-1" href="notice.html">通知消息</a></li>
                 <li class="divider"></li>
                 <li>
                     <a tabindex="-1" href="sign-in.html">退出</a>
@@ -105,8 +106,17 @@
             <div class="panel panel-default">
                 <a href="#page-stats" class="panel-heading" data-toggle="collapse">统计数据</a>
                 <div id="page-stats" class="panel-collapse panel-body collapse in">
-                    <div id="container1" class="col-md-6 col-xs-6"></div>
+                    <div>
+                        <select name="pie" id="pie" style="position: absolute;width: 12vh;z-index: 999">
+                            <option value="1">最近一年</option>
+                            <option value="1">最近一月</option>
+                            <option value="1">最近一周</option>
+                        </select>
+                        <div id="container1" class="col-md-6 col-xs-6"></div>
+                    </div>
                     <div id="container2" class="col-md-6 col-xs-6"></div>
+                    <div id="container3" class="col-md-12 col-xs-12"></div>
+                    <div id="container4" class="col-md-12 col-xs-12"></div>
                 </div>
             </div>
             <div class="row">
@@ -283,28 +293,80 @@
             return false;
         };
 
+        $('select').change( function() {
+            //请求数据
+            $.ajax({
+                url: '',
+                type: 'POST',
+                data: {},
+                success: function(res) {
+
+                },
+                error: function(error) {
+
+                }
+            });
+        });
+
+
+
         //highcharts data
-        const homePieData = [{
-            name: '酸奶',
-            y: 56.33
-        }, {
-            name: '乐虎',
-            y: 24.03,
-            sliced: true,
-            selected: true
-        }, {
-            name: '果汁',
-            y: 10.38
-        }, {
-            name: '三明治',
-            y: 4.77
-        }, {
-            name: '水果',
-            y: 0.91
-        }, {
-            name: '盒饭',
-            y: 0.2
-        }];
+        //饼状图数据
+        const homePieData = [
+            {
+                name: '酸奶',
+                y: 56
+            },
+            {
+                name: '乐虎',
+                y: 24.03,
+                sliced: true,
+                selected: true
+            },
+            {
+                name: '果汁',
+                y: 10.38
+            },
+            {
+                name: '三明治',
+                y: 4.77
+            },
+            {
+                name: '水果',
+                y: 0.91
+            },
+            {
+                name: '盒饭',
+                y: 0.2
+            }
+        ];
+        //柱状图数据
+        const colData = {
+            type: 'column',//图标类型
+            title: '2017年度供应统计',//标题
+            subtitle: '统计参考数据', //副标题
+            //x轴
+            categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+            //y轴
+            yAsix: '数量 (K)',
+            mainData: [{
+                name: '红牛',
+                data: [49, 71, 106, 129, 144, 176, 135, 148, 216, 194, 95, 54],
+                color: '#e4d354'
+            }, {
+                name: '三明治',
+                data: [83, 78, 98, 93, 106, 84, 105, 104, 91, 83, 106, 92],
+                color: '#2b908f'
+            }, {
+                name: '蛋糕',
+                data: [48, 38, 39, 41, 47, 48, 59, 59, 52, 65, 59, 51],
+                color: '#90ed7d'
+            }, {
+                name: '水果',
+                data: [42, 33, 34, 39, 52, 75, 57, 60, 47, 39, 46, 51],
+                color: '#8085e9'
+            }]
+        };
 
         //颜色设置
         const pieColors = (function () {
@@ -346,7 +408,7 @@
                 }
             },
             series: [{
-                name: 'Brands',
+                name: 'wlxs',
                 colorByPoint: true,
                 data: homePieData
             }]
@@ -371,7 +433,7 @@
                 pie: {
                     allowPointSelect: true,
                     cursor: 'pointer',
-                    //colors: pieColors,
+                    //colors: pieColors, //图表颜色控制
                     dataLabels: {
                         enabled: true,
                         format: '<b>{point.name}</b>: {point.percentage:.1f} %',
@@ -382,13 +444,116 @@
                 }
             },
             series: [{
-                name: 'Brands',
+                name: '未来鲜森',
                 colorByPoint: true,
                 data: homePieData
             }]
         });
+        Highcharts.chart('container3', {
+            chart: {
+                type: colData.type
+            },
+            title: {
+                text: colData.title
+            },
+            subtitle: {
+                text: colData.subtitle
+            },
+            xAxis: {
+                categories: colData.categories,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: colData.yAsix
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} k</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            credits: { //版权信息
+                enabled: false
+            },
+            series: colData.mainData
+        });
 
+        Highcharts.chart('container4', {
+            chart: {
+                type: ''
+            },
+            title: {
+                text: colData.title
+            },
+            subtitle: {
+                text: colData.subtitle
+            },
+            xAxis: {
+                categories: colData.categories,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: colData.yAsix
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: 1,
+                    pointInterval: 1
+                }
+            },
+            series: [{
+                name: '项目一',
+                data: [43934, 52503, 57177, 69658, 43934, 52503, 57177, 69658, 43934, 52503, 57177, 69658]
+            }, {
+                name: '项目二',
+                data: [24916, 24064, 29742, 29851, 24064, 29742, 29851, 24064, 29742, 29851, 24064, 29742]
+            }, {
+                name: '项目三',
+                data: [11744, 17722, 16005, 19771, 17722, 16005, 19771, 17722, 16005, 19771, 17722, 16005]
+            }, {
+                name: '项目四',
+                data: [11223, 23211, 7988, 12169, 23211, 7988, 12169, 23211, 7988, 12169, 7988, 12169]
+            }, {
+                name: '其他',
+                data: [72908, 55948, 38105, 11248, 55948, 38105, 11248, 55948, 38105, 11248,55948, 38105]
+            }],
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+        });
     </script>
-
-  
-</body></html>
+  </body>
+</html>

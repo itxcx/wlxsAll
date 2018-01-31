@@ -912,3 +912,8 @@ body{
 .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
   color: #fff;
 }
+#container3, #container4{
+  margin: 5vh 0;
+  box-shadow: 2px 2px 20px #d1d1d1;
+  border: 2px solid #f2f2f2;
+}

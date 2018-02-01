@@ -1,0 +1,58 @@
+{
+  "colorArray": ["#e4d354", "#2b908f", "#90ed7d", "#8085e9"],
+  "leftNav" : [
+  {
+    "topTip": "主面板",
+    "iconType": "fa fa-home",
+    "itemList": [
+      {"title": "说明", "path": "help.html"},
+      {"title": "首页", "path": "index.html"}
+    ]
+  },
+  {
+    "topTip": "设备",
+    "iconType": "fa fa-tasks",
+    "itemList": [
+      {"title": "明细", "path": "payment.html"},
+      {"title": "add", "path": "premium-blog.html"},
+      {"title": "reduce", "path": "index.html"}
+    ]
+  },
+  {
+    "topTip": "商品",
+    "iconType": "fa fa-language",
+    "itemList": [
+      {"title": "分类", "path": "index.html"},
+      {"title": "添加新商品", "path": "index.html"},
+      {"title": "商品列表", "path": "index.html"},
+      {"title": "商品回收站", "path": "index.html"}
+    ]
+  },
+  {
+    "topTip": "订单",
+    "iconType": "fa fa-book",
+    "itemList": [
+      {"title": "分类", "path": "index.html"},
+      {"title": "订单状态", "path": "index.html"},
+      {"title": "列表", "path": "index.html"},
+      {"title": "历史", "path": "index.html"}
+    ]
+  },
+  {
+    "topTip": "用户",
+    "iconType": "fa fa-child",
+    "itemList": [
+      {"title": "基本管理", "path": "index.html"},
+      {"title": "add", "path": "index.html"},
+      {"title": "reduce", "path": "index.html"}
+    ]
+  },
+  {
+    "topTip": "设置",
+    "iconType": "fa fa-cog",
+    "itemList": [
+
+    ]
+  }
+]
+}

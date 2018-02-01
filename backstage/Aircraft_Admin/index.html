@@ -15,6 +15,8 @@
         <script src="lib/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
         <script src="lib/bootstrap/js/bootstrap.js"></script>
         <script src="lib/highcharts.js"></script>
+        <script src="data/commonData.json" type="text/plain"></script>
+        <script src="config/config.js"></script>
     </head>
     <body class="theme-blue">
     <script type="text/javascript">
@@ -108,14 +110,27 @@
                 <div id="page-stats" class="panel-collapse panel-body collapse in">
                     <div>
                         <select name="pie" id="pie" style="position: absolute;width: 12vh;z-index: 999">
-                            <option value="1">最近一年</option>
-                            <option value="1">最近一月</option>
-                            <option value="1">最近一周</option>
+                            <option value="365">最近一年</option>
+                            <option value="30">最近一月</option>
+                            <option value="7" selected>最近一周</option>
                         </select>
                         <div id="container1" class="col-md-6 col-xs-6"></div>
                     </div>
-                    <div id="container2" class="col-md-6 col-xs-6"></div>
-                    <div id="container3" class="col-md-12 col-xs-12"></div>
+                    <div>
+                        <div id="container2" class="col-md-6 col-xs-6"></div>
+                    </div>
+                    <div>
+                        <select name="c2" id="multiple" multiple>
+                            <option value="三明治">三明治</option>
+                            <option value="蛋糕">蛋糕</option>
+                            <option value="水果">水果</option>
+                            <option value="红牛">红牛</option>
+                            <option value="果汁">果汁</option>
+                            <option value="盒饭">盒饭</option>
+                        </select>
+                        <button class="mulSubmit">查询</button>
+                        <div id="container3" class="col-md-12 col-xs-12"></div>
+                    </div>
                     <div id="container4" class="col-md-12 col-xs-12"></div>
                 </div>
             </div>
@@ -202,103 +217,125 @@
         </div>
     </div>
     <script type="text/javascript">
-        $("[rel=tooltip]").tooltip();
-        // navbar 数据信息
-        const leftNav = [
-            {
-                'topTip': '主面板',
-                'iconType': 'fa fa-home',
-                'itemList': [
-                    {'title': '首页', 'path': 'index.html'},
-                    {'title': '说明', 'path': 'help.html'}
-                ]
-            },
-            {
-                'topTip': '设备',
-                'iconType': 'fa fa-tasks',
-                'itemList': [
-                    {'title': '明细', 'path': 'payment.html'},
-                    {'title': 'add', 'path': 'premium-blog.html'},
-                    {'title': 'reduce', 'path': 'index.html'}
-                ]
-            },
-            {
-                'topTip': '商品',
-                'iconType': 'fa fa-language',
-                'itemList': [
-                    {'title': '分类', 'path': 'index.html'},
-                    {'title': '添加新商品', 'path': 'index.html'},
-                    {'title': '商品列表', 'path': 'index.html'},
-                    {'title': '商品回收站', 'path': 'index.html'}
-                ]
-            },
-            {
-                'topTip': '订单',
-                'iconType': 'fa fa-book',
-                'itemList': [
-                    {'title': '分类', 'path': 'index.html'},
-                    {'title': '订单状态', 'path': 'index.html'},
-                    {'title': '列表', 'path': 'index.html'},
-                    {'title': '历史', 'path': 'index.html'}
-                ]
-            },
-            {
-                'topTip': '用户',
-                'iconType': 'fa fa-child',
-                'itemList': [
-                    {'title': '基本管理', 'path': 'index.html'},
-                    {'title': 'add', 'path': 'index.html'},
-                    {'title': 'reduce', 'path': 'index.html'}
-                ]
-            },
-            {
-                'topTip': '设置',
-                'iconType': 'fa fa-cog',
-                'itemList': [
+        let commonStore = null; //全局配置信息
+        /*获取全局配置数据信息,然后调用初始化方法*/
+        function getCommonStore() {
+            $.ajax({
+                url: 'data/commonData.json',
+                type: 'GET'
+            }).then( function(res) {
+                commonStore = res;
+                drawNavbar(commonStore);
+                Init(commonStore);
+            })
+        }
+        getCommonStore(); //获取全局数据
 
-                ]
+        
+        //饼状图数据
+        const homePieData = {
+            title: '2018年销售统计',
+            name: 'wlxs',
+            item: [
+                {
+                    name: '酸奶',
+                    y: 56
+                },
+                {
+                    name: '乐虎',
+                    y: 24.03,
+                    sliced: true,
+                    selected: true
+                },
+                {
+                    name: '果汁',
+                    y: 10.38
+                },
+                {
+                    name: '三明治',
+                    y: 4.77
+                },
+                {
+                    name: '水果',
+                    y: 0.91
+                },
+                {
+                    name: '盒饭',
+                    y: 0.2
+                }
+            ]
+        };
+        //柱状图数据
+        let colData = {
+            title: '2017年度供应统计',//标题
+            subtitle: '统计参考数据', //副标题
+            //x轴
+            categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+            //y轴
+            yAsix: '数量 (K)',
+            mainData: [
+                {
+                name: '红牛',
+                data: [49, 71, 106, 129, 144, 176, 135, 148, 216, 194, 95, 54],
+                color: '#e4d354'
+            },
+                {
+                name: '三明治',
+                data: [83, 78, 98, 93, 106, 84, 105, 104, 91, 83, 106, 92],
+                color: '#2b908f'
+            },
+                {
+                name: '蛋糕',
+                data: [48, 38, 39, 41, 47, 48, 59, 59, 52, 65, 59, 51],
+                color: '#90ed7d'
+            },
+                {
+                name: '水果',
+                data: [42, 33, 34, 39, 52, 75, 57, 60, 47, 39, 46, 51],
+                color: '#8085e9'
             }
-        ];
-        //左边navbar遍历
-        $.each(leftNav, function(index, item) {
-            let topTipContent = null;
-            // 判断有没有二级菜单
-            if(item.itemList.length !== 0) {
-                topTipContent = `<a href="#" data-target=.${index} class="nav-header" data-toggle="collapse">
-                     <span class="${item.iconType}"></span>
-                     <span>${item.topTip}</span>
-                     <i class="fa fa-collapse"></i>
-                </a>`;
-            }else{
-                topTipContent = `<a href="#" data-target=.${index} class="nav-header" data-toggle="collapse">
-                     <span class="${item.iconType}"></span>
-                     <span>${item.topTip}</span>
-                </a>`;
-            }
-            let topTip = $('<li></li>');
-            topTip.append(topTipContent);
-
-            $.each(item.itemList, function(i, value) {
-                let itemContent = `<ul class="${index} nav nav-list collapse">
-                    <li  class="active">
-                        <a href=${value.path}><span class="fa fa-caret-right"></span><span>${value.title}</span></a>
-                    </li></ul>`;
-                topTip.append(itemContent);
-            });
-            $('#leftNav > ul').append(topTip);
-            $('.0').addClass('in'); //第一项默认展开
-        });
-        //鼠标右键禁用
-        document.body.oncontextmenu = function() {
-            return false;
+            ]
         };
 
+
+        /* 初始化方法 */
+        function Init(commonStore) {
+            //鼠标右键禁用
+            document.body.oncontextmenu = function() {
+                return false;
+            };
+            drawPie('container1', homePieData);
+            drawPie('container2', homePieData, 'pie');
+
+
+            drawColumn('container3', colData, 'column')
+            drawColumn('container4', colData)
+    }
+      // 柱状图改变数据操作
+        $('.mulSubmit').click(function() {
+            let optsArray = [];
+            $('#multiple option:selected').each(function (index, value) {
+                optsArray.push($('#multiple option:selected').eq(index).val());
+            });
+
+            for(let i = 0; i < optsArray.length; i++) {
+                let obj = {};
+                obj.name = optsArray[i];
+                obj.data = [42, 33, 34, 39, 52, 75, 57, 60, 47, 39, 46, 51];
+                obj.color = commonStore.colorArray[i];
+                colData.mainData.push(obj);
+            }
+            drawColumn('container3', colData, 'column');
+        });
+
+        //饼图改变数据操作
         $('select').change( function() {
+            let selectDate = $(this).val();
             //请求数据
             $.ajax({
                 url: '',
                 type: 'POST',
-                data: {},
+                data: {selectDate: selectDate},
                 success: function(res) {
 
                 },
@@ -306,253 +343,6 @@
 
                 }
             });
-        });
-
-
-
-        //highcharts data
-        //饼状图数据
-        const homePieData = [
-            {
-                name: '酸奶',
-                y: 56
-            },
-            {
-                name: '乐虎',
-                y: 24.03,
-                sliced: true,
-                selected: true
-            },
-            {
-                name: '果汁',
-                y: 10.38
-            },
-            {
-                name: '三明治',
-                y: 4.77
-            },
-            {
-                name: '水果',
-                y: 0.91
-            },
-            {
-                name: '盒饭',
-                y: 0.2
-            }
-        ];
-        //柱状图数据
-        const colData = {
-            type: 'column',//图标类型
-            title: '2017年度供应统计',//标题
-            subtitle: '统计参考数据', //副标题
-            //x轴
-            categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-            //y轴
-            yAsix: '数量 (K)',
-            mainData: [{
-                name: '红牛',
-                data: [49, 71, 106, 129, 144, 176, 135, 148, 216, 194, 95, 54],
-                color: '#e4d354'
-            }, {
-                name: '三明治',
-                data: [83, 78, 98, 93, 106, 84, 105, 104, 91, 83, 106, 92],
-                color: '#2b908f'
-            }, {
-                name: '蛋糕',
-                data: [48, 38, 39, 41, 47, 48, 59, 59, 52, 65, 59, 51],
-                color: '#90ed7d'
-            }, {
-                name: '水果',
-                data: [42, 33, 34, 39, 52, 75, 57, 60, 47, 39, 46, 51],
-                color: '#8085e9'
-            }]
-        };
-
-        //颜色设置
-        const pieColors = (function () {
-            let colors = [], base = Highcharts.getOptions().colors[0], i;
-            for (i = 0; i < 10; i += 1) {
-                colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
-            }
-            return colors;
-        }());
-
-        Highcharts.chart('container1', {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            credits: {//版权信息
-                enabled: false
-            },
-            title: {
-                text: '2018年1月份销售统计'
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    colors: pieColors,
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                        style: {
-                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                        }
-                    }
-                }
-            },
-            series: [{
-                name: 'wlxs',
-                colorByPoint: true,
-                data: homePieData
-            }]
-        });
-        Highcharts.chart('container2', {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            credits: {//版权信息
-                enabled: false
-            },
-            title: {
-                text: '2018年1月份销售统计'
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    //colors: pieColors, //图表颜色控制
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                        style: {
-                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                        }
-                    }
-                }
-            },
-            series: [{
-                name: '未来鲜森',
-                colorByPoint: true,
-                data: homePieData
-            }]
-        });
-        Highcharts.chart('container3', {
-            chart: {
-                type: colData.type
-            },
-            title: {
-                text: colData.title
-            },
-            subtitle: {
-                text: colData.subtitle
-            },
-            xAxis: {
-                categories: colData.categories,
-                crosshair: true
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: colData.yAsix
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} k</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            credits: { //版权信息
-                enabled: false
-            },
-            series: colData.mainData
-        });
-
-        Highcharts.chart('container4', {
-            chart: {
-                type: ''
-            },
-            title: {
-                text: colData.title
-            },
-            subtitle: {
-                text: colData.subtitle
-            },
-            xAxis: {
-                categories: colData.categories,
-                crosshair: true
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: colData.yAsix
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle'
-            },
-            plotOptions: {
-                series: {
-                    label: {
-                        connectorAllowed: false
-                    },
-                    pointStart: 1,
-                    pointInterval: 1
-                }
-            },
-            series: [{
-                name: '项目一',
-                data: [43934, 52503, 57177, 69658, 43934, 52503, 57177, 69658, 43934, 52503, 57177, 69658]
-            }, {
-                name: '项目二',
-                data: [24916, 24064, 29742, 29851, 24064, 29742, 29851, 24064, 29742, 29851, 24064, 29742]
-            }, {
-                name: '项目三',
-                data: [11744, 17722, 16005, 19771, 17722, 16005, 19771, 17722, 16005, 19771, 17722, 16005]
-            }, {
-                name: '项目四',
-                data: [11223, 23211, 7988, 12169, 23211, 7988, 12169, 23211, 7988, 12169, 7988, 12169]
-            }, {
-                name: '其他',
-                data: [72908, 55948, 38105, 11248, 55948, 38105, 11248, 55948, 38105, 11248,55948, 38105]
-            }],
-            responsive: {
-                rules: [{
-                    condition: {
-                        maxWidth: 500
-                    },
-                    chartOptions: {
-                        legend: {
-                            layout: 'horizontal',
-                            align: 'center',
-                            verticalAlign: 'bottom'
-                        }
-                    }
-                }]
-            }
         });
     </script>
   </body>

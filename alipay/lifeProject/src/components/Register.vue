@@ -5,17 +5,20 @@
       <div class="username">
         <div class="col-md-1 col-xs-1"></div>
         <div class="phone col-md-10 col-xs-10">
-          <span></span>
-          <input id="phone" type="number" pattern="[0-9]*" aria-describedby="basic-addon1" v-model="phone" name="phone" code="phone" placeholder="请输入手机号" @blur="phoneBlur"/>
+          <p>手机号</p>
+          <div>
+            <input id="phone" type="number" pattern="[0-9]*" aria-describedby="basic-addon1" v-model="phone" name="phone" code="phone" placeholder="请输入手机号" @blur="phoneBlur"/>
+          </div>
         </div>
       </div>
       <div class="password">
         <div class="col-md-1 col-xs-1"></div>
         <div class="phoneCode col-md-10 col-xs-10">
-          <span></span>
-          <input id="code" type="number" pattern="[0-9]*" aria-describedby="basic-addon1" v-model="code" name="phone" code="phone" placeholder="请输入验证码"/>
-          <span>|</span>
-          <span @click="getPhoneCode">{{getText}}</span>
+          <p>验证码</p>
+          <div>
+            <input id="code" type="number" pattern="[0-9]*" aria-describedby="basic-addon1" v-model="code" name="phone" code="phone" placeholder="请输入验证码"/>
+            <span @click="getPhoneCode">{{getText}}</span>
+          </div>
         </div>
       </div>
       <div class="agreeMent">
@@ -29,7 +32,7 @@
       </div>
     </section>
     <section class="submitRegister">
-      <button @click="submitRegisterMsg">注&nbsp;&nbsp;册</button>
+      <button @click="submitRegisterMsg"></button>
     </section>
     <section class="tipModal" v-show="tipStatus">
       <span class="glyphicon glyphicon-remove"></span>
@@ -171,9 +174,9 @@
   })
 </script>
 <style lang="less">
-  @headerHeight : 6vh;
+ @backgroundColor: #f6f6f6;
   .Register {
-    background: #f2f2f2;
+    background: @backgroundColor;
     height: 100vh;
     width: 100vw;
     font-size: 2vh;
@@ -200,85 +203,78 @@
     border-bottom: 1px solid #f2f2f2;
     .registerInfo{
       ::placeholder{
-        font-size: 1.8rem;
+        font-size: 1.2rem;
         color: #939393;
       }
       .logo{
-        width: 11rem;
-        height: 11rem;
-        margin: 4rem auto;
+        width: 20rem;
+        height: 4rem;
+        margin: 6rem auto;
         background: url(../../static/images/logo.png) no-repeat center center;
         background-size: cover;
       }
       .username{
         overflow: hidden;
+        margin-top: 10rem;
         .phone{
-          background: #fff;
           padding: 1rem 2rem;
-          span{
-            display: inline-block;
-            float: left;
-            height: 2.7rem;
-            width: 2.2rem;
-            background: url(../../static/images/sjh.png) no-repeat center center;
-            background-size: cover;
+          p{
+            font-size: 1.5rem;
+            color: #fe780a;
           }
-          input{
-            float: left;
-            height: 3rem;
-            border: none;
-            width: 62vw;
-            margin-left: 2vw;
-            font-size: 1.8rem;
-            outline: none;
+          div{
+            border-bottom: 2px solid #E4E4E4;
+            margin: 1rem 0;
+            input{
+              width: 100%;
+              background: @backgroundColor;
+              height: 3rem;
+              border: none;
+              font-size: 1.8rem;
+              outline: none;
+            }
           }
+
         }
       }
       .password{
         overflow: hidden;
-        margin: 2rem 0;
         .phoneCode{
-          background: #fff;
           padding: 1rem 2rem;
-          span:nth-of-type(1){
-            display: inline-block;
-            float: left;
-            height: 2.7rem;
-            width: 2.2rem;
-            background: url(../../static/images/yzm.png) no-repeat center center;
-            background-size: cover;
-          }
-          input{
-            float: left;
-            height: 3rem;
-            border: none;
-            width: 40vw;
-            margin-left: 2vw;
-            font-size: 1.8rem;
-            outline: none;
-          }
-          span:nth-of-type(2){
-            float: left;
-            font-size: 1.8rem;
-            color: #cccccc;
-            height: 2.7rem;
-            line-height: 2.7rem;
-          }
-          span:nth-of-type(3){
-            display: inline-block;
-            text-align: center;
-            height: 2.7rem;
-            line-height: 2.7rem;
+          p{
             font-size: 1.5rem;
-            float: right;
+            color: #fe780a;
           }
+          div{
+            border-bottom: 2px solid #E4E4E4;
+            margin: 1rem 0;
+            input{
+              height: 3rem;
+              background: @backgroundColor;
+              border: none;
+              width: 50%;
+              font-size: 1.8rem;
+              outline: none;
+            }
+            span{
+              display: inline-block;
+              text-align: right;
+              width: 50%;
+              height: 2.7rem;
+              line-height: 2.7rem;
+              font-size: 1.4rem;
+              float: right;
+              color: #ec6c2d;
+            }
+          }
+
         }
       }
       .agreeMent{
         overflow: hidden;
         .col-md-10, .col-xs-10{
           margin: 0;
-          padding: 0;
+          padding: 0 1.5rem;
         }
         .agree{
           position: relative;
@@ -309,25 +305,27 @@
             float: left;
           }
           span:nth-of-type(2){
-            margin-left: 2vw;
+            margin-left: 0.5rem;
+            font-size: 1.28rem;
+            color: #939393;
           }
           span:nth-of-type(3){
-            color: #3997EE;
+            font-size: 1.28rem;
+            color: #00baff;
+            font-weight: bold;
           }
         }
       }
     }
     .submitRegister{
       text-align: center;
-      margin: 6rem 0;
+      margin: 10rem 0;
       button{
-        width: 83vw;
+        width: 75vw;
         height: 5rem;
-        font-size: 2.2rem;
-        background: #F63D3B;
-        color: #fff;
+        background: url(../../static/images/login_normal.png) no-repeat center center;
+        background-size: cover;
         border: none;
-        font-weight: 600;
         border-radius: 5px;
       }
     }

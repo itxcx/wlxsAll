@@ -30,7 +30,7 @@ export default {
     vertical-align: baseline;
   }
   html, body{
-    background: #f2f2f2;
+    background: #f6f6f6;
     -webkit-user-select: none;
     user-select: none;
   }

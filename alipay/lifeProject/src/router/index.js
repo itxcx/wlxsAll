@@ -1,69 +1,27 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Reservation from '@/components/Reservation'
-import Wait from '@/components/Wait'
-import Trolley from '@/components/Trolley'
-import Order from '@/components/Order'
-import Detail from '@/components/Detail'
-import WaitItem from '@/components/WaitItem'
-import AfterScan from '@/components/AfterScan'
-import SettleComplete from '@/components/SettleComplete'
+import AfterScan from '@/components/AfterScan'; //扫码推送消息
 import Register from '@/components/Register'
 import OpenDoorSuccess from '@/components/OpenDoorSuccess'
 import OpenDoorError from '@/components/OpenDoorError'
-import Accredit from '@/components/Accredit'
+import Accredit from '@/components/Accredit'; //去授权
 import Support from '@/components/Support'
 import OrderSucItem from '@/components/OrderSucItem'
 import Procedure from '@/components/Procedure'
 import RegistNewUser from '@/components/RegistNewUser'
-import Activity from '@/components/Activity'
-import ActivitMessage from '@/components/ActivitMessage'
-import Exercise from '@/components/Exercise'
+import Activity from '@/components/Activity'; //红包活动
+import ActivitMessage from '@/components/ActivitMessage'; //活动信息
 
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/reservation',
-      name: 'reservation',
-      component: Reservation
-    },
-    {
-      path: '/wait',
-      name: 'wait',
-      component: Wait
-    },
-    {
-      path: '/trolley',
-      name: 'trolley',
-      component: Trolley
-    },
-    {
-      path: '/order',
-      name: 'order',
-      component: Order
-    },
-    {
-      path: '/detail',
-      name: 'detail',
-      component: Detail
-    },
-    {
-      path: '/waitItem',
-      name: 'waitItem',
-      component: WaitItem
-    },
+    //扫码推送消息
     {
       path: '/afterScan',
       name: 'afterScan',
       component: AfterScan
-    },
-    {
-      path: '/settle',
-      name: 'settle',
-      component: SettleComplete
     },
     {
       path: '/',
@@ -80,6 +38,7 @@ export default new Router({
       name: 'opendoorerror',
       component: OpenDoorError
     },
+    //去授权
     {
       path: '/accredit',
       name: 'accredit',
@@ -90,6 +49,7 @@ export default new Router({
       name: 'support',
       component: Support
     },
+    // 消费详情
     {
       path: '/ordersucItem',
       name: 'ordersucItem',
@@ -105,20 +65,17 @@ export default new Router({
       name: 'registnewuser',
       component: RegistNewUser
     },
+    // 红包活动
     {
       path: '/activity',
       name: 'activity',
       component: Activity
     },
+    //活动信息
     {
       path: '/activitmessage',
       name: 'activitmessage',
       component: ActivitMessage
-    },
-    {
-      path: '/exercise',
-      name: 'exercise',
-      component: Exercise
     }
   ]
 })

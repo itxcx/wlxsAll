@@ -20,7 +20,6 @@
         width: 20vh;
         height: 20vh;
         margin: 4vh auto;
-        background: url(../../static/images/zbzc.png) no-repeat center center;
         background-size: cover;
       }
       p{

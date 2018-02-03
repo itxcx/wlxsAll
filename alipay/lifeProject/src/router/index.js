@@ -8,7 +8,6 @@ import Accredit from '@/components/Accredit'; //去授权
 import Support from '@/components/Support'
 import OrderSucItem from '@/components/OrderSucItem'
 import Procedure from '@/components/Procedure'
-import RegistNewUser from '@/components/RegistNewUser'
 import Activity from '@/components/Activity'; //红包活动
 import ActivitMessage from '@/components/ActivitMessage'; //活动信息
 
@@ -59,11 +58,6 @@ export default new Router({
       path: '/procedure',
       name: 'procedure',
       component: Procedure
-    },
-    {
-      path: '/registnewuser',
-      name: 'registnewuser',
-      component: RegistNewUser
     },
     // 红包活动
     {

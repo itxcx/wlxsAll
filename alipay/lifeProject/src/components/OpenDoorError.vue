@@ -63,7 +63,6 @@
         width: 20vh;
         height: 20vh;
         margin: 2vh auto;
-        background: url(../../static/images/kmcs.png) no-repeat center center;
         background-size: cover;
       }
       .statusMsg{

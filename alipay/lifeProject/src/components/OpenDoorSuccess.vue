@@ -56,7 +56,6 @@
         width: 20vh;
         height: 20vh;
         margin: 2vh auto;
-        background: url(../../static/images/kmcg.png) no-repeat center center;
         background-size: cover;
       }
 

@@ -5,23 +5,40 @@
     </section>
     <ul>
       <li>
-        <div class="type"></div>
-        <p>支付宝，扫一扫</p>
-        <div class="steps"></div>
+        <div class="step1">
+          <dl>
+            <dt></dt>
+            <dd></dd>
+          </dl>
+          <div></div>
+        </div>
       </li>
       <li>
-        <div class="type"></div>
-        <p>开门选购商品</p>
-        <div class="steps"></div>
+        <div class="step2">
+          <div></div>
+          <dl>
+            <dt></dt>
+            <dd></dd>
+          </dl>
+        </div>
       </li>
       <li>
-        <div class="type"></div>
-        <p>关门自动结算</p>
-        <div class="steps"></div>
+        <div class="step3">
+          <dl>
+            <dt></dt>
+            <dd></dd>
+          </dl>
+          <div></div>
+        </div>
       </li>
     </ul>
+    <section class="procedurTip">
+      <div></div>
+      <p>请勿将购买的商品放回售货柜</p>
+      <p>如订单扣款错误，请致电 <a href="tel://400-770-7768">400-770-7768</a></p>
+    </section>
     <section class="goOpenDoor">
-      <button @click="goOpenDoor">了解,去开门</button>
+      <button @click="goOpenDoor"></button>
     </section>
   </div>
 </template>
@@ -42,121 +59,134 @@
 </script>
 
 <style lang="less">
-  @headerHeight : 6vh;
+  @backgroundColor: #f6f6f6;
   .Procedure {
-    background: #fff;
+    background: @backgroundColor;
+    width: 100vw;
     height: 100vh;
-    padding: 6vh 0 12vh 0;
     .Step{
       .bannerImg{
         width: 100vw;
         height: 20vh;
-        background: url(../../static/images/banner.jpg) no-repeat center center;
+        background: url(../../static/images/procedure_bannner.png) no-repeat center center;
         background-size: cover;
       }
     }
     ul{
-      padding: 2vh 3vw;
       list-style: none;
-      li:nth-of-type(1){
-        overflow: hidden;
-        padding: 2vh 0;
-        border-bottom: 1px solid #f2f2f2;
-        div:nth-of-type(1){
-          width: 10vh;
-          height: 10vh;
-          float: left;
-          background: url(../../static/images/1.png) no-repeat center center;
-          background-size: cover;
+      margin: 5vh 0;
+      li{
+        margin: 3vh 0;
+        height: 20vh;
+        .step1{
+          dl{
+            width: 50vw;
+            float: left;
+            dt{
+              width: 10vh;
+              height: 10vh;
+              margin: 0 auto;
+              background: url(../../static/images/procedure_step1.png) no-repeat center center;
+              background-size: cover;
+            }
+            dd{
+              width: 30vw;
+              height: 4vh;
+              margin: 2vh auto;
+              background: url(../../static/images/procedure_opendoor.png) no-repeat center center;
+              background-size: cover;
+            }
+          }
+          div{
+            float: left;
+            width: 40vw;
+            height: 16vh;
+            background: url(../../static/images/procedure_scan.png) no-repeat center center;
+            background-size: cover;
+          }
         }
-        p{
-          font-size: 3vh;
-          width: 58vw;
-          height: 10vh;
-          line-height: 10vh;
-          padding-left: 2vw;
-          float: left;
+        .step2{
+          dl{
+            width: 50vw;
+            float: left;
+            dt{
+              width: 10vh;
+              height: 10vh;
+              margin: 0 auto;
+              background: url(../../static/images/procedure_step2.png) no-repeat center center;
+              background-size: cover;
+            }
+            dd{
+              width: 25vw;
+              height: 4vh;
+              margin: 2vh auto;
+              background: url(../../static/images/procedure_choose.png) no-repeat center center;
+              background-size: cover;
+            }
+          }
+          div{
+            margin-left: 9vw;
+            float: left;
+            width: 40vw;
+            height: 16vh;
+            background: url(../../static/images/procedure_scan.png) no-repeat center center;
+            background-size: cover;
+          }
         }
-        div:nth-of-type(2){
-          width: 10vh;
-          margin-top: 2vh;
-          height: 7vh;
-          float: left;
-          background: url(../../static/images/01.png) no-repeat center;
-          background-size: cover;
+        .step3{
+          dl{
+            width: 50vw;
+            float: left;
+            dt{
+              width: 10vh;
+              height: 10vh;
+              margin: 0 auto;
+              background: url(../../static/images/procedure_step3.png) no-repeat center center;
+              background-size: cover;
+            }
+            dd{
+              width: 25vw;
+              height: 4vh;
+              margin: 2vh auto;
+              background: url(../../static/images/procedure_close.png) no-repeat center center;
+              background-size: cover;
+            }
+          }
+          div{
+            float: left;
+            width: 20vw;
+            height: 16vh;
+            margin-left: 9vw;
+            background: url(../../static/images/procedure_closeOrder.png) no-repeat center center;
+            background-size: cover;
+          }
         }
       }
-      li:nth-of-type(2){
-        overflow: hidden;
-        padding: 2vh 0;
-        border-bottom: 1px solid #f2f2f2;
-        div:nth-of-type(1){
-          width: 10vh;
-          height: 10vh;
-          float: left;
-          background: url(../../static/images/2.png) no-repeat center center;
-          background-size: cover;
-        }
-        p{
-          font-size: 3vh;
-          width: 58vw;
-          height: 10vh;
-          line-height: 10vh;
-          padding-left: 2vw;
-          float: left;
-        }
-        div:nth-of-type(2){
-          width: 10vh;
-          margin-top: 2vh;
-          height: 7vh;
-          float: left;
-          background: url(../../static/images/02.png) no-repeat center;
-          background-size: cover;
-        }
+
+    }
+    .procedurTip{
+      text-align: center;
+      div{
+        width: 3vh;
+        height: 3vh;
+        margin: 0 auto;
+        background: url(../../static/images/procedure_tip.png) no-repeat center center;
+        background-size: cover;
       }
-      li:nth-of-type(3){
-        overflow: hidden;
-        padding: 2vh 0;
-        border-bottom: 1px solid #f2f2f2;
-        div:nth-of-type(1){
-          width: 10vh;
-          height: 10vh;
-          float: left;
-          background: url(../../static/images/4.png) no-repeat center center;
-          background-size: cover;
-        }
-        p{
-          font-size: 3vh;
-          width: 58vw;
-          height: 10vh;
-          line-height: 10vh;
-          padding-left: 2vw;
-          float: left;
-        }
-        div:nth-of-type(2){
-          width: 10vh;
-          margin-top: 2vh;
-          height: 7vh;
-          float: left;
-          background: url(../../static/images/03.png) no-repeat center;
-          background-size: cover;
-        }
+      p{
+        margin-top: 0.6vh;
+        font-weight: bold;
       }
     }
     .goOpenDoor{
-      position: fixed;
-      bottom: 2vh;
-      width: 100vw;
       text-align: center;
+      margin-top: 3vh;
       button{
-        width: 83vw;
+        width: 100vw;
         height: 8vh;
-        background: #f73c3b;
         border: none;
-        color: #fff;
-        border-radius: 5px;
-        font-size: 3vh;
-        font-weight: 600;
+        background: url(../../static/images/procedure_begin_normal.png) no-repeat center center;
+        background-size: cover;
       }
     }
   }

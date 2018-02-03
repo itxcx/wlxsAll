@@ -70,7 +70,6 @@
       width: 30vh;
       height: 30vh;
       margin: 2vh auto;
-      background: url(../../static/images/kmcs.png) no-repeat center center;
       background-size: cover;
       border-radius: 50%;
     }

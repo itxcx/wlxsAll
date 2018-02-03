@@ -19,7 +19,6 @@ import Accredit from './components/Accredit.vue';
 import Support from './components/Support.vue';
 import OrderSucItem from './components/OrderSucItem.vue';
 import Procedure from './components/Procedure.vue';
-import RegistNewUser from './components/RegistNewUser.vue';
 import Activity from '@/components/Activity.vue'
 import ActivitMessage from '@/components/ActivitMessage.vue'
 /* eslint-disable no-new */
@@ -29,6 +28,6 @@ new Vue({
   store: storeConfig,
   template: '<App/>',
   components: { App, AfterScan, Register, OpenDoorSuccess, OpenDoorError,
-    Accredit, Support, OrderSucItem, Procedure, RegistNewUser, Activity, ActivitMessage}
+    Accredit, Support, OrderSucItem, Procedure, Activity, ActivitMessage}
 })
 Vue.prototype.$http = axios;

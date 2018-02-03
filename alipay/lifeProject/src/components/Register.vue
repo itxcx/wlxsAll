@@ -190,20 +190,20 @@
       top: 0;
       margin: auto;
       width: 22rem;
-      height: 11rem;
+      height: 10rem;
       z-index: 99;
       color: #fff;
       text-align: center;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       padding: 1rem 0;
       span{
-        font-size: 3.5rem;
+        font-size: 4rem;
       }
     }
     border-bottom: 1px solid #f2f2f2;
     .registerInfo{
       ::placeholder{
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         color: #939393;
       }
       .logo{
@@ -225,6 +225,7 @@
           div{
             border-bottom: 2px solid #E4E4E4;
             margin: 1rem 0;
+            padding: 0;
             input{
               width: 100%;
               background: @backgroundColor;
@@ -232,6 +233,7 @@
               border: none;
               font-size: 1.8rem;
               outline: none;
+              padding: 0;
             }
           }
 
@@ -248,6 +250,7 @@
           div{
             border-bottom: 2px solid #E4E4E4;
             margin: 1rem 0;
+            padding: 0;
             input{
               height: 3rem;
               background: @backgroundColor;
@@ -255,6 +258,7 @@
               width: 50%;
               font-size: 1.8rem;
               outline: none;
+              padding: 0;
             }
             span{
               display: inline-block;
@@ -274,7 +278,7 @@
         overflow: hidden;
         .col-md-10, .col-xs-10{
           margin: 0;
-          padding: 0 1.5rem;
+          padding: 0 1.7rem;
         }
         .agree{
           position: relative;
@@ -284,7 +288,7 @@
             height: 2rem;
             opacity: 0;
             position: absolute;
-            left: 0;
+            left: 1.7rem;
             top: 0;
             z-index: 2;
           }

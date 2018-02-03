@@ -162,7 +162,6 @@
           }
         }
       }
-
     }
     .procedurTip{
       text-align: center;

@@ -4,11 +4,15 @@
       <div>
         <div class="doorTrue"></div>
         <p class="statusMsg">{{statusMsg}}</p>
-        <p class="tipText">5秒后跳转到未来鲜森生活号，关注后可查看购买记录、促销优惠等更多信息。</p>
-        <!--<div class="goFocus">-->
-          <!--<button @click="goFocus">去关注</button>-->
-        <!--</div>-->
+        <p class="statusTip">请取走您需要的商品,关门自动扣费</p>
+        <div class="tipText">
+          <p>请勿将购买的商品放回售货柜</p>
+          <p>如订单扣款错误，请致电 <a href="tel://400-770-7768">400-770-7768</a></p>
+        </div>
       </div>
+    </section>
+    <section class="bottomAdv">
+      <div></div>
     </section>
   </div>
 </template>
@@ -18,27 +22,15 @@
     name: 'OpenDoorStatus',
     data() {
       return {
-        statusMsg: '开门成功',
+        statusMsg: '您已开门成功',
         timer: null
       }
     },
     mounted (){
       this.$nextTick( () => {
-        let n = 5;
-        this.timer = setInterval( () => {
-          n--;
-          if(n < 1){
-            clearInterval(this.timer); //清除定时器
-            window.location.href = 'alipays://platformapi/startapp?saId=10000007&clientVersion=3.7.0.0718&qrcode=https%3A%2F%2Fqr.alipay.com%2Fppx02442mynyjbf8y1nyf66%3F_s%3Dweb-other';
-          }
-        },1000)
       })
     },
     methods:{
-//      goFocus(){
-//        clearInterval(this.timer); //清除定时器
-//        window.location.href = 'alipays://platformapi/startapp?saId=10000007&clientVersion=3.7.0.0718&qrcode=https%3A%2F%2Fqr.alipay.com%2Fppx02442mynyjbf8y1nyf66%3F_s%3Dweb-other';
-//      }
     }
   })
 </script>
@@ -47,36 +39,44 @@
   @headerHeight : 6vh;
   .OpenDoorSuccess {
     background: #f2f2f2;
-    padding: 6vh 0 12vh 0;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
     .statusMsg{
       >div{
         padding: 10vh 0 0 0 ;
       }
       .doorTrue{
-        width: 20vh;
-        height: 20vh;
+        width: 30vh;
+        height: 30vh;
         margin: 2vh auto;
+        background: url(../../static/images/open_success.png) no-repeat center center;
         background-size: cover;
       }
-
       .statusMsg{
-        text-align: center;
-        font-size: 5vh;
-        color: #F6504E;
+        font-size: 3.2vh;
+        color: #fe7909;
+        letter-spacing: 4px;
+      }
+      .statusTip{
+        color: #5d5d5d;
+        font-size: 2.3vh;
+        margin-top: 1vh;
+        letter-spacing: 2px;
       }
       .tipText{
-        width: 50vw;
-        margin: 5vh auto;
-        text-align: center;
-        font-size: 2.8vh;
-        color: #898989;
+        margin-top: 15vh;
+        font-size: 2.1vh;
+        color: #454545;
+        p{
+          margin-top: 1vh;
+        }
       }
       .goFocus{
         position: fixed;
         bottom: 2vh;
         left: 0;
         width: 100vw;
-        text-align: center;
         button{
           width: 83vw;
           height: 8vh;
@@ -87,6 +87,19 @@
           font-weight: 600;
           border-radius: 5px;
         }
+      }
+    }
+    .bottomAdv{
+      position: absolute;
+      bottom: 3px;
+      left: 0;
+      margin: 1vh;
+      div{
+        width: 96vw;
+        height: 20vh;
+        background: url(../../static/images/adv_normal.png) no-repeat center center;
+        background-size: cover;
+        border-radius: 5px;
       }
     }
   }

@@ -36,9 +36,9 @@
 </script>
 
 <style lang="less">
-  @headerHeight : 6vh;
+  @backgroundColor: #f6f6f6;
   .OpenDoorSuccess {
-    background: #f2f2f2;
+    background: @backgroundColor;
     height: 100vh;
     width: 100vw;
     text-align: center;
@@ -60,13 +60,12 @@
       }
       .statusTip{
         color: #5d5d5d;
-        font-size: 2.3vh;
+        font-size: 3vh;
         margin-top: 1vh;
-        letter-spacing: 2px;
       }
       .tipText{
         margin-top: 15vh;
-        font-size: 2.1vh;
+        font-size: 2.5vh;
         color: #454545;
         p{
           margin-top: 1vh;
@@ -99,7 +98,7 @@
         height: 20vh;
         background: url(../../static/images/adv_normal.png) no-repeat center center;
         background-size: cover;
-        border-radius: 5px;
+
       }
     }
   }

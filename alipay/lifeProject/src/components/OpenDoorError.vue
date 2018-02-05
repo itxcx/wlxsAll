@@ -3,10 +3,18 @@
     <section class="statusMsg">
       <div>
         <div class="doorFalse"></div>
-        <!--<p class="statusMsg">{{statusMsg}}</p>-->
-        <p class="receiveMsg">{{receiveMsg}}</p>
-        <p class="tipText">如锁已开请正常购物，关门后会自动结算。<br/>如锁没有开，请重试或尝试其他未来鲜森无人售货柜。</p>
+        <div class="receiveMsg">
+          <p></p>
+          <p>{{receiveMsg}}</p>
+        </div>
+        <div class="tipText">
+          <p>如锁已开请正常购物，关门后会自动结算</p>
+          <p>如锁没有开，请重试或尝试其他未来鲜森无人售货柜</p>
+        </div>
       </div>
+    </section>
+    <section class="bottomAdv">
+      <div></div>
     </section>
   </div>
 </template>
@@ -15,7 +23,6 @@
     name: 'OpenDoorStatus',
     data() {
       return {
-        statusMsg: '开门超时',
         receiveMsg: ''
       }
     },
@@ -37,7 +44,7 @@
         }
       }
       let params = new getUrlQuery();
-      this.receiveMsg = decodeURI(params.msg) !== 'undefined' ? decodeURI(params.msg) : ' ';
+      //this.receiveMsg = decodeURI(params.msg) !== 'undefined' ? decodeURI(params.msg) : ' ';
     },
     mounted (){
       this.$nextTick( () => {
@@ -51,38 +58,65 @@
 </script>
 
 <style lang="less">
-  @headerHeight : 6vh;
+  @backgroundColor: #f6f6f6;
   .OpenDoorError {
-    background: #f2f2f2;
-    padding: 6vh 0 12vh 0;
+    width: 100vw;
+    height: 100vh;
+    background: @backgroundColor;
     .statusMsg{
       >div{
         padding: 10vh 0 0 0 ;
       }
       .doorFalse{
-        width: 20vh;
-        height: 20vh;
+        width: 30vh;
+        height: 30vh;
         margin: 2vh auto;
+        background: url(../../static/images/open_error.png) no-repeat center center;
         background-size: cover;
-      }
-      .statusMsg{
-        text-align: center;
-        font-size: 5vh;
-        color: #F6504E;
       }
       .receiveMsg{
         width: 100vw;
-        padding: 2vh 2vw;
-        font-size: 2.8vh;
-        color: #f73c3b;
+        height: 4vh;
+        margin: 5vh auto;
+        color: #ff0000;
         text-align: center;
+        p:nth-of-type(1){
+          display: inline-block;
+          width: 4vh;
+          height: 4vh;
+          background: url(../../static/images/procedure_tip.png) no-repeat center center;
+          background-size: cover;
+          margin-top: 0.5vh;
+        }
+        p:nth-of-type(2){
+          font-size: 3vh;
+          height: 4vh;
+          line-height: 4vh;
+        }
       }
       .tipText{
-        width: 50vw;
-        margin: 5vh auto;
         text-align: center;
-        font-size: 2.8vh;
-        color: #898989;
+        font-size: 2.5vh;
+        color: #454545;
+        margin-top: 16vh;
+        p{
+          margin-top: 1vh;
+          font-weight: 600;
+          letter-spacing: ;
+        }
+      }
+    }
+    .bottomAdv{
+      position: absolute;
+      bottom: 3px;
+      left: 0;
+      margin: 1vh;
+      div{
+        width: 96vw;
+        height: 20vh;
+        background: url(../../static/images/adv_normal.png) no-repeat center center;
+        background-size: cover;
+        border-radius: 5px;
       }
     }
   }

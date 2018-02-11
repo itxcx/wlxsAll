@@ -46,11 +46,6 @@
       let params = new getUrlQuery();
       this.receiveMsg = decodeURI(params.msg) !== 'undefined' ? decodeURI(params.msg) : ' ';
     },
-    mounted (){
-      this.$nextTick( () => {
-
-      })
-    },
     methods:{
 
     }

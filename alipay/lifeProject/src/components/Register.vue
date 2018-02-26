@@ -86,9 +86,9 @@
         }
         return ret;
       },
-      getPhoneCode(){ //获取验证码
-        if(this.phoneLegal){ //判断手机号输入合法，才能获取验证码
-          if(this.getText === '获取验证码'){ //验证码发完一次后，过60s才能再次发送
+      getPhoneCode() { //获取验证码
+        if(this.phoneLegal) { //判断手机号输入合法，才能获取验证码
+          if(this.getText === '获取验证码') { //验证码发完一次后，过60s才能再次发送
             this.$http({
               url: 'user/sendTemplateSMS',
               method: 'post',
@@ -124,7 +124,7 @@
         let phoneCheck = /^1[34578]\d{9}$/;
         let codeCheck = /^[\d]{4}$/;
         if(phoneCheck.test(this.phone) && codeCheck.test(this.code) && this.agree === true){ //手机号、验证码、协议都符合要求
-          if(this.submitAlready === false){ //防止重复提交
+          if(this.submitAlready === false) { //防止重复提交
             this.submitAlready = true;
             //发送注册信息
             this.$http({
@@ -147,22 +147,22 @@
               this.submitAlready = false;  //将重复提交设置为false
             })
           }
-        }else if(!phoneCheck.test(this.phone)){ //提交时判断手机号
+        }else if(!phoneCheck.test(this.phone)) { //提交时判断手机号
           this.modalFun('手机号输入错误', 2000);
-        }else if(!codeCheck.test(this.code)){ //提交时判断验证码是否输入4位数字
+        }else if(!codeCheck.test(this.code)) { //提交时判断验证码是否输入4位数字
           this.modalFun('验证码输入错误', 2000);
-        }else if(this.agree !== true){ //判断服务协议是否选中
+        }else if(this.agree !== true) { //判断服务协议是否选中
           this.modalFun('请同意服务协议', 2000);
         }
       },
-      modalFun(text, timer){ //错误提示框显示控制
+      modalFun(text, timer) { //错误提示框显示控制
         this.tipStatus = true;
         this.tipText = text;
         setTimeout(() => {
           this.tipStatus = false;
         },timer)
       },
-      modalShow(text, timer){ //正确提示框显示控制
+      modalShow(text, timer) { //正确提示框显示控制
         this.rightStatus = true;
         this.tipText = text;
         setTimeout(() => {

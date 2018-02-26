@@ -77,7 +77,6 @@
           this.modalFun('手机号输入错误', 2000);
         } else {
           this.phoneLegal = true;
-          console.log(this.phoneLegal);
         }
       },
       transformRequest(data) {
@@ -102,7 +101,7 @@
                 this.modalFun(res.data.message, 2000);
               }
             }).catch( (error) => {
-              //alert(error);
+              console.log(error);
             });
             let n = 60;
             let timer = setInterval(() => {

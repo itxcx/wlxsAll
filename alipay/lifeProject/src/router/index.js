@@ -10,7 +10,7 @@ import OrderSucItem from '@/components/OrderSucItem'
 import Procedure from '@/components/Procedure'
 import Activity from '@/components/Activity'; //红包活动
 import ActivitMessage from '@/components/ActivitMessage'; //活动信息
-
+import Service from '@/components/Service';
 
 Vue.use(Router)
 
@@ -21,6 +21,11 @@ export default new Router({
       path: '/afterScan',
       name: 'afterScan',
       component: AfterScan
+    },
+    {
+      path: '/service',
+      name: 'service',
+      component: Service
     },
     {
       path: '/',

@@ -21,6 +21,7 @@ import OrderSucItem from './components/OrderSucItem.vue';
 import Procedure from './components/Procedure.vue';
 import Activity from '@/components/Activity.vue'
 import ActivitMessage from '@/components/ActivitMessage.vue'
+import Service from '@/components/Service.vue'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -28,6 +29,6 @@ new Vue({
   store: storeConfig,
   template: '<App/>',
   components: { App, AfterScan, Register, OpenDoorSuccess, OpenDoorError,
-    Accredit, Support, OrderSucItem, Procedure, Activity, ActivitMessage}
+    Accredit, Support, OrderSucItem, Procedure, Activity, ActivitMessage, Service}
 })
 Vue.prototype.$http = axios;

@@ -43,7 +43,6 @@
       <p>{{tipText}}</p>
     </section>
   </div>
-
 </template>
 <script>
   export default ({

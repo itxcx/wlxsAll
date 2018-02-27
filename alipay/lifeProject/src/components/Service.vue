@@ -22,11 +22,13 @@
     </section>
     <section class="serviceTime">
       <span>服务时间</span>
-      <span>9:00 - 17:30</span>
+      <span>9:00-17:30</span>
     </section>
     <section class="contact-service">
       <span>联系客服</span>
-      <span><a href="tel://400-770-7768">400-770-7768</a></span>
+      <span>
+        <a href="tel://400-770-7768">400-770-7768</a>
+      </span>
     </section>
   </div>
 </template>
@@ -113,7 +115,7 @@
         .serviceContent{
           margin-top: 1vh;
           text-indent: 2em;
-          font-size: 12px;
+          font-size: 14px;
         }
         &:nth-last-of-type(1){
           border: none;

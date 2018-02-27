@@ -13,11 +13,6 @@
 
 <style lang="less">
   .Service{
-    background: #f2f2f2;
-    font-size: 3vh;
-    text-decoration: underline;
-    p{
-      color: #0a246a;
-    }
+
   }
 </style>

@@ -2,22 +2,22 @@
   <div class="Service">
     <ul class="serviceItemList">
       <li v-for="(item,i) in serviceList">
-        <section>
+        <section @click="showItemContent(i)">
           <span>{{item.title}}</span>
-          <span class="glyphicon glyphicon-menu-right" v-show="!item.itemContentShow" @click="showItemContent(i)"></span>
-          <span class="glyphicon glyphicon-menu-down" v-show="item.itemContentShow" @click="showItemContent(i)"></span>
+          <span class="glyphicon glyphicon-menu-right" v-show="!item.itemContentShow" ></span>
+          <span class="glyphicon glyphicon-menu-down" v-show="item.itemContentShow"></span>
         </section>
         <p class="serviceContent" v-show="item.contentShow">{{item.content}}</p>
       </li>
     </ul>
     <section class="service-ctrl">
-      <p class="guide">
+      <p class="guide" @click="goGuide">
         <span>使用指南</span>
-        <span class="glyphicon glyphicon-menu-right" @click="goGuide"></span>
+        <span class="glyphicon glyphicon-menu-right"></span>
       </p>
-      <p class="contact-us">
+      <p class="contact-us" @click="contactUs">
         <span>联系我们</span>
-        <span class="glyphicon glyphicon-menu-right" @click="contactUs"></span>
+        <span class="glyphicon glyphicon-menu-right"></span>
       </p>
     </section>
     <section class="serviceTime">
@@ -52,11 +52,8 @@
               {
                 title: '需要退/换购买商品?',
                 itemContentShow: false,
-                content: '为了向使用辅助技术 - 如屏幕阅读器 - 的用户正确传达一正确的按钮分组，需要提供一个合适的 role 属性。对于按钮组合，应该是 role="group"，对于toolbar（工具栏）应该是 role="toolbar"。\n' +
-                '\n' +
-                '一个例外是按钮组合只包含一个单一的控制元素或一个下拉菜单（比如实际情况，<button> 元素组成的两端对齐排列的按钮组 ）或下拉菜单。\n' +
-                '\n' +
-                '此外，按钮组和工具栏应给定一个明确的label标签，尽管设置了正确的 role 属性，但是大多数辅助技术将不会正确的识读他们。在这里提供的实例中，我们使用 aria-label，但是， aria-labelledby 也可以使用。',
+                content: `为了向使用辅助技术 - 如屏幕阅读器 - 的用户正确传达一正确的按钮分组，需要提供一个合适的 role 属性。对于按钮组合，应该是 role="group"，对于toolbar（工具栏）应该是 role="toolbar"。
+                一个例外是按钮组合只包含一个单一的控制元素或一个下拉菜单（比如实际情况，<button> 元素组成的两端对齐排列的按钮组 ）或下拉菜单。此外，按钮组和工具栏应给定一个明确的label标签，尽管设置了正确的 role 属性，但是大多数辅助技术将不会正确的识读他们。在这里提供的实例中，我们使用 aria-label，但是， aria-labelledby 也可以使用。`,
                 contentShow: false
               },
               {

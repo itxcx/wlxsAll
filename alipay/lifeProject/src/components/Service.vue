@@ -61,7 +61,7 @@
               {
                 title: '退款一直未到账?',
                 itemContentShow: false,
-                content: 'Internet Explorer 8 不支持在两端对齐的按钮组中绘制边框，无论是 <a> 或 <button> 元素。为了照顾 IE8，把每个按钮放入另一个 .btn-group 中即可。',
+                content: 'Internet Explorer 8 不支持在两端对齐的按钮组中绘制边框，无论是或素。为了照顾 IE8，把每个按钮放入另一个 .btn-group 中即可。',
                 contentShow: false
               }
             ]

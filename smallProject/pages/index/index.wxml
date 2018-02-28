@@ -1,0 +1,77 @@
+<view>
+    <view class="header_tip">
+        <view class="place">
+          <view class="placeContent" bindtap="clickPlace">
+             <view class="place_default">{{firstPlace}}</view>
+             <image src="../../images/select_down.png" class="select_icon" hidden="{{selectPlace}}"></image>
+             <image src="../../images/select_right.png" class="select_icon"  hidden="{{!selectPlace}}"></image>
+          </view>
+        <view class="place_box">
+          <view class="place_select" hidden="{{selectPlace}}">
+            <view class="select_one" bindtap="mySelect" data-me="北京">北京</view>
+            <view class="select_one" bindtap="mySelect" data-me="上海">上海</view>
+            <view class="select_one" bindtap="mySelect" data-me="广州">广州</view>
+            <view class="select_one" bindtap="mySelect" data-me="西安">西安</view>
+            <view class="select_one" bindtap="mySelect" data-me="成都">成都</view>
+            <view class="select_one" bindtap="mySelect" data-me="杭州">杭州</view>
+            <view class="select_one" bindtap="mySelect" data-me="深圳">深圳</view>
+            <view class="select_one" bindtap="mySelect" data-me="重庆">重庆</view>
+            <view class="select_one" bindtap="mySelect" data-me="拉萨">拉萨</view>
+          </view>
+        </view>
+        </view>
+        <span class="content_title">选择机柜</span>
+    </view>
+    <view class="content">
+      <view class="content_title">目前开放城市</view>
+      <span bindtap="mySelect"  data-me="北京">北京</span>
+      <span bindtap="mySelect"  data-me="上海">上海</span>
+      <span bindtap="mySelect"  data-me="广州">广州</span>
+      <span bindtap="mySelect"  data-me="成都">成都</span>
+      <span bindtap="mySelect"  data-me="杭州">杭州</span>
+      <span bindtap="mySelect"  data-me="深圳">深圳</span>
+      <span bindtap="mySelect"  data-me="西安">西安</span>
+      <span bindtap="mySelect"  data-me="重庆">重庆</span>
+      <span bindtap="mySelect"  data-me="拉萨">拉萨</span>
+    </view>
+    <view class="device_list">
+      <span class="content_title">设备列表</span>
+      <view class="device_list_content">
+        <view class="device_list_left">
+          <ul>
+            <li>雁塔区</li>
+            <li>高新区</li>
+          </ul>
+        </view>
+        <view class="device_list_right">
+          <ul>
+            <li>
+              <dl>
+                <dt>未来鲜森NO.00001</dt>
+                <dd>西安市高新区锦业路69号瞪羚谷E座1F左</dd>
+              </dl>
+            </li>
+            <li>
+              <dl>
+                <dt>未来鲜森NO.00002</dt>
+                <dd>西安市高新区锦业路69号瞪羚谷E座1F右</dd>
+              </dl>
+            </li>
+            <li>
+              <dl>
+                <dt>未来鲜森NO.00003</dt>
+                <dd>西安市高新区高新二路招商银行大厦1F左</dd>
+              </dl>
+            </li>
+            <li>
+              <dl>
+                <dt>未来鲜森NO.00004</dt>
+                <dd>西安市高新区高新二路招商银行大厦1F右</dd>
+              </dl>
+            </li>
+          </ul>
+        </view>
+      </view>
+      
+    </view>
+</view>

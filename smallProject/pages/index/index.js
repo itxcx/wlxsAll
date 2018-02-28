@@ -59,5 +59,19 @@ Page({
   //选择 区 方法
   selectDistrict: function() {
 
+  },
+  goDevice: function () {
+    wx.chooseLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      success: function (res) {
+        var latitude = res.latitude;
+        var longitude = res.longitude;
+        wx.openLocation({
+          latitude: latitude,
+          longitude: longitude,
+          scale: 28
+        })
+      }
+    })
   }
 })

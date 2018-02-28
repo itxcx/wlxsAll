@@ -26,6 +26,20 @@ Page({
       selectPlace: true,
       selectArea: false,
     })
+    //发送ajax，请求数据
+    this.requestData(this.data.firstPlace);
+  },
+
+  //ajax方法
+  requestData: function(options) {
+    var place = options;
+    wx.request({
+      url: '', 
+      data: {},
+      success: function (res) {
+          console.log(res.data);
+      }
+    })
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -41,5 +55,9 @@ Page({
   },
   onUnload: function () {
     // 页面关闭
+  },
+  //选择 区 方法
+  selectDistrict: function() {
+
   }
 })

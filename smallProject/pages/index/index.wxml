@@ -40,8 +40,8 @@
       <view class="device_list_content">
         <view class="device_list_left">
           <ul>
-            <li>雁塔区</li>
-            <li>高新区</li>
+            <li><span bindtap="selectDistrict">雁塔区</span></li>
+            <li><span>高新区</span></li>
           </ul>
         </view>
         <view class="device_list_right">

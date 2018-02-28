@@ -33,6 +33,7 @@
       <span bindtap="mySelect"  data-me="西安">西安</span>
       <span bindtap="mySelect"  data-me="重庆">重庆</span>
       <span bindtap="mySelect"  data-me="拉萨">拉萨</span>
+      <span>陆续更新中</span>
     </view>
     <view class="device_list">
       <span class="content_title">设备列表</span>

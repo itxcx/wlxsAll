@@ -23,11 +23,12 @@
   top: 10rpx;
 }
 .content{
-  margin-top: 10rpx;
   padding:  10rpx 15rpx;
 }
 .content_title{
+  display: block;
   font-size: 16px;
+  margin: 10rpx 0 20rpx 0;
 }
 .content span{
   padding: 10rpx 0;
@@ -65,7 +66,6 @@
 }
 .device_list{
   border-top: 5px solid #e4e4e4;
- margin-top: 10rpx;
   padding:  10rpx 15rpx;
 }
 .device_list_content{
@@ -98,7 +98,7 @@
 }
 .device_list_right ul li{
   padding: 20rpx 10rpx;
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1px solid #e4e4e4;
   display: block;
 }
 .device_list_right ul li dl dt{

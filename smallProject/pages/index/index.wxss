@@ -4,7 +4,7 @@
   text-align: center;
   position: relative;
   padding-bottom: 0.5rem;
-  border-bottom: 5px solid #e4e4e4;
+  border-bottom: 7px solid #e4e4e4;
 }
 .place{
   position: absolute;
@@ -65,7 +65,7 @@
   background: #f2f2f2;
 }
 .device_list{
-  border-top: 5px solid #e4e4e4;
+  border-top: 7px solid #e4e4e4;
   padding:  10rpx 15rpx;
 }
 .device_list_content{

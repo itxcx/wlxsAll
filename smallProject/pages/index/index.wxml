@@ -49,30 +49,29 @@
             <li>
               <dl>
                 <dt>未来鲜森No.00001</dt>
-                <dd bindtap="goDevice">西安市高新区锦业路69号瞪羚谷E座1F左</dd>
+                <dd bindtap="goDevice" data-longitude="108.860078" data-latitude="34.196084">西安市高新区锦业路69号瞪羚谷E座1F左</dd>
               </dl>
             </li>
             <li>
               <dl>
                 <dt>未来鲜森No.00002</dt>
-                <dd bindtap="goDevice">西安市高新区锦业路69号瞪羚谷E座1F右</dd>
+                <dd bindtap="goDevice" data-longitude="108.860078" data-latitude="34.196084">西安市高新区锦业路69号瞪羚谷E座1F右</dd>
               </dl>
             </li>
             <li>
               <dl>
                 <dt>未来鲜森No.00003</dt>
-                <dd bindtap="goDevice">西安市高新区高新二路招商银行大厦1F左</dd>
+                <dd bindtap="goDevice" data-longitude="108.904714" data-latitude="34.240091">西安市高新区高新二路招商银行大厦1F左</dd>
               </dl>
             </li>
             <li>
               <dl>
                 <dt>未来鲜森No.00004</dt>
-                <dd bindtap="goDevice">西安市高新区高新二路招商银行大厦1F右</dd>
+                <dd bindtap="goDevice" data-longitude="108.904714" data-latitude="34.240091">西安市高新区高新二路招商银行大厦1F右</dd>
               </dl>
             </li>
           </ul>
         </view>
       </view>
-      
     </view>
 </view>

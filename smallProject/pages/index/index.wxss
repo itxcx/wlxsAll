@@ -20,7 +20,7 @@
   height: 20rpx;
   position: absolute;
   left: 150rpx;
-  top: 10rpx;
+  top: 13rpx;
 }
 .content{
   padding:  10rpx 15rpx;
@@ -45,6 +45,7 @@
 .content span:hover{
   background: #fe760c;
   color: #fff;
+  border: 1px solid #fff;
 }
 .select_one{
  text-align: center;

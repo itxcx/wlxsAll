@@ -74,4 +74,5 @@
         </view>
       </view>
     </view>
+    <view bindtap="goIssue" class="issueIcon">常见问题</view>
 </view>

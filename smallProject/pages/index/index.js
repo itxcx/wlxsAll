@@ -60,6 +60,11 @@ Page({
   selectDistrict: function(district) {
     console.log(district);
   },
+  goIssue: function () {
+    wx.navigateTo({
+      url: '../issue/issue'
+    })
+  },
   goDevice: function (e) {
     var longitude = Number(e.target.dataset.longitude);
     var latitude = Number(e.target.dataset.latitude);

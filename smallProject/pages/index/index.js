@@ -63,9 +63,12 @@ Page({
   goDevice: function (e) {
     var longitude = Number(e.target.dataset.longitude);
     var latitude = Number(e.target.dataset.latitude);
+    var address = e.target.dataset.addr;
     wx.openLocation({
       latitude: latitude,
       longitude: longitude,
+      address: address,
+      name: '未来鲜森',
       scale: 28
     })
   }

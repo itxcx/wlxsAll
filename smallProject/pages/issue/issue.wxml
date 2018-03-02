@@ -3,12 +3,16 @@
   <ul class="issue_list_content">
     <li wx:for="{{issueItems}}" wx:key="" class="list">
       <view class="issue_items">
-          <view class="issue_title"><image src="../../images/Q.png" class="issue_image"></image>{{item.title}}</view>
-          <view class="issue_content" class="issue_content">{{item.content}}</view>
+          <view class="issue_title" bindtap="showIssue" data-index="{{index}}">
+          <image src="../../images/Q.png" class="issue_image"></image>{{item.title}}</view>
       </view>
-      <ol class="content_list">
-              <li wx:for="{{item.list}}" wx:key="">{{index+1}}.{{item}}</li>
-      </ol>
+      <view  class="issue_content">
+          <view wx:if="{{item.showIssue}}">{{item.content}}</view>
+          <view class="content_list" wx:if="{{item.showIssue}}">
+                  <li wx:for="{{item.list}}" wx:key="">{{index+1}}.{{item}}</li>
+          </view>
+      </view>
+     
     </li>
   </ul>
 </view>

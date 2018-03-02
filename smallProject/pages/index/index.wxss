@@ -36,7 +36,7 @@
   color: #5d5d5d;
   font-size: 16px;
   margin: 10rpx 7rpx;
-  width: 225rpx;
+  width: 224rpx;
   border: 1px solid #5d5d5d;
   border-radius: 3px;
   text-align: center;

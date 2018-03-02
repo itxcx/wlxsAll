@@ -62,7 +62,6 @@
     },
     mounted (){
       this.$nextTick( () => {
-
       })
     },
     methods: {
@@ -234,7 +233,6 @@
               padding: 0;
             }
           }
-
         }
       }
       .password{
@@ -269,7 +267,6 @@
               color: #ec6c2d;
             }
           }
-
         }
       }
       .agreeMent{

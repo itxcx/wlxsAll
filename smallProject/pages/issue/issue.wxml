@@ -12,7 +12,6 @@
                   <li wx:for="{{item.list}}" wx:key="">{{index+1}}.{{item}}</li>
           </view>
       </view>
-     
     </li>
   </ul>
 </view>

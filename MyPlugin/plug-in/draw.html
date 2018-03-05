@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>draw</title>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/draw.js"></script>
+    <style>
+        #main, #other{
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <section id="main">
+
+    </section>
+    <section id="other">
+
+    </section>
+</body>
+</html>
+<script>
+    $(function() {
+        $('#main').makeDraw({'procedure': 96, 'marginLeft': '1px', 'borderRadius': '4px'});
+        $('#other').makeDraw({'procedure': 56, 'marginLeft': 0, 'borderRadius': 0});
+    })
+</script>

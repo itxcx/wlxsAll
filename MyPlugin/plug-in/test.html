@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test plug-in</title>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/jquery_plug_in.js"></script>
+</head>
+<body>
+    <section class="test">test</section>
+</body>
+</html>
+<script>
+    $(function() {
+        $('.test').myCss({
+            'color': 'greenyellow',
+            'fontSize': '33px',
+            'textDecoration': 'underline'
+        });
+    })
+</script>

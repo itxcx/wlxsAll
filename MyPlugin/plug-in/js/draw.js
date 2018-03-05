@@ -53,11 +53,11 @@
             makeIndexPlus(this.element, procedure);
             //设置数据显示颜色渐变,分5种情况,待改进
             function makeChildBackground(elem, index) {
-                if(gradientColor.length === 1) {
+                if(gradientColor.length === 1) {//渐变颜色数组1
                     $(elem).find('li').eq(index).css({
                         'background': gradientColor[0]
                     })
-                }else if(gradientColor.length === 2) {
+                }else if(gradientColor.length === 2) {//渐变颜色数组2
                     if(index <= 50) {
                         $(elem).find('li').eq(index).css({
                             'background': gradientColor[0]
@@ -67,7 +67,7 @@
                             'background': gradientColor[1]
                         })
                     }
-                }else if(gradientColor.length === 3) {
+                }else if(gradientColor.length === 3) {//渐变颜色数组3
                     if(index <= 33) {
                         $(elem).find('li').eq(index).css({
                             'background': gradientColor[0]
@@ -81,7 +81,7 @@
                             'background': gradientColor[2]
                         })
                     }
-                }else if(gradientColor.length === 4) {
+                }else if(gradientColor.length === 4) {//渐变颜色数组4
                     if(index <= 25) {
                         $(elem).find('li').eq(index).css({
                             'background': gradientColor[0]
@@ -99,7 +99,7 @@
                             'background': gradientColor[3]
                         })
                     }
-                }else{
+                }else{//渐变颜色数组5
                     if(index <= 20) {
                         $(elem).find('li').eq(index).css({
                             'background': gradientColor[0]

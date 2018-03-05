@@ -123,7 +123,7 @@
                     }
                 }
             }
-        },
+        }
     };
     $.fn.makeDraw = function(options) {
         const makeDraw = new DRAW(this, options);

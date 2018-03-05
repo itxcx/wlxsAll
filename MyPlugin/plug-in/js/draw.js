@@ -35,7 +35,7 @@
                     'width': 0.35 + 'vw',
                     'height': boxHeight - 0.1 + 'rem',
                     'float': 'left',
-                    'background': '#555555',
+                    'background': '#dddddd',
                     'marginLeft': marginLeft,
                     'borderRadius': borderRadius
                 }).appendTo($(this.element).find('.box'));

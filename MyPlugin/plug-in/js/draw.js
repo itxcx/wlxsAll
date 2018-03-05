@@ -51,28 +51,76 @@
                 }, 10);
             }
             makeIndexPlus(this.element, procedure);
-            //设置显示数据的颜色
+            //设置数据显示颜色渐变,分5种情况,待改进
             function makeChildBackground(elem, index) {
-                if(index <= 20) {
+                if(gradientColor.length === 1) {
                     $(elem).find('li').eq(index).css({
                         'background': gradientColor[0]
                     })
-                }else if(index > 20 && index <= 40) {
-                    $(elem).find('li').eq(index).css({
-                        'background': gradientColor[1]
-                    })
-                }else if(index > 40 && index <= 60) {
-                    $(elem).find('li').eq(index).css({
-                        'background': gradientColor[2]
-                    })
-                }else if(index > 60 && index <= 80) {
-                    $(elem).find('li').eq(index).css({
-                        'background': gradientColor[3]
-                    })
+                }else if(gradientColor.length === 2) {
+                    if(index <= 50) {
+                        $(elem).find('li').eq(index).css({
+                            'background': gradientColor[0]
+                        })
+                    }else{
+                        $(elem).find('li').eq(index).css({
+                            'background': gradientColor[1]
+                        })
+                    }
+                }else if(gradientColor.length === 3) {
+                    if(index <= 33) {
+                        $(elem).find('li').eq(index).css({
+                            'background': gradientColor[0]
+                        })
+                    }else if(index > 33 && index <= 66) {
+                        $(elem).find('li').eq(index).css({
+                            'background': gradientColor[1]
+                        })
+                    }else{
+                        $(elem).find('li').eq(index).css({
+                            'background': gradientColor[2]
+                        })
+                    }
+                }else if(gradientColor.length === 4) {
+                    if(index <= 25) {
+                        $(elem).find('li').eq(index).css({
+                            'background': gradientColor[0]
+                        })
+                    }else if(index > 25 && index <= 50) {
+                        $(elem).find('li').eq(index).css({
+                            'background': gradientColor[1]
+                        })
+                    }else if(index > 50 && index <= 75) {
+                        $(elem).find('li').eq(index).css({
+                            'background': gradientColor[2]
+                        })
+                    }else{
+                        $(elem).find('li').eq(index).css({
+                            'background': gradientColor[3]
+                        })
+                    }
                 }else{
-                    $(elem).find('li').eq(index).css({
-                        'background': gradientColor[4]
-                    })
+                    if(index <= 20) {
+                        $(elem).find('li').eq(index).css({
+                            'background': gradientColor[0]
+                        })
+                    }else if(index > 20 && index <= 40) {
+                        $(elem).find('li').eq(index).css({
+                            'background': gradientColor[1]
+                        })
+                    }else if(index > 40 && index <= 60) {
+                        $(elem).find('li').eq(index).css({
+                            'background': gradientColor[2]
+                        })
+                    }else if(index > 60 && index <= 80) {
+                        $(elem).find('li').eq(index).css({
+                            'background': gradientColor[3]
+                        })
+                    }else{
+                        $(elem).find('li').eq(index).css({
+                            'background': gradientColor[4]
+                        })
+                    }
                 }
             }
         },

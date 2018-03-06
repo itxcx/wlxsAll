@@ -1,0 +1,355 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>未来鲜森文档系统</title>
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="js/style.js" type="text/javascript"></script>
+</head>
+<body>
+<header class="col-md-12 col-xs-12">API文档管理<span>FOR WLXS</span></header>
+<section>
+	<div class="itemLists col-md-3 col-xs-3">
+		<div class="list">
+			<ul class="itemList">
+			</ul>
+		</div>
+	</div>
+	<div class="content  col-md-8 col-xs-8">
+		<div class="path">当前目录:
+			<span class="pathHome">首页</span>
+			<span class="pathUrl1"></span>
+			<span class="pathUrl2"></span>
+		</div>
+		<div class="manageInfo">
+			1、卖家店铺管理类应用
+			卖家自研应用
+			卖家通用应用
+			2、买家商品导购类应用：
+			买家无线应用
+			买家网站应用
+			接入说明：
+			1、如何选择应用类型：
+			要根据您应用的服务对象而选择应用类型。
+			如果您是ISV，要开发服务京东卖家，帮助京东卖家管理店铺的应用，请您创建卖家通用应用，参考卖家通用应用的接入流程。
+			如果您是商家，符合开发资质，要开发用于自身店铺管理的应用，请您创建卖家自研应用，参考卖家自研应用的接入流程。
+			如果您是京东的合作伙伴，要为京东买家提供商品导购类服务，您可以选择适用于无线端的买家无线应用，或者网站应用接入。请参考无线应用和网站应用接入流程。
+			2、回调地址如何填写：
+			回调地址为您应用的访问地址，用于接收JOS平台返回的相关授权数据，如果您的应用处于测试阶段，可以先按配置一个本地可以访问的地址，待应用上线时，再修改为正式环境地址。JOS应用类型简介：
+			1、卖家店铺管理类应用
+			卖家自研应用
+			卖家通用应用
+			2、买家商品导购类应用：
+			买家无线应用
+			买家网站应用
+			接入说明：
+			1、如何选择应用类型：
+			要根据您应用的服务对象而选择应用类型。
+			如果您是ISV，要开发服务京东卖家，帮助京东卖家管理店铺的应用，请您创建卖家通用应用，参考卖家通用应用的接入流程。
+			如果您是商家，符合开发资质，要开发用于自身店铺管理的应用，请您创建卖家自研应用，参考卖家自研应用的接入流程。
+			如果您是京东的合作伙伴，要为京东买家提供商品导购类服务，您可以选择适用于无线端的买家无线应用，或者网站应用接入。请参考无线应用和网站应用接入流程。
+			2、回调地址如何填写：
+			回调地址为您应用的访问地址，用于接收JOS平台返回的相关授权数据，如果您的应用处于测试阶段，可以先按配置一个本地可以访问的地址，待应用上线时，再修改为正式环境地址。</div>
+	</div>
+</section>
+<footer>
+	<p>
+		<span>CopyRight © 2017 <a href="https://www.baidu.com" target="_blank" title="点击访问未来鲜森官网">未来鲜森</a>版权所有.</span>
+		<span>The Design By Jilon.</span>
+	</p>
+</footer>
+<script type="text/javascript">
+$(function(){
+var res = res = {
+                "itemList":[
+                    {
+                        "itemTitle": "文档类型1",
+                        "info":"JOS数据开放服务，将商家关心的数据开放给ISV及商家。ISV和京东商家可以利用这些服务，搭建最适用于商家店铺的数据分析平台，通过数据分析，及时了解店铺销量上升及下降的原因，从而调配资源，实现店铺效益最大化。JOS现已开放经营数据、销售数据、流量数据，后面会继续开放广告数据、客户数据、营销数据、及店铺日志数据。",
+                        "items":[
+                            {
+                                "title": "接口文档1",
+                                "interfaceUrl": "public/data/test.php",
+                                "instruction": "出货所有的接口信息",
+                                "methods": "get/post",
+                                "version": "v1.1",
+                                "parames":[
+                                    {
+                                        "pName":"parame1",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是用来向后台传递很重要的信息的！"
+                                    },
+                                    {
+                                        "pName":"parame2",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是用来向后台传递很重要的信息的！"
+                                    }
+                                ],
+                                "respond":[
+                                    {
+                                        "pName":"parame1",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是后台返回来的数据！"
+                                    },
+                                    {
+                                        "pName":"parame2",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是后台返回来的数据！"
+                                    }
+                                ],
+                                "unusual": [
+                                    {
+                                        "pName":"parame1",
+                                        "ins":"这个是异常的数据！"
+                                    },
+                                    {
+                                        "pName":"parame2",
+                                        "ins":"这个是异常的数据！"
+                                    }
+                                ],
+                                "testUrl": "localhost/project/data/test.php"
+                            },
+                            {
+                                "title": "接口文档2",
+                                "interfaceUrl": "localhost/project/data/test.php",
+                                "instruction": "这个不知道是什么接口",
+                                "methods": "get/post",
+                                "version": "v1.0.10",
+                                "parames":[
+                                    {
+                                        "pName":"parame3",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是用来向后台传递很重要的信息的！"
+                                    },
+                                    {
+                                        "pName":"parame4",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是用来向后台传递很重要的信息的！"
+                                    }
+                                ],
+                                "respond":[
+                                    {
+                                        "pName":"parame1",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是后台返回来的数据！"
+                                    },
+                                    {
+                                        "pName":"parame2",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是后台返回来的数据！"
+                                    }
+                                ],
+                                "unusual": [
+                                    {
+                                        "pName":"parame1",
+                                        "ins":"这个是异常的数据！"
+                                    },
+                                    {
+                                        "pName":"parame2",
+                                        "ins":"这个是异常的数据！"
+                                    }
+                                ],
+                                "testUrl": "localhost/project/data/test.php"
+                            }
+                        ]
+                    },
+                    {
+                        "itemTitle": "文档类型2",
+                        "info":"这是类型2",
+                        "items":[
+                            {
+                                "title": "接口文档1",
+                                "interfaceUrl": "localhost/project/data/test.php",
+                                "instruction": "如果您是ISV，要开发服务京东卖家，帮助京东卖家管理店铺的应用，请您创建卖家通用应用，参考卖家通用应用的接入流程。如果您是商家，符合开发资质，要开发用于自身店铺管理的应用，请您创建卖家自研应用，参考卖家自研应用的接入流程。如果您是京东的合作伙伴，要为京东买家提供商品导购类服务，您可以选择适用于无线端的买家无线应用，或者网站应用接入。请参考无线应用和网站应用接入流程。",
+                                "methods": "<ul><p>Item2</p><li><p>li-1</p></li><li><p>li-2</p></li><li><p>li-3</p></li><li><p>li-4</p></li><li><p>li-5</p></li><li><p>li-6</p></li></ul>",
+                                "version": "v2.0.0",
+                                "parames":[
+                                    {
+                                        "pName":"parame5",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是用来向后台传递很重要的信息的！"
+                                    },
+                                    {
+                                        "pName":"parame6",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是用来向后台传递很重要的信息的！"
+                                    }
+                                ],
+                                "respond":[
+                                    {
+                                        "pName":"parame1",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是后台返回来的数据！"
+                                    },
+                                    {
+                                        "pName":"parame2",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是后台返回来的数据！"
+                                    }
+                                ],
+                                "unusual": [
+                                    {
+                                        "pName":"parame1",
+                                        "ins":"这个是异常的数据！"
+                                    },
+                                    {
+                                        "pName":"parame2",
+                                        "ins":"这个是异常的数据！"
+                                    }
+                                ],
+                                "testUrl": "localhost/project/data/test.php"
+                            },
+                            {
+                                "title": "接口文档2",
+                                "interfaceUrl": "data/test.php",
+                                "instruction": "这个接口是最高机密的信息，如果能请求到这个接口是作为一个前端开发的荣幸，一定要珍惜。",
+                                "methods": "get/post",
+                                "version": "v1.1.0",
+                                "parames":[
+                                    {
+                                        "pName":"parame7",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是用来向后台传递很重要的信息的！"
+                                    },
+                                    {
+                                        "pName":"parame8",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是用来向后台传递很重要的信息的！"
+                                    }
+                                ],
+                                "respond":[
+                                    {
+                                        "pName":"parame1",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是后台返回来的数据！"
+                                    },
+                                    {
+                                        "pName":"parame2",
+                                        "pType":"string",
+                                        "isRequire": true,
+                                        "ins":"这个参数是后台返回来的数据！"
+                                    }
+                                ],
+                                "unusual": [
+                                    {
+                                        "pName":"parame1",
+                                        "ins":"这个是异常的数据！"
+                                    },
+                                    {
+                                        "pName":"parame2",
+                                        "ins":"这个是异常的数据！"
+                                    }
+                                ],
+                                "testUrl": "localhost/project/data/test.php"
+                            }
+                        ]
+                    }
+                ]
+            };
+	function madeList (res) {
+		    var itemList = res.itemList;
+		    for( var i = 0; i < itemList.length; i++){
+                $('<li><p class="title" data-main="'+ i +'">' + itemList[i].itemTitle + '</p>' +
+					'<ul  class="list-se"><p class="title" data-main="main'+ i +'">' + itemList[i].itemTitle + '</p></ul>' +
+					'</li>').appendTo($('.itemList'));
+                $('<div class="mainShow" data-mainShow="'+ i +'"><p>' + itemList[i].info + '</p></div>').appendTo($('.content'));
+                for(var j = 0; j < itemList[i].items.length; j++){
+                    $('<li><p data-itemNum="' + i + '_' + j + '">' + itemList[i].items[j].title + '</p></li>').appendTo($('.list-se').eq(i));
+                    $('<div class="itemsContents itemsContents'+ i + '_' + j +'" data-index="' + i + '_' + j + '">' +
+						'<div><h3>接口地址</h3><p>'+ itemList[i].items[j].interfaceUrl +'</p></div>' +
+						'<div><h3>描述</h3><p>'+ itemList[i].items[j].instruction +'</p></div>' +
+						'<div><h3>请求方法</h3><p>'+ itemList[i].items[j].methods +'</p></div>' +
+						'<div><h3>适用版本</h3><p>'+ itemList[i].items[j].version +'</p></div>' +
+						'<div><h3>请求参数</h3><ul class="tableHead">' +
+						 '<li>参数名</li><li>类型</li><li>是否必须</li><li>描述</li></ul>' +
+						'<ul class="parames"></ul></div>' +
+						'<div><h3>响应说明</h3><ul class="tableHead">' +
+						'<li>参数名</li><li>类型</li><li>默认值</li><li>描述</li></ul><ul class="responds"></ul></div>' +
+						'<div><h3>异常说明</h3><ul class="specialHead">' +
+						'<li>异常类型</li><li>描述</li></ul><ul class="unusuals"></ul></div>' +
+						'<div><h3>测试地址</h3><p>' + itemList[i].items[j].testUrl + '</p></div></div>').appendTo($('.content'));
+                    for(var k = 0; k < itemList[i].items[j].parames.length; k++){
+                        $('<li>' +
+							'<ul>' +
+								'<li>'+itemList[i].items[j].parames[k].pName+'</li>' +
+								'<li>'+itemList[i].items[j].parames[k].pType+'</li>' +
+								'<li>'+itemList[i].items[j].parames[k].isRequire+'</li>' +
+								'<li>'+itemList[i].items[j].parames[k].ins+'</li>' +
+							'</ul>' +
+							'</li>').appendTo($('.itemsContents'+ i + '_' + j+' .parames'));
+					}
+                    for(var k = 0; k < itemList[i].items[j].respond.length; k++){
+                        $('<li>' +
+                            '<ul>' +
+                            '<li>'+itemList[i].items[j].respond[k].pName+'</li>' +
+                            '<li>'+itemList[i].items[j].respond[k].pType+'</li>' +
+                            '<li>'+itemList[i].items[j].respond[k].isRequire+'</li>' +
+                            '<li>'+itemList[i].items[j].respond[k].ins+'</li>' +
+                            '</ul>' +
+                            '</li>').appendTo($('.itemsContents'+ i + '_' + j+'  .responds'));
+                    }
+                    for(var k = 0; k < itemList[i].items[j].unusual.length; k++){
+                        $('<li>' +
+                            '<ul>' +
+                            '<li>'+itemList[i].items[j].unusual[k].pName+'</li>' +
+                            '<li>'+itemList[i].items[j].unusual[k].ins+'</li>' +
+                            '</ul>' +
+                            '</li>').appendTo($('.itemsContents'+ i + '_' + j+'  .unusuals'));
+                    }
+				}
+			}
+            $('.list ul li p').clickdown();
+            $('.list-se p[class=title]').clickup();
+            $('.list>ul>li').ad();
+            $('.itemsContents').hide();
+            $('.mainShow').hide();
+            $(".itemList p").click(function(e){
+                e.stopPropagation();
+                $('.itemsContents').hide();
+                $('.mainShow').hide();
+                if($(this).attr('data-itemNum')){
+                    var num = $(this).attr('data-itemNum');
+                    $('.itemsContents[data-index='+ num +']').show();
+                }
+                if($(this).attr('data-main')){
+                    var sum = $(this).attr('data-main');
+                    $('.mainShow[data-mainShow='+ sum +']').show();
+                }
+            });
+            $('.itemList>li>p').click( function () {
+                var path1 = $(this).text();
+                var length = path1.length;
+                path1 = path1.substring(0,length-1);
+                $('.pathUrl1').html('/ '+path1);
+            });
+			$('.list-se>li>p').click( function () {
+			    var path2 = $(this).text();
+			    $('.pathUrl2').html('/ ' + path2);
+			});
+
+		}
+		
+		madeList(res);
+		
+});
+</script>
+
+</body>
+</html>

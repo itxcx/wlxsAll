@@ -1,0 +1,200 @@
+{
+  "itemList":[
+    {
+      "itemTitle": "文档类型1",
+      "info":"JOS数据开放服务，将商家关心的数据开放给ISV及商家。ISV和京东商家可以利用这些服务，搭建最适用于商家店铺的数据分析平台，通过数据分析，及时了解店铺销量上升及下降的原因，从而调配资源，实现店铺效益最大化。JOS现已开放经营数据、销售数据、流量数据，后面会继续开放广告数据、客户数据、营销数据、及店铺日志数据。",
+      "items":[
+        {
+          "title": "接口文档1",
+          "interfaceUrl": "public/data/test.php",
+          "instruction": "出货所有的接口信息",
+          "methods": "get/post",
+          "version": "v1.1",
+          "parames":[
+            {
+              "pName":"parame1",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是用来向后台传递很重要的信息的！"
+            },
+            {
+              "pName":"parame2",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是用来向后台传递很重要的信息的！"
+            }
+          ],
+          "respond":[
+            {
+              "pName":"parame1",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是后台返回来的数据！"
+            },
+            {
+              "pName":"parame2",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是后台返回来的数据！"
+            }
+          ],
+          "unusual": [
+            {
+              "pName":"parame1",
+              "ins":"这个是异常的数据！"
+            },
+            {
+              "pName":"parame2",
+              "ins":"这个是异常的数据！"
+            }
+          ],
+          "testUrl": "localhost/project/data/test.php"
+        },
+        {
+          "title": "接口文档2",
+          "interfaceUrl": "localhost/project/data/test.php",
+          "instruction": "这个不知道是什么接口",
+          "methods": "get/post",
+          "version": "v1.0.10",
+          "parames":[
+            {
+              "pName":"parame3",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是用来向后台传递很重要的信息的！"
+            },
+            {
+              "pName":"parame4",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是用来向后台传递很重要的信息的！"
+            }
+          ],
+          "respond":[
+            {
+              "pName":"parame1",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是后台返回来的数据！"
+            },
+            {
+              "pName":"parame2",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是后台返回来的数据！"
+            }
+          ],
+          "unusual": [
+            {
+              "pName":"parame1",
+              "ins":"这个是异常的数据！"
+            },
+            {
+              "pName":"parame2",
+              "ins":"这个是异常的数据！"
+            }
+          ],
+          "testUrl": "localhost/project/data/test.php"
+        }
+      ]
+    },
+    {
+      "itemTitle": "文档类型2",
+      "info":"这是类型2",
+      "items":[
+        {
+          "title": "接口文档1",
+          "interfaceUrl": "localhost/project/data/test.php",
+          "instruction": "如果您是ISV，要开发服务京东卖家，帮助京东卖家管理店铺的应用，请您创建卖家通用应用，参考卖家通用应用的接入流程。如果您是商家，符合开发资质，要开发用于自身店铺管理的应用，请您创建卖家自研应用，参考卖家自研应用的接入流程。如果您是京东的合作伙伴，要为京东买家提供商品导购类服务，您可以选择适用于无线端的买家无线应用，或者网站应用接入。请参考无线应用和网站应用接入流程。",
+          "methods": "<ul><p>Item2</p><li><p>li-1</p></li><li><p>li-2</p></li><li><p>li-3</p></li><li><p>li-4</p></li><li><p>li-5</p></li><li><p>li-6</p></li></ul>",
+          "version": "v2.0.0",
+          "parames":[
+            {
+              "pName":"parame5",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是用来向后台传递很重要的信息的！"
+            },
+            {
+              "pName":"parame6",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是用来向后台传递很重要的信息的！"
+            }
+          ],
+          "respond":[
+            {
+              "pName":"parame1",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是后台返回来的数据！"
+            },
+            {
+              "pName":"parame2",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是后台返回来的数据！"
+            }
+          ],
+          "unusual": [
+            {
+              "pName":"parame1",
+              "ins":"这个是异常的数据！"
+            },
+            {
+              "pName":"parame2",
+              "ins":"这个是异常的数据！"
+            }
+          ],
+          "testUrl": "localhost/project/data/test.php"
+        },
+        {
+          "title": "接口文档2",
+          "interfaceUrl": "data/test.php",
+          "instruction": "这个接口是最高机密的信息，如果能请求到这个接口是作为一个前端开发的荣幸，一定要珍惜。",
+          "methods": "get/post",
+          "version": "v1.1.0",
+          "parames":[
+            {
+              "pName":"parame7",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是用来向后台传递很重要的信息的！"
+            },
+            {
+              "pName":"parame8",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是用来向后台传递很重要的信息的！"
+            }
+          ],
+          "respond":[
+            {
+              "pName":"parame1",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是后台返回来的数据！"
+            },
+            {
+              "pName":"parame2",
+              "pType":"string",
+              "isRequire": true,
+              "ins":"这个参数是后台返回来的数据！"
+            }
+          ],
+          "unusual": [
+            {
+              "pName":"parame1",
+              "ins":"这个是异常的数据！"
+            },
+            {
+              "pName":"parame2",
+              "ins":"这个是异常的数据！"
+            }
+          ],
+          "testUrl": "localhost/project/data/test.php"
+        }
+      ]
+    }
+  ]
+}

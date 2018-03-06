@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>未来鲜森业务地图分布</title>
+<title>未来鲜森业务地图分布-DEMO</title>
 </head>
 
 <body style="background:#1B1B1B;">
@@ -45,12 +45,28 @@ function getEcharts(){
 				dataRange: {
 					min : 0,
 					max : 100,
-					calculable : true,
+					calculable : false,
 					color: ['#ff3333', 'orange', 'yellow','lime','aqua'],
 					textStyle:{
 						color:'#fff'
 					}
 				},
+                tooltip : {
+                    trigger: 'item',
+                    formatter: '{b}'
+                },
+                legend: {
+                    orient: 'vertical',
+                    x:'left',
+                    data:['西安 Top10', '北京 Top10'],
+                    selectedMode: 'single',
+                    selected:{
+                        '北京 Top10': false
+                    },
+                    textStyle : {
+                        color: '#fff'
+                    }
+                },
 				series : [
 					{
 						name: '全国',
@@ -61,7 +77,7 @@ function getEcharts(){
 						itemStyle:{
 							normal:{
 								borderColor:'rgba(100,149,237,1)',
-								borderWidth:0.5,
+								borderWidth:1,
 								areaStyle:{
 									color: '#1b1b1b'
 								}
@@ -69,7 +85,7 @@ function getEcharts(){
 						},
 						data:[],
 						markLine : {
-							smooth:true,
+							smooth: true,
 							symbol: ['none', 'circle'],  
 							symbolSize : 1,
 							itemStyle : {
@@ -199,7 +215,7 @@ function getEcharts(){
 							'韶关': [113.7964,24.7028]
 						},
 						markPoint : {
-							symbol:'emptyCircle',
+							symbol: 'emptyCircle',
 							symbolSize : function (v){
 								return 10 + v/10
 							},
@@ -225,13 +241,13 @@ function getEcharts(){
 								{name:'长春',value:40},
 								{name:'包头',value:30},
 								{name:'重庆',value:20},
-								{name:'成都',value:100},
+								{name:'成都',value:99},
 								{name:'常州',value:10}
 							]
 						}
 					},
 					{
-						name: '北京 Top10',
+						name: '西安 Top10',
 						type: 'map',
 						mapType: 'china',
 						data:[],
@@ -242,14 +258,14 @@ function getEcharts(){
 								scaleSize: 1,
 								period: 30,
 								color: '#fff',
-								shadowBlur: 10
+								shadowBlur: 20
 							},
 							itemStyle : {
 								normal: {
 									label:{show:false},
 									borderWidth:1,
 									lineStyle: {
-										type: 'solid',
+										type: 'dashed',
 										shadowBlur: 10
 									}
 								}
@@ -264,7 +280,7 @@ function getEcharts(){
 								[{name:'长春'}, {name:'西安',value:40}],
 								[{name:'包头'}, {name:'西安',value:30}],
 								[{name:'重庆'}, {name:'西安',value:20}],
-								[{name:'成都'}, {name:'西安',value:80}],
+								[{name:'成都'}, {name:'西安',value:99}],
 								[{name:'常州'}, {name:'西安',value:10}]
 							]
 						},
@@ -290,19 +306,32 @@ function getEcharts(){
 									label:{show:false}
 								}
 							},
-							data : [
-								{name:'上海',value:95},
-								{name:'广州',value:90},
-								{name:'大连',value:80},
-								{name:'南宁',value:70},
-								{name:'南昌',value:60},
-								{name:'拉萨',value:50},
-								{name:'长春',value:40},
-								{name:'包头',value:30},
-								{name:'重庆',value:20},
-                                {name:'成都',value:80},
-								{name:'常州',value:10}
-							]
+							// data : [
+							// 	{name:'上海',value:95},
+							// 	{name:'广州',value:90},
+							// 	{name:'大连',value:80},
+							// 	{name:'南宁',value:70},
+							// 	{name:'南昌',value:60},
+							// 	{name:'拉萨',value:50},
+							// 	{name:'长春',value:40},
+							// 	{name:'包头',value:30},
+							// 	{name:'重庆',value:20},
+                            //  {name:'成都',value:99},
+							// 	{name:'常州',value:10}
+							// ]
+                            data : [
+                                {name:'上海'},
+                                {name:'广州'},
+                                {name:'大连'},
+                                {name:'南宁'},
+                                {name:'南昌'},
+                                {name:'拉萨'},
+                                {name:'长春'},
+                                {name:'包头'},
+                                {name:'重庆'},
+                                {name:'成都'},
+                                {name:'常州'}
+                            ]
 						}
 					}
 				]

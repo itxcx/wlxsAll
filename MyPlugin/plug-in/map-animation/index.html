@@ -5,12 +5,10 @@
 </head>
 
 <body style="background:#1B1B1B;">
-<!--Step:1 Prepare a dom for ECharts which (must) has size (width & hight)--> 
 <!--Step:1 为ECharts准备一个具备大小（宽高）的Dom-->
 
 <div id="mainMap" style="height:90vh;width: 100vw;padding:10px;background:#1B1B1B">
 </div>
-<!--Step:2 Import echarts.js--> 
 <!--Step:2 引入echarts.js-->
 
 <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
@@ -23,7 +21,6 @@
 
 <script type="text/javascript">
 function getEcharts(){
-    // Step:3 conifg ECharts's path, link to echarts.js from current page.
     // Step:3 为模块加载器配置echarts的路径，从当前页面链接到echarts.js，定义所需图表路径
     require.config({
         paths: {
@@ -31,7 +28,6 @@ function getEcharts(){
         }
     });
     
-    // Step:4 require echarts and use it in the callback.
     // Step:4 动态加载echarts然后在回调函数中开始使用，注意保持按需加载结构定义图表路径
     require(
         [

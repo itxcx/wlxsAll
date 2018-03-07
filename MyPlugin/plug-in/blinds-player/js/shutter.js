@@ -26,7 +26,7 @@
         }, this.opts.playInterval);
       }
     },
-
+    //风格切换
     moveSwitch: function (randomNum, command, index) {
       switch (randomNum) {
         case 0:

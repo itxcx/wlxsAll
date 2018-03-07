@@ -2,16 +2,16 @@
 
   var Shutter = function (elem, options) {
     this.defaults = {
-      shutterW: 1200,
-      shutterH: 500,
-      isAutoPlay: false,
-      playInterval: 3000,
-      curDisplay: 0,
-      fullPage: false
+      shutterW: 1200, //容器宽度
+      shutterH: 500, //容器高度
+      isAutoPlay: false, //是否自动播放
+      playInterval: 3000, //自动播放时间
+      curDisplay: 0, // 当前显示页
+      fullPage: false // 是否全屏展示
     };
     this.opts = $.extend({}, this.defaults, options);
 
-    this.inital(elem);
+    this.inital(elem, options, this.opts.curDisplay);
   };
 
   Shutter.prototype = {
@@ -92,13 +92,11 @@
       if (!index) {
         if (command === 'prev') {
           index = this.curDisplay - 1;
-
           if (this.curDisplay === 0) {
             index = this.shutterItem_len - 1;
           }
         } else {
           index = this.curDisplay + 1;
-
           if (this.curDisplay === this.shutterItem_len - 1) {
             index = 0;
           }
@@ -138,17 +136,37 @@
       }
     },
 
-    inital: function (elem) {
+    inital: function (elem, options, showIndex) {
       var self = this;
       this.$shutter = elem;
-      this.$shutterItem = this.$shutter.find('.shutter-img a');
-      this.$prevBtn = this.$shutter.find('.shutter-btn .prev');
-      this.$nextBtn = this.$shutter.find('.shutter-btn .next');
+      //创建DOM结构
+        //图片容器
+      $('<div class="shutter-img"></div>').appendTo(this.$shutter);
+        //左右切换按钮
+      $('<ul class="shutter-btn">' +
+          '<li class="prev"></li>' +
+          '<li class="next"></li>' +
+          '</ul>').appendTo(this.$shutter);
+      //图片
+      var imgArray = options.shutterImgArray;
+      for(var i = 0; i < imgArray.length; i++) {
+        $('<a href="#" data-shutter-title="'+ imgArray[i].shutterTitle+ '">' +
+              '<img src="'+ imgArray[i].shutterImgPath +'" alt="#">' +
+            '</a>').appendTo($('.shutter-img'));
+      }
+      //控制显示文字
+      if(options.titleShow) {
+        $('<div class="shutter-desc"><p>'+ options.shutterImgArray[showIndex].shutterTitle +'</p></div>').appendTo(this.$shutter);
+      }
+      this.$shutterItem = this.$shutter.find('.shutter-img a'); //图片
+      this.$prevBtn = this.$shutter.find('.shutter-btn .prev'); //向前
+      this.$nextBtn = this.$shutter.find('.shutter-btn .next'); //向后
       this.$shutterNav = this.$shutter.find('.shutter-nav li');
-      this.$shutterDesc = this.$shutter.find('.shutter-desc');
-
-      this.shutterItem_len = this.$shutterItem.length;
-      this.curDisplay = this.opts.curDisplay > this.shutterItem_len - 1 ? this.opts.curDisplay = this.shutterItem_len - 1 : this.opts.curDisplay;
+      this.$shutterDesc = this.$shutter.find('.shutter-desc'); //显示文字
+      this.shutterItem_len = this.$shutterItem.length; //图片个数
+      this.curDisplay = this.opts.curDisplay > this.shutterItem_len - 1 ?
+          this.opts.curDisplay = this.shutterItem_len - 1 :
+          this.opts.curDisplay; //当前显示页
       this.b_stop = true;
       this.shutterTitle = '';
       this.playTime = null;
@@ -161,7 +179,6 @@
       this.$prevBtn.bind('click', function () {
         if (self.b_stop) {
           self.b_stop = false;
-
           self.toggleMove('prev');
         }        
       });

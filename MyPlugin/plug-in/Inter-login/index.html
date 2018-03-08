@@ -9,7 +9,7 @@
     <script></script>
 </head>
 <body>
-<form>
+<section>
     <div class="svgContainer">
         <div>
             <svg class="mySVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
@@ -109,10 +109,13 @@
         <label for="password">Password</label>
         <input type="password" id="password" class="password" />
     </div>
+    <div class="tiptitle">
+        <p>&nbsp;</p>
+    </div>
     <div class="inputGroup inputGroup3">
         <button id="login">登 录</button>
     </div>
-</form>
+</section>
 </body>
 </html>
 <script>
@@ -239,6 +242,7 @@
     }
 
     function onEmailFocus(e) {
+        $('.tiptitle p').html('$nbsp;').css({'opacity': 0});
         e.target.parentElement.classList.add("focusWithText");
         getCoord();
     }
@@ -251,6 +255,7 @@
     }
 
     function onPasswordFocus(e) {
+        $('.tiptitle p').html('$nbsp;').css({'opacity': 0});
         coverEyes();
     }
 
@@ -312,4 +317,23 @@
     password.addEventListener('blur', onPasswordBlur,false);
     TweenMax.set(armL, {x: -93, y: 220, rotation: 105, transformOrigin: "top left"});
     TweenMax.set(armR, {x: -93, y: 220, rotation: -105, transformOrigin: "top right"});
+
+    /*数据提交*/
+    $('#login').click(function() {
+       var userEmailAddr = $('#email').val();
+       var userPassword = $('#password').val();
+       if(userEmailAddr && userPassword) {
+           $.ajax({
+               url: '',
+               type: 'POST',
+               data: {'username': userEmailAddr, 'password': userPassword}
+           }).then(function(res) {
+               console.log(res);
+           }).catch(function(error) {
+               console.log(error);
+           })
+       }else{
+           $('.tiptitle p').html('邮箱或密码错误！').css({'color': 'red','opacity': 1});
+       }
+    })
 </script>

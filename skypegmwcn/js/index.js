@@ -48,12 +48,21 @@
                 var apothem = s / (2 * Math.tan(Math.PI / n));
 
                 figure.style.transformOrigin = '50% 50% ' + -apothem + 'px';
+                //媒体查询实现
+                if(window.screen.width < 500){
+                $('.carousel figure div').css({'height': '15vh', 'width': '38vw'});
+                    for (var i = 0; i < n; i++) {
+                        images[i].style.paddingLeft = 10 + 'px';
+                        images[i].style.paddingTop = 30 + 'px';
+                        images[i].style.paddingRight = 10 + 'px';
 
-                for (var i = 0; i < n; i++) {
-                    images[i].style.paddingLeft = gap + 'px';
-                    images[i].style.paddingRight = gap + 'px';
-                    // images[i].style.marginLeft = gap + 'px';
-                    // images[i].style.marginRight = gap + 'px';
+                    }
+                }else{
+                    for (var i = 0; i < n; i++) {
+                        images[i].style.paddingLeft = gap + 'px';
+                        images[i].style.paddingRight = gap + 'px';
+
+                    }
                 }
                 for (i = 1; i < n; i++) {
                     images[i].style.transformOrigin = '50% 50% ' + -apothem + 'px';
@@ -118,6 +127,14 @@
                                 color:'#fff'
                             }
                         },
+                        title : {
+                            text: '未来鲜森--新零售',
+                            subtext:'业务覆盖图(统计日期：2018年3月8日)',
+                            x:'center',
+                            textStyle : {
+                                color: '#fff'
+                            }
+                        },
                         tooltip : {
                             trigger: 'item',
                             formatter: '{b}'
@@ -125,10 +142,10 @@
                         legend: {
                             orient: 'vertical',
                             x:'left',
-                            data:['西安 Top10', '北京 Top10'],
+                            data:['西安', '北京'],
                             selectedMode: 'single',
                             selected:{
-                                '北京 Top10': false
+                                '北京 业务线': false
                             },
                             textStyle : {
                                 color: '#fff'
@@ -138,7 +155,7 @@
                             {
                                 name: '全国',
                                 type: 'map',
-                                roam: true,
+                                roam: false,
                                 hoverable: false,
                                 mapType: 'china',
                                 itemStyle:{
@@ -299,22 +316,22 @@
                                         }
                                     },
                                     data : [
-                                        {name:'上海',value:95},
-                                        {name:'广州',value:90},
+                                        {name:'兰州',value:95},
+                                        {name:'鄂尔多斯',value:90},
                                         {name:'大连',value:80},
-                                        {name:'南宁',value:70},
+                                        {name:'乌鲁木齐',value:70},
                                         {name:'南昌',value:60},
                                         {name:'拉萨',value:50},
-                                        {name:'长春',value:40},
+                                        {name:'西宁',value:40},
                                         {name:'包头',value:30},
                                         {name:'重庆',value:20},
                                         {name:'成都',value:99},
-                                        {name:'常州',value:10}
+                                        {name:'渭南',value:10}
                                     ]
                                 }
                             },
                             {
-                                name: '西安 Top10',
+                                name: '西安',
                                 type: 'map',
                                 mapType: 'china',
                                 data:[],
@@ -338,17 +355,105 @@
                                         }
                                     },
                                     data : [
-                                        [{name:'上海'}, {name:'西安',value:95}],
-                                        [{name:'广州'}, {name:'西安',value:90}],
+                                        [{name:'兰州'}, {name:'西安',value:95}],
+                                        [{name:'鄂尔多斯'}, {name:'西安',value:90}],
                                         [{name:'大连'}, {name:'西安',value:80}],
-                                        [{name:'南宁'}, {name:'西安',value:70}],
+                                        [{name:'乌鲁木齐'}, {name:'西安',value:70}],
                                         [{name:'南昌'}, {name:'西安',value:60}],
                                         [{name:'拉萨'}, {name:'西安',value:50}],
-                                        [{name:'长春'}, {name:'西安',value:40}],
+                                        [{name:'西宁'}, {name:'西安',value:40}],
                                         [{name:'包头'}, {name:'西安',value:30}],
                                         [{name:'重庆'}, {name:'西安',value:20}],
                                         [{name:'成都'}, {name:'西安',value:99}],
-                                        [{name:'常州'}, {name:'西安',value:10}]
+                                        [{name:'渭南'}, {name:'西安',value:10}]
+                                    ]
+                                },
+                                markPoint : {
+                                    symbol:'emptyCircle',
+                                    symbolSize : function (v){
+                                        return 0.1
+                                    },
+                                    effect : {
+                                        show: false,
+                                        shadowBlur : 0
+                                    },
+                                    itemStyle:{
+                                        normal:{
+                                            label:{show:true,
+                                                position:'top',
+                                                textStyle: {
+                                                    fontSize: 14
+                                                }
+                                            }
+                                        },
+                                        emphasis: {
+                                            label:{show:false}
+                                        }
+                                    },
+                                    // data : [
+                                    // 	{name:'上海',value:95},
+                                    // 	{name:'广州',value:90},
+                                    // 	{name:'大连',value:80},
+                                    // 	{name:'南宁',value:70},
+                                    // 	{name:'南昌',value:60},
+                                    // 	{name:'拉萨',value:50},
+                                    // 	{name:'长春',value:40},
+                                    // 	{name:'包头',value:30},
+                                    // 	{name:'重庆',value:20},
+                                    //  {name:'成都',value:99},
+                                    // 	{name:'常州',value:10}
+                                    // ]
+                                    data : [
+                                        {name:'兰州'},
+                                        {name:'鄂尔多斯'},
+                                        {name:'大连'},
+                                        {name:'乌鲁木齐'},
+                                        {name:'南昌'},
+                                        {name:'拉萨'},
+                                        {name:'西宁'},
+                                        {name:'包头'},
+                                        {name:'重庆'},
+                                        {name:'成都'},
+                                        {name:'渭南'}
+                                    ]
+                                }
+                            },
+                            {
+                                name: '北京',
+                                type: 'map',
+                                mapType: 'china',
+                                data:[],
+                                markLine : {
+                                    smooth:true,
+                                    effect : {
+                                        show: true,
+                                        scaleSize: 1,
+                                        period: 30,
+                                        color: '#fff',
+                                        shadowBlur: 20
+                                    },
+                                    itemStyle : {
+                                        normal: {
+                                            label:{show:false},
+                                            borderWidth:1,
+                                            lineStyle: {
+                                                type: 'solid',
+                                                shadowBlur: 10
+                                            }
+                                        }
+                                    },
+                                    data : [
+                                        [{name:'上海'}, {name:'北京',value:15}],
+                                        [{name:'广州'}, {name:'北京',value:10}],
+                                        [{name:'大连'}, {name:'北京',value:20}],
+                                        [{name:'南宁'}, {name:'北京',value:30}],
+                                        [{name:'南昌'}, {name:'北京',value:40}],
+                                        [{name:'拉萨'}, {name:'北京',value:50}],
+                                        [{name:'长春'}, {name:'北京',value:60}],
+                                        [{name:'包头'}, {name:'北京',value:70}],
+                                        [{name:'重庆'}, {name:'北京',value:80}],
+                                        [{name:'成都'}, {name:'北京',value:99}],
+                                        [{name:'常州'}, {name:'北京',value:90}]
                                     ]
                                 },
                                 markPoint : {

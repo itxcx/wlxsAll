@@ -81,7 +81,7 @@
                     e.stopPropagation();
 
                     var t = e.target;
-                    if (t.tagName.toUpperCase() != 'BUTTON') return;
+                    if (t.tagName.toUpperCase() !== 'BUTTON') return;
 
                     if (t.classList.contains('next')) {
                         currImage++;

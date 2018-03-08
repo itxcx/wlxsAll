@@ -225,11 +225,18 @@ input, button, select, textarea {
 	flex: 0 0 auto;
 	margin: 0 5px;
 	cursor: pointer;
-	color: #333;
+	color: #fff;
 	background: none;
-	border: 1px solid;
+	border: 1px solid #fff;
 	letter-spacing: 1px;
-	padding: 5px 10px;
+	padding: 3px 15px;
+	border-radius: 5px;
+	outline: none;
+	transition: all 0.3s linear;
+}
+.carousel nav button:hover {
+	background: #fff;
+	color: #000;
 }
 #mainMap, #mainMap div{
 	background: rgba(0,0,0,1)!important;
@@ -418,6 +425,7 @@ ul#menu-main > li > a {
 	color: #fff;
 	font-size:14px;
 	text-transform:uppercase;
+	transition: all 0.3s linear;
 }
 ul#menu-main > li > a:hover {
 	padding: 9px 15px;
@@ -1052,7 +1060,7 @@ section#about {
 	vertical-align: middle;
 }
 #contact-form input[type=submit] {
-	color: #fff;
+	color: #555555;
 	width: 185px;
 	height: 60px;
 	text-shadow: none;
@@ -1063,14 +1071,16 @@ section#about {
 	display: block;
 	border: 0;
 	text-transform: none;
-	border-radius: 3px;
+	border-radius: 6px!important;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	box-shadow: none;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
+	background: #fff!important;
 }
 #contact-form input[type=submit]:hover, #contact-form input[type=submit]:active {
+	color: #fff;
 	background: #43413e !important;
 }
 #contact-form textarea {
@@ -1110,7 +1120,7 @@ div.cform-response-output {
 footer {
 	background: #2b2b2b;
 	text-align: center;
-	color: #5e5e5e;
+	color: #ffffff;
 	padding:50px 0 50px;
 }
 

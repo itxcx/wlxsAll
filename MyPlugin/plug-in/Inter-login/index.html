@@ -130,7 +130,7 @@
             span = document.createElement('span'),
             copyStyle = getComputedStyle(email),
             emailCoords = {}, caretCoords = {}, centerCoords = {};
-        [].forEach.call(copyStyle, function(prop){
+        [].forEach.call(copyStyle, function(prop) {
             div.style[prop] = copyStyle[prop];
         });
         div.style.position = 'absolute';

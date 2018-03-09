@@ -20,7 +20,7 @@
         <a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a>
       </li>
     </ul>
-    <h2>Ecosystem</h2>
+    <h2 @click="clickHead">Ecosystem</h2>
     <ul>
       <li>
         <a href="http://router.vuejs.org/" target="_blank">vue-router</a>
@@ -45,12 +45,18 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  methods:{
+    clickHead: function() {
+      let name = this.msg;
+      console.log(name);
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="less">
 h1, h2 {
   font-weight: normal;
 }
@@ -61,8 +67,11 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
+  a {
+    color: #42b983;
+    font-size: 2vh;
+    text-decoration: none;
+  }
 }
-a {
-  color: #42b983;
-}
+
 </style>

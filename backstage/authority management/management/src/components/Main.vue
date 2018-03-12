@@ -16,11 +16,44 @@
       <Icon type="arrow-shrink"></Icon>
       <Icon type="close-circled"></Icon>
     </section>
+    <!--//input输入框-->
     <section>
         <Input v-model="value14" placeholder="Enter something..." clearable style="width: 200px"/>
     </section>
+    <!--//滑块-->
     <section>
       <Slider v-model="value1" :step="5" show-stops show-input></Slider>
+      <Slider v-model="value9" :tip-format="format"></Slider>
+    </section>
+    <!--//日期时间选择-->
+    <section style="padding-left: 250px;">
+      <DatePicker type="daterange" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" placeholder="Select date and time(Excluding seconds)" style="width: 200px"></DatePicker>
+    </section>
+    <!--//评分-->
+    <section>
+      <Rate allow-half v-model="valueHalf" @on-change="changeRate" show-text></Rate>
+    </section>
+    <!--//文件上传-->
+    <section>
+      <Upload action="//jsonplaceholder.typicode.com/posts/">
+        <Button type="ghost" icon="ios-cloud-upload-outline">Upload files</Button>
+      </Upload>
+    </section>
+    <section>
+      <Upload multiple type="drag" action="//jsonplaceholder.typicode.com/posts/">
+        <div style="padding: 20px 0">
+          <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+          <p>Click or drag files here to upload</p>
+        </div>
+      </Upload>
+    </section>
+    <!--//颜色选择-->
+    <section>
+      <Row>
+        <Col span="12">有默认值<ColorPicker v-model="color1" /></Col>
+        <Col span="12">无默认值<ColorPicker v-model="color2" /></Col>
+      </Row>
     </section>
   </div>
 </template>
@@ -30,15 +63,25 @@ export default {
   name: 'Main',
   data () {
     return {
+      valueHalf: 3.5,
       value1: 10,
+      value9: 13,
       value14: 'test',
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      color1: '#19be6b',
+      color2: '',
     }
   },
   methods:{
     clickHead: function() {
       let name = this.msg;
       console.log(name);
+    },
+    format (val) {
+      return 'Progress: ' + val + '%';
+    },
+    changeRate () {
+      console.log(this.valueHalf);
     }
   }
 }
@@ -47,8 +90,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
 .Main{
+  padding-left: 100px;
   background: #f2f2f2;
   section{
+    margin-top: 2vh;
     cursor: pointer;
   }
 }

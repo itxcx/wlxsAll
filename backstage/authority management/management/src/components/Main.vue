@@ -93,6 +93,57 @@
       <TabPane label="标签二">标签二的内容</TabPane>
       <TabPane label="标签三">标签三的内容</TabPane>
     </Tabs>
+    <!-- 进度环 -->
+    <section>
+      <i-circle :percent="percent" :stroke-color="color">
+        <Icon v-if="percent == 100" type="ios-checkmark-empty" size="60" style="color:#5cb85c"></Icon>
+        <span v-else style="font-size:24px">{{ percent }}%</span>
+      </i-circle>
+      <i-circle :percent="100" stroke-color="#5cb85c">
+        <Icon type="ios-checkmark-empty" size="60" style="color:#5cb85c"></Icon>
+      </i-circle>
+    </section>
+    <!-- 图钉 相对与当前位置-->
+    <section>
+      <Affix :offset-top="150">
+        <span class="demo-affix">Fixed at the top</span>
+      </Affix>
+    </section>
+    <!-- 返回顶部 -->
+    <section>
+      <BackTop :height="10" :bottom="50">
+        <div class="top">返回顶端</div>
+      </BackTop>
+    </section>
+    <!-- loading -->
+    <section>
+      <Row>
+        <Col class="demo-spin-col" span="8">
+        <Spin fix>加载中...</Spin>
+        </Col>
+        <Col class="demo-spin-col" span="8">
+        <Spin fix>
+          <Icon type="load-c" size=18 class="demo-spin-icon-load"></Icon>
+          <div>Loading</div>
+        </Spin>
+        </Col>
+        <Col class="demo-spin-col" span="8">
+        <Spin fix>
+          <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+              <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle>
+            </svg>
+          </div>
+        </Spin>
+        </Col>
+      </Row>
+    </section>
+    <!-- 无限滚动 -->
+    <section>
+      <Scroll :on-reach-bottom="handleReachBottom">
+        <Card dis-hover v-for="(item, index) in list1" :key="index" style="margin: 32px 0">Content {{ item }}</Card>
+      </Scroll>
+    </section>
   </div>
 </template>
 
@@ -101,7 +152,8 @@ export default {
   name: 'Main',
   data () {
     return {
-      // theme1: 'dark',
+      list1: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      percent: 22,
       theme1: 'primary',
       valueHalf: 3.5,
       value1: 10,
@@ -110,6 +162,15 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       color1: '#19be6b',
       color2: '',
+    }
+  },
+  computed: {
+    color () {
+      let color = '#2db7f5';
+      if (this.percent === 100) {
+        color = '#5cb85c';
+      }
+      return color;
     }
   },
   methods:{
@@ -122,6 +183,17 @@ export default {
     },
     changeRate () {
       console.log(this.valueHalf);
+    },
+    handleReachBottom () {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          const last = this.list1[this.list1.length - 1];
+          for (let i = 1; i < 11; i++) {
+            this.list1.push(last + i);
+          }
+          resolve();
+        }, 2000);
+      });
     }
   }
 }
@@ -130,11 +202,24 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
 .Main{
-  padding-left: 100px;
+  padding:30px;
   background: #f2f2f2;
   section{
     margin-top: 2vh;
     cursor: pointer;
+  }
+  .demo-spin-icon-load{
+    animation: ani-demo-spin 1s linear infinite;
+  }
+  @keyframes ani-demo-spin {
+    from { transform: rotate(0deg);}
+    50%  { transform: rotate(180deg);}
+    to   { transform: rotate(360deg);}
+  }
+  .demo-spin-col{
+    height: 100px;
+    position: relative;
+    border: 1px solid #eee;
   }
 }
 </style>

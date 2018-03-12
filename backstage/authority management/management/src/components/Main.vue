@@ -55,6 +55,44 @@
         <Col span="12">无默认值<ColorPicker v-model="color2" /></Col>
       </Row>
     </section>
+    <!-- menu 导航菜单 -->
+    <section>
+      <Menu mode="horizontal" :theme="theme1" active-name="1">
+        <MenuItem name="1">
+          <Icon type="ios-paper"></Icon>
+          内容管理
+        </MenuItem>
+        <MenuItem name="2">
+          <Icon type="ios-people"></Icon>
+          用户管理
+        </MenuItem>
+        <Submenu name="3">
+          <template slot="title">
+            <Icon type="stats-bars"></Icon>
+            统计分析
+          </template>
+          <MenuGroup title="使用">
+            <MenuItem name="3-1">新增和启动</MenuItem>
+            <MenuItem name="3-2">活跃分析</MenuItem>
+            <MenuItem name="3-3">时段分析</MenuItem>
+          </MenuGroup>
+          <MenuGroup title="留存">
+            <MenuItem name="3-4">用户留存</MenuItem>
+            <MenuItem name="3-5">流失用户</MenuItem>
+          </MenuGroup>
+        </Submenu>
+        <MenuItem name="4">
+          <Icon type="settings"></Icon>
+          综合设置
+        </MenuItem>
+      </Menu>
+    </section>
+    <!-- tab 有动画属性的标签页 -->
+    <Tabs :animated="true">
+      <TabPane label="标签一">标签一的内容</TabPane>
+      <TabPane label="标签二">标签二的内容</TabPane>
+      <TabPane label="标签三">标签三的内容</TabPane>
+    </Tabs>
   </div>
 </template>
 
@@ -63,6 +101,8 @@ export default {
   name: 'Main',
   data () {
     return {
+      // theme1: 'dark',
+      theme1: 'primary',
       valueHalf: 3.5,
       value1: 10,
       value9: 13,

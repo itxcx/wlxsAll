@@ -61,10 +61,6 @@
         passwordFocus() {
           this.tipTitle = "";
         },
-        //记住登录
-        rememberChange() {
-          console.log(this.remember);
-        },
         //登录
         sumbitLogin() {
           let username = this.username;
@@ -118,12 +114,6 @@
   @font-size: 2vh;
   @color: rgba(255, 255, 255, 0.5);
   .Login{
-    .login_bg{
-      width: 100vw;
-      height: 100vh;
-      background: url(../../static/images/login_bg.png) no-repeat center center;
-      background-size: cover;
-    }
     .login_model{
       position: absolute;
       top: 0;
@@ -201,7 +191,7 @@
         }
         .tipTitle{
           text-align: right;
-          color: red;
+          color: #ff6600;
           font-weight: 600;
         }
       }
@@ -223,6 +213,12 @@
           }
         }
       }
+    }
+    .login_bg{
+      width: 100vw;
+      height: 100vh;
+      background: url(../../static/images/login_bg.png) no-repeat center center;
+      background-size: cover;
     }
     footer{
       position: absolute;

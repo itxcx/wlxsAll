@@ -7,37 +7,109 @@
           <a href="http://www.weilaixiansen.com" title="未来鲜森官方网站" target="_blank"></a>
           <span>商户管理平台</span>
         </div>
-        <div class="username">
-          <label for="username">账号</label>
-          <input type="text" id="username" name="username"/>
-        </div>
-        <div class="password">
-          <label for="password">密码</label>
-          <input type="password" id="password" name="password"/>
-        </div>
-        <div class="remember">
-          <label><Checkbox v-model="remember"></Checkbox></label>
-          <span>记住登录信息</span>
+          <div class="username">
+            <label for="username">账号</label>
+            <input type="text" id="username" name="username" v-model="username" @blur="usernameBlur" @focus="usernameFocus"/>
+          </div>
+          <div class="password">
+            <label for="password">密码</label>
+            <input type="password" id="password" name="password" v-model="password" @blur="passwordBlur" @focus="passwordFocus"/>
+          </div>
+          <div class="remember">
+            <!--<Checkbox v-model="remember" @click="rememberChange"></Checkbox>-->
+            <!--<span>记住登录信息</span>-->
+            <span class="tipTitle">{{tipTitle}}</span>
+          </div>
+          <div class="form_submit">
+            <input type="button" value="登录" name="sumbit_button" @click="sumbitLogin">
+          </div>
 
-        </div>
-        <div class="form_submit">
-          <input type="button" value="登录" name="sumbit_button">
-        </div>
       </section>
       <footer>
-        <p>Copyright&nbsp;&copy;&nbsp;2017-2018 <a href="http://www.weilaixiansen.com" target="_blank">西安未来鲜森智能信息技术有限公司</a></p>
+        <p>Copyright&nbsp;&copy;&nbsp;2017-2018
+          <a href="http://www.weilaixiansen.com" target="_blank">西安未来鲜森智能信息技术有限公司</a>
+        </p>
       </footer>
     </div>
 </template>
 
 <script>
     export default {
-        name: "login",
-        data() {
-          return {
-            remember: true
-          }
+      name: "login",
+      data() {
+        return {
+          remember: true,
+          username: '',
+          password: '',
+          tipTitle: '',
         }
+      },
+      methods: {
+        //账号失焦
+        usernameBlur() {
+
+        },
+        //账号获取焦点
+        usernameFocus() {
+          this.tipTitle = "";
+        },
+        //密码失焦
+        passwordBlur() {
+
+        },
+        //密码获取焦点
+        passwordFocus() {
+          this.tipTitle = "";
+        },
+        //记住登录
+        rememberChange() {
+          console.log(this.remember);
+        },
+        //登录
+        sumbitLogin() {
+          let username = this.username;
+          let password = this.password;
+          if(username && password) {
+            // this.$ajax({
+            //   url: "",
+            //   method: "POST",
+            //   data: this.transformRequest({
+            //     username: username,
+            //     password: password
+            //   }),
+            //   headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'}
+            // }).then(function(res) {
+            //let result = res.data;
+            let result = {code: 0, message: '登录成功', data:{}};
+            if(result.code === 0) {//登录成功
+              this.$router.push({
+                name: 'main',
+                query: {
+                  message: username
+                }
+              })
+            }else{//返回错误信息
+              this.tipTitle = result.message;
+            }
+            // }).catch(function(error) {
+            //     this.tipTitle = result.message;
+            // })
+          }else if(!username && password){
+            this.tipTitle = '请输入账号';
+          }else if(username && !password){
+            this.tipTitle = '请输入密码';
+          }else{
+            this.tipTitle = '请输入账号和密码';
+          }
+        },
+        transformRequest(data) {
+          let ret = '';
+          for (let i in data) {
+            ret += encodeURIComponent(i) + '=' + encodeURIComponent(data[i]) + '&';
+          }
+          return ret;
+        },
+      }
     }
 </script>
 
@@ -49,7 +121,7 @@
     .login_bg{
       width: 100vw;
       height: 100vh;
-      background: url(../assets/images/login_bg.jpg) no-repeat center center;
+      background: url(../../static/images/login_bg.png) no-repeat center center;
       background-size: cover;
     }
     .login_model{
@@ -80,7 +152,7 @@
           width: 10rem;
           height: 4rem;
           margin: 1rem 2.5rem;
-          background: url(../assets/images/wlxs_logo.png) no-repeat center center;
+          background: url(../../static/images/wlxs_logo.png) no-repeat center center;
           background-size: cover;
         }
         span{
@@ -90,14 +162,13 @@
           font-size: 2.5rem;
           margin: 2vh;
         }
-
       }
       .username{
         margin-top: 3vh;
         input{
           background: #1B1B1B;
+          outline-color:#00ff00;
           border: none;
-          outline: medium;
           border-radius: 3px;
           color: #fff;
           height: 2rem;
@@ -110,7 +181,7 @@
         input{
           background: #1B1B1B;
           border: none;
-          outline: medium;
+          outline-color:#00ff00;
           border-radius: 3px;
           color: #fff;
           height: 2rem;
@@ -123,6 +194,16 @@
       .remember{
         margin-top: 10px;
         color: #fff;
+        height: 0.8rem;
+        span:nth-of-type(2), span:nth-of-type(3){
+          display: inline-block;
+          width: 8rem;
+        }
+        .tipTitle{
+          text-align: right;
+          color: red;
+          font-weight: 600;
+        }
       }
       .form_submit{
         input{
@@ -172,7 +253,7 @@
             width: 15rem;
             height: 4rem;
             margin: 0.5rem 2.5rem;
-            background: url(../assets/images/wlxs_logo.png) no-repeat center center;
+            background: url(../../static/images/wlxs_logo.png) no-repeat center center;
             background-size: cover;
           }
           span{

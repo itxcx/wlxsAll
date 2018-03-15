@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Main from '@/components/Main'
 import Login from '@/components/Login'
+import MainHeader from '@/components/MainHeader'
+import MainLeft from '@/components/MainLeft'
 
 Vue.use(Router)
 
@@ -15,7 +17,19 @@ export default new Router({
     {
       path: '/main',
       name: 'main',
-      component: Main
+      component: Main,
+      children: [  //二级路由
+        {
+          path: '/mainheader',
+          name: 'mainheader',
+          component: MainHeader
+        },
+        {
+          path: '/mainleft',
+          name: 'mainleft',
+          component: MainLeft
+        },
+      ]
     }
   ]
 })

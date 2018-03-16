@@ -21,7 +21,7 @@
         <Submenu name="3">
           <template slot="title">
             <Icon type="stats-bars"></Icon>
-            统计分析
+            设备管理
           </template>
           <!--<MenuGroup title="使用">-->
             <MenuItem name="3-1">新增和启动</MenuItem>
@@ -32,6 +32,57 @@
             <MenuItem name="3-4">用户留存</MenuItem>
             <MenuItem name="3-5">流失用户</MenuItem>
           <!--</MenuGroup>-->
+        </Submenu>
+        <Submenu name="4">
+          <template slot="title">
+            <Icon type="stats-bars"></Icon>
+            商品分析
+          </template>
+          <!--<MenuGroup title="使用">-->
+          <MenuItem name="3-1">新增和启动</MenuItem>
+          <MenuItem name="3-2">活跃分析</MenuItem>
+          <MenuItem name="3-3">时段分析</MenuItem>
+          <!--</MenuGroup>-->
+          <!--<MenuGroup title="留存">-->
+          <MenuItem name="3-4">用户留存</MenuItem>
+          <MenuItem name="3-5">流失用户</MenuItem>
+          <!--</MenuGroup>-->
+        </Submenu>
+        <Submenu name="5">
+          <template slot="title">
+            <Icon type="stats-bars"></Icon>
+            统计分析
+          </template>
+          <!--<MenuGroup title="使用">-->
+          <MenuItem name="3-1">新增和启动</MenuItem>
+          <MenuItem name="3-2">活跃分析</MenuItem>
+          <MenuItem name="3-3">时段分析</MenuItem>
+          <!--</MenuGroup>-->
+          <!--<MenuGroup title="留存">-->
+          <MenuItem name="3-4">用户留存</MenuItem>
+          <MenuItem name="3-5">流失用户</MenuItem>
+          <!--</MenuGroup>-->
+        </Submenu>
+        <Submenu name="6">
+          <template slot="title">
+            <Icon type="stats-bars"></Icon>
+            统计分析1
+          </template>
+          <!--<MenuGroup title="使用">-->
+          <MenuItem name="3-1">新增和启动</MenuItem>
+          <MenuItem name="3-2">活跃分析</MenuItem>
+          <MenuItem name="3-3">时段分析</MenuItem>
+          <!--</MenuGroup>-->
+          <!--<MenuGroup title="留存">-->
+          <MenuItem name="3-4">用户留存</MenuItem>
+          <MenuItem name="3-5">流失用户</MenuItem>
+          <!--</MenuGroup>-->
+        </Submenu>
+        <Submenu name="7">
+          <template slot="title">
+            <Icon type="stats-bars"></Icon>
+            系统设置
+          </template>
         </Submenu>
       </Menu>
     </div>
@@ -48,6 +99,10 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="less">
+  .mainleft{
+    width: 16vw;
+    height: 90vh;
+    background: #495060;
+  }
 </style>

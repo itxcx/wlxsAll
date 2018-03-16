@@ -10,6 +10,10 @@
           <MenuItem name="1-2">评论管理</MenuItem>
           <MenuItem name="1-3">举报管理</MenuItem>
         </Submenu>
+        <MenuItem name="8">
+          <Icon type="settings"></Icon>
+          test
+        </MenuItem>
         <Submenu name="2">
           <template slot="title">
             <Icon type="ios-people"></Icon>

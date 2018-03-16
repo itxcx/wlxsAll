@@ -1,6 +1,6 @@
 <template>
     <div class="mainleft">
-      <Menu :theme="theme2">
+      <i-menu :theme="theme" accordion>
         <Submenu name="1">
           <template slot="title">
             <Icon type="ios-paper"></Icon>
@@ -20,7 +20,7 @@
         </Submenu>
         <Submenu name="3">
           <template slot="title">
-            <Icon type="stats-bars"></Icon>
+            <Icon type="easel"></Icon>
             设备管理
           </template>
           <!--<MenuGroup title="使用">-->
@@ -35,7 +35,7 @@
         </Submenu>
         <Submenu name="4">
           <template slot="title">
-            <Icon type="stats-bars"></Icon>
+            <Icon type="ios-cog"></Icon>
             商品分析
           </template>
           <!--<MenuGroup title="使用">-->
@@ -65,7 +65,7 @@
         </Submenu>
         <Submenu name="6">
           <template slot="title">
-            <Icon type="stats-bars"></Icon>
+            <Icon type="ios-grid-view"></Icon>
             统计分析1
           </template>
           <!--<MenuGroup title="使用">-->
@@ -78,22 +78,20 @@
           <MenuItem name="3-5">流失用户</MenuItem>
           <!--</MenuGroup>-->
         </Submenu>
-        <Submenu name="7">
-          <template slot="title">
-            <Icon type="stats-bars"></Icon>
-            系统设置
-          </template>
-        </Submenu>
-      </Menu>
+        <MenuItem name="7">
+          <Icon type="settings"></Icon>
+          综合设置
+        </MenuItem>
+      </i-menu>
     </div>
 </template>
 
 <script>
     export default {
-      name: "main-left",
+      name: "MainLeft",
       data() {
         return {
-          theme2: 'dark'
+          theme: 'dark'
         }
       }
     }
@@ -101,8 +99,12 @@
 
 <style lang="less">
   .mainleft{
-    width: 16vw;
+    width: 15vw;
     height: 90vh;
     background: #495060;
+    overflow-y: auto;
+    .ivu-menu-dark{
+      width: 100%!important;
+    }
   }
 </style>

@@ -77,12 +77,10 @@
             // }).then(function(res) {
             //let result = res.data;
             let result = {code: 0, message: '登录成功', data:{}};
-            if(result.code === 0) {//登录成功
+            if(result.code === 0) { //登录成功处理方法-1.通过路由传参2.通过vuex全局数据共享
+                this.$store.state.activeUser = username;
               this.$router.push({
                 name: 'main',
-                query: {
-                  message: username
-                }
               })
             }else{//返回错误信息
               this.tipTitle = result.message;

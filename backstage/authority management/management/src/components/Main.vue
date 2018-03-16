@@ -17,6 +17,11 @@ export default {
       // visible: false
     }
   },
+  mounted () {
+    this.$nextTick(() => {
+
+    })
+  },
   methods:{
 
   },

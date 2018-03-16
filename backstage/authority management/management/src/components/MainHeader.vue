@@ -4,7 +4,7 @@
         <p>未来鲜森商户管理系统</p>
         <div class="userInfo">
           <Avatar icon="person" size="small"/>
-          <span>{{username}}</span>
+          <span>{{activeUser}}</span>
         </div>
         <div class="tips" title="个人消息管理">
           <Badge dot>
@@ -25,18 +25,18 @@
       name: "MainHeader",
       data() {
         return {
-          username: ''
+          activeUser: '', //当前登录用户
         }
       },
       mounted () {
         this.$nextTick(() => {
-          // this.username = this.$route.query.message;
+          this.activeUser = this.$store.state.activeUser;
           // this.$ajax({
           //   url: '',
           //   method: 'POST',
-          //   data: {username: this.username}
+          //   data: {username: this.activeUser}
           // }).then( function(res) {
-             this.$store.state.name = 'wangjinlongssss';
+
           // }).catch(function(error) {
           //   console.log(error);
           // })

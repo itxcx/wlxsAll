@@ -3,11 +3,12 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 //全局数据
 const state = {
-  name:'jinlong',
+  activeUser: "",
   //最高权限
     permission : [
         {
-          "account": [
+          "title": "账号信息",
+          "perList": [
             {"type": "商户信息"},
             {"type": "一级商户"},
             {"type": "二级商户"},
@@ -15,7 +16,8 @@ const state = {
           ]
         },
         {
-          "business": [
+          "title": "业务管理",
+          "perList": [
             {"type": "设备管理"},
             {"type": "商品管理"},
             {"type": "上货管理"},
@@ -25,7 +27,8 @@ const state = {
           ]
         },
         {
-          "datamodel": [
+          "title": "数据管理",
+          "perList": [
             {"type": "销售数据"},
             {"type": "利润分成"},
             {"type": "货损率"},
@@ -33,7 +36,8 @@ const state = {
           ]
         },
         {
-          "monitor": [
+          "title": "监控管理",
+          "perList": [
             {"type": "备货"},
             {"type": "配送"},
             {"type": "上货"},
@@ -48,6 +52,5 @@ const mutations = {
 }
 //数据引用
 export default new Vuex.Store ({
-  state,
-  mutations
+  state, mutations
 })

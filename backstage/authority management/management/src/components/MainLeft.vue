@@ -87,6 +87,7 @@
           综合设置
         </MenuItem>
       </i-menu>
+      <!--<section>{{name}}</section>-->
     </div>
 </template>
 
@@ -95,8 +96,16 @@
       name: "MainLeft",
       data() {
         return {
-          theme: 'dark'
+          theme: 'dark',
         }
+      },
+      mounted() {
+        this.$nextTick( () => {
+
+        })
+      },
+      methods: {
+
       }
     }
 </script>

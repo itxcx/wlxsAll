@@ -29,8 +29,17 @@
         }
       },
       mounted () {
-        this.$nextTick(function() {
-          this.username = this.$route.query.message;
+        this.$nextTick(() => {
+          // this.username = this.$route.query.message;
+          // this.$ajax({
+          //   url: '',
+          //   method: 'POST',
+          //   data: {username: this.username}
+          // }).then( function(res) {
+             this.$store.state.name = 'wangjinlongssss';
+          // }).catch(function(error) {
+          //   console.log(error);
+          // })
         })
       },
       methods: {

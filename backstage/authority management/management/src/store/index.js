@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 //全局数据
 const state = {
+  name:'jinlong',
   //最高权限
     permission : [
         {
@@ -39,13 +40,12 @@ const state = {
             {"type": "实时交易"}
           ]
         },
-
-    ]
+    ],
 };
 //数据操作
 const mutations = {
 
-};
+}
 //数据引用
 export default new Vuex.Store ({
   state,

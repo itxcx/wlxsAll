@@ -5,7 +5,7 @@ Vue.use(Vuex);
 const state = {
   activeUser: "",
   //最高权限
-    permission : [
+   permission : [
         {
           "title": "账号信息",
           "perList": [
@@ -45,6 +45,8 @@ const state = {
           ]
         },
     ],
+  //中间内容区域显示的数据
+    PreContent: []
 };
 //数据操作
 const mutations = {

@@ -1,34 +1,14 @@
 <template>
     <div class="mainleft">
       <i-menu :theme="theme" accordion v-for="(list, index) in this.$store.state.permission" :key="index">
-      <!--<i-menu :theme="theme" accordion >-->
-        <Submenu name="index">
+        <Submenu :name="index">
           <template slot="title">
             <Icon type="ios-paper"></Icon>
             {{list.title}}
           </template>
-          <div v-for="(item, indexs) in list.perList" :key="indexs">
-            <MenuItem name="1-1" @click="alert(index, indexs)">{{item.type}}</MenuItem>
-          </div>
+          <MenuItem v-for="(item, indexs) in list.perList" :key="indexs" :name="index+'-'+indexs" @click.native="test(item.type)">{{item.type}}</MenuItem>
         </Submenu>
-        <!--<Submenu name="1">-->
-          <!--<template slot="title">-->
-            <!--<Icon type="ios-paper"></Icon>-->
-            <!--内容管理-->
-          <!--</template>-->
-          <!--<div>-->
-            <!--<MenuItem name="1-1">文章管理</MenuItem>-->
-            <!--<MenuItem name="1-2">评论管理</MenuItem>-->
-            <!--<MenuItem name="1-3">举报管理</MenuItem>-->
-          <!--</div>-->
-
-        <!--</Submenu>-->
-        <!--<MenuItem name="8">-->
-          <!--<Icon type="settings"></Icon>-->
-          <!--test-->
-        <!--</MenuItem>-->
       </i-menu>
-      <!--<section>{{name}}</section>-->
     </div>
 </template>
 
@@ -58,8 +38,11 @@
         })
       },
       methods: {
-        alert(index, indexs) {
-          console.log(index + '-' + indexs);
+        alertIndex() {
+          alert(1);
+        },
+        test(item) {
+          alert(item);
         }
       }
     }

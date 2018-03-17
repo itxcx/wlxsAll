@@ -38,9 +38,6 @@
         })
       },
       methods: {
-        alertIndex() {
-          alert(1);
-        },
         test(item) {
           alert(item);
         }

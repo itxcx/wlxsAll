@@ -1,6 +1,6 @@
 <template>
     <div class="mainleft">
-      <i-menu :theme="theme" accordion v-for="(list, index) in this.$store.state.permission" :key="index">
+      <Menu :theme="theme" v-for="(list, index) in this.$store.state.permission" :key="index" accordion>
         <Submenu :name="index">
           <template slot="title">
             <Icon type="ios-paper"></Icon>
@@ -8,7 +8,7 @@
           </template>
           <MenuItem v-for="(item, indexs) in list.perList" :key="indexs" :name="index+'-'+indexs" @click.native="test(item.type)">{{item.type}}</MenuItem>
         </Submenu>
-      </i-menu>
+      </Menu>
     </div>
 </template>
 
@@ -23,7 +23,7 @@
       mounted() {
         this.$nextTick( () => {
           //当前登录用户,获取当前用户操作权限,渲染左边列表
-          let activeUser = this.$store.state.activeUser;
+          let activeUser = this.$store.state.activeUser || localStorage.getItem('username');
           // this.$ajax({
           //   url: '',
           //   method: 'POST',

@@ -30,7 +30,12 @@
       },
       mounted () {
         this.$nextTick(() => {
-          this.activeUser = this.$store.state.activeUser;
+          //this.activeUser = this.$store.state.activeUser;
+          if(localStorage.getItem('username')) {
+            this.activeUser = localStorage.getItem('username');
+          }else{
+            this.activeUser = this.$store.state.activeUser;
+          }
           // this.$ajax({
           //   url: '',
           //   method: 'POST',

@@ -1,19 +1,20 @@
 <template>
     <div class="MainContent">
       MainContent
+      <section>
+      </section>
     </div>
 </template>
 
 <script>
     export default {
-      name: "main-content",
+      name: "MainContent",
       data() {
           return {
-
+            
           }
       },
       methods: {
-
       }
     }
 </script>

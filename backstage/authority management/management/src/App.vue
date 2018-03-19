@@ -31,7 +31,5 @@
   }
   html, body{
     background: #f2f2f2;
-    -webkit-user-select: none;
-    user-select: none;
   }
 </style>

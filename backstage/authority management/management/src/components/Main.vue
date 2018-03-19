@@ -3,6 +3,7 @@
     <MainHeader></MainHeader>
     <MainLeft></MainLeft>
     <MainFooter></MainFooter>
+    <MainContent></MainContent>
   </div>
 </template>
 
@@ -10,6 +11,8 @@
 import MainHeader from '../components/MainHeader'
 import MainLeft from '../components/MainLeft'
 import MainFooter from '../components/MainFooter'
+import MainContent from '../components/MainContent'
+
 export default {
   name: 'Main',
   data () {
@@ -26,13 +29,14 @@ export default {
 
   },
   components: {
-    MainHeader, MainLeft, MainFooter
+    MainHeader, MainLeft, MainFooter, MainContent
   }
 }
 </script>
 
 <style lang="less">
 .Main{
+  position: relative;
   MainHeader{
     position: absolute;
     top: 0;
@@ -47,6 +51,11 @@ export default {
     /*position: fixed;*/
     /*bottom: 0;*/
     /*left: 15vw;*/
+  /*}*/
+  /*MainContent{*/
+    /*position: absolute;*/
+    /*top: 10vh;*/
+    /*right: 0;*/
   /*}*/
 }
 </style>

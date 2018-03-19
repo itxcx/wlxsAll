@@ -5,6 +5,7 @@ import Login from '@/components/Login'
 import MainHeader from '@/components/MainHeader'
 import MainLeft from '@/components/MainLeft'
 import MainFooter from '@/components/MainFooter'
+import MainContent from '@/components/MainContent'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
           path: '/mainfooter',
           name: 'mainfooter',
           component: MainFooter
+        },
+        {
+          path: '/maincontent',
+          name: 'maincontent',
+          component: MainContent
         },
       ]
     }

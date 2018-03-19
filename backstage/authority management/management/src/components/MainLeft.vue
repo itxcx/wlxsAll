@@ -40,6 +40,9 @@
       methods: {
         test(item) {
           alert(item);
+        },
+        test1(index) {
+          alert(index);
         }
       }
     }

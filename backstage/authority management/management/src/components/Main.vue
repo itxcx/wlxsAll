@@ -12,6 +12,7 @@ import MainHeader from '../components/MainHeader'
 import MainLeft from '../components/MainLeft'
 import MainFooter from '../components/MainFooter'
 import MainContent from '../components/MainContent'
+//import Demo from '@/charts/Demo'
 
 export default {
   name: 'Main',

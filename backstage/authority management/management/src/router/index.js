@@ -2,14 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Main from '@/components/Main'
 import Login from '@/components/Login'
-import MainHeader from '@/components/MainHeader'
-import MainLeft from '@/components/MainLeft'
-import MainFooter from '@/components/MainFooter'
-import MainContent from '@/components/MainContent'
 
 //引入主要的数据模块
+import Demo from '@/charts/Demo'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -24,24 +21,9 @@ export default new Router({
       component: Main,
       children: [  //二级路由
         {
-          path: '/mainheader',
-          name: 'mainheader',
-          component: MainHeader
-        },
-        {
-          path: '/mainleft',
-          name: 'mainleft',
-          component: MainLeft
-        },
-        {
-          path: '/mainfooter',
-          name: 'mainfooter',
-          component: MainFooter
-        },
-        {
-          path: '/maincontent',
-          name: 'maincontent',
-          component: MainContent
+          path: '/demo',
+          name: 'demo',
+          component: Demo
         },
       ]
     }

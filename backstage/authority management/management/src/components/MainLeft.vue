@@ -6,7 +6,7 @@
             <Icon type="ios-paper"></Icon>
             {{list.title}}
           </template>
-          <MenuItem v-for="(item, indexs) in list.perList" :key="indexs" :name="index+'-'+indexs" @click.native="test(item.type)">{{item.type}}</MenuItem>
+          <MenuItem v-for="(item, indexs) in list.perList" :key="indexs" :name="index+'-'+indexs" @click.native="crossQuery(item.type, index, indexs)">{{item.type}}</MenuItem>
         </Submenu>
       </Menu>
     </div>
@@ -18,6 +18,9 @@
       data() {
         return {
           theme: 'dark',
+          location1: '',
+          location2: '',
+          item: ''
         }
       },
       mounted() {
@@ -38,11 +41,16 @@
         })
       },
       methods: {
-        test(item) {
-          alert(item);
-        },
-        test1(index) {
-          alert(index);
+        crossQuery(item, index, indexs) {
+          console.log(this.location1);
+          console.log(this.location2);
+          console.log(this.item);
+          this.location1 = index;
+          this.location2 = indexs;
+          this.item = item;
+         this.$router.push({
+           name: 'demo'
+         })
         }
       }
     }

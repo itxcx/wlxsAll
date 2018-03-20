@@ -1,8 +1,6 @@
 <template>
     <div class="MainContent">
-      MainContent
-      <section>
-      </section>
+      <router-view/>
     </div>
 </template>
 
@@ -14,6 +12,7 @@
           }
       },
       methods: {
+
       }
     }
 </script>
@@ -22,7 +21,7 @@
 .MainContent{
   width: 85vw;
   height: 80vh;
-  background: #ff6600;
+  background: #3a87ad;
   position: absolute;
   top: 11vh;
   right: 0;

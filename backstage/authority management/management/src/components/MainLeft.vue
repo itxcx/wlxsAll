@@ -6,7 +6,7 @@
             <Icon type="ios-paper"></Icon>
             {{list.title}}
           </template>
-          <MenuItem v-for="(item, indexs) in list.perList" :key="indexs" :name="index+'-'+indexs" @click.native="crossQuery(item.type, index, indexs)">{{item.type}}</MenuItem>
+          <MenuItem v-for="(item, indexs) in list.perList" :key="indexs" :name="index+'-'+indexs" @click.native="crossQuery(item.name, index, indexs)">{{item.name}}</MenuItem>
         </Submenu>
       </Menu>
     </div>
@@ -42,12 +42,9 @@
       },
       methods: {
         crossQuery(item, index, indexs) {
-          console.log(this.location1);
-          console.log(this.location2);
-          console.log(this.item);
-          this.location1 = index;
-          this.location2 = indexs;
-          this.item = item;
+          let reqData = this.$store.state.permission[index].perList[indexs].reqData;
+          let showType = this.$store.state.permission[index].perList[indexs].type;
+          this.$store.commit('getData', [reqData, showType]);
          this.$router.push({
            name: 'demo'
          })

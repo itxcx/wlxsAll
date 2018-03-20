@@ -1,7 +1,6 @@
 <template>
     <div class="charts">
-      chartsdasfdfdsafdsafdsafdsafasdfdsafdsafdsafdsafdsafsdafdsafdsa
-      {{location1}}----{{location2}}----{{item}}
+      {{$store.state.reqData}}----{{$store.state.showType}}
     </div>
 </template>
 
@@ -17,15 +16,7 @@
       },
       mounted () {
         this.$nextTick( () => {
-          console.log(this.$route.query.location1);
-          console.log(this.$route.query.location2);
-          console.log(this.$route.query.item);
-          this.location1 = '';
-          this.location2 = '';
-          this.item = '';
-          this.location1 = this.$route.query.location1;
-          this.location2 = this.$route.query.location2;
-          this.item = this.$route.query.item;
+
         })
       },
       methods: {

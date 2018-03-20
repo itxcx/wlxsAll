@@ -11,7 +11,6 @@
       name: "MainContent",
       data() {
           return {
-            
           }
       },
       methods: {

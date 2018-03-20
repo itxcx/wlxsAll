@@ -7,6 +7,8 @@ import MainLeft from '@/components/MainLeft'
 import MainFooter from '@/components/MainFooter'
 import MainContent from '@/components/MainContent'
 
+//引入主要的数据模块
+
 Vue.use(Router)
 
 export default new Router({

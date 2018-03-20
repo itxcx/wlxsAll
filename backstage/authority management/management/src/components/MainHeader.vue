@@ -15,7 +15,14 @@
         </div>
 
         <div class="setup">
-          <Icon type="ios-gear"></Icon>
+          <Dropdown trigger="click" >
+            <a href="javascript:void(0)">
+              <Icon type="ios-gear"></Icon>
+            </a>
+            <DropdownMenu slot="list">
+              <DropdownItem @click.native="loginOut">退出</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </div>
     </div>
 </template>
@@ -48,7 +55,12 @@
         })
       },
       methods: {
-
+        loginOut () {
+          console.log(1);
+          this.$router.push({
+            name: 'login'
+          })
+        }
       }
     }
 </script>
@@ -97,6 +109,9 @@
       color: #80858f;
       height: @commonHeight;
       line-height: @commonHeight;
+      a{
+        color: #80858f;
+      }
     }
   }
 </style>

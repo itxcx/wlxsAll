@@ -163,7 +163,7 @@
 <style lang="less">
   .charts{
     height: 80vh;
-    overflow-y: auto;
+    overflow: auto;
     #main{
       width: 99%;
       height: 80vh;

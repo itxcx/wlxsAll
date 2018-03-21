@@ -52,8 +52,8 @@
 <style lang="less">
   .charts{
     #main{
-      width: 500px;
-      height: 300px;
+      width: 100%;
+      height: 80vh;
       background: #f3f3f3;
       border: 1px solid deeppink;
     }

@@ -1,7 +1,7 @@
 <template>
     <div class="mainleft">
-      <Menu :theme="theme" v-for="(list, index) in this.$store.state.permission" :key="index" accordion>
-        <Submenu :name="index">
+      <Menu :theme="theme" accordion>
+        <Submenu v-for="(list, index) in this.$store.state.permission" :key="index" :name="index">
           <template slot="title">
             <Icon type="ios-paper"></Icon>
             {{list.title}}

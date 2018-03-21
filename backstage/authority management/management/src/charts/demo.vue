@@ -1,6 +1,6 @@
 <template>
     <div class="charts">
-      {{$store.state.reqData}}----{{$store.state.showType}}
+
     </div>
 </template>
 

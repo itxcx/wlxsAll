@@ -5,7 +5,9 @@ import axios from 'axios';//Ajax
 import store from './store'; //vuex 全局数据管理
 //iview ui框架
 import iView from 'iview';
-import 'iview/dist/styles/iview.css'
+import 'iview/dist/styles/iview.css';
+
+import echarts from 'echarts';
 
 Vue.use(iView);
 Vue.config.productionTip = false;
@@ -19,3 +21,4 @@ new Vue({
 })
 //axios for ajax
 Vue.prototype.$ajax = axios;
+Vue.prototype.Echarts = echarts; //vue 原型扩展 echarts

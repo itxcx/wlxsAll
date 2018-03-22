@@ -9,7 +9,7 @@ const state = {
         {
           "title": "账号信息",
           "perList": [
-            {"name": "商户信息", "type": "charts", "url": "", "reqData": "1" },
+            {"name": "商户信息", "type": "charts", "url": "jurisdic", "reqData": "1" },
             {"name": "一级商户", "type": "table", "url": "", "reqData": "1" },
             {"name": "二级商户", "type": "charts", "url": "", "reqData": "1" },
             {"name": "个人信息", "type": "table", "url": "", "reqData": "1" }

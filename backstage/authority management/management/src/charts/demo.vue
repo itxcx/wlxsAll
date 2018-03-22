@@ -168,10 +168,10 @@
               type: 'pie'
             },
             title: {
-              text: '不同国家人口密度及面积对比'
+              text: '不同柜子同一单品商品销售对比'
             },
             subtitle: {
-              text: '扇区长度（圆周方法）表示面积，宽度（纵向）表示人口密度' ,
+              text: '不同点位同一商品在相同时间段内的销售情况统计图' ,
             },
             credits: {
                   enabled: false  //去掉hightchats水印
@@ -179,8 +179,8 @@
             tooltip: {
               headerFormat: '',
               pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
-              '面积 (平方千米): <b>{point.y}</b><br/>' +
-              '人口密度 (每平方千米人数): <b>{point.z}</b><br/>'
+              '{point.path}销售总额: <b>{point.y}</b><br/>' +
+              '单品销售总额: <b>{point.z}</b><br/>'
             },
             series: [{
               minPointSize: 10,
@@ -188,31 +188,38 @@
               zMin: 0,
               name: 'countries',
               data: [{
-                name: '西班牙',
+                path: "瞪羚谷",
+                name: '乐虎',
                 y: 505370,
                 z: 92.9
               }, {
-                name: '法国',
+                path: "瞪羚谷",
+                name: '小蛋糕',
                 y: 551500,
                 z: 118.7
               }, {
-                name: '波兰',
+                path: "瞪羚谷",
+                name: 'xxx',
                 y: 312685,
                 z: 124.6
               }, {
-                name: '捷克共和国',
+                path: "瞪羚谷",
+                name: 'NFC果汁',
                 y: 78867,
                 z: 137.5
               }, {
-                name: '意大利',
+                path: "瞪羚谷",
+                name: '盒饭',
                 y: 301340,
                 z: 201.8
               }, {
-                name: '瑞士',
+                path: "瞪羚谷",
+                name: '水果',
                 y: 41277,
                 z: 214.5
               }, {
-                name: '德国',
+                path: "瞪羚谷",
+                name: '星巴克',
                 y: 357022,
                 z: 235.6
               }]

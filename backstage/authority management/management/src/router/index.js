@@ -2,9 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Main from '@/components/Main'
 import Login from '@/components/Login'
+import Jurisdic from '@/components/Jurisdic' //权限管理组件
 
 //引入主要的数据模块
 import Demo from '@/charts/Demo'
+
 
 Vue.use(Router);
 
@@ -24,6 +26,12 @@ export default new Router({
           path: '/demo',
           name: 'demo',
           component: Demo
+        },
+        //权限管理组件
+        {
+          path: '/jurisdic',
+          name: 'jurisdic',
+          component: Jurisdic
         },
       ]
     }

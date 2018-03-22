@@ -42,12 +42,20 @@
       },
       methods: {
         crossQuery(item, index, indexs) {
-          let reqData = this.$store.state.permission[index].perList[indexs].reqData;
-          let showType = this.$store.state.permission[index].perList[indexs].type;
+          let reqData = this.$store.state.permission[index].perList[indexs].reqData;//请求数据时的参数
+          let showType = this.$store.state.permission[index].perList[indexs].type;//显示类型
+          let urlPath = this.$store.state.permission[index].perList[indexs].url; //需要跳转的路由信息
           this.$store.commit('getData', [reqData, showType]);
-         this.$router.push({
-           name: 'demo'
-         })
+          if(showType === 'table' || showType === 'charts') {
+            this.$router.push({
+              name: 'demo'
+            })
+          }
+          if(urlPath === 'jurisdic') {
+            this.$router.push({
+              name: 'jurisdic'
+            })
+          }
         }
       }
     }

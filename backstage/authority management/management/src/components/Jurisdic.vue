@@ -1,6 +1,16 @@
 <template>
     <div class="Jurisdic">
-      <Table border :columns="columns4" :data="data1"></Table>
+      <section class="userList">
+        <ul class="userContent">
+          <li v-for="(list, index) in this.$store.state.userList">
+            <ul class="userItem">
+              <li>{{list.username}}</li>
+              <li>{{list.tel}}</li>
+              <li>{{list.opr}}</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
       <Button @click="handleEdit">编辑</Button>
       <Button @click="handleDelete">删除</Button>
     </div>
@@ -72,5 +82,24 @@
 </script>
 
 <style lang="less">
+  .Jurisdic{
+    .userList{
+      .userContent{
+        >li{
+          border-bottom: 1px solid #f2f2f2;
+          .userItem{
+            list-style: none;
+            overflow: hidden;
+            li{
+              width: 30%;
+              border: 1px solid peru;
+              float: left;
+            }
+          }
+        }
 
+      }
+
+    }
+  }
 </style>

@@ -49,9 +49,56 @@ const state = {
           ]
         },
     ],
-  //获取中间内容区域显示的数据de 参数
+  //获取中间内容区域显示的数据de 参数  测试用方法
    reqData: '',
-   showType: ''
+   showType: '',
+  //所有权限数据
+   authoritList: [
+     {
+       "title": "账号信息",
+       "perList": [
+         {"authorTitle": "商户信息", "rank": 3},
+         {"authorTitle": "一级商户", "rank": 1},
+         {"authorTitle": "二级商户", "rank": 2},
+         {"authorTitle": "个人信息", "rank": 3}
+       ]
+     },
+     {
+       "title": "业务管理",
+       "perList": [
+         {"authorTitle": "设备管理", "rank": 2},
+         {"authorTitle": "商品管理", "rank": 3},
+         {"authorTitle": "上货管理", "rank": 3},
+         {"authorTitle": "配送管理", "rank": 3},
+         {"authorTitle": "活动管理", "rank": 2},
+         {"authorTitle": "会员管理", "rank": 1}
+       ]
+     },
+     {
+       "title": "数据管理",
+       "perList": [
+         {"authorTitle": "销售数据", "rank": 3},
+         {"authorTitle": "利润分成", "rank": 2},
+         {"authorTitle": "货损率", "rank": 3},
+         {"authorTitle": "库存情况", "rank": 3}
+       ]
+     },
+     {
+       "title": "监控管理",
+       "perList": [
+         {"authorTitle": "备货", "rank": 3},
+         {"authorTitle": "配送", "rank": 3},
+         {"authorTitle": "上货", "rank": 3},
+         {"authorTitle": "实时交易", "rank": 2}
+       ]
+     },
+     ],
+  //所有用户信息
+  userList: [
+    {'username': 'admin', 'tel': '00000000000','rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座1'},
+    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2'},
+    {'username': 'jianting', 'tel': '11111111111', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座3'}
+  ]
 };
 //数据操作
 const mutations = {

@@ -1,8 +1,8 @@
 <template>
     <div class="Jurisdic">
-      <Table border ref="selection" :columns="columns4" :data="data1"></Table>
-      <Button @click="handleSelectAll(true)">Set all selected</Button>
-      <Button @click="handleSelectAll(false)">Cancel all selected</Button>
+      <Table border :columns="columns4" :data="data1"></Table>
+      <Button @click="handleEdit">编辑</Button>
+      <Button @click="handleDelete">删除</Button>
     </div>
 </template>
 
@@ -18,40 +18,40 @@
               align: 'center'
             },
             {
-              title: 'Name',
+              title: '姓名',
               key: 'name'
             },
             {
-              title: 'Age',
-              key: 'age'
+              title: '手机号',
+              key: 'tel'
             },
             {
-              title: 'Address',
+              title: '地址',
               key: 'address'
             }
           ],
           data1: [
             {
-              name: 'John Brown',
-              age: 18,
+              name: '未来鲜森',
+              tel: 18648822556,
               address: 'New York No. 1 Lake Park',
               date: '2016-10-03'
             },
             {
-              name: 'Jim Green',
-              age: 24,
+              name: '未来鲜森',
+              tel: 17629025050,
               address: 'London No. 1 Lake Park',
               date: '2016-10-01'
             },
             {
-              name: 'Joe Black',
-              age: 30,
+              name: '未来鲜森',
+              tel: 18601031450,
               address: 'Sydney No. 1 Lake Park',
               date: '2016-10-02'
             },
             {
-              name: 'Jon Snow',
-              age: 26,
+              name: '未来鲜森',
+              tel: 18648822556,
               address: 'Ottawa No. 2 Lake Park',
               date: '2016-10-04'
             }
@@ -59,13 +59,18 @@
         }
       },
       methods: {
-        handleSelectAll (status) {
-          this.$refs.selection.selectAll(status);
+        //编辑方法
+        handleEdit(status) {
+
+        },
+        //删除方法
+        handleDelete() {
+
         }
       }
     }
 </script>
 
-<style scoped>
+<style lang="less">
 
 </style>

@@ -3,7 +3,7 @@
       <Menu :theme="theme" accordion>
         <Submenu v-for="(list, index) in this.$store.state.permission" :key="index" :name="index">
           <template slot="title">
-            <Icon type="ios-paper"></Icon>
+            <Icon :type="list.icon"></Icon>
             {{list.title}}
           </template>
           <MenuItem v-for="(item, indexs) in list.perList" :key="indexs" :name="index+'-'+indexs" @click.native="crossQuery(item.name, index, indexs)">{{item.name}}</MenuItem>

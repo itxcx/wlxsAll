@@ -8,6 +8,7 @@ const state = {
    permission : [
         {
           "title": "账号信息",
+          "icon": "person-stalker",
           "perList": [
             {"name": "商户信息", "type": "charts", "url": "jurisdic", "reqData": "1" },
             {"name": "一级商户", "type": "table", "url": "", "reqData": "1" },
@@ -17,6 +18,7 @@ const state = {
         },
         {
           "title": "业务管理",
+          "icon": "coffee",
           "perList": [
             {"name": "设备管理", "type": "table", "url": "", "reqData": "1" },
             {"name": "商品管理", "type": "charts", "url": "", "reqData": "1" },
@@ -28,6 +30,7 @@ const state = {
         },
         {
           "title": "数据管理",
+          "icon": "stats-bars",
           "perList": [
             {"name": "销售数据", "type": "table", "url": "", "reqData": "1" },
             {"name": "利润分成", "type": "charts", "url": "", "reqData": "1" },
@@ -37,6 +40,7 @@ const state = {
         },
         {
           "title": "监控管理",
+          "icon": "ios-cog",
           "perList": [
             {"name": "备货", "type": "charts", "url": "", "reqData": "1" },
             {"name": "配送", "type": "table", "url": "", "reqData": "1" },

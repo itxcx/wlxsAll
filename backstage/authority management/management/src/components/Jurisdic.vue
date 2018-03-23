@@ -1,6 +1,7 @@
 <template>
     <div class="Jurisdic">
         <ul class="userListHeader">
+          <li><Checkbox></Checkbox></li>
           <li>用户名</li>
           <li>手机号</li>
           <li>备注</li>
@@ -8,6 +9,7 @@
         <ul class="userList">
           <li v-for="(list, index) in this.$store.state.userList">
             <ul class="userItem">
+              <li><Checkbox></Checkbox></li>
               <li>{{list.username}}</li>
               <li>{{list.tel}}</li>
               <li>{{list.opr}}</li>
@@ -87,17 +89,20 @@
 <style lang="less">
   .Jurisdic{
     .userListHeader{
-      background: #1b6d85;
+      background: #217093;
       list-style: none;
       overflow: hidden;
       li{
         padding: 1vh 0;
-        width: 33%;
+        width: 32%;
         float: left;
         border-left: 1px solid #80858f;
         color: #fff;
         font-weight: 600;
         text-align: center;
+        &:nth-of-type(1){
+          width: 3%;
+        }
       }
     }
     .userList{
@@ -111,7 +116,7 @@
           margin: 0;
         }
         &:hover{
-          background: #d2d2dd;
+          background: #f8b9b7;
         }
 
         .userItem{
@@ -119,9 +124,12 @@
           list-style: none;
           li{
             padding: 1vh ;
-            width: 33%;
+            width: 32%;
             float: left;
             border-left: 1px solid #80858f;
+            &:nth-of-type(1){
+              width: 3%;
+            }
           }
         }
       }

@@ -20,12 +20,10 @@
             </ul>
           </li>
         </ul>
-      <Button type="success" @click="editModal = true">编辑</Button>
+      <Button type="success" @click="editJurisdic">编辑</Button>
       <Button type="error" @click="handleDelete">删除</Button>
       <Modal title="Title" v-model="editModal" class-name="vertical-center-modal">
-        <p>Content of dialog</p>
-        <p>Content of dialog</p>
-        <p>Content of dialog</p>
+        <p v-for="list in this.edit">{{list}}</p>
       </Modal>
     </div>
 </template>
@@ -81,16 +79,18 @@
               address: 'Ottawa No. 2 Lake Park',
               date: '2016-10-04'
             }
-          ]
+          ],
+          edit:''
         }
       },
       methods: {
         userSelect(index) {
           this.$store.state.userList[index].checked = !this.$store.state.userList[index].checked;
         },
-        //编辑方法
-        handleEdit(status) {
-
+        //编辑用户方法
+        editJurisdic() {
+          this.editModal = true;
+          // this.edit =
         },
         //删除方法
         handleDelete() {
@@ -136,8 +136,11 @@
       }
     }
     .userList{
-      background: #f5f5f5;
+      background: #ebebeb;
       list-style: none;
+      height: 70vh;
+      padding: 2vh 0;
+      overflow: auto;
       >li{
         border: 1px solid #80858f;
         margin: 2px 0;

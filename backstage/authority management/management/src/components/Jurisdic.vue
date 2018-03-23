@@ -11,11 +11,11 @@
         <ul class="userList">
           <li v-for="(list, index) in this.$store.state.userList">
             <ul class="userItem">
-              <li><Checkbox></Checkbox></li>
+              <li><Checkbox @on-change="userSelect(index)"></Checkbox></li>
               <li>{{list.username}}</li>
               <li>{{list.tel}}</li>
-              <li>{{list.tel}}</li>
-              <li>{{list.tel}}</li>
+              <li>{{list.username}}</li>
+              <li>{{list.checked}}</li>
               <li>{{list.opr}}</li>
             </ul>
           </li>
@@ -30,6 +30,7 @@
       name: "jurisdic",
       data () {
         return {
+          deleteArray: [],
           columns4: [
             {
               type: 'selection',
@@ -78,13 +79,32 @@
         }
       },
       methods: {
+        userSelect(index) {
+          this.$store.state.userList[index].checked = !this.$store.state.userList[index].checked;
+        },
         //编辑方法
         handleEdit(status) {
 
         },
         //删除方法
         handleDelete() {
-
+          let deleteArray = [];
+          for(let i = 0; i < this.$store.state.userList.length; i++) {
+            if(this.$store.state.userList[i].checked === true) {
+             deleteArray.push(this.$store.state.userList[i].tel);
+            }
+          }
+          // this.$ajax({
+          //   url: '',
+          //   method: 'POST',
+          //   data: {deleteArray: deleteArray}
+          // }).then((res) => {
+          //   if(res.code === 0) {
+          //     console.log(res.code);
+          //   }
+          // }).catch((error) => {
+          //   console.log(error);
+          // })
         }
       }
     }

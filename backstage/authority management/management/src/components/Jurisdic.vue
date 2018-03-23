@@ -116,7 +116,7 @@
           margin: 0;
         }
         &:hover{
-          background: #f8b9b7;
+          background: #ffffc0;
         }
 
         .userItem{

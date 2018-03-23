@@ -20,8 +20,13 @@
             </ul>
           </li>
         </ul>
-      <Button type="success" @click="handleEdit">编辑</Button>
+      <Button type="success" @click="editModal = true">编辑</Button>
       <Button type="error" @click="handleDelete">删除</Button>
+      <Modal title="Title" v-model="editModal" class-name="vertical-center-modal">
+        <p>Content of dialog</p>
+        <p>Content of dialog</p>
+        <p>Content of dialog</p>
+      </Modal>
     </div>
 </template>
 
@@ -31,6 +36,7 @@
       data () {
         return {
           deleteArray: [],
+          editModal: false,
           columns4: [
             {
               type: 'selection',

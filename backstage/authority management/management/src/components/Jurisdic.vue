@@ -1,7 +1,11 @@
 <template>
     <div class="Jurisdic">
-      <section class="userList">
-        <ul class="userContent">
+        <ul class="userListHeader">
+          <li>用户名</li>
+          <li>手机号</li>
+          <li>备注</li>
+        </ul>
+        <ul class="userList">
           <li v-for="(list, index) in this.$store.state.userList">
             <ul class="userItem">
               <li>{{list.username}}</li>
@@ -10,7 +14,6 @@
             </ul>
           </li>
         </ul>
-      </section>
       <Button @click="handleEdit">编辑</Button>
       <Button @click="handleDelete">删除</Button>
     </div>
@@ -83,23 +86,45 @@
 
 <style lang="less">
   .Jurisdic{
+    .userListHeader{
+      background: #1b6d85;
+      list-style: none;
+      overflow: hidden;
+      li{
+        padding: 1vh 0;
+        width: 33%;
+        float: left;
+        border-left: 1px solid #80858f;
+        color: #fff;
+        font-weight: 600;
+        text-align: center;
+      }
+    }
     .userList{
-      .userContent{
-        >li{
-          border-bottom: 1px solid #f2f2f2;
-          .userItem{
-            list-style: none;
-            overflow: hidden;
-            li{
-              width: 30%;
-              border: 1px solid peru;
-              float: left;
-            }
-          }
+      background: #f5f5f5;
+      list-style: none;
+      >li{
+        border: 1px solid #80858f;
+        margin: 2px 0;
+        transition: all 0.3s linear;
+        &:nth-of-type(1){
+          margin: 0;
+        }
+        &:hover{
+          background: #d2d2dd;
         }
 
+        .userItem{
+          overflow: hidden;
+          list-style: none;
+          li{
+            padding: 1vh ;
+            width: 33%;
+            float: left;
+            border-left: 1px solid #80858f;
+          }
+        }
       }
-
     }
   }
 </style>

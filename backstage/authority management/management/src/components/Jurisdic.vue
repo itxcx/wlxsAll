@@ -1,9 +1,11 @@
 <template>
     <div class="Jurisdic">
         <ul class="userListHeader">
-          <li><Checkbox></Checkbox></li>
+          <li></li>
           <li>用户名</li>
           <li>手机号</li>
+          <li>权限等级</li>
+          <li>最近操作</li>
           <li>备注</li>
         </ul>
         <ul class="userList">
@@ -12,12 +14,14 @@
               <li><Checkbox></Checkbox></li>
               <li>{{list.username}}</li>
               <li>{{list.tel}}</li>
+              <li>{{list.tel}}</li>
+              <li>{{list.tel}}</li>
               <li>{{list.opr}}</li>
             </ul>
           </li>
         </ul>
-      <Button @click="handleEdit">编辑</Button>
-      <Button @click="handleDelete">删除</Button>
+      <Button type="success" @click="handleEdit">编辑</Button>
+      <Button type="error" @click="handleDelete">删除</Button>
     </div>
 </template>
 
@@ -94,14 +98,14 @@
       overflow: hidden;
       li{
         padding: 1vh 0;
-        width: 32%;
+        width: 19%;
         float: left;
         border-left: 1px solid #80858f;
         color: #fff;
         font-weight: 600;
         text-align: center;
         &:nth-of-type(1){
-          width: 3%;
+          width: 5%;
         }
       }
     }
@@ -124,11 +128,12 @@
           list-style: none;
           li{
             padding: 1vh ;
-            width: 32%;
+            width: 19%;
             float: left;
             border-left: 1px solid #80858f;
             &:nth-of-type(1){
-              width: 3%;
+              width: 5%;
+              text-align: center;
             }
           }
         }

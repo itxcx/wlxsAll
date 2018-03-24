@@ -20,13 +20,24 @@
             </ul>
           </li>
         </ul>
+      <Button type="info" @click="checkJurisdic">查看</Button>
       <Button type="success" @click="editJurisdic">编辑</Button>
       <Button type="error" @click="deleteJurisdic">删除</Button>
       <Modal title="Title" v-model="editModal" class-name="vertical-center-modal">
         <p v-for="list in this.editData">{{list}}</p>
       </Modal>
-      <Modal title="提示信息" v-model="deleteModal"  @on-ok="ok" @on-cancel="cancel">
-         <p>确定要删除所选项目？</p>
+      <Modal title="提示信息" v-model="deleteModal">
+        <p slot="header" style="color:#f60;text-align:center">
+          <Icon type="information-circled"></Icon>
+          <span>操作提示</span>
+        </p>
+        <div style="text-align:center">
+          <p>删除后数据无法回复</p>
+          <p>确定要永久删除?</p>
+        </div>
+        <div slot="footer">
+          <Button type="error" size="large" long :loading="modal_loading" @click="confirmDelete">确认删除</Button>
+        </div>
       </Modal>
     </div>
 </template>
@@ -84,12 +95,17 @@
               date: '2016-10-04'
             }
           ],
+          modal_loading: false,
           editData: '' ,//编辑框展示的内容
         }
       },
       methods: {
         userSelect(index) {
           this.$store.state.userList[index].checked = !this.$store.state.userList[index].checked;
+        },
+        //查看用户权限方法
+        checkJurisdic() {
+
         },
         //编辑用户方法,如果有多个选择项,则编辑最后选中的项目
         editJurisdic() {
@@ -107,25 +123,29 @@
             if(this.$store.state.userList[i].checked === true) {
               this.deleteModal = true;
               deleteArray.push(this.$store.state.userList[i].tel);
+             // this.confirmDelete(deleteArray);
             }
           }
+        },
+        //确认删除方法
+        confirmDelete(deleteArray) {
+          this.modal_loading = true;
           // this.$ajax({
           //   url: '',
           //   method: 'POST',
           //   data: {deleteArray: deleteArray}
           // }).then((res) => {
           //   if(res.code === 0) {
-          //     console.log(res.code);
+          //     this.deleteModal = false;
           //   }
           // }).catch((error) => {
           //   console.log(error);
           // })
-        },
-        ok() {
-          console.log(1);
-        },
-        cancel() {
-          console.log(2);
+
+          setTimeout(() => {//测试方法, 需要删除
+            //this.deleteModal = false;
+            this.modal_loading = false;
+          }, 4000)
         }
       }
     }

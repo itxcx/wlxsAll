@@ -21,9 +21,12 @@
           </li>
         </ul>
       <Button type="success" @click="editJurisdic">编辑</Button>
-      <Button type="error" @click="handleDelete">删除</Button>
+      <Button type="error" @click="deleteJurisdic">删除</Button>
       <Modal title="Title" v-model="editModal" class-name="vertical-center-modal">
-        <p v-for="list in this.edit">{{list}}</p>
+        <p v-for="list in this.editData">{{list}}</p>
+      </Modal>
+      <Modal title="提示信息" v-model="deleteModal" class-name="vertical-center-modal">
+         <p>确定要删除所选项目？</p>
       </Modal>
     </div>
 </template>
@@ -33,8 +36,9 @@
       name: "jurisdic",
       data () {
         return {
-          deleteArray: [],
-          editModal: false,
+          deleteArray: [], //需要删除的项目
+          editModal: false, //控制编辑模态框的显示
+          deleteModal: false, //控制删除模态框的显示
           columns4: [
             {
               type: 'selection',
@@ -80,7 +84,7 @@
               date: '2016-10-04'
             }
           ],
-          edit:''
+          editData: '' ,//编辑框展示的内容
         }
       },
       methods: {
@@ -93,11 +97,12 @@
           // this.edit =
         },
         //删除方法
-        handleDelete() {
+        deleteJurisdic() {
           let deleteArray = [];
           for(let i = 0; i < this.$store.state.userList.length; i++) {
             if(this.$store.state.userList[i].checked === true) {
-             deleteArray.push(this.$store.state.userList[i].tel);
+              this.deleteModal = true;
+              deleteArray.push(this.$store.state.userList[i].tel);
             }
           }
           // this.$ajax({

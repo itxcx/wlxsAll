@@ -91,10 +91,14 @@
         userSelect(index) {
           this.$store.state.userList[index].checked = !this.$store.state.userList[index].checked;
         },
-        //编辑用户方法
+        //编辑用户方法,如果有多个选择项,则编辑最后选中的项目
         editJurisdic() {
-          this.editModal = true;
-          // this.edit =
+          for(let i = 0; i < this.$store.state.userList.length; i++) {
+            if(this.$store.state.userList[i].checked === true) {
+              this.editModal = true;
+              this.editData = this.$store.state.userList[i].username;
+            }
+          }
         },
         //删除方法
         deleteJurisdic() {

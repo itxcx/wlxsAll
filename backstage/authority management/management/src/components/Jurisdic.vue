@@ -25,7 +25,7 @@
       <Modal title="Title" v-model="editModal" class-name="vertical-center-modal">
         <p v-for="list in this.editData">{{list}}</p>
       </Modal>
-      <Modal title="提示信息" v-model="deleteModal" class-name="vertical-center-modal">
+      <Modal title="提示信息" v-model="deleteModal"  @on-ok="ok" @on-cancel="cancel">
          <p>确定要删除所选项目？</p>
       </Modal>
     </div>
@@ -120,6 +120,12 @@
           // }).catch((error) => {
           //   console.log(error);
           // })
+        },
+        ok() {
+          console.log(1);
+        },
+        cancel() {
+          console.log(2);
         }
       }
     }

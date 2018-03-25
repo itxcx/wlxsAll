@@ -2,6 +2,8 @@
     <div class="mainfooter">
       <p>Copyright&nbsp;&copy;&nbsp;2017-2018&nbsp;
         <a href="http://www.weilaixiansen.com" target="_blank" title="访问未来鲜森官方网站">西安未来鲜森智能信息技术有限公司</a>
+        <span>&nbsp;&nbsp;</span>
+        <span>技术支持: 400-770-7768</span>
       </p>
       <p>陕ICP备17018219号-1</p>
     </div>

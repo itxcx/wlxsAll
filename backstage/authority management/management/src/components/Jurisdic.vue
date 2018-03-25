@@ -20,9 +20,11 @@
             </ul>
           </li>
         </ul>
-      <Button type="info" @click="checkJurisdic">查看</Button>
-      <Button type="success" @click="editJurisdic">编辑</Button>
-      <Button type="error" @click="deleteJurisdic">删除</Button>
+      <section class="opration">
+        <Button type="info" @click="checkJurisdic">查看</Button>
+        <Button type="success" @click="editJurisdic">编辑</Button>
+        <Button type="error" @click="deleteJurisdic">删除</Button>
+      </section>
       <Modal title="Title" v-model="editModal" class-name="vertical-center-modal">
         <p v-for="list in this.editData">{{list}}</p>
       </Modal>
@@ -202,6 +204,10 @@
           }
         }
       }
+    }
+    .opration{
+      text-align: center;
+      padding-top: 5px;
     }
   }
 </style>

@@ -6,21 +6,34 @@
           <Avatar icon="person" size="small"/>
           <span>{{activeUser}}</span>
         </div>
-        <div class="tips" title="个人消息管理">
-          <Badge dot>
-            <a href="#">
-              <Icon type="ios-bell-outline" size="26"></Icon>
-            </a>
-          </Badge>
+        <div class="tips" title="消息管理">
+          <!--<Badge dot>-->
+            <!--<a href="#">-->
+              <!--<Icon type="ios-bell-outline" size="26"></Icon>-->
+            <!--</a>-->
+          <!--</Badge>-->
+          <Dropdown trigger="click" >
+            <Badge :count="badgeCount">
+              <a href="javascript:void(0)">
+                <Icon type="android-notifications" size="26"></Icon>
+              </a>
+            </Badge>
+            <DropdownMenu slot="list">
+              <DropdownItem name="all" @click.native="notice('all')">消息管理</DropdownItem>
+              <DropdownItem name="t1" @click.native="notice('t1')">上货通知</DropdownItem>
+              <DropdownItem name="t2" @click.native="notice('t2')">库存变更</DropdownItem>
+              <DropdownItem name="t3" @click.native="notice('t3')">系统推送消息</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </div>
 
-        <div class="setup">
-          <Dropdown trigger="click" >
+        <div class="setup" title="系统设置">
+          <Dropdown trigger="click">
             <a href="javascript:void(0)">
               <Icon type="ios-gear"></Icon>
             </a>
             <DropdownMenu slot="list">
-              <DropdownItem @click.native="loginOut">退出</DropdownItem>
+              <DropdownItem @click.native="loginOut">退出登陆</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>
@@ -33,6 +46,7 @@
       data() {
         return {
           activeUser: '', //当前登录用户
+          badgeCount: 10, //显示消息数量
         }
       },
       mounted () {
@@ -55,10 +69,18 @@
         })
       },
       methods: {
-        loginOut () {
+        loginOut () { //用户登出方法
           console.log(1);
           this.$router.push({
             name: 'login'
+          })
+        },
+        notice(name) {//通知消息方法
+          this.$router.push({
+            name: 'noticelist',
+            query: {
+              namelist: name
+            }
           })
         }
       }
@@ -94,6 +116,7 @@
       line-height: @commonHeight;
       a{
         color: #80858f;
+        font-weight: 600;
       }
     }
     .userInfo{

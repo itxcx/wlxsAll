@@ -21,7 +21,7 @@
 .MainContent{
   width: 85vw;
   height: 80vh;
-  background: #A3C6C8;
+  background: #f2f2f2;
   position: absolute;
   top: 11vh;
   right: 0;

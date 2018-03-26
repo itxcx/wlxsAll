@@ -52,51 +52,6 @@
           deleteArray: [], //需要删除的项目
           editModal: false, //控制编辑模态框的显示
           deleteModal: false, //控制删除模态框的显示
-          columns4: [
-            {
-              type: 'selection',
-              width: 60,
-              align: 'center'
-            },
-            {
-              title: '姓名',
-              key: 'name'
-            },
-            {
-              title: '手机号',
-              key: 'tel'
-            },
-            {
-              title: '地址',
-              key: 'address'
-            }
-          ],
-          data1: [
-            {
-              name: '未来鲜森',
-              tel: 18648822556,
-              address: 'New York No. 1 Lake Park',
-              date: '2016-10-03'
-            },
-            {
-              name: '未来鲜森',
-              tel: 17629025050,
-              address: 'London No. 1 Lake Park',
-              date: '2016-10-01'
-            },
-            {
-              name: '未来鲜森',
-              tel: 18601031450,
-              address: 'Sydney No. 1 Lake Park',
-              date: '2016-10-02'
-            },
-            {
-              name: '未来鲜森',
-              tel: 18648822556,
-              address: 'Ottawa No. 2 Lake Park',
-              date: '2016-10-04'
-            }
-          ],
           modal_loading: false,
           editData: '' ,//编辑框展示的内容
         }
@@ -145,7 +100,7 @@
           // })
 
           setTimeout(() => {//测试方法, 需要删除
-            //this.deleteModal = false;
+            this.deleteModal = false;
             this.modal_loading = false;
           }, 4000)
         }

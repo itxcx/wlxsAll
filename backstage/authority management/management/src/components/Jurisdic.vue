@@ -34,7 +34,7 @@
           <span>操作提示</span>
         </p>
         <div style="text-align:center">
-          <p>删除后数据无法回复</p>
+          <p>删除后数据无法恢复</p>
           <p>确定要永久删除?</p>
         </div>
         <div slot="footer">
@@ -155,6 +155,7 @@
 
 <style lang="less">
   .Jurisdic{
+    font-family: Arial, sans-serif;
     .userListHeader{
       background: #217093;
       list-style: none;
@@ -194,12 +195,15 @@
           list-style: none;
           li{
             padding: 1vh ;
-            width: 19%;
+            width: 15%;
             float: left;
             border-left: 1px solid #80858f;
             &:nth-of-type(1){
               width: 5%;
               text-align: center;
+            }
+            &:nth-last-of-type(1) {
+              width: 35%;
             }
           }
         }

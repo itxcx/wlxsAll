@@ -9,15 +9,18 @@
       </div>
       <div class="password">
         <label for="oldPassword">旧密码</label>
-        <input type="password" id="oldPassword" name="oldPassword" v-model="oldPassword"/>
+        <input type="password" id="oldPassword" name="oldPassword" v-model="oldPassword" @blur="oldPswBlur" @focus="PswFocus"/>
       </div>
       <div class="password">
         <label for="newPassword">新密码</label>
-        <input type="password" id="newPassword" name="newPassword" v-model="newPassword" />
+        <input type="password" id="newPassword" name="newPassword" v-model="newPassword" @blur="newPswBlur" @focus="PswFocus"/>
       </div>
       <div class="password">
-        <label for="newPasswordAgain">新密码</label>
-        <input type="password" id="newPasswordAgain" name="newPasswordAgain" v-model="newPasswordAgain" />
+        <label for="newPasswordAgain">再一次</label>
+        <input type="password" id="newPasswordAgain" name="newPasswordAgain" v-model="newPasswordAgain" @blur="againNewPswBlur" @focus="PswFocus"/>
+      </div>
+      <div class="tipTitle">
+        {{tipTitle}}
       </div>
       <div class="form_submit">
         <input type="button" value="提交修改" name="sumbit_button" @click="submitChange">
@@ -44,8 +47,50 @@
       }
     },
     methods: {
+      //旧密码
+      oldPswBlur() {
+        if(this.oldPassword === '') {
+          this.tipTitle = '请输入旧密码';
+        }
+      },
+      PswFocus() {
+        this.tipTitle = '';
+      },
+      //新密码
+      newPswBlur() {
+        if(this.newPassword === '') {
+          this.tipTitle = '请输入新密码';
+        }
+      },
+      //密码确认
+      againNewPswBlur() {
+        if(this.newPasswordAgain === '' || this.newPasswordAgain !== this.newPassword) {
+          this.tipTitle = '两次输入密码不一致';
+        }
+      },
+      //提交方法
       submitChange() {
-
+        if(this.oldPassword === '') {
+          this.tipTitle = '旧密码不能为空';
+        }else if(this.newPassword === '') {
+          this.tipTitle = '新密码不能为空';
+        }else if(this.newPasswordAgain === '' || this.newPasswordAgain !== this.newPassword) {
+          this.tipTitle = '两次输入密码不一致';
+        }else{
+          // this.$ajax({
+          //   url: '',
+          //   method: 'POST',
+          //   data: {oldPsw: this.oldPassword, newPsw: this.newPassword}
+          // }).then(function(res) {
+          //   if(res.code === 0) {
+          //     console.log(`修改成功`);
+          //   }else{
+          //     console.log(`修改失败`);
+          //   }
+          // }).catch(function(error) {
+          //   console.log(error);
+          // })
+        }
       }
     }
   }
@@ -65,10 +110,13 @@
       background: rgba(0, 0, 0, 0.7);
     }
     .update_form{
-      width: 36vw;
-      height: 40vh;
+      width: 40vw;
+      height: 45vh;
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       margin: auto;
       z-index: 99;
       background: rgba(0, 0, 0, 0.75);
@@ -95,6 +143,12 @@
           margin: 2vh;
         }
       }
+      .tipTitle{
+        height: 4vh;
+        font-size: 0.75rem;
+        color: #ff6600;
+        line-height: 4vh;
+      }
       .password{
         input{
           background: #1B1B1B;
@@ -102,7 +156,7 @@
           outline-color:#00ff00;
           border-radius: 3px;
           color: #fff;
-          height: 1.5rem;
+          height: 1.7rem;
           margin-top: 2vh;
           text-align: center;
         }

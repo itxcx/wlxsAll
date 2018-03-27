@@ -4,12 +4,13 @@ import Main from '@/components/Main'
 import Login from '@/components/Login'
 import Jurisdic from '@/components/Jurisdic' //权限管理组件
 import NoticeList from '@/components/NoticeList' //通知消息管理组件
-import UpdatePsw from '@/components/UpdatePsw'
+import UpdatePsw from '@/components/UpdatePsw' //密码修改组件
 
 //引入主要的数据模块
 import Chart from '@/charts/Chart'
 import Pie from '@/charts/Pie'
 import Column from '@/charts/Column'
+import Table from '@/charts/Table'
 
 
 Vue.use(Router);
@@ -45,6 +46,11 @@ export default new Router({
           path: '/column',
           name: 'column',
           component: Column
+        },
+        {
+          path: '/table',
+          name: 'table',
+          component: Table
         },
         //权限管理组件
         {

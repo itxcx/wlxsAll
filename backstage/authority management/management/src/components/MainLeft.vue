@@ -48,15 +48,23 @@
           this.$store.commit('getData', [reqData, showType]);
           if(showType === 'table') {
             this.$router.push({
-              name: 'chart'
+              name: 'table'
             })
           }else if(showType === 'charts') {
             this.$router.push({
-              name: 'pie'
+              name: 'chart'
             })
           }else if(showType === 'column') {
             this.$router.push({
               name: 'column'
+            })
+          }else if(showType === 'table') {
+            this.$router.push({
+              name: 'table'
+            })
+          }else if(showType === 'pie') {
+            this.$router.push({
+              name: 'pie'
             })
           }
           if(urlPath === 'jurisdic') {

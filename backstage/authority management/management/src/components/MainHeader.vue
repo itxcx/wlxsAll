@@ -27,6 +27,7 @@
               <Icon type="ios-gear"></Icon>
             </a>
             <DropdownMenu slot="list">
+              <DropdownItem @click.native="goMain">主页</DropdownItem>
               <DropdownItem @click.native="updatePsw">修改密码</DropdownItem>
               <DropdownItem @click.native="loginOut">退出登陆</DropdownItem>
             </DropdownMenu>
@@ -64,7 +65,7 @@
         })
       },
       methods: {
-        loginOut () { //用户登出方法
+        loginOut() { //用户登出方法
           console.log(1);
           this.$router.push({
             name: 'login'
@@ -81,6 +82,11 @@
         updatePsw() {
           this.$router.push({
             name: 'updatepsw'
+          })
+        },
+        goMain() {
+          this.$router.push({
+            name: 'main'
           })
         }
       }

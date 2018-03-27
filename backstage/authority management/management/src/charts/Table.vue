@@ -1,7 +1,4 @@
 <template>
-    <!--<div class="Table">-->
-      <!--&lt;!&ndash;<Table border :columns="columns1" :data="data1"></Table>&ndash;&gt;-->
-    <!--</div>-->
     <i-table border :columns="columns1" :data="data1"></i-table>
 </template>
 

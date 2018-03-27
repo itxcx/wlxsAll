@@ -7,14 +7,9 @@
           <span>{{activeUser}}</span>
         </div>
         <div class="tips" title="消息管理">
-          <!--<Badge dot>-->
-            <!--<a href="#">-->
-              <!--<Icon type="ios-bell-outline" size="26"></Icon>-->
-            <!--</a>-->
-          <!--</Badge>-->
           <Dropdown trigger="click" >
             <Badge :count="badgeCount">
-              <a href="javascript:void(0)">
+              <a>
                 <Icon type="android-notifications" size="26"></Icon>
               </a>
             </Badge>
@@ -26,10 +21,9 @@
             </DropdownMenu>
           </Dropdown>
         </div>
-
         <div class="setup" title="系统设置">
           <Dropdown trigger="click">
-            <a href="javascript:void(0)">
+            <a>
               <Icon type="ios-gear"></Icon>
             </a>
             <DropdownMenu slot="list">

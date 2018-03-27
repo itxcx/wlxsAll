@@ -29,6 +29,8 @@
     <footer>
       <p>Copyright&nbsp;&copy;&nbsp;2017-2018
         <a href="http://www.weilaixiansen.com" target="_blank">西安未来鲜森智能信息技术有限公司</a>
+        <span>&nbsp;&nbsp;</span>
+        <span>技术支持: 400-770-7768</span>
       </p>
     </footer>
   </div>

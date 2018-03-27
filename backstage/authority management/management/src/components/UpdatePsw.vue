@@ -83,6 +83,18 @@
           // }).then(function(res) {
           //   if(res.code === 0) {
           //     console.log(`修改成功`);
+          let _this = this;
+          let count = 0;
+          setInterval(function() {
+            count++;
+            if(count === 5) {
+              clearInterval(this);
+              _this.$router.push({
+                name: 'login'
+              })
+            }
+          }, 1000)
+
           //   }else{
           //     console.log(`修改失败`);
           //   }

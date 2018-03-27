@@ -9,6 +9,7 @@ import UpdatePsw from '@/components/UpdatePsw'
 //引入主要的数据模块
 import Chart from '@/charts/Chart'
 import Pie from '@/charts/Pie'
+import Column from '@/charts/Column'
 
 
 Vue.use(Router);
@@ -39,6 +40,11 @@ export default new Router({
           path: '/pie',
           name: 'pie',
           component: Pie
+        },
+        {
+          path: '/column',
+          name: 'column',
+          component: Column
         },
         //权限管理组件
         {

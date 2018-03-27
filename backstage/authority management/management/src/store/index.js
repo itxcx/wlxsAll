@@ -10,10 +10,10 @@ const state = {
           "title": "账号信息",
           "icon": "person-stalker",
           "perList": [
-            {"name": "商户信息", "type": "charts", "url": "jurisdic", "reqData": "1" },
+            {"name": "商户信息", "type": "", "url": "jurisdic", "reqData": "1" },
             {"name": "一级商户", "type": "table", "url": "", "reqData": "1" },
             {"name": "二级商户", "type": "charts", "url": "", "reqData": "1" },
-            {"name": "个人信息", "type": "table", "url": "", "reqData": "1" }
+            {"name": "个人信息", "type": "column", "url": "", "reqData": "1" }
           ]
         },
         {
@@ -22,10 +22,10 @@ const state = {
           "perList": [
             {"name": "设备管理", "type": "table", "url": "", "reqData": "1" },
             {"name": "商品管理", "type": "charts", "url": "", "reqData": "1" },
-            {"name": "上货管理", "type": "table", "url": "", "reqData": "1" },
+            {"name": "上货管理", "type": "column", "url": "", "reqData": "1" },
             {"name": "配送管理", "type": "charts", "url": "", "reqData": "1" },
             {"name": "活动管理", "type": "table", "url": "", "reqData": "1" },
-            {"name": "会员管理", "type": "charts", "url": "", "reqData": "1" }
+            {"name": "会员管理", "type": "column", "url": "", "reqData": "1" }
           ]
         },
         {
@@ -34,7 +34,7 @@ const state = {
           "perList": [
             {"name": "销售数据", "type": "table", "url": "", "reqData": "1" },
             {"name": "利润分成", "type": "charts", "url": "", "reqData": "1" },
-            {"name": "货损率", "type": "table", "url": "", "reqData": "1" },
+            {"name": "货损率", "type": "column", "url": "", "reqData": "1" },
             {"name": "库存情况", "type": "charts", "url": "", "reqData": "1" }
           ]
         },
@@ -44,7 +44,7 @@ const state = {
           "perList": [
             {"name": "备货", "type": "charts", "url": "", "reqData": "1" },
             {"name": "配送", "type": "table", "url": "", "reqData": "1" },
-            {"name": "上货", "type": "charts", "url": "", "reqData": "1" },
+            {"name": "上货", "type": "column", "url": "", "reqData": "1" },
             {"name": "实时交易", "type": "table", "url": "", "reqData": "1" }
           ]
         },

@@ -54,6 +54,10 @@
             this.$router.push({
               name: 'pie'
             })
+          }else if(showType === 'column') {
+            this.$router.push({
+              name: 'column'
+            })
           }
           if(urlPath === 'jurisdic') {
             this.$router.push({

@@ -45,7 +45,7 @@
           let reqData = this.$store.state.permission[index].perList[indexs].reqData;//请求数据时的参数
           let showType = this.$store.state.permission[index].perList[indexs].type;//显示类型
           let urlPath = this.$store.state.permission[index].perList[indexs].url; //需要跳转的路由信息
-          this.$store.commit('getData', [reqData, showType]);
+          this.$store.commit('getData', [reqData, showType]); //控制左侧栏目的内容改变
           if(showType === 'table') {
             this.$router.push({
               name: 'table'
@@ -57,10 +57,6 @@
           }else if(showType === 'column') {
             this.$router.push({
               name: 'column'
-            })
-          }else if(showType === 'table') {
-            this.$router.push({
-              name: 'table'
             })
           }else if(showType === 'pie') {
             this.$router.push({

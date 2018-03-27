@@ -4,6 +4,7 @@ import Main from '@/components/Main'
 import Login from '@/components/Login'
 import Jurisdic from '@/components/Jurisdic' //权限管理组件
 import NoticeList from '@/components/NoticeList' //通知消息管理组件
+import UpdatePsw from '@/components/UpdatePsw'
 
 //引入主要的数据模块
 import Demo from '@/charts/Demo'
@@ -17,6 +18,11 @@ export default new Router({
       path: '/',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/updatepsw',
+      name: 'updatepsw',
+      component: UpdatePsw
     },
     {
       path: '/main',

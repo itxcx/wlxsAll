@@ -33,6 +33,7 @@
               <Icon type="ios-gear"></Icon>
             </a>
             <DropdownMenu slot="list">
+              <DropdownItem @click.native="updatePsw">修改密码</DropdownItem>
               <DropdownItem @click.native="loginOut">退出登陆</DropdownItem>
             </DropdownMenu>
           </Dropdown>
@@ -81,6 +82,11 @@
             query: {
               namelist: name
             }
+          })
+        },
+        updatePsw() {
+          this.$router.push({
+            name: 'updatepsw'
           })
         }
       }

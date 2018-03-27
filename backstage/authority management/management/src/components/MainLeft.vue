@@ -46,9 +46,13 @@
           let showType = this.$store.state.permission[index].perList[indexs].type;//显示类型
           let urlPath = this.$store.state.permission[index].perList[indexs].url; //需要跳转的路由信息
           this.$store.commit('getData', [reqData, showType]);
-          if(showType === 'table' || showType === 'charts') {
+          if(showType === 'table') {
             this.$router.push({
-              name: 'demo'
+              name: 'chart'
+            })
+          }else if(showType === 'charts') {
+            this.$router.push({
+              name: 'pie'
             })
           }
           if(urlPath === 'jurisdic') {

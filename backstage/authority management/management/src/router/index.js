@@ -7,7 +7,8 @@ import NoticeList from '@/components/NoticeList' //通知消息管理组件
 import UpdatePsw from '@/components/UpdatePsw'
 
 //引入主要的数据模块
-import Demo from '@/charts/Demo'
+import Chart from '@/charts/Chart'
+import Pie from '@/charts/Pie'
 
 
 Vue.use(Router);
@@ -30,9 +31,14 @@ export default new Router({
       component: Main,
       children: [  //二级路由
         {
-          path: '/demo',
-          name: 'demo',
-          component: Demo
+          path: '/chart',
+          name: 'chart',
+          component: Chart
+        },
+        {
+          path: '/pie',
+          name: 'pie',
+          component: Pie
         },
         //权限管理组件
         {

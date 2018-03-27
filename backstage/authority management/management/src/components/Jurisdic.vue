@@ -112,53 +112,55 @@
   .Jurisdic{
     font-family: Arial, sans-serif;
     .userListHeader{
-      background: #217093;
+      background: rgba(33, 112, 147, 0.5);
       list-style: none;
       overflow: hidden;
       li{
         padding: 1vh 0;
-        width: 19%;
+        width: 12vw;
         float: left;
-        border-left: 1px solid #80858f;
-        color: #fff;
+        border-left: 1px solid #e9eaec;
+        color: #333;
         font-weight: 600;
         text-align: center;
         &:nth-of-type(1){
-          width: 5%;
+          width: 5vw;
+        }
+        &:nth-last-of-type(1) {
+          width: 28vw;
         }
       }
     }
     .userList{
-      background: #ebebeb;
+      background: #fff;
       list-style: none;
       height: 70vh;
       padding: 2vh 0;
       overflow: auto;
       >li{
-        border: 1px solid #80858f;
-        margin: 2px 0;
+        border: 1px solid #e9eaec;
+        margin: 0;
         transition: all 0.3s linear;
         &:nth-of-type(1){
           margin: 0;
         }
         &:hover{
-          background: #ffffc0;
+          background: rgba(154,207,234,.5);
         }
-
         .userItem{
           overflow: hidden;
           list-style: none;
           li{
             padding: 1vh ;
-            width: 15%;
+            width: 12vw;
             float: left;
-            border-left: 1px solid #80858f;
+            border-left: 1px solid #e9eaec;
             &:nth-of-type(1){
-              width: 5%;
+              width: 5vw;
               text-align: center;
             }
             &:nth-last-of-type(1) {
-              width: 35%;
+              width: 28vw;
             }
           }
         }
@@ -166,7 +168,7 @@
     }
     .opration{
       text-align: center;
-      padding-top: 5px;
+      padding-top: 10px;
     }
   }
 </style>

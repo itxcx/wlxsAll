@@ -25,7 +25,6 @@
       <div class="form_submit">
         <input type="button" value="提交修改" name="sumbit_button" @click="submitChange">
       </div>
-
     </section>
     <footer>
       <p>Copyright&nbsp;&copy;&nbsp;2017-2018
@@ -40,10 +39,10 @@
     name: "UpdatePsw",
     data() {
       return {
-        tipTitle: '',
-        oldPassword: '',
-        newPassword: '',
-        newPasswordAgain: ''
+        tipTitle: '', //提示信息
+        oldPassword: '', //旧密码
+        newPassword: '', //新密码
+        newPasswordAgain: '' //确认密码
       }
     },
     methods: {

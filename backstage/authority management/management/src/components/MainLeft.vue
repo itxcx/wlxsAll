@@ -46,6 +46,7 @@
           let showType = this.$store.state.permission[index].perList[indexs].type;//显示类型
           let urlPath = this.$store.state.permission[index].perList[indexs].url; //需要跳转的路由信息
           this.$store.commit('getData', [reqData, showType]); //控制左侧栏目的内容改变
+          //根据显示类型加载路由
           if(showType === 'table') {
             this.$router.push({
               name: 'table'

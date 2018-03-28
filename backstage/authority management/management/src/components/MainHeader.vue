@@ -79,12 +79,12 @@
             }
           })
         },
-        updatePsw() {
+        updatePsw() {//修改密码方法
           this.$router.push({
             name: 'updatepsw'
           })
         },
-        goMain() {
+        goMain() {//返回主页方法
           this.$router.push({
             name: 'main'
           })

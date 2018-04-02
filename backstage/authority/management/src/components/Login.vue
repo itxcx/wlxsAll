@@ -137,9 +137,9 @@
         a{
           display: inline-block;
           float: left;
-          width: 10rem;
-          height: 4rem;
-          margin: 1rem 2.5rem;
+          width: 5rem;
+          height: 5rem;
+          margin: 0.5rem 2.5rem;
           background: url(../../static/images/wlxs_logo.png) no-repeat center center;
           background-size: cover;
         }

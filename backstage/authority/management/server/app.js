@@ -3,7 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser')
 const express = require('express');
 const session = require('express-session');
-const api = require('./api/api');
+const login = require('./api/user/api');
 const app = express();
 
 //配置session
@@ -18,7 +18,7 @@ app.use(session({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(api);
+app.use(login);
 
 
 

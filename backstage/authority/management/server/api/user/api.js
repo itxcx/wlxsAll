@@ -26,4 +26,6 @@ login.get('/api/login/getUserInfo', (req, res) => {
     }
   })
 });
+
+//导出模块
 module.exports = login;

@@ -94,29 +94,7 @@ const state = {
      },
      ],
   //所有用户信息
-  userList: [
-    {'username': 'admin', 'tel': '00000000000','rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座1', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jinlong', 'tel': '22222222222', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座2', 'checked': false},
-    {'username': 'jianting', 'tel': '11111111111', 'rank': 1, 'password': 'admin', 'opr': '瞪羚谷E座3', 'checked': false}
-  ]
+  userList: []
 };
 //数据操作
 const mutations = {

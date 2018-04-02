@@ -9,14 +9,14 @@
           <li>备注</li>
         </ul>
         <ul class="userList">
-          <li v-for="(list, index) in this.$store.state.userList">
+          <li v-for="(list, index) in userList">
             <ul class="userItem">
               <li><Checkbox @on-change="userSelect(index)"></Checkbox></li>
-              <li>{{list.username}}</li>
+              <li>{{list.name}}</li>
               <li>{{list.tel}}</li>
-              <li>{{list.username}}</li>
-              <li>{{list.checked}}</li>
-              <li>{{list.opr}}</li>
+              <li>{{list.name}}</li>
+              <li>{{list.name}}</li>
+              <li>{{list.password}}</li>
             </ul>
           </li>
         </ul>
@@ -54,11 +54,24 @@
           deleteModal: false, //控制删除模态框的显示
           modal_loading: false,
           editData: '' ,//编辑框展示的内容
+          userList: []
         }
+      },
+      mounted() {
+        this.$nextTick( () => {
+          this.$ajax({
+            url: '/api/login/getUserInfo',
+            method: 'get',
+          }).then( (res) => {
+            this.userList = res.data;
+          }).catch( (error) => {
+            console.log(error);
+          })
+        })
       },
       methods: {
         userSelect(index) {
-          this.$store.state.userList[index].checked = !this.$store.state.userList[index].checked;
+          //this.$store.state.userList[index].checked = !this.$store.state.userList[index].checked;
         },
         //查看用户权限方法
         checkJurisdic() {
@@ -66,23 +79,23 @@
         },
         //编辑用户方法,如果有多个选择项,则编辑最后选中的项目
         editJurisdic() {
-          for(let i = 0; i < this.$store.state.userList.length; i++) {
-            if(this.$store.state.userList[i].checked === true) {
-              this.editModal = true;
-              this.editData = this.$store.state.userList[i].username;
-            }
-          }
+          // for(let i = 0; i < this.$store.state.userList.length; i++) {
+          //   if(this.$store.state.userList[i].checked === true) {
+          //     this.editModal = true;
+          //     this.editData = this.$store.state.userList[i].username;
+          //   }
+          // }
         },
         //删除方法
         deleteJurisdic() {
           let deleteArray = [];
-          for(let i = 0; i < this.$store.state.userList.length; i++) {
-            if(this.$store.state.userList[i].checked === true) {
-              this.deleteModal = true;
-              deleteArray.push(this.$store.state.userList[i].tel);
-             // this.confirmDelete(deleteArray);
-            }
-          }
+          // for(let i = 0; i < this.$store.state.userList.length; i++) {
+          //   if(this.$store.state.userList[i].checked === true) {
+          //     this.deleteModal = true;
+          //     deleteArray.push(this.$store.state.userList[i].tel);
+          //    // this.confirmDelete(deleteArray);
+          //   }
+          // }
         },
         //确认删除方法
         confirmDelete(deleteArray) {

@@ -1,4 +1,3 @@
-
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
@@ -32,9 +31,9 @@ module.exports = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('common.js'),
     new webpack.ProvidePlugin({
-      jQuery: "jquery",
-      $: "jquery",
-      'window.jquery': 'jquery'
+      // jQuery: "jquery",
+      // $: "jquery",
+      // 'window.jquery': 'jquery'
     })
   ],
   module: {
@@ -45,16 +44,16 @@ module.exports = {
         options: vueLoaderConfig
       },
       {
-        test: /\.js$/,
+        test: /(\.jsx|\.js)$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test')]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.(png|jpeg|gif|svg|jpg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('images/[name].[hash:7].[ext]')
+          name: utils.assetsPath('images/[name].[hash:8].[ext]'),
         }
       },
       {

@@ -29,8 +29,14 @@ login.get('/api/login/getUserInfo', (req, res) => {
 
 //删除用户接口
 login.post('/api/login/deleteUser', (req, res) => {
-  console.log(req.body);
-  res.json({'message': 'success', 'code': 0});
+  // let data = req.body;
+  // for(let i = 0; i < req.body.length; i++) {
+  //   Mongo.Mongoclient(Mongo.MongoFun.deleteOne, 'user', req.body[i], (result) => {
+  //     if(result) {
+        res.json({'message': 'success', 'code': 0});
+  //     }
+  //   })
+  // }
 })
 
 //导出模块

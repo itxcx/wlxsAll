@@ -15,7 +15,7 @@
               <li>{{list.name}}</li>
               <li>{{list.tel}}</li>
               <li>{{list.name}}</li>
-              <li>{{list.name}}</li>
+              <li>{{list.checked}}</li>
               <li>{{list.password}}</li>
             </ul>
           </li>
@@ -64,6 +64,9 @@
             method: 'get',
           }).then( (res) => {
             this.userList = res.data;
+            for(let i = 0; i < this.userList.length; i++) {
+              this.$set(this.userList[i], 'checked', false);
+            }
           }).catch( (error) => {
             console.log(error);
           })

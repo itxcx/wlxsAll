@@ -27,7 +27,7 @@
       </section>
       <Modal title="查看用户信息" v-model="checkModal" class-name="vertical-center-modal">
         <ul>
-          <li v-for="list in userItem">
+          <li v-for="list in checkUserItem">
             <div>
               <h3>{{list.name}}</h3>
               <h4>{{list.tel}}</h4>
@@ -36,8 +36,22 @@
           </li>
         </ul>
       </Modal>
+      <!-- 用户编辑 -->
       <Modal title="编辑用户信息" v-model="editModal" class-name="vertical-center-modal">
-        <p v-for="list in this.editData">{{list}}</p>
+        <ul>
+          <li v-for="list in editUserItem">
+            <div>
+              <span>{{list.name}}</span>
+              <span>{{list.tel}}</span>
+            </div>
+            <ul>
+              <li v-for="item in list.list">
+                <Checkbox></Checkbox>
+                <span>{{item}}</span>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </Modal>
       <Modal title="提示信息" v-model="deleteModal">
         <p slot="header" style="color:#f60;text-align:center">
@@ -65,9 +79,10 @@
           deleteModal: false, //控制删除模态框的显示
           modal_loading: false,
           checkModal: false,
-          editData: '' ,//编辑框展示的内容
           userList: [], //所有用户列表
-          userItem: []  //需要操作的用户信息
+          checkUserItem: [],
+          editUserItem: [],
+          deleteUserItem: [],
         }
       },
       mounted() {
@@ -100,50 +115,51 @@
             }
           }
           if(itemIndex !== null) {
-            this.userItem = [];
-            this.userItem.push(this.userList[itemIndex]);
+            this.checkUserItem = [];
+            this.checkUserItem.push(this.userList[itemIndex]);
             this.checkModal = true;
           }
         },
         //编辑用户方法,如果有多个选择项,则编辑最后选中的项目
         editJurisdic() {
-          // for(let i = 0; i < this.$store.state.userList.length; i++) {
-          //   if(this.$store.state.userList[i].checked === true) {
-          //     this.editModal = true;
-          //     this.editData = this.$store.state.userList[i].username;
-          //   }
-          // }
+          let itemIndex = null;
+          for(let i = 0; i < this.userList.length; i++) {
+            if(this.userList[i].checked) {
+              itemIndex = i;
+            }
+          }
+          if(itemIndex !== null) {
+            this.editUserItem = [];
+            this.editUserItem.push(this.userList[itemIndex]);
+            this.editModal = true;
+          }
         },
         //删除方法
         deleteJurisdic() {
-          let deleteArray = [];
-          // for(let i = 0; i < this.$store.state.userList.length; i++) {
-          //   if(this.$store.state.userList[i].checked === true) {
-          //     this.deleteModal = true;
-          //     deleteArray.push(this.$store.state.userList[i].tel);
-          //    // this.confirmDelete(deleteArray);
-          //   }
-          // }
+          for(let i = 0; i < this.userList.length; i++) {
+            if(this.userList[i].checked === true) {
+              this.deleteUserItem.push(this.userList[i]);
+            }
+          }
+          if(this.deleteUserItem.length > 0) {
+            this.deleteModal = true;
+          }
         },
         //确认删除方法
-        confirmDelete(deleteArray) {
+        confirmDelete() {
           this.modal_loading = true;
-          // this.$ajax({
-          //   url: '',
-          //   method: 'POST',
-          //   data: {deleteArray: deleteArray}
-          // }).then((res) => {
-          //   if(res.code === 0) {
-          //     this.deleteModal = false;
-          //   }
-          // }).catch((error) => {
-          //   console.log(error);
-          // })
-
-          setTimeout(() => {//测试方法, 需要删除
-            this.deleteModal = false;
-            this.modal_loading = false;
-          }, 4000)
+          this.$ajax({
+            url: '/api/login/deleteUser',
+            method: 'POST',
+            data: {deleteArray: this.deleteUserItem}
+          }).then((res) => {
+            if(res.data.code === 0) {
+              this.modal_loading = false;
+              this.deleteModal = false;
+            }
+          }).catch((error) => {
+            console.log(error);
+          })
         }
       }
     }

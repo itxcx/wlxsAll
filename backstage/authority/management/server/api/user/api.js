@@ -27,5 +27,11 @@ login.get('/api/login/getUserInfo', (req, res) => {
   })
 });
 
+//删除用户接口
+login.post('/api/login/deleteUser', (req, res) => {
+  console.log(req.body);
+  res.json({'message': 'success', 'code': 0});
+})
+
 //导出模块
 module.exports = login;

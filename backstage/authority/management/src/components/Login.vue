@@ -4,7 +4,7 @@
       <section class="login_model"></section>
       <section class="login_form">
         <div class="login_logo">
-          <a href="http://www.weilaixiansen.com" title="未来鲜森官方网站" target="_blank"></a>
+          <a href="http://www.weilaixiansen.com" title="未来鲜森官网" target="_blank"></a>
           <span>商户管理平台</span>
         </div>
           <div class="username">
@@ -27,7 +27,7 @@
       </section>
       <footer>
         <p>Copyright&nbsp;&copy;&nbsp;2017-2018
-          <a href="http://www.weilaixiansen.com" target="_blank">西安未来鲜森智能信息技术有限公司</a>
+          <a href="http://www.weilaixiansen.com" target="_blank" title="访问未来鲜森官网">西安未来鲜森智能信息技术有限公司</a>
           <span>&nbsp;&nbsp;</span>
           <span>技术支持: 400-770-7768</span>
         </p>
@@ -146,7 +146,7 @@
         span{
           display: inline-block;
           float: left;
-          color: @color;
+          color: #fff;
           font-size: 2.5rem;
           margin: 2vh;
         }
@@ -155,7 +155,7 @@
         margin-top: 3vh;
         input{
           background: #1B1B1B;
-          outline-color:#00ff00;
+          outline-color: #54a635;
           border: none;
           border-radius: 3px;
           color: #fff;
@@ -169,7 +169,7 @@
         input{
           background: #1B1B1B;
           border: none;
-          outline-color:#00ff00;
+          outline-color: #54a635;
           border-radius: 3px;
           color: #fff;
           height: 2rem;
@@ -189,7 +189,7 @@
         }
         .tipTitle{
           text-align: right;
-          color: #ff6600;
+          color: #54a635;
           font-weight: 600;
         }
       }
@@ -206,7 +206,7 @@
           cursor: pointer;
           transition: all 0.3s linear;
           &:hover{
-            background: #2779aa;
+            background: #54a635;
             color: #000;
           }
         }
@@ -225,6 +225,16 @@
       color: #fff;
       p{
         text-align: center;
+        a{
+          position: relative;
+          display: inline-block;
+          color: #54a635;
+          transition: all .3s linear;
+          &:hover{
+            color: #006dcc;
+            transform: translateY(-5px);
+          }
+        }
       }
     }
     @media screen and (max-width:900px) {

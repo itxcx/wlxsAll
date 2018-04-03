@@ -11,7 +11,7 @@
         <ul class="userList">
           <li v-for="(list, index) in userList">
             <ul class="userItem">
-              <li><Checkbox @on-change="userSelect(index)"></Checkbox></li>
+              <li><Checkbox v-model="list.checked"></Checkbox></li>
               <li>{{list.name}}</li>
               <li>{{list.tel}}</li>
               <li>{{list.name}}</li>
@@ -25,7 +25,18 @@
         <Button type="success" @click="editJurisdic">编辑</Button>
         <Button type="error" @click="deleteJurisdic">删除</Button>
       </section>
-      <Modal title="Title" v-model="editModal" class-name="vertical-center-modal">
+      <Modal title="查看用户信息" v-model="checkModal" class-name="vertical-center-modal">
+        <ul>
+          <li v-for="list in userItem">
+            <div>
+              <h3>{{list.name}}</h3>
+              <h4>{{list.tel}}</h4>
+            </div>
+            <div>{{list.list}}</div>
+          </li>
+        </ul>
+      </Modal>
+      <Modal title="编辑用户信息" v-model="editModal" class-name="vertical-center-modal">
         <p v-for="list in this.editData">{{list}}</p>
       </Modal>
       <Modal title="提示信息" v-model="deleteModal">
@@ -53,8 +64,10 @@
           editModal: false, //控制编辑模态框的显示
           deleteModal: false, //控制删除模态框的显示
           modal_loading: false,
+          checkModal: false,
           editData: '' ,//编辑框展示的内容
-          userList: []
+          userList: [], //所有用户列表
+          userItem: []  //需要操作的用户信息
         }
       },
       mounted() {
@@ -64,8 +77,10 @@
             method: 'get',
           }).then( (res) => {
             this.userList = res.data;
-            for(let i = 0; i < this.userList.length; i++) {
-              this.$set(this.userList[i], 'checked', false);
+            if(this.userList.length > 0) {
+              for(let i = 0; i < this.userList.length; i++) {
+                this.$set(this.userList[i], 'checked', false);
+              }
             }
           }).catch( (error) => {
             console.log(error);
@@ -78,7 +93,17 @@
         },
         //查看用户权限方法
         checkJurisdic() {
-
+          let itemIndex = null;
+          for(let i = 0; i < this.userList.length; i++) {
+            if(this.userList[i].checked) {
+              itemIndex = i;
+            }
+          }
+          if(itemIndex !== null) {
+            this.userItem = [];
+            this.userItem.push(this.userList[itemIndex]);
+            this.checkModal = true;
+          }
         },
         //编辑用户方法,如果有多个选择项,则编辑最后选中的项目
         editJurisdic() {

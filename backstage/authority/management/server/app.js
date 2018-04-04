@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const express = require('express');
 const session = require('express-session');
 const login = require('./api/user/api'); //调用api

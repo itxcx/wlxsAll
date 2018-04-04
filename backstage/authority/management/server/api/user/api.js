@@ -4,10 +4,10 @@ const login = express.Router();
 
 //用户登录接口
 login.post('/api/login/getUserInfo', (req, res) => {
-    let data ={"name": req.body.username, "password": req.body.password};
+    let data = {"name": req.body.username, "password": req.body.password};
     Mongo.Mongoclient(Mongo.MongoFun.find, 'user', data, function(result) {
+      console.log(result);
       if(result && result.length === 1) {
-        //console.log(req.session);
         req.session.userinfo = req.body.username;
         res.json({'message': 'successs', 'code': 0});
       }else{

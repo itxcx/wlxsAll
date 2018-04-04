@@ -6,7 +6,7 @@
 
 const mongo = require('mongodb');
 const MongoClient = mongo.MongoClient;
-const dbUrl = "mongodb://127.0.0.1:27017/node";
+const dbUrl = "mongodb://127.0.0.1:27017/backstage";
 
 
 /*********************************************
@@ -24,7 +24,7 @@ const MongoConnection = function (callback, collectionName, condition, newcondit
             console.log(`数据库连接失败`);
         }else{
             console.log(`数据库连接成功`);
-            let dbname = 'node';
+            let dbname = 'backstage';
             let collection = collectionName;
             let db = client.db(dbname);
             //数据库操作方法
@@ -49,10 +49,13 @@ const MongoCtrl = {
     //数据查询
     find : function(db, collectionName, client, condition, callback) {
         let result = db.collection(collectionName).find(condition);
-
-        result.toArray(function(error,data){
-            client.close();/*关闭数据库连接*/
-            callback(data);/*拿到数据执行回调函数*/
+        result.toArray(function(findError,data){
+          if(findError) {
+            console.log(findError);
+          }else{
+            callback(data);
+            client.close();
+          }
         })
     },
     //数据插入

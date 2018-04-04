@@ -7,6 +7,7 @@
 const mongo = require('mongodb');
 const MongoClient = mongo.MongoClient;
 const dbUrl = "mongodb://127.0.0.1:27017/backstage";
+const ObjectID = require('mongodb').ObjectID;
 
 
 /*********************************************
@@ -107,7 +108,7 @@ const MongoCtrl = {
     },
     //数据删除
     delete: function(db, collectionName, client, condition, callback) {
-        db.collection(collectionName).delete(condition, function(error, result) {
+        db.collection(collectionName).removeOne(condition, function(error, result) {
             if(error) {
                 console.log(error);
             }else{
@@ -118,7 +119,7 @@ const MongoCtrl = {
         })
     },
     deleteMany: function(db, collectionName, client, condition, callback) {
-        db.collection(collectionName).deleteMany(condition, function(error, result) {
+        db.collection(collectionName).removeMany(condition, function(error, result) {
             if(error) {
                 console.log(error);
             }else{
@@ -133,5 +134,6 @@ const MongoCtrl = {
 //模块导出
 module.exports = {
     Mongoclient: MongoConnection,
-    MongoFun: MongoCtrl
+    MongoFun: MongoCtrl,
+    ObjectID
 };

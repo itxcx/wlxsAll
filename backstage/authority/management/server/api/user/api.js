@@ -29,14 +29,16 @@ login.get('/api/login/getUserInfo', (req, res) => {
 
 //删除用户接口
 login.post('/api/login/deleteUser', (req, res) => {
-  // let data = req.body;
-  // for(let i = 0; i < req.body.length; i++) {
-  //   Mongo.Mongoclient(Mongo.MongoFun.deleteOne, 'user', req.body[i], (result) => {
-  //     if(result) {
-        res.json({'message': 'success', 'code': 0});
-  //     }
-  //   })
-  // }
+  let data = {};
+  data._id = new Mongo.ObjectID(req.body.deleteArray[0]._id);
+  console.log(data);
+  Mongo.Mongoclient(Mongo.MongoFun.delete, 'user', data, (result) => {
+    if(result > 0) {
+      res.json({'message': '删除成功', 'code': 0});
+    }else{
+      res.json({'message': '删除失败', 'code': 1});
+    }
+  })
 })
 
 //导出模块

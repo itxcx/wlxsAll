@@ -136,6 +136,7 @@
         },
         //删除方法
         deleteJurisdic() {
+          this.deleteUserItem = [];
           for(let i = 0; i < this.userList.length; i++) {
             if(this.userList[i].checked === true) {
               this.deleteUserItem.push(this.userList[i]);
@@ -154,6 +155,22 @@
             data: {deleteArray: this.deleteUserItem}
           }).then((res) => {
             if(res.data.code === 0) {
+              this.modal_loading = false;
+              this.deleteModal = false;
+              this.$ajax({
+                url: '/api/login/getUserInfo',
+                method: 'get',
+              }).then( (res) => {
+                this.userList = res.data;
+                if(this.userList.length > 0) {
+                  for(let i = 0; i < this.userList.length; i++) {
+                    this.$set(this.userList[i], 'checked', false);
+                  }
+                }
+              }).catch( (error) => {
+                console.log(error);
+              })
+            }else{
               this.modal_loading = false;
               this.deleteModal = false;
             }

@@ -6,7 +6,7 @@
 
 const mongo = require('mongodb');
 const MongoClient = mongo.MongoClient;
-const dbUrl = "mongodb://127.0.0.1:27017/backstage";
+const dbUrl = "mongodb://127.0.0.1:27017/node";
 
 
 /*********************************************
@@ -24,7 +24,7 @@ const MongoConnection = function (callback, collectionName, condition, newcondit
             console.log(`数据库连接失败`);
         }else{
             console.log(`数据库连接成功`);
-            let dbname = 'backstage';
+            let dbname = 'node';
             let collection = collectionName;
             let db = client.db(dbname);
             //数据库操作方法
@@ -62,8 +62,8 @@ const MongoCtrl = {
                 console.log(error);
             }else{
                 //console.log(result.message.parsed);
-                console.log(result.ops);
-                callback(result.ops);
+                console.log(result.result.n);
+                callback(result.result.n);
                 client.close();
             }
         })
@@ -73,7 +73,8 @@ const MongoCtrl = {
             if(error) {
                 console.log(error);
             }else{
-                console.log(result.message.parsed);
+                console.log(result.result.n);
+                callback(result.result.n);
                 client.close();
             }
         })
@@ -84,7 +85,8 @@ const MongoCtrl = {
             if(error) {
                 console.log(error);
             }else{
-                console.log(result.message.parsed);
+                console.log(result.result.nModified);
+                callback(result.result.nModified);
                 client.close();
             }
         })
@@ -94,7 +96,8 @@ const MongoCtrl = {
             if(error) {
                 console.log(error);
             }else{
-                console.log(result.message.parsed);
+                console.log(result.result.nModified);
+                callback(result.result.nModified);
                 client.close();
             }
         })
@@ -105,7 +108,8 @@ const MongoCtrl = {
             if(error) {
                 console.log(error);
             }else{
-                console.log(result.message.parsed);
+                console.log(result.result.n);
+                callback(result.result.n);
                 client.close();
             }
         })
@@ -115,7 +119,8 @@ const MongoCtrl = {
             if(error) {
                 console.log(error);
             }else{
-                console.log(result.message.parsed);
+                console.log(result.result.n);
+                callback(result.result.n);
                 client.close();
             }
         })

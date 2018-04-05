@@ -7,7 +7,7 @@ login.post('/api/login/getUserInfo', (req, res) => {
     let data = {"name": req.body.username, "password": req.body.password};
     Mongo.Mongoclient(Mongo.MongoFun.find, 'user', data, function(result) {
       console.log(result);
-      if(result && result.length === 1) {
+      if(result && result.length > 0) {
         req.session.userinfo = req.body.username;
         res.json({'message': 'successs', 'code': 0});
       }else{

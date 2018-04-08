@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const session = require('express-session');
 const user = require('./api/user/api'); //调用api
+const charts = require('./api/common/charts');
 const app = express();
 
 //配置session
@@ -18,9 +19,10 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(user);
+app.use(charts);
 
 // 访问静态资源文件 这里是访问所有dist目录下的静态资源文件
-app.use(express.static(path.resolve(__dirname, '../dist')))
+app.use(express.static(path.resolve(__dirname, '../dist')));
 // 因为是单页应用 所有请求都走/dist/index.html
 app.get('*', function(req, res) {
   const html = fs.readFileSync(path.resolve(__dirname, '../dist/index.html'), 'utf-8');

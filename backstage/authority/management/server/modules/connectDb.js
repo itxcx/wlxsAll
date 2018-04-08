@@ -1,4 +1,5 @@
 /********************************************
+ ********** 数据库连接和操作方法封装 **********
  * common mongodb connection function module
  * author:Jilon
  * 2018-3-1

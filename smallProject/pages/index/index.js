@@ -112,7 +112,7 @@ Page({
    goUserInfo: function() {
      wx.navigateTo({
       //  url: '../userInfo/userInfo'
-       url: '../orderDetail/orderDetail'
+       url: '../purchases/purchases'
      })
    }
 })

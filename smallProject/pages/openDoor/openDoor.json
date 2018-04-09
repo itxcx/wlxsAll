@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#eeeeee",
+  "navigationBarTitleText": "开门操作",
+  "backgroundTextStyle": "light",
+  "disableScroll": true
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#eeeeee",
+  "navigationBarTitleText": "我",
+  "backgroundTextStyle": "light",
+  "disableScroll": true
+}

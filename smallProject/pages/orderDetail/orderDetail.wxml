@@ -1,2 +1,54 @@
 <view class="orderDetail">
+  <view class="orderHeader">
+    <!-- 订单编号 -->
+      <view class="orderId">
+        <text class="commonTitle">订单编号:</text>
+        <text>{{}}</text>
+      </view>
+      <!-- 订单状态 -->
+      <view class="orderStatus">
+        <text class="commonTitle">订单状态:</text>
+        <text>{{orderStatus}}</text>
+      </view>
+  </view>
+  <!-- 购物清单 -->
+  <view class="orderList">
+      <view class="orderListTitle">
+        <text  class="commonTitle">购物清单:</text>
+      </view>
+      <view class="orderListItem">
+         <!--  这里需要循环列表显示数据  -->
+
+         <!--  item demo-->
+         <view class="item">
+            <view>
+                <text>乐虎</text>
+                <text>x2</text>
+            </view>
+            <view>
+                <text>￥10(门市价￥6)</text>
+            </view>
+         </view>
+          <view class="item">
+            <view>
+                <text>乐虎</text>
+                <text>x2</text>
+            </view>
+            <view>
+                <text>￥10(门市价￥6)</text>
+            </view>
+         </view>
+         <view class="item">
+            <view>
+                <text>乐虎</text>
+                <text>x2</text>
+            </view>
+            <view>
+                <text>￥10(门市价￥6)</text>
+            </view>
+         </view> 
+          <!--  item demo-->
+      </view>
+  </view>
+
 </view>

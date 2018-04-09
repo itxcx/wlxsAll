@@ -4,17 +4,17 @@
 App({
   onLaunch: function () {
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-    var global_this = this
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
+    var global_this = this;
     //登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-       if(res.code){ 
+       if(res.code){ //临时会话code
           wx.request({
-            url: 'https://weilaixiansen.com/login/wxappback',
+            url: 'https://weilaixiansen.com/login/wxappback',//存储用户信息，检查签约状态
             data: {
               code: res.code
             },
@@ -34,7 +34,8 @@ App({
               // 获取用户信息
 
               console.log(rst); //返回session_key ，未签约会返回签约需要的参数
-              if (rst.data.code == 1) {
+              // rst.session_key存储，每次交互都返回
+              if (rst.data.code == 1) { //未签约
                 wx.navigateToMiniProgram({
                   appId: 'wxbd687630cd02ce1d',
                   path: 'pages/index/index',
@@ -49,6 +50,7 @@ App({
               }
 
               wx.setStorageSync('session_key', rst.data.session_key);
+
               wx.getSetting({    //检查授权，获取用户信息，发送给后端
                 success: res => {
                   if (res.authSetting['scope.userInfo']) {

@@ -50,6 +50,51 @@ Page({
        onlyFromCamera: true,
        success: (res) => {
          if(res) {
+          var path = res.result;
+          var device_number = path.split('?')[1].split('=')[1]; //设备id
+          var session_key = wx.getStorageSync('session_key'); 
+          //扫码成功后请求接口， 发送session_key
+           wx.request({
+             url: 'https://weilaixiansen.com/login/checkagree',
+             method: 'GET',
+             data: {'session_key': session_key},
+             success: function(sessionRes) {
+                      if (sessionRes.data.code == 0) { //如果已经签约
+                                var contract_id = sessionRes.data.contract_id;
+                                wx.request({
+                                  url: 'https://weilaixiansen.com/login/shop',
+                                  method: 'GET',
+                                  data: { 'session_key': session_key, 'device_number': device_number, 'contract_id': contract_id},
+                                  success: function(openRes) {//开门
+
+                                  }
+                                })
+                      }else{ //没签约
+                       // sessionRes.data.data
+                          wx.navigateToMiniProgram({
+                            appId: 'wxbd687630cd02ce1d',
+                            path: 'pages/index/index',
+                            extraData: sessionRes.data.data,
+                            success(res1) {
+                              // 成功跳转到签约小程序,异步通知到地址
+                            },
+                            fail(res1) {
+                              // 未成功跳转到签约小程序 
+                            }
+                          })
+
+                      }
+                  }
+           })
+
+
+
+           //1.扫码成功后  GET https://weilaixiansen.com/login/checkagree    + session_key
+           //     
+           //2.   GET  https://weilaixiansen.com/login/shop  +session_key+ 设备id + contract_id
+           //
+           //判断是否签约
+           //设备number + session_key
            wx.navigateTo({
              url: '../openDoor/openDoor'
            })
@@ -66,7 +111,8 @@ Page({
    //个人中心
    goUserInfo: function() {
      wx.navigateTo({
-       url: '../userInfo/userInfo'
+      //  url: '../userInfo/userInfo'
+       url: '../orderDetail/orderDetail'
      })
    }
 })

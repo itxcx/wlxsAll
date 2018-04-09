@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<view class="index">
 <view class="banner">
   <swiper indicator-dots="{{indicatorDots}}"  indicator-color="{{indicatorColor}}"  indicator-active-color="{{indicatorActiveColor}}"
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="false">  
@@ -16,10 +17,10 @@
   <text style="display: block;">购物完成后记得关闭柜门哦!</text>
 </view>
 <view class="footer">
-    <view class="index-service"><image src="../../images/index/bt_kehufuwu.png"></image></view>
-    <view class="index-scan"><image src="../../images/index/bt_open.png"></image></view>
-    <view class="index-setting" bindtap="openDoorScan"><image src="../../images/index/bt_gerenzhongxin.png"></image></view>
+    <view class="index-service"><image src="../../images/index/bt_kehufuwu.png" bindtap="callService"></image></view>
+    <view class="index-scan"  bindtap="openDoorScan"><image src="../../images/index/bt_open.png"></image></view>
+    <view class="index-setting"><image src="../../images/index/bt_gerenzhongxin.png" bindtap="goUserInfo"></image></view>
 </view>
-  
+  </view>
 
 

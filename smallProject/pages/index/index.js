@@ -46,13 +46,27 @@ Page({
   //  },
    //扫码开门
    openDoorScan: function() {
-     alert(1);
-     console.log(1);
-    //  wx.scanCode({
-    //    onlyFromCamera: true,
-    //    success: (res) => {
-    //      console.log(res)
-    //    }
-    //  })
+     wx.scanCode({
+       onlyFromCamera: true,
+       success: (res) => {
+         if(res) {
+           wx.navigateTo({
+             url: '../openDoor/openDoor'
+           })
+         }
+       }
+     })
+   },
+   //联系客服
+   callService: function() {
+     wx.makePhoneCall({
+       phoneNumber: '4007707768'
+     })
+   },
+   //个人中心
+   goUserInfo: function() {
+     wx.navigateTo({
+       url: '../userInfo/userInfo'
+     })
    }
 })

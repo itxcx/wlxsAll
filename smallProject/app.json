@@ -1,7 +1,9 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/issue/issue"
+    "pages/userInfo/userInfo",
+    "pages/openDoor/openDoor",
+    "pages/orderDetail/orderDetail"
   ],
   "window":{
     "backgroundTextStyle":"light",

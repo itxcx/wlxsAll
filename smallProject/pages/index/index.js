@@ -1,80 +1,58 @@
-Page({
-  data: {
-    selectPlace: true,
-    firstPlace: '西安',
-    selectArea: false,
-  },
-  //点击选择类型
-  clickPlace: function () {
-    var selectPlace = this.data.selectPlace;
-    if (selectPlace == true) {
-      this.setData({
-        selectArea: true,
-        selectPlace: false,
-      })
-    } else {
-      this.setData({
-        selectArea: false,
-        selectPlace: true,
-      })
-    }
-  },
-  //点击切换
-  mySelect: function (e) {
-    this.setData({
-      firstPlace: e.target.dataset.me,
-      selectPlace: true,
-      selectArea: false,
-    })
-    //发送ajax，请求数据
-    this.requestData(this.data.firstPlace);
-  },
+//index.js
+//获取应用实例
+const app = getApp()
 
-  //ajax方法
-  requestData: function(options) {
-    var place = options;
-    wx.request({
-      url: '', 
-      data: {},
-      success: function (res) {
-          console.log(res.data);
-      }
-    })
-  },
-  onLoad: function (options) {
-    // 页面初始化 options为页面跳转所带来的参数
-  },
-  onReady: function () {
-    // 页面渲染完成
-  },
-  onShow: function () {
-    // 页面显示
-  },
-  onHide: function () {
-    // 页面隐藏
-  },
-  onUnload: function () {
-    // 页面关闭
-  },
-  //选择 区 方法
-  selectDistrict: function(district) {
-    console.log(district);
-  },
-  goIssue: function () {
-    wx.navigateTo({
-      url: '../issue/issue'
-    })
-  },
-  goDevice: function (e) {
-    var longitude = Number(e.target.dataset.longitude);
-    var latitude = Number(e.target.dataset.latitude);
-    var address = e.target.dataset.addr;
-    wx.openLocation({
-      latitude: latitude,
-      longitude: longitude,
-      address: address,
-      name: '未来鲜森',
-      scale: 28
-    })
-  }
+Page({
+   data: {
+     imgUrls: [
+       {
+         link: '/pages/index/index',
+         url: '/images/index/banner1.png'
+       }, {
+         link: '',
+         url: '/images/index/banner2.png'
+       }, {
+         link: '',
+         url: '/images/index/banner3.png'
+       }
+     ],
+     indicatorDots: true,
+     indicatorColor: 'rgba(0, 0, 0, 1)',
+     indicatorActiveColor: '#ffffff',
+     autoplay: true,
+     interval: 8000, //自动切换时间间隔
+     duration: 1000, //滑动动画时长
+    contentImg: '/images/index/content.png',
+   },
+  //  // 页面初始化 options为页面跳转所带来的参数
+  //  onLoad: function (options) {
+     
+  //  },
+  //  // 页面渲染完成
+  //  onReady: function () {
+     
+  //  },
+  //  // 页面显示
+  //  onShow: function () {
+     
+  //  },
+  //   // 页面隐藏
+  //  onHide: function () {
+    
+  //  },
+  //    // 页面关闭
+  //  onUnload: function () {
+   
+  //  },
+   //扫码开门
+   openDoorScan: function() {
+     alert(1);
+     console.log(1);
+    //  wx.scanCode({
+    //    onlyFromCamera: true,
+    //    success: (res) => {
+    //      console.log(res)
+    //    }
+    //  })
+   }
 })

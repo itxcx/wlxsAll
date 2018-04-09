@@ -22,5 +22,10 @@ Page({
   //  onUnload: function () {
 
   //  },
-
+  //客服热线
+  callService: function() {
+    wx.makePhoneCall({
+      phoneNumber: '4007707768'
+    })
+  }
 })

@@ -3,12 +3,12 @@
     <!-- 订单编号 -->
       <view class="orderId">
         <text class="commonTitle">订单编号:</text>
-        <text>{{}}</text>
+        <text class="commonContent">100000011</text>
       </view>
       <!-- 订单状态 -->
       <view class="orderStatus">
         <text class="commonTitle">订单状态:</text>
-        <text>{{orderStatus}}</text>
+        <text class="commonContent">{{orderStatus}}</text>
       </view>
   </view>
   <!-- 购物清单 -->
@@ -23,32 +23,64 @@
          <view class="item">
             <view>
                 <text>乐虎</text>
-                <text>x2</text>
+                <text class="itemNumber">x2</text>
             </view>
-            <view>
-                <text>￥10(门市价￥6)</text>
+            <view class="itemPrice">
+                <text>￥10    (门市价￥6)</text>
             </view>
          </view>
           <view class="item">
             <view>
                 <text>乐虎</text>
-                <text>x2</text>
+                <text class="itemNumber">x2</text>
             </view>
-            <view>
-                <text>￥10(门市价￥6)</text>
+            <view  class="itemPrice">
+                <text>￥10    (门市价￥6)</text>
             </view>
          </view>
          <view class="item">
             <view>
                 <text>乐虎</text>
-                <text>x2</text>
+                <text class="itemNumber">x2</text>
             </view>
-            <view>
-                <text>￥10(门市价￥6)</text>
+            <view class="itemPrice">
+                <text>￥10    (门市价￥6)</text>
             </view>
          </view> 
           <!--  item demo-->
       </view>
   </view>
-
+  <!--  支付方式 -->
+  <view class="payMode">
+    <text class="commonTitle">支付方式:</text>
+    <text class="commonContent">微信免密代扣</text>
+  </view>
+  <!-- 订单说明 -->
+  <view class="orderInfo">
+    <view>
+        <text class="commonTitle">下单地点:</text>
+        <text class="commonContent">未来鲜森瞪羚谷创业园</text>
+    </view> 
+    <view>
+        <text class="commonTitle">下单时间:</text>
+        <text class="commonContent">2018-04-09   20:18:23</text>
+    </view> 
+    <view>
+        <text class="commonTitle">商品金额:</text>
+        <text class="commonContent">￥50.00</text>
+    </view> 
+    <view>
+        <text class="commonTitle">优惠金额:</text>
+        <text class="commonContent special">-￥5.00</text>
+    </view> 
+    <view>
+        <text class="commonTitle">实付金额:</text>
+        <text class="commonContent">￥45.00</text>
+    </view> 
+  </view>
+  <!-- tip -->
+    <view class="tip">
+      <text>*如对订单有疑问，请致电客服热线</text>
+      <text bindtap="callService">400-770-7768</text>
+    </view>
 </view>

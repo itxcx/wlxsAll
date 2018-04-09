@@ -1,22 +1,28 @@
 .orderDetail{
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background: #F1F1F1;
+  font-size: 4.5vw;
 }
 .commonTitle{
   display: inline-block;
-  font-size: 16px;
   color: #A6A6A6;
   width: 25vw;
 }
+.commonContent{
+ color: #525252;
+}
 .orderHeader{
   background: #ffffff;
-  padding: 2vh 5vw;
+  padding: 0 3vw 2vh 3vw;
+}
+.orderId{
+  padding: 1.5vh 0;
 }
 .orderList{
   background: #ffffff;
   margin-top: 2vh;
-  padding: 2vh 5vw;
+  padding: 2vh 3vw;
   overflow: hidden;
 }
 .orderListTitle{
@@ -27,8 +33,51 @@
   float: left;
 }
 .item{
-  border-bottom: 1px solid pink;
+  border-bottom: 1px solid #E9E9E9;
+  padding: 1vh 0;
+  color: #525252;
+}
+.item:first-of-type{
+  padding: 0;
+  padding-bottom: 1vh;
 }
 .item:last-of-type{
   border: none;
+}
+.item .itemPrice{
+  margin-top: 5px;
+  font-size: 14px;
+  color: #A6A6A6;
+}
+.item .itemNumber{
+  float: right;
+  color: #A6A6A6;
+}
+
+
+.payMode{
+ background: #ffffff;
+  margin-top: 2vh;
+  padding: 3vh 3vw;
+  overflow: hidden;
+}
+
+
+.orderInfo{
+  margin-top: 2vh;
+  background: #ffffff;
+  padding: 2vh 3vw;
+}
+.orderInfo view{
+  padding: 1.5vh 0;
+}
+.orderInfo .special{
+  color: #E32E31;
+}
+
+.tip{
+  padding: 2vh 0;
+  color: #9B9B9B;
+  text-align: center;
+  font-size: 0.9rem;
 }

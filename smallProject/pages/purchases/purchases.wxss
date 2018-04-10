@@ -1,50 +1,113 @@
-
-  .swiper-tab{  
-    height: 80rpx;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
-    line-height: 80rpx;
-    background: #F7F7F7; 
-    font-size: 16px;
-    white-space: nowrap;
-    position: fixed;
-    top: 0;
-    left: 0; 
-    z-index: 99;
-    }  
-    .tab-item{
-      width: 33.33%;
-      text-align: center;
-      display: inline-block;
-      }
-.swiper-tab-list{  font-size: 30rpx;  
+.container{
+  width: 100%;
+  background: #F1F1F1;
+  overflow: auto;
+}
+.swiper-tab{  
+  height: 80rpx;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 80rpx;
+  background: #ffffff; 
+  font-size: 16px;
+  white-space: nowrap;
+  position: fixed;
+  top: 0;
+  left: 0; 
+  z-index: 99;
+  border-bottom: 1px solid #eeeeee;
+  box-shadow: 2px 2px 15px #eeeeee;
+}  
+.tab-item{
+  width: 33.33%;
+  text-align: center;
+  display: inline-block;
+}
+.swiper-tab-list{  
+    font-size: 30rpx;  
     display: inline-block;  
     width: 33.33%;  
     color: #777777;  
+    font-weight: 600;
   }  
-.on{
-   color: #66D173;
-   position: relative;
+  .on{
+    color: #66D173;
+    position: relative;
     }  
   .on:after{
-     content: "";
-      display: block;
-      height: 8rpx;
-      width: 52rpx;
-      background: #66D173;
-      position: absolute; 
-      bottom: 0;
-      left: 40%;
-      border-radius: 16rpx;
+    content: "";
+    display: block;
+    height: 8rpx;
+    width: 52rpx;
+    background: #66D173;
+    position: absolute; 
+    bottom: 0;
+    left: 40%;
+    border-radius: 16rpx;
   }  
+
 .swiper-box{ 
-    display: block; 
-    height: 100%;
-    width: 100%; 
-    overflow: hidden;
-    margin-top: 10vh;
+    width: 100%;
+    height: 100vh; 
+    margin: 7vh 0 2vh 0;
  }  
-.swiper-box view{  
-    text-align: center;  
-}  
+swiper-item{
+  height: 100vh;
+  width: 100%;
+  overflow: auto;
+}
+swiper-item .items{
+  margin-bottom: 2vh;
+  background: #ffffff;
+  overflow: hidden;
+  padding: 2vh 4vw;
+  font-size: 0.95rem;
+  color: #6E6E6E;
+}
+swiper-item .itemImg{
+  width: 12vw;
+  float: left;
+}
+swiper-item .itemImg image{
+  width: 12vw;
+  height: 12vw;
+}
+swiper-item .itemContent{
+  width: 76vw;
+  float: left;
+  margin-left: 4vw;
+}
+.itemContent .itemTime{
+  border-bottom: 1px solid #F0F0F0;
+  font-size: 0.8rem;
+  color: #B6B6B6;
+  padding: 1vh 0;
+}
+.itemContent .purItemList{
+  border-bottom: 1px solid #F0F0F0; 
+}
+.itemName{
+  padding: 1vh 0;
+}
+.purItemCount{
+  text-align: right;
+  padding: 1vh 0;
+  font-size: 0.85rem;
+}
+.itemBottomTip{
+  font-size: 0.9rem;
+  color: #B6B6B6;
+  text-align: center;
+}
+
+.goPay{
+  padding: 2vh 0 0.5vh 0;
+  text-align: right;
+  color: #66D173;
+  font-size: 0.75rem;
+}
+.goPay text{
+  border: 1px solid #66D173;
+  padding: 0.5vh 4vw;
+  border-radius: 20px;
+}

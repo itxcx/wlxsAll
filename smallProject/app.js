@@ -64,8 +64,9 @@ App({
                   withCredentials: true, //返回用户的基本信息
                   success: res1 => {
                     var userInfo = {
-                      'user_iv': res1.data.iv,
-                      'user_encryptedData' : res1.data.encryptedData,
+                      'userInfo': res1.userInfo,
+                      'user_iv': res1.iv,
+                      'user_encryptedData' : res1.encryptedData,
                     }
                     wx.setStorageSync('userInfo', userInfo);
                     wx.navigateTo({
@@ -90,8 +91,9 @@ App({
                       withCredentials: true, //返回用户的基本信息
                       success: res => {
                         var userInfo = {
-                          'user_iv': res.data.iv,
-                          'user_encryptedData': res.data.encryptedData,
+                          'userInfo': res.userInfo,
+                          'user_iv': res.iv,
+                          'user_encryptedData': res.encryptedData,
                         }
                         wx.setStorageSync('userInfo', userInfo);
                         wx.navigateTo({

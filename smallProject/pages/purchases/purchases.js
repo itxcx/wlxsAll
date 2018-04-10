@@ -192,5 +192,9 @@ Page({
         currentTab: e.target.dataset.current
       })
     }
-  }  
+  },
+  //去支付
+  goPay: function() {
+    console.log(1);
+  }
 })

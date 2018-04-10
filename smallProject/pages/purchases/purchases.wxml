@@ -60,7 +60,7 @@
                                       <text style="color: #000;font-size: 0.85rem;">￥{{item.countAmount}}</text>
                                 </view>
                                 <view class="goPay">
-                                      <text>去支付</text>
+                                      <text bindtap="goPay">去支付</text>
                                 </view>
                       </view>
                   </view>  

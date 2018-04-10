@@ -1,0 +1,3 @@
+<view>
+<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> dadsafds</button>
+</view>

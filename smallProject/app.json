@@ -4,7 +4,8 @@
     "pages/userInfo/userInfo",
     "pages/openDoor/openDoor",
     "pages/orderDetail/orderDetail",
-    "pages/purchases/purchases"
+    "pages/purchases/purchases",
+    "pages/getNumber/getNumber"
   ],
   "window":{
     "backgroundTextStyle":"light",

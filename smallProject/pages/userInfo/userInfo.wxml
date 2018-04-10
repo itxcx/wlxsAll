@@ -1,3 +1,9 @@
 <view class="userInfo">
-  
+    <view class="userInfoHeader">
+          <image src="../../images/userInfo/image_bg.jpg"></image>
+    </view>
+    <view class="userImg">
+            <image src="{{avatarUrl}}"></image>
+            <text>{{nickName}}</text>
+    </view>
 </view>

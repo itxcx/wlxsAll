@@ -1,1 +1,29 @@
-<view>coupon</view>
+<view class="coupon">
+  <view class="couponItem" wx:for="{{couponList}}" wx:key="unique">
+      <image src="../../images/coupon/couponItemBg.png"></image>
+      <view class="couponItemContent">
+          <!-- 优惠券金额  -->
+            <view class="amount">
+                <view>
+                  <text>￥</text>
+                  <text>{{item.amount}}</text>
+                </view>
+            </view>
+            <!-- 优惠券内容  -->
+            <view class="content">
+                  <text>{{item.itemName}}</text>
+                  <text>限品类：</text>
+                  <text>{{item.limitType}}</text>
+            </view>
+            <!-- 使用  -->
+            <view class="used">
+                <text>{{item.condition}}</text>
+                <text bindtap="goUsed">去使用</text>
+            </view>
+            <!-- 使用时间 --> 
+      </view>
+      <view class="couponItemDate">
+          <text>有效期：{{item.startDate}}至{{item.endDate}}</text>
+      </view>
+  </view>
+</view>

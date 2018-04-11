@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#66D173",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#eeeeee",
+  "navigationBarTitleText": "会员积分",
+  "backgroundTextStyle": "light",
+  "disableScroll": true
+}

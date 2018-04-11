@@ -33,5 +33,24 @@ Page({
   //  onUnload: function () {
 
   //  },
-  
+
+
+  //跳转优惠券页面
+   goCoupon: function() {
+     wx.navigateTo({
+       url: '../coupon/coupon'
+     });
+   },
+   //跳转会员积分页面
+   goMemberPoints: function() {
+     wx.navigateTo({
+       url: '../memberPoints/memberPoints'
+     });
+   },
+   //跳转我的订单页面
+   goOrderDetail: function() {
+     wx.navigateTo({
+       url: '../purchases/purchases'
+     });
+   }
 })

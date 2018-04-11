@@ -54,7 +54,7 @@
   font-size: 1.3rem;
 }
 .specialText{
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   margin: 0;
 }
 .memberPoints{
@@ -64,7 +64,7 @@
 
 .userItem{
   padding: 0 6vw;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: #888888;
 }
 

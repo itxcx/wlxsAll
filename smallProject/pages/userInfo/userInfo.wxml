@@ -7,32 +7,32 @@
              <text>{{userPhone}}</text>
              <view class="otherInfo">
              <!-- 优惠券  -->
-                  <view class="coupon">
+                  <view class="coupon" bindtap="goCoupon">
                       <text class="specialNum">{{coupon}}</text>
                      <text class="specialText">优惠券</text>
                   </view>
                   <view class="line"></view>
               <!-- 会员积分 -->
-                  <view class="memberPoints">
+                  <view class="memberPoints" bindtap="goMemberPoints">
                       <text class="specialNum">{{memberPoints}}</text>
                       <text class="specialText">会员积分</text>
                   </view>
              </view>
     </view>
     <view class="userItem">
-        <view class="userItemList">
+        <view class="userItemList" bindtap="goOrderDetail">
             <image src="../../images/userInfo/order.png" class="itemImg"></image>
             <text>我的订单</text>
             <image src="../../images/userInfo/next.png" class="next"></image>
         </view>
         <view class="userItemList">
             <image src="../../images/userInfo/activity.png" class="itemImg"></image>
-            <text>我的订单</text>
+            <text>活动中心</text>
             <image src="../../images/userInfo/next.png" class="next"></image>
         </view>
         <view class="userItemList">
             <image src="../../images/userInfo/aboutus.png" class="itemImg"></image>
-            <text>我的订单</text>
+            <text>关于我们</text>
             <image src="../../images/userInfo/next.png" class="next"></image>
         </view>
     </view>

@@ -1,11 +1,13 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/userInfo/userInfo",
+    "pages/userInfo/userInfo", 
     "pages/openDoor/openDoor",
     "pages/orderDetail/orderDetail",
     "pages/purchases/purchases",
-    "pages/getNumber/getNumber"
+    "pages/getNumber/getNumber",
+    "pages/coupon/coupon",
+    "pages/memberPoints/memberPoints"
   ],
   "window":{
     "backgroundTextStyle":"light",

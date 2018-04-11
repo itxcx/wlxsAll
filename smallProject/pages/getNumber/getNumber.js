@@ -17,8 +17,6 @@ Page({
           'code': code
           },
           success: res => {
-            console.log(res);
-            console.log(res.data);
             if(res.data.code == 0) {
              wx.setStorageSync('session_key', res.data.data.session_key);
             }

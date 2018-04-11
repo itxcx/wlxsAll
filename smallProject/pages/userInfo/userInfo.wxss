@@ -18,3 +18,18 @@
   top: 5vh;
   z-index: 1;
 }
+.userImg{
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  top: 1vh;
+  left: 0; 
+  z-index: 2;
+}
+.userImg image{
+  width: 10vh;
+  height: 10vh;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: block;
+}

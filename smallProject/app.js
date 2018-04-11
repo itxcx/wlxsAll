@@ -68,7 +68,10 @@ App({
                       'user_iv': res1.iv,
                       'user_encryptedData' : res1.encryptedData,
                     }
+                    console.log(userInfo);
                     wx.setStorageSync('userInfo', userInfo);
+                    console.log(1);
+                    console.log(wx.getStorageSync('userInfo'));
                     wx.navigateTo({
                       url: '../getNumber/getNumber'
                     });
@@ -95,7 +98,10 @@ App({
                           'user_iv': res.iv,
                           'user_encryptedData': res.encryptedData,
                         }
+                        console.log(userInfo);
                         wx.setStorageSync('userInfo', userInfo);
+                        console.log(2);
+                        console.log(wx.getStorageSync('userInfo'));
                         wx.navigateTo({
                           url: '../getNumber/getNumber'
                         });

@@ -1,2 +1,21 @@
-<!--pages/memberPoints/memberPoints.wxml-->
-<text>pages/memberPoints/memberPoints.wxml</text>
+<view class="memberPoints">
+      <view class="pointHeader">
+          <image src="../../images/memberPoints/bg_integral.png"></image>
+          <view>
+              <text class="points">{{memberPoints}}</text>
+              <text>当前积分</text>
+          </view>
+          <text>积分规则</text>
+      </view>
+      <view class="pointContent">
+          <view wx:for="{{getPointsList}}" wx:key="unique" class="pointsItem">
+                <!-- 获取方式及时间  -->
+                <view class="getType">
+                      <text>{{item.getType}}</text>
+                      <text>{{item.getDate}}</text>
+                </view>
+                <!-- 积分 -->
+                <view class="pointNum">{{item.pointNum}}</view>
+          </view>
+      </view>
+</view>

@@ -43,19 +43,7 @@ App({
              
           //   }
           // });
-          /////////////  获取用户信息  /////////////////
-          //获取用户头像和手机号
-          // wx.getUserInfo({
-          //   withCredentials: true,
-          //   lang: 'zh_CN',
-          //   timeout: 5000,
-          //   success: function (res) {
-          //     var userInfo = res.userInfo; //用户信息
-          //     // var nickName = userInfo.nickName; //用户昵称
-          //     // var avatarUrl = userInfo.avatarUrl; //用户头像
-          //     wx.setStorageSync('userInfo', userInfo); //登录后存储用户信息
-          //   }
-          // })
+         
           wx.getSetting({    //检查授权，获取用户信息，发送给后端
             success: res => {
               if (res.authSetting['scope.userInfo']) {
@@ -114,20 +102,16 @@ App({
                           global_this.userInfoReadyCallback(res)
                         }
                       },
-                      fail: error => {
-                        console.log('--------------');
-                        console.log(error);
-                      }
                     })
                   },
-                  fail() {
-                    console.log('ssksksksksksks');
+                  fail() { //用户点击取消处理方法
+                    wx.setStorageSync('fail', 'true');
                   }
                 })
               }
             },
             fail: () => {
-              console.log('--------------');
+             
             }
           })
        } else {
@@ -135,7 +119,7 @@ App({
        }
       },
       fail: () => {
-        console.log('+++++++++++');
+        
       }
     })
 

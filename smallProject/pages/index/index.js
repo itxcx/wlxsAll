@@ -22,10 +22,11 @@ Page({
      autoplay: true,
      interval: 8000, //自动切换时间间隔
      duration: 1000, //滑动动画时长
-    contentImg: '/images/index/content.png',
+     contentImg: '/images/index/content.png',
+     fail: false //是否授权信息
    },
   //  // 页面初始化 options为页面跳转所带来的参数
-  //  onLoad: function (options) {
+  //  onLoad: function () {
      
   //  },
   //  // 页面渲染完成
@@ -101,18 +102,53 @@ Page({
          }
        }
      })
+     
    },
    //联系客服
    callService: function() {
-     wx.makePhoneCall({
-       phoneNumber: '4007707768'
-     })
+      wx.makePhoneCall({
+        phoneNumber: '4007707768'
+      })
+     
    },
    //个人中心
    goUserInfo: function() {
-     wx.navigateTo({
-      //  url: '../userInfo/userInfo'
-       url: '../userInfo/userInfo'
-     })
+        wx.navigateTo({
+          //  url: '../userInfo/userInfo'
+          url: '../userInfo/userInfo'
+        })
+   },
+   //设置覆盖方法
+   userInfoHandler: function(res) {
+     var userMsg = res.detail;
+     if (userMsg.rawData) { //获取授权成功
+      //设置storage
+      var userInfo = {
+        'userInfo': userMsg.userInfo,
+        'user_iv': userMsg.iv,
+        'user_encryptedData': userMsg.encryptedData,
+      }
+      wx.setStorageSync('userInfo', userInfo);
+
+      //跳转到手机号界面
+      
+      wx.navigateTo({
+        //  url: '../userInfo/userInfo'
+        url: '../getNumber/getNumber'
+      })
+      
+      //将按钮隐藏
+      var getPhone = wx.getStorageSync('userPhone');
+      console.log(getPhone);
+      if(getPhone) {
+        this.setData({
+          fail: true
+        })
+      }
+     
+
+
+
+    }
    }
 })

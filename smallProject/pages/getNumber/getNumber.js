@@ -33,6 +33,14 @@ Page({
             }
             //存储用户手机号
             wx.setStorageSync('userPhone', res.data.data.phone);
+            console.log('start');
+            var pages = getCurrentPages();
+            var currPage = pages[pages.length - 1];   //当前页面
+            var prevPage = pages[pages.length - 2];  //上一个页面
+            prevPage.setData({
+              fail: true
+            })
+            console.log('end');
             var sessCode = wx.getStorageSync('session_key');
             console.log(sessCode);
 ////////////////////////////////////////////////////////////////////////////////////
@@ -52,31 +60,23 @@ Page({
                   extraData: rst.data.data,
                   success(res1) {
                     // 成功跳转到签约小程序,异步通知到地址
-                    wx.navigateTo({
-                      url: '../index/index'
-                    });
+                    wx.navigateBack({
+                      delta: 5
+                    })
                   },
                   fail(res1) {
-                    // 未成功跳转到签约小程序 
-                    wx.navigateTo({
-                      url: '../getNumber/getNumber'
-                    });
+                    // 未成功跳转到签约小程序  
                   }
                 })
               }else{
-                wx.navigateTo({
-                  url: '../index/index'
-                });
+                wx.navigateBack({
+                  delta: 5
+                })
               }
             }
           });
-
           }
       })
-    }else{
-      wx.navigateTo({
-        url: '../getNumber/getNumber'
-      });
     }
   }
 })

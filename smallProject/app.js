@@ -105,7 +105,8 @@ App({
                     })
                   },
                   fail() { //用户点击取消处理方法
-                    wx.setStorageSync('fail', 'true');
+                  console.log('fail');
+                    //wx.setStorageSync('fail', 'true');
                   }
                 })
               }

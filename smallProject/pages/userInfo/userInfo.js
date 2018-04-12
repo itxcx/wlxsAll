@@ -9,7 +9,7 @@ Page({
    onLoad: function (options) {
      var userInfo = wx.getStorageSync('userInfo').userInfo;
      console.log(userInfo);
-     var userPhone = '18295176350'; //用户手机号从本地存储中获取
+     var userPhone = wx.getStorageSync('userPhone'); //用户手机号从本地存储中获取
      userPhone = userPhone.substr(0, 3) + '****' + userPhone.substr(7); //隐藏中间四位 
      this.setData({
        nickName: userInfo.nickName,

@@ -27,7 +27,7 @@ Page({
    },
   //  // 页面初始化 options为页面跳转所带来的参数
   //  onLoad: function () {
-     
+  //    console.log('ssssssssssss');
   //  },
   //  // 页面渲染完成
   //  onReady: function () {
@@ -88,8 +88,6 @@ Page({
                   }
            })
 
-
-
            //1.扫码成功后  GET https://weilaixiansen.com/login/checkagree    + session_key
            //     
            //2.   GET  https://weilaixiansen.com/login/shop  +session_key+ 设备id + contract_id
@@ -113,6 +111,7 @@ Page({
    },
    //个人中心
    goUserInfo: function() {
+     //this.userInfoHandler();
         wx.navigateTo({
           //  url: '../userInfo/userInfo'
           url: '../userInfo/userInfo'
@@ -120,35 +119,34 @@ Page({
    },
    //设置覆盖方法
    userInfoHandler: function(res) {
-     var userMsg = res.detail;
-     if (userMsg.rawData) { //获取授权成功
-      //设置storage
-      var userInfo = {
-        'userInfo': userMsg.userInfo,
-        'user_iv': userMsg.iv,
-        'user_encryptedData': userMsg.encryptedData,
-      }
-      wx.setStorageSync('userInfo', userInfo);
-
-      //跳转到手机号界面
-      
-      wx.navigateTo({
-        //  url: '../userInfo/userInfo'
-        url: '../getNumber/getNumber'
-      })
-      
-      //将按钮隐藏
-      var getPhone = wx.getStorageSync('userPhone');
-      console.log(getPhone);
-      if(getPhone) {
-        this.setData({
-          fail: true
-        })
-      }
-     
-
-
-
-    }
+     console.log('!!!!!!');
+     var userMessage = wx.getStorageSync('userInfo'); //用户信息
+     var getPhone = wx.getStorageSync('userPhone'); //手机号
+     console.log(userMessage);
+     //如果没有用户信息，提示授权
+     if (!userMessage){
+       console.log('&&&&&');
+        var userMsg = res.detail;
+        if (userMsg.rawData) { //获取授权成功
+          //设置storage
+          var userInfo = {
+            'userInfo': userMsg.userInfo,
+            'user_iv': userMsg.iv,
+            'user_encryptedData': userMsg.encryptedData,
+          }
+          wx.setStorageSync('userInfo', userInfo);
+          console.log('------');
+          wx.navigateTo({
+            url: '../getNumber/getNumber'
+          })
+        }
+     }else{
+       //如果用户信息已授权，查询手机号码，跳转
+       if (!getPhone) {
+         wx.navigateTo({
+           url: '../getNumber/getNumber'
+         })
+       }
+     }
    }
 })

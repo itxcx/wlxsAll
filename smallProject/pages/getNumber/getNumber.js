@@ -1,4 +1,15 @@
 Page({
+  data: {
+    nickName: '',
+    avatarUrl: ''
+  },
+  onLoad: function() {
+    var userInfo = wx.getStorageSync('userInfo').userInfo;
+    this.setData({
+      nickName: userInfo.nickName,
+      avatarUrl: userInfo.avatarUrl
+    })
+  },
   getPhoneNumber: function (e) {
     console.log(e.detail.errMsg);
     console.log(e.detail.iv);

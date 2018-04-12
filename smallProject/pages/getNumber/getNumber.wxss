@@ -1,1 +1,38 @@
-/* pages/getNumber/getNumber.wxss */
+.getNumber{
+  width: 100vw;
+  height: 100vh;
+}
+.getNumHeader{
+  width: 100vw;
+  height: 18vh;
+  text-align: center;
+}
+.getNumHeader image{
+  width: 12vh;
+  height: 12vh;
+  border-radius: 50%;
+}
+.getNumHeader text{
+  display: block;
+  font-size: 0.65rem;
+}
+.dealList{
+  padding: 1vh 8vw;
+  font-size: 0.65rem;
+}
+.dealTitle{
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: block;
+  text-align: center;
+}
+button{
+  width: 30vw;
+  background: #66D173;
+  position: fixed;
+  bottom: 2vh;
+  left: 35vw;
+  height: 6vh;
+  line-height: 6vh;
+  color: #ffffff;
+}

@@ -1,3 +1,29 @@
-<view>
-      <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> dadsafds</button>
+<view class="getNumber">
+      <view class="getNumHeader">
+            <image src="{{avatarUrl}}"></image>
+          <br/>
+            <text>{{nickName}}</text>
+      </view>
+      <view class="dealList">
+            <text class="dealTitle">用户服务协议</text>
+            <text class="dealItem">
+                  1、本产品需要用户授权开通微信免密代扣功能，享受购物自动结算。
+            </text>
+            <text class="dealItem">
+                  2、本产品将获取用户手机号，并在必要时联系用户。
+            </text>
+             <text class="dealItem">
+                  3、本售货柜为无人值守售货柜，购买商品需要用户自助完成。
+             </text>
+             <text class="dealItem">
+                  4、本售货柜购买商品时只允许一个（个人/团体）客户。
+             </text>
+             <text class="dealItem">
+                  5、本售货柜全程视频监控，视频数据将保留一定时长。
+             </text>
+             <text class="dealItem">
+                  6、在本售货柜购物时，关门代表购物完成，如有问题可随时致电客服热线。
+             </text>
+      </view>
+      <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">同意协议</button>
 </view>

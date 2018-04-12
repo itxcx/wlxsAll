@@ -26,9 +26,15 @@ Page({
      fail: false //是否授权信息
    },
   //  // 页面初始化 options为页面跳转所带来的参数
-  //  onLoad: function () {
-  //    console.log('ssssssssssss');
-  //  },
+   onLoad: function () {
+     var userMessage = wx.getStorageSync('userInfo'); //用户信息
+     var getPhone = wx.getStorageSync('userPhone'); //手机号
+     if (userMessage && getPhone) {
+       this.setData({
+         fail: true
+       })
+     }
+   },
   //  // 页面渲染完成
   //  onReady: function () {
      
@@ -122,6 +128,7 @@ Page({
      console.log('!!!!!!');
      var userMessage = wx.getStorageSync('userInfo'); //用户信息
      var getPhone = wx.getStorageSync('userPhone'); //手机号
+     console.log(getPhone);
      console.log(userMessage);
      //如果没有用户信息，提示授权
      if (!userMessage){
@@ -140,13 +147,13 @@ Page({
             url: '../getNumber/getNumber'
           })
         }
-     }else{
+     } else if (userMessage && !getPhone){
        //如果用户信息已授权，查询手机号码，跳转
-       if (!getPhone) {
+      //  if (!getPhone) {
          wx.navigateTo({
            url: '../getNumber/getNumber'
          })
-       }
+      //  }
      }
    }
 })

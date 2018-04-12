@@ -21,7 +21,7 @@
     <view class="index-scan"  bindtap="openDoorScan"><image src="../../images/index/bt_open.png"></image></view>
     <view class="index-setting"><image src="../../images/index/bt_gerenzhongxin.png" bindtap="goUserInfo"></image></view>
 </view>
-    <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class="authorize {{fail ? 'hide': 'show'}}"> Click me </button> 
+    <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class="authorize {{fail ? 'hide': 'show'}}"></button> 
   </view>
 
 

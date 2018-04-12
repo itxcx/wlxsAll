@@ -5,7 +5,7 @@
               <text class="points">{{memberPoints}}</text>
               <text>当前积分</text>
           </view>
-          <text>积分规则</text>
+          <text bindtap="showPointRule">积分规则</text>
       </view>
       <view class="pointContent">
           <view wx:for="{{getPointsList}}" wx:key="unique" class="pointsItem">
@@ -18,4 +18,8 @@
                 <view class="pointNum">{{item.pointNum}}</view>
           </view>
       </view>
+       <view class="pointRule {{flag ?  'hide' : 'show'}}">
+            <view class="ruleContent"></view>
+            <view class="ruleHide" bindtap="hidePointRule">X</view>
+       </view> 
 </view>

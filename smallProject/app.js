@@ -82,7 +82,7 @@ App({
                     if (global_this.userInfoReadyCallback) {
                       global_this.userInfoReadyCallback(res1);
                     }
-                  }
+                  },
                 })
               } else {
                 //没有授权
@@ -113,16 +113,29 @@ App({
                         if (global_this.userInfoReadyCallback) {
                           global_this.userInfoReadyCallback(res)
                         }
+                      },
+                      fail: error => {
+                        console.log('--------------');
+                        console.log(error);
                       }
                     })
+                  },
+                  fail() {
+                    console.log('ssksksksksksks');
                   }
                 })
               }
+            },
+            fail: () => {
+              console.log('--------------');
             }
           })
        } else {
-         console.log('登录失败！' + res.errMsg)
+         console.log('登录失败！' + res.errMsg);
        }
+      },
+      fail: () => {
+        console.log('+++++++++++');
       }
     })
 

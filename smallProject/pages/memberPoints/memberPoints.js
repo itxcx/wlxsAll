@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+      flag: true,
       memberPoints: '556',
       getPointsList: [
         {
@@ -157,5 +158,16 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+  //查看积分规则
+  showPointRule: function() {
+      this.setData({
+        flag: false
+      })
+  },
+  hidePointRule: function () {
+    this.setData({
+      flag: true
+    })
+  },
 })

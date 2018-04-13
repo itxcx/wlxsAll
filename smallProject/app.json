@@ -9,7 +9,9 @@
     "pages/coupon/coupon",
     "pages/memberPoints/memberPoints",
     "pages/activity/activity",
-    "pages/aboutUs/aboutUs"
+    "pages/aboutUs/aboutUs",
+    "pages/cmnProblem/cmnProblem",
+    "pages/customer/customer"
   ],
   "window":{
     "backgroundTextStyle":"light",

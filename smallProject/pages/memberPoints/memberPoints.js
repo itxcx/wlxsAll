@@ -102,7 +102,9 @@ Page({
           pointNum: '+51',
           getDate: '2018-04-10 12:12:12'
         }
-      ]
+      ],
+      animationData: {},
+
   },
 
   /**
@@ -122,7 +124,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+   
+    // setTimeout(function () {
+    //   animation.translate(30).step()
+    //   this.setData({
+    //     animationData: animation.export()
+    //   })
+    // }.bind(this), 1000)
   },
 
   /**
@@ -161,11 +169,38 @@ Page({
   },
   //查看积分规则
   showPointRule: function() {
+
+    var animation = wx.createAnimation({
+      duration: 700,
+      timingFunction: 'ease-in-out',
+    })
+
+    this.animation = animation
+
+    animation.translateY(0).step();
+
+    this.setData({
+      animationData: animation.export()
+    })
+
       this.setData({
         flag: false
       })
   },
   hidePointRule: function () {
+    var animation = wx.createAnimation({
+      duration: 700,
+      timingFunction: 'ease-in-out',
+    })
+
+    this.animation = animation
+
+    animation.translateY(-100 + 'vh').step();
+
+    this.setData({
+      animationData: animation.export()
+    })
+    
     this.setData({
       flag: true
     })

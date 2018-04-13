@@ -110,9 +110,10 @@ Page({
    },
    //联系客服
    callService: function() {
-      wx.makePhoneCall({
-        phoneNumber: '4007707768'
-      })
+     wx.navigateTo({
+       //  url: '../userInfo/userInfo'
+       url: '../customer/customer'
+     })
      
    },
    //个人中心

@@ -78,38 +78,76 @@
   float: right;
   color: #66D173;
 }
-.pointRule{
+.pointRuleHide{
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0 ,0.5);
+  background: rgba(0, 0, 0, .5);
   position: absolute;
   top: 0; 
   left: 0;
-  z-index: 99;
+  z-index: 999;
+  transform: translateY(-100vh);
 }
-.show{
+.pointRuleHide image{
+  width: 80.3vw;
+  height: 28vh;
+  position: absolute;
+  top:0;
+  left: 10vw;
+  z-index: 1;
+}
+.ruleTitleText{
+  width: 100vw;
+  position: absolute;
+  top: 19vh;
+  left: 0;
+  text-align: center;
   display: block;
-}
-.hide{
-  display: none;
+  z-index: 2;
+  color: #ffffff;
+  font-size: 1.2rem;
+  
 }
 .ruleContent{
-  width: 80vw;
-  height: 80vh;
+  width: 76vw;
+  height: 40vh;
   background: #ffffff;
   position: absolute;
-  margin: auto;
-  left:0; right: 0; top: 0; bottom: 0;
+  top: 27.5vh;
+  left: 10vw;
   border-radius: 5px;
+  padding: 3vh 2vw;
+  font-size: 0.85rem;
+  color: #A5A5A5;
 }
-.ruleHide{
-  width: 4vh;
-  height: 4vh;
-  border: 1px solid #ffffff;
+.contentItem{
+  margin: 0.8vh 5vw;
+}
+.commonText{
+  display: block;
+  font-size: 0.65rem;
+  margin: 2vh 0 2vh 6vw;
+}
+.specialItem text:nth-of-type(1){
+    font-size: 1rem;
+    color: #66D173;
+}
+.specialItem text:nth-of-type(2){
+    font-size: 0.8rem;
+    color: #737373;
+    margin-left: 2vw;
+}
+
+.ruleHideBtn{
+  width: 70vw;
+  height: 7vh;
   position: absolute;
-  bottom: 4vh;
-  left: 47%;
+  bottom: 12vh;
+  left: 15vw;
   color: #ffffff;
-  border-radius: 50%;
+  border-radius: 20px;
   text-align: center;
+  font-size: 0.85rem;
+  line-height: 7vh;
+  background: #66D173;
 }

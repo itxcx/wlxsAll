@@ -42,22 +42,43 @@
 }
 .dealList{
   margin: 3vh 4vw;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   border-top: 1px solid #f2f2f2;
   padding: 3vh 4vw;
 }
 .dealTitle{
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   display: block;
   text-align: center;
+  font-weight: 600;
+  color: #3b3b3b;
+  margin-bottom: 3vh;
 }
+.dealItem{
+  overflow: hidden;
+  margin: 2vh 0;
+  color: #7A7A7A;
+}
+.dealItemNum{
+  display: block;
+  width: 5%;
+  float: left;
+}
+.dealItemContent{
+  display: block;
+  width: 95%;
+  float: left;
+}
+
+
 button{
-  width: 30vw;
+  width: 80vw;
   background: #66D173;
   position: fixed;
-  bottom: 2vh;
-  left: 35vw;
+  bottom: 5vh;
+  left: 10vw;
   height: 6vh;
   line-height: 6vh;
   color: #ffffff;
+  border-radius: 20px;
 }

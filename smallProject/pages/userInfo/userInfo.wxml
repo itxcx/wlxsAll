@@ -25,12 +25,12 @@
             <text>我的订单</text>
             <image src="../../images/userInfo/next.png" class="next"></image>
         </view>
-        <view class="userItemList">
+        <view class="userItemList" bindtap="goActivity">
             <image src="../../images/userInfo/activity.png" class="itemImg"></image>
             <text>活动中心</text>
             <image src="../../images/userInfo/next.png" class="next"></image>
         </view>
-        <view class="userItemList">
+        <view class="userItemList" bindtap="goUs">
             <image src="../../images/userInfo/aboutus.png" class="itemImg"></image>
             <text>关于我们</text>
             <image src="../../images/userInfo/next.png" class="next"></image>

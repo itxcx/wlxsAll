@@ -7,7 +7,9 @@
     "pages/purchases/purchases",
     "pages/getNumber/getNumber",
     "pages/coupon/coupon",
-    "pages/memberPoints/memberPoints"
+    "pages/memberPoints/memberPoints",
+    "pages/activity/activity",
+    "pages/aboutUs/aboutUs"
   ],
   "window":{
     "backgroundTextStyle":"light",

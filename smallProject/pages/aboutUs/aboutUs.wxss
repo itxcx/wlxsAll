@@ -1,0 +1,35 @@
+.aboutUs{
+  width: 100vw;
+  height: 100vh;
+  background: #f2f2f2;
+  font-size: 0.85rem;
+}
+.usImg{
+  width: 100vw;
+  height: 40vh;
+  background: #ffffff;
+}
+.content{
+  padding: 0 4vw;
+  background: #ffffff;
+  color: #696969;
+}
+.usImg image{
+  width: 100vw;
+  height: 40vh;
+}
+.wechat{
+  margin-top: 2vh;
+  padding: 3vh 0;
+  border-bottom: 1px solid #f2f2f2;
+  background: #ffffff;
+}
+.contact, .website, .work{
+  padding: 2vh 0;
+  border-bottom: 1px solid #f2f2f2;
+  background: #ffffff;
+}
+view text:nth-of-type(2){
+  float: right;
+  color: #ABABAB;
+}

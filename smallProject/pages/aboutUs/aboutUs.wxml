@@ -1,0 +1,23 @@
+<view class="aboutUs">
+      <view class="usImg">
+          <image src="../../images/aboutUs/aboutus.jpg"></image>
+      </view>
+      <view class="content">
+          <view class="wechat">
+              <text>微信公众号</text>
+              <text>weilaixiansen</text>
+          </view>
+          <view class="contact">
+              <text>联系电话</text>
+              <text>400-770-7768</text>
+          </view>
+          <view class="website">
+              <text>官方网站</text>
+              <text>www.weilaixiansen.com</text>
+          </view>
+          <view class="work">
+              <text>商务合作</text>
+              <text>www.weilaixiansen.com</text>
+          </view>
+      </view> 
+</view>

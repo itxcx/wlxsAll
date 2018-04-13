@@ -1,0 +1,5 @@
+<view class="activity">
+      <view class="activeItem" wx:for="{{activityList}}" wx:key="unique">
+          <image src="{{item.path}}"></image>
+      </view>
+</view>

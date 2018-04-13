@@ -1,0 +1,16 @@
+.activity{
+  width: 100vw;
+  height: 100vh;
+  padding: 0 2vw 6vh 2vw;
+  overflow: auto;
+}
+.activeItem{
+  width: 96vw;
+  height: 15vh;
+  margin: 2vh 0;
+}
+.activeItem image{
+  width: 96vw;
+  height: 15vh;
+  border-radius: 5px;
+}

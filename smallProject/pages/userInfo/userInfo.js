@@ -52,5 +52,17 @@ Page({
      wx.navigateTo({
        url: '../purchases/purchases'
      });
+   },
+   //活动页面
+   goActivity: function() {
+     wx.navigateTo({
+       url: '../activity/activity'
+     });
+   },
+   //关于我们
+   goUs: function() {
+     wx.navigateTo({
+       url: '../aboutUs/aboutUs'
+     });
    }
 })

@@ -3,7 +3,8 @@ Page({
   },
   //  // 页面初始化 options为页面跳转所带来的参数
   onLoad: function (options) {
-    console.log(option.query);
+    var problem = wx.getStorageSync('customer');
+    console.log(problem);
   },
   //  // 页面渲染完成
   //  onReady: function () {

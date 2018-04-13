@@ -58,8 +58,9 @@ Page({
   goItemContent: function(event) {
       var index = event.currentTarget.id;
       var data = this.data.customerList[index];
+      wx.setStorageSync('customer', data);
       wx.navigateTo({
-        url: '../cmnProblem/cmnProblem?data'+data
+        url: '../cmnProblem/cmnProblem'
       })
   }
 })

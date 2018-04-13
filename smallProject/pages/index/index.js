@@ -7,10 +7,19 @@ Page({
      imgUrls: [
        {
          link: '/pages/index/index',
+         url: '/images/index/banner1.jpg'
+       }, {
+         link: '',
          url: '/images/index/banner1.png'
        }, {
          link: '',
+         url: '/images/index/banner2.jpg'
+       }, {
+         link: '',
          url: '/images/index/banner2.png'
+       }, {
+         link: '',
+         url: '/images/index/banner3.jpg'
        }, {
          link: '',
          url: '/images/index/banner3.png'

@@ -1,6 +1,6 @@
 <view class="customer">
       <view class="cusTop">
-            <view class="item" wx:for="{{customerList}}" wx:key="unique" bindtap="goItemContent">
+            <view class="item" wx:for="{{customerList}}" wx:key="unique" bindtap="goItemContent" wx:for-index="key" wx:for-item="item" id="{{key}}">
                   <text>{{item.title}}</text>
                   <image src="../../images/customer/next.png"></image>
             </view>

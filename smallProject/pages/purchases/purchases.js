@@ -171,6 +171,22 @@ Page({
       ]
     }
   },
+  onLoad: function() {
+    var session_key = wx.getStorageSync('session_key');
+      wx.request({
+        url: 'https://weilaixiansen.com/login/getorderlist',
+        method: 'GET',
+        data: {
+          'session_key': session_key
+        },
+        success: res => {
+          console.log(res);
+        },
+        fail: error => {
+          console.log(error);
+        }
+      })
+  },
   /** 
      * 滑动切换tab 
      */

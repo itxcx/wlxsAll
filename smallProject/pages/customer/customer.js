@@ -56,6 +56,10 @@ Page({
   },
   //常见问题
   goItemContent: function(event) {
-    console.log(event.target.dataset.index);
+      var index = event.currentTarget.id;
+      var data = this.data.customerList[index];
+      wx.navigateTo({
+        url: '../cmnProblem/cmnProblem?data'+data
+      })
   }
 })

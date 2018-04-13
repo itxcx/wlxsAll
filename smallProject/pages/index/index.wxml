@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="index">
-<view class="banner">
+ <view class="banner">
   <swiper indicator-dots="{{indicatorDots}}"  indicator-color="{{indicatorColor}}"  indicator-active-color="{{indicatorActiveColor}}"
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="false">  
         <block wx:for="{{imgUrls}}" wx:key="unique">  
@@ -11,7 +11,7 @@
           </swiper-item>  
         </block>  
   </swiper>
-</view>
+</view> 
 <view class="content">
   <image src="{{contentImg}}"></image>
   <text style="display: block;">购物完成后记得关闭柜门哦!</text>

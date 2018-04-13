@@ -1,8 +1,12 @@
 <view class="getNumber">
       <view class="getNumHeader">
-            <image src="{{avatarUrl}}"></image>
-          <br/>
-            <text>{{nickName}}</text>
+            <view>
+                <image src="../../images/getNumber/deal.png"></image>
+            </view>
+            <view>
+                 <image src="{{avatarUrl}}"></image>
+                 <text>{{nickName}}</text>
+            </view>
       </view>
       <view class="dealList">
             <text class="dealTitle">用户服务协议</text>

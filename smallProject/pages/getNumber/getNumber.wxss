@@ -6,23 +6,48 @@
   width: 100vw;
   height: 18vh;
   text-align: center;
+  position: relative;
 }
-.getNumHeader image{
+.getNumHeader view:nth-of-type(1){
+  width: 100vw;
+  height: 5vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #66D173;
+}
+.getNumHeader view:nth-of-type(2){
+  width: 100vw;
+  height: 17vh;
+  position: absolute;
+  left: 0;
+  top: 3vh;
+  text-align: center;
+}
+.getNumHeader view:nth-of-type(1) image{
+  display: block;
+  margin-top: 5vh;
+  width: 100vw;
+  height: 5vh;
+}
+.getNumHeader view:nth-of-type(2) image{
   width: 12vh;
   height: 12vh;
   border-radius: 50%;
+
 }
-.getNumHeader text{
+.getNumHeader view:nth-of-type(2) text{
   display: block;
   font-size: 0.65rem;
 }
 .dealList{
-  padding: 1vh 8vw;
+  margin: 3vh 4vw;
   font-size: 0.65rem;
+  border-top: 1px solid #f2f2f2;
+  padding: 3vh 4vw;
 }
 .dealTitle{
   font-size: 0.8rem;
-  font-weight: 600;
   display: block;
   text-align: center;
 }

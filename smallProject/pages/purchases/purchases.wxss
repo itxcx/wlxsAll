@@ -1,7 +1,7 @@
 .container{
   width: 100%;
   background: #F1F1F1;
-  overflow: auto;
+  
 }
 .swiper-tab{  
   height: 80rpx;
@@ -45,16 +45,17 @@
     left: 40%;
     border-radius: 16rpx;
   }  
-
+/* swipe  */
 .swiper-box{ 
     width: 100%;
     height: 100vh; 
     margin: 7vh 0 2vh 0;
  }  
 swiper-item{
-  height: 100vh;
+   height: 100vh; 
   width: 100%;
-  overflow: auto;
+ background: greenyellow;
+  /* overflow: auto; */
 }
 swiper-item .items{
   margin-bottom: 2vh;

@@ -64,55 +64,7 @@ Page({
             { name: '巧克力牛奶', itemNum: 2 },
             { name: '进口水果-蔓越莓', itemNum: 2 }
           ]
-        },
-        {
-          addr: '瞪羚谷创业园E座',
-          purType: '已完成',
-          purTime: '2018-04-10 12:22:22',
-          countNum: 6,
-          countAmount: 10.00,
-          purItemList: [
-            { name: '乐虎', itemNum: 2 },
-            { name: '巧克力牛奶', itemNum: 2 },
-            { name: '进口水果-蔓越莓', itemNum: 2 }
-          ]
-        },
-        {
-          addr: '瞪羚谷创业园E座',
-          purType: '已完成',
-          purTime: '2018-04-10 12:22:22',
-          countNum: 6,
-          countAmount: 10.00,
-          purItemList: [
-            { name: '乐虎', itemNum: 2 },
-            { name: '巧克力牛奶', itemNum: 2 },
-            { name: '进口水果-蔓越莓', itemNum: 2 }
-          ]
-        },
-        {
-          addr: '瞪羚谷创业园E座',
-          purType: '已完成',
-          purTime: '2018-04-10 12:22:22',
-          countNum: 6,
-          countAmount: 10.00,
-          purItemList: [
-            { name: '乐虎', itemNum: 2 },
-            { name: '巧克力牛奶', itemNum: 2 },
-            { name: '进口水果-蔓越莓', itemNum: 2 }
-          ]
-        },
-        {
-          addr: '瞪羚谷创业园E座',
-          purType: '已完成',
-          purTime: '2018-04-10 12:22:22',
-          countNum: 6,
-          countAmount: 10.01,
-          purItemList: [
-            { name: '乐虎', itemNum: 2 },
-            { name: '巧克力牛奶', itemNum: 2 },
-            { name: '进口水果-蔓越莓', itemNum: 2 }
-          ]
-        },
+        }
       ],
       //待支付
       unpaid: [

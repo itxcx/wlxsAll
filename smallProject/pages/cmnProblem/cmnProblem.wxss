@@ -1,0 +1,14 @@
+.cmnProblem{
+  width: 92vw;
+  height: 100vh;
+  padding: 2vh 4vw;
+  font-size: 0.8rem;
+}
+.title{
+  margin-bottom: 3vh;
+}
+.content{
+  font-size: 0.7rem;
+  color: #7F7F7F;
+  line-height: 1.5rem;
+}

@@ -1,2 +1,8 @@
-<!--pages/cmnProblem/cmnProblem.wxml-->
-<text>pages/cmnProblem/cmnProblem.wxml</text>
+<view class="cmnProblem">
+      <view class="title">
+          <text>Q:{{problem.title}}</text>
+      </view>
+      <view class="content">
+            <text>A:{{problem.content}}</text>
+      </view>
+</view>

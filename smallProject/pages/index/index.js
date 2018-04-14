@@ -141,8 +141,8 @@ Page({
    goUserInfo: function() {
      //this.userInfoHandler();
         wx.navigateTo({
-          //  url: '../userInfo/userInfo'
-          url: '../userInfo/userInfo'
+         //  url: '../test/test'
+         url: '../userInfo/userInfo'
         })
    },
    //设置主动调用用户信息方法

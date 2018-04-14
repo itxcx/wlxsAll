@@ -2,7 +2,8 @@ Page({
   data: {
     // tab切换  
     currentTab: 0,
-    purchasesList: {
+    currentPage: 0,
+    tipTitle: '上滑加载数据',
       //全部列表数据
       allList: [
         {
@@ -93,7 +94,6 @@ Page({
           ]
         },
       ],
-
       //已退款
       refunded: [
         {
@@ -107,21 +107,8 @@ Page({
             { name: '巧克力牛奶', itemNum: 2 },
             { name: '进口水果-蔓越莓', itemNum: 2 }
           ]
-        },
-        {
-          addr: '瞪羚谷创业园E座',
-          purType: '已退款',
-          purTime: '2018-04-08 12:00:00',
-          countNum: 6,
-          countAmount: 10.00,
-          purItemList: [
-            { name: '乐虎', itemNum: 2 },
-            { name: '巧克力牛奶', itemNum: 2 },
-            { name: '进口水果-蔓越莓', itemNum: 2 }
-          ]
-        },
+        }
       ]
-    }
   },
   onLoad: function() {
     var session_key = wx.getStorageSync('session_key');
@@ -164,5 +151,24 @@ Page({
   //去支付
   goPay: function() {
     console.log(1);
+  },
+  //加载更多
+  searchScrollLower: function() {
+    var data = {
+      addr: '招商银行大厦',
+      purType: '已完成',
+      purTime: '2018-04-08 12:00:00',
+      countNum: 7,
+      countAmount: 10.00,
+      purItemList: [
+        { name: '乐虎', itemNum: 2 },
+        { name: '巧克力牛奶', itemNum: 2 },
+        { name: '进口水果-蔓越莓', itemNum: 2 }
+      ]
+    }
+    this.setData({
+      allList: this.data.allList.push(data)
+    })
+    console.log(this.data.allList);
   }
 })

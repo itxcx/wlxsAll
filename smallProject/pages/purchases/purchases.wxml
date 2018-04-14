@@ -4,18 +4,19 @@
         <view class="tab-item swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">待支付</view>  
         <view class="tab-item swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">已退款</view>  
     </view>  
-        <swiper current="{{currentTab}}" class="swiper-box" duration="300"  bindchange="bindChange">  
+        <swiper current="{{currentTab}}" class="swiper-box" duration="300"  bindchange="bindChange" >  
                 <!-- 全部 -->  
-                <swiper-item>  
-                  <view wx:for="{{purchasesList.allList}}" wx:key="unique" wx:for-item="item" class="items">
+                <swiper-item > 
+                  <scroll-view scroll-y="true" style="height:120vh;overflow: auto"bindscrolltolower="searchScrollLower">
+                  <view wx:for="{{allList}}" wx:key="unique" wx:for-item="item" class="items">
                       <view class="itemImg"><image src="../../images/purchases/wlxs_logo.png"></image></view>
                       <view class="itemContent">
                               <view class="itemStatus">
-                                <text>未来鲜森   {{item.addr}}</text>
-                                <text style="float: right">{{item.purType}}</text>
+                                <text>未来鲜森   {{addr}}</text>
+                                <text style="float: right">{{purType}}</text>
                               </view>
                               <view class="itemTime">
-                                <text>{{item.purTime}}</text>
+                                <text>{{purTime}}</text>
                               </view>
 
                               <view class="purItemList">
@@ -26,17 +27,18 @@
                               </view>
 
                                 <view class="purItemCount">
-                                      <text>共{{item.countNum}}件商品</text>
+                                      <text>共{{countNum}}件商品</text>
                                       <text style="margin-left: 15px;">实付</text>
-                                      <text style="color: #000;font-size: 0.85rem;">￥{{item.countAmount}}</text>
+                                      <text style="color: #000;font-size: 0.85rem;">￥{{countAmount}}</text>
                                 </view>
                       </view>
                   </view>  
-                  <view class="itemBottomTip">这是底线了...</view>
+                  <view class="itemBottomTip">{{tipTitle}}</view>
+                  </scroll-view> 
                 </swiper-item>  
                 <!-- 待支付 -->  
                  <swiper-item>  
-                  <view wx:for="{{purchasesList.unpaid}}" wx:key="unique" wx:for-item="item" class="items">
+                  <view wx:for="{{unpaid}}" wx:key="unique" wx:for-item="item" class="items">
                       <view class="itemImg"><image src="../../images/purchases/wlxs_logo.png"></image></view>
                       <view class="itemContent">
                               <view class="itemStatus">
@@ -64,11 +66,11 @@
                                 </view>
                       </view>
                   </view>  
-                   <view class="itemBottomTip">这是底线了...</view>
+                   <view class="itemBottomTip">{{tipTitle}}</view>
                 </swiper-item>  
                 <!-- 已退款 -->  
                  <swiper-item>  
-                  <view wx:for="{{purchasesList.refunded}}" wx:key="unique" wx:for-item="item" class="items">
+                  <view wx:for="{{refunded}}" wx:key="unique" wx:for-item="item" class="items">
                       <view class="itemImg"><image src="../../images/purchases/wlxs_logo.png"></image></view>
                       <view class="itemContent">
                               <view class="itemStatus">
@@ -93,7 +95,7 @@
                                 </view>
                       </view>
                   </view>
-                   <view class="itemBottomTip">这是底线了...</view> 
+                   <view class="itemBottomTip">{{tipTitle}}</view> 
                 </swiper-item>  
             </swiper>  
 </view>

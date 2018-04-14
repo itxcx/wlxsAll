@@ -1,0 +1,26 @@
+<view class="pinConDet">
+  <view class='title'>标题</view>
+  <view class='con'>
+    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}" class='tabBox'>
+        <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">选项1</view>
+        <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">选项2</view>    
+    </scroll-view>
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
+     style="height:{{winHeight}}rpx">
+      <swiper-item>
+        <scroll-view scroll-y="true" class="scoll-h" >
+          <view class="title1">
+            选项卡1内容
+          </view>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item>
+        <scroll-view scroll-y="true" class="scoll-h" >
+          <view class="title1">
+            选项卡2内容
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>

@@ -11,7 +11,8 @@
     "pages/activity/activity",
     "pages/aboutUs/aboutUs",
     "pages/cmnProblem/cmnProblem",
-    "pages/customer/customer"
+    "pages/customer/customer",
+    "pages/test/test"
   ],
   "window":{
     "backgroundTextStyle":"light",

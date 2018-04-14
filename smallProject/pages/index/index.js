@@ -32,13 +32,14 @@ Page({
      interval: 8000, //自动切换时间间隔
      duration: 1000, //滑动动画时长
      contentImg: '/images/index/content.png',
-     fail: true //是否授权信息
+     fail: false //是否授权信息
    },
   //  // 页面初始化 options为页面跳转所带来的参数
    onLoad: function () {
      var userMessage = wx.getStorageSync('userInfo'); //用户信息
      var getPhone = wx.getStorageSync('userPhone'); //手机号
      if (userMessage && getPhone) {
+       console.log('用户信息和手机号已经获得!');
        this.setData({
          fail: true
        })
@@ -133,37 +134,52 @@ Page({
           url: '../userInfo/userInfo'
         })
    },
-   //设置覆盖方法
+   //设置主动调用用户信息方法
    userInfoHandler: function(res) {
-     console.log('!!!!!!');
+     console.log('调用主动获取用户信息方法！');
      var userMessage = wx.getStorageSync('userInfo'); //用户信息
      var getPhone = wx.getStorageSync('userPhone'); //手机号
      console.log(getPhone);
      console.log(userMessage);
-     //如果没有用户信息，提示授权
-     if (!userMessage){
+     //如果没有用户信息和手机号，提示授权用户信息，授权成功跳转至获取手机号页面
+     if (!userMessage && !getPhone){
        console.log('&&&&&');
         var userMsg = res.detail;
         if (userMsg.rawData) { //获取授权成功
-          //设置storage
-          var userInfo = {
-            'userInfo': userMsg.userInfo,
-            'user_iv': userMsg.iv,
-            'user_encryptedData': userMsg.encryptedData,
-          }
-          wx.setStorageSync('userInfo', userInfo);
-          console.log('------');
-          wx.navigateTo({
-            url: '../getNumber/getNumber'
-          })
+            //设置storage
+            var userInfo = {
+              'userInfo': userMsg.userInfo,
+              'user_iv': userMsg.iv,
+              'user_encryptedData': userMsg.encryptedData,
+            }
+            wx.setStorageSync('userInfo', userInfo);
+            console.log('------');
+            wx.navigateTo({
+              url: '../getNumber/getNumber'
+            })
         }
      } else if (userMessage && !getPhone){
        //如果用户信息已授权，查询手机号码，跳转
-      //  if (!getPhone) {
          wx.navigateTo({
            url: '../getNumber/getNumber'
          })
-      //  }
+     } else if (!userMessage && getPhone) {
+       //如果手机号存在，用户信息没有授权，则只获取用户信息
+       var userMsg = res.detail;
+       if (userMsg.rawData) { //获取授权成功
+       //将按钮隐藏
+         this.setData({
+           fail: true
+         })
+         //设置storage
+         var userInfo = {
+           'userInfo': userMsg.userInfo,
+           'user_iv': userMsg.iv,
+           'user_encryptedData': userMsg.encryptedData,
+         }
+         wx.setStorageSync('userInfo', userInfo);
+         console.log('------');
      }
+   }
    }
 })

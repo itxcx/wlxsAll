@@ -4,16 +4,20 @@ App({
     var global_this = this;
     //登录
     wx.login({
-      success: res => {
+      success: resss => {
         console.log('login');
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-       if(res.code){ //临时会话code
-            wx.setStorageSync("code", res.code);
+       if(resss.code){ //临时会话code
+            console.log(resss.code);
+            wx.setStorageSync("code", resss.code);
+            console.log('sss');
             wx.getSetting({    //检查授权，获取用户信息
-            success: res => {
-              console.log(res.code);
-              if (res.authSetting['scope.userInfo']) {
+            success: ress => {
+              console.log(ress);
+              var userInfo = wx.getStorageSync('userInfo');
+              if (ress.authSetting['scope.userInfo'] && !userInfo) {
                 console.log('userInfo is true');
+                wx.setStorageSync('scope_userInfo', 'true');
                 // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
                 wx.getUserInfo({
                   withCredentials: true, //返回用户的基本信息
@@ -44,20 +48,22 @@ App({
                     }
                   },
                 })
-              } else {
+              } else if (!ress.authSetting['scope.userInfo'] && !userInfo) {
                 console.log('userInfo is false');
+                wx.setStorageSync('scope_userInfo', 'false');
                 //没有授权
                 wx.authorize({  //提示授权
                   scope: 'scope.userInfo',
                   success() {
                     //成功后调用
+                    wx.setStorageSync('scope_userInfo', 'true');
                     wx.getUserInfo({
                       withCredentials: true, //返回用户的基本信息
-                      success: res => {
+                      success: res2 => {
                         var userInfo = {
-                          'userInfo': res.userInfo,
-                          'user_iv': res.iv,
-                          'user_encryptedData': res.encryptedData,
+                          'userInfo': res2.userInfo,
+                          'user_iv': res2.iv,
+                          'user_encryptedData': res2.encryptedData,
                         }
                         console.log(userInfo);
                         wx.setStorageSync('userInfo', userInfo);
@@ -90,15 +96,16 @@ App({
                     //wx.setStorageSync('fail', 'true');
                   }
                 })
-              }
+              } 
             },
             fail: (error) => {
+              console.log('`````````');
               console.log(error);
               console.log('this is getSetting fail');
             }
           })
        } else {
-         console.log('登录失败！' + res.errMsg);
+         console.log('登录失败！' + resss.errMsg);
        }
       },
       fail: (error) => {

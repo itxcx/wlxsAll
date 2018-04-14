@@ -28,8 +28,11 @@ Page({
           'code': code
           },
           success: res => {
+            console.log(res);
             if(res.data.code == 0) {
-             wx.setStorageSync('session_key', res.data.data.session_key);
+              console.log(res);
+              console.log(res.data);
+             wx.setStorageSync('session_key', res.data.session_key);
             }
             //存储用户手机号
             wx.setStorageSync('userPhone', res.data.data.phone);

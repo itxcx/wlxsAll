@@ -18,10 +18,10 @@
                 <view class="pointNum">{{item.pointNum}}</view>
           </view>
       </view>
+      <view class="bg {{bg ? 'bgShow ': 'bgHide'}}"></view>
       <view class="pointRuleHide" animation="{{animationData}}"> 
             <image src="../../images/memberPoints/pointsFall.png"></image>
             <text class="ruleTitleText">积分规则</text>
-       <!-- <view class="{{flag ?  'pointRuleHide' : 'pointRuleShow'}}"> -->
             <view class="ruleContent">
                 <view class="contentItem specialItem">
                     <text>●</text>

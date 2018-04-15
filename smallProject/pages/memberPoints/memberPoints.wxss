@@ -81,7 +81,6 @@
 .pointRuleHide{
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, .5);
   position: absolute;
   top: 0; 
   left: 0;
@@ -150,4 +149,18 @@
   font-size: 0.85rem;
   line-height: 7vh;
   background: #66D173;
+}
+.bg{
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .5);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.bgShwo{
+  display: block;
+}
+.bgHide{
+  display: none;
 }

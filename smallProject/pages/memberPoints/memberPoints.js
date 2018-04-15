@@ -5,8 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-      flag: true,
       memberPoints: '556',
+      bg: false,
       getPointsList: [
         {
           getType: '购物获得',
@@ -169,40 +169,34 @@ Page({
   },
   //查看积分规则
   showPointRule: function() {
-
+    this.setData({
+      bg: true
+    })
     var animation = wx.createAnimation({
       duration: 700,
       timingFunction: 'ease-in-out',
     })
-
-    this.animation = animation
-
+    this.animation = animation;
     animation.translateY(0).step();
-
     this.setData({
       animationData: animation.export()
     })
-
-      this.setData({
-        flag: false
-      })
   },
+
   hidePointRule: function () {
     var animation = wx.createAnimation({
       duration: 700,
       timingFunction: 'ease-in-out',
     })
-
-    this.animation = animation
-
+    this.animation = animation;
     animation.translateY(-100 + 'vh').step();
-
     this.setData({
-      animationData: animation.export()
+      animationData: animation.export(),
     })
-    
-    this.setData({
-      flag: true
-    })
-  },
+    setTimeout(() => {
+      this.setData({
+        bg: false
+      })
+    },700)
+  }
 })

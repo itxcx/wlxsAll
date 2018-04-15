@@ -12,11 +12,11 @@
                       <view class="itemImg"><image src="../../images/purchases/wlxs_logo.png"></image></view>
                       <view class="itemContent">
                               <view class="itemStatus">
-                                <text>未来鲜森   {{addr}}</text>
-                                <text style="float: right">{{purType}}</text>
+                                <text>未来鲜森   {{item.addr}}</text>
+                                <text style="float: right">{{item.purType}}</text>
                               </view>
                               <view class="itemTime">
-                                <text>{{purTime}}</text>
+                                <text>{{item.purTime}}</text>
                               </view>
 
                               <view class="purItemList">
@@ -27,13 +27,13 @@
                               </view>
 
                                 <view class="purItemCount">
-                                      <text>共{{countNum}}件商品</text>
+                                      <text>共{{item.countNum}}件商品</text>
                                       <text style="margin-left: 15px;">实付</text>
-                                      <text style="color: #000;font-size: 0.85rem;">￥{{countAmount}}</text>
+                                      <text style="color: #000;font-size: 0.85rem;">￥{{item.countAmount}}</text>
                                 </view>
                       </view>
                   </view>  
-                  <view class="itemBottomTip">{{tipTitle}}</view>
+                  <view class="itemBottomTip">{{item.tipTitle}}</view>
                   </scroll-view> 
                 </swiper-item>  
                 <!-- 待支付 -->  
@@ -91,7 +91,7 @@
                                 <view class="purItemCount">
                                       <text>共{{item.countNum}}件商品</text>
                                       <text style="margin-left: 15px;">实付￥</text>
-                                      <text style="color: #000;font-size: 0.85rem;">{{countAmount}}</text>
+                                      <text style="color: #000;font-size: 0.85rem;">{{item.countAmount}}</text>
                                 </view>
                       </view>
                   </view>

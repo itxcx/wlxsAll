@@ -130,10 +130,8 @@ Page({
      * 滑动切换tab 
      */
   bindChange: function (e) {
-
-    var that = this;
-    that.setData({ currentTab: e.detail.current });
-
+    this.setData({ currentTab: e.detail.current });
+    console.log(this.data.currentTab);
   },
   /** 
    * 点击tab切换 
@@ -146,6 +144,7 @@ Page({
       that.setData({
         currentTab: e.target.dataset.current
       })
+      console.log(that.data.currentTab);
     }
   },
   //去支付
@@ -154,7 +153,7 @@ Page({
   },
   //加载更多
   searchScrollLower: function() {
-    console.log(this.data.allList);
+   // console.log(this.data.allList);
     if (this.data.allList.length < 10) {
       var data = {
         addr: '招商银行大厦',
@@ -172,7 +171,7 @@ Page({
       this.setData({
         allList: da
       })
-      console.log(this.data.allList);
+     // console.log(this.data.allList);
     }
    
   }

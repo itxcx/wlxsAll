@@ -154,21 +154,28 @@ Page({
   },
   //加载更多
   searchScrollLower: function() {
-    var data = {
-      addr: '招商银行大厦',
-      purType: '已完成',
-      purTime: '2018-04-08 12:00:00',
-      countNum: 7,
-      countAmount: 10.00,
-      purItemList: [
-        { name: '乐虎', itemNum: 2 },
-        { name: '巧克力牛奶', itemNum: 2 },
-        { name: '进口水果-蔓越莓', itemNum: 2 }
-      ]
-    }
-    this.setData({
-      allList: this.data.allList.push(data)
-    })
     console.log(this.data.allList);
+    if (this.data.allList.length < 10) {
+      var data = {
+        addr: '招商银行大厦',
+        purType: '已完成',
+        purTime: '2018-04-08 12:00:00',
+        countNum: 7,
+        countAmount: 10.00,
+        purItemList: [
+          { name: '乐虎', itemNum: 2 },
+          { name: '巧克力牛奶', itemNum: 2 },
+          { name: '进口水果-蔓越莓', itemNum: 2 }
+        ]
+      }
+      // var da = this.data.allList.push(data);
+      // console.log(da);
+      var da = this.data.allList.concat(data);
+      this.setData({
+        allList: da
+      })
+      console.log(this.data.allList);
+    }
+   
   }
 })

@@ -168,8 +168,6 @@ Page({
           { name: '进口水果-蔓越莓', itemNum: 2 }
         ]
       }
-      // var da = this.data.allList.push(data);
-      // console.log(da);
       var da = this.data.allList.concat(data);
       this.setData({
         allList: da

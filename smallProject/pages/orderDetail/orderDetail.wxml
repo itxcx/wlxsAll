@@ -17,7 +17,7 @@
         <text  class="commonTitle">购物清单:</text>
       </view>
       <view class="orderListItem">
-         <view class="item" wx:for="{{orderDetail.goodslist}}">
+         <view class="item" wx:for="{{orderDetail.goodslist}}" wx:key="unique">
             <view>
                 <text>{{item.goods_name}}</text>
                 <text class="itemNumber">x{{item.count}}</text>

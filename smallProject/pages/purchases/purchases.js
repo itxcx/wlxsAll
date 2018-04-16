@@ -74,7 +74,7 @@ Page({
       },
       success: res => {
         if (res.data.code == 0) { //返回数据
-          if (res.data.data.length > 0) { //订单数大于0
+          if (res.data.data.length > 0 && res.data.data.length == 5) { //订单数大于0并且等于5
             if (status == 0) {//全部
               this.setData({
                 allList: res.data.data,
@@ -89,6 +89,23 @@ Page({
               this.setData({
                 refunded: res.data.data,
                 refundedTipTitle: '上滑获取更多数据'
+              })
+            }
+          } else if (res.data.data.length > 0 && res.data.data.length < 5) { //订单数大于0且小于5
+            if (status == 0) {//全部
+              this.setData({
+                allList: res.data.data,
+                allTipTitle: '这是底线了~'
+              })
+            } else if (status == 7) {//未支付
+              this.setData({
+                unpaid: res.data.data,
+                unpaidTipTitle: '这是底线了~'
+              })
+            } else {//已退款
+              this.setData({
+                refunded: res.data.data,
+                refundedTipTitle: '这是底线了~'
               })
             }
           } else {

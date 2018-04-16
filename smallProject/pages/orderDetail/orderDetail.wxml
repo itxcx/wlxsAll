@@ -3,12 +3,12 @@
     <!-- 订单编号 -->
       <view class="orderId">
         <text class="commonTitle">订单编号:</text>
-        <text class="commonContent">100000011</text>
+        <text class="commonContent">{{orderDetail.order_id}}</text>
       </view>
       <!-- 订单状态 -->
       <view class="orderStatus">
         <text class="commonTitle">订单状态:</text>
-        <text class="commonContent">{{orderStatus}}</text>
+        <text class="commonContent">{{orderDetail.purType}}</text>
       </view>
   </view>
   <!-- 购物清单 -->
@@ -17,37 +17,15 @@
         <text  class="commonTitle">购物清单:</text>
       </view>
       <view class="orderListItem">
-         <!--  这里需要循环列表显示数据  -->
-
-         <!--  item demo-->
-         <view class="item">
+         <view class="item" wx:for="{{orderDetail.goodslist}}">
             <view>
-                <text>乐虎</text>
-                <text class="itemNumber">x2</text>
+                <text>{{item.goods_name}}</text>
+                <text class="itemNumber">x{{item.count}}</text>
             </view>
             <view class="itemPrice">
-                <text>￥10    (门市价￥6)</text>
+                <text>￥{{item.real_price}}    (门市价￥{{item.price}})</text>
             </view>
          </view>
-          <view class="item">
-            <view>
-                <text>乐虎</text>
-                <text class="itemNumber">x2</text>
-            </view>
-            <view  class="itemPrice">
-                <text>￥10    (门市价￥6)</text>
-            </view>
-         </view>
-         <view class="item">
-            <view>
-                <text>乐虎</text>
-                <text class="itemNumber">x2</text>
-            </view>
-            <view class="itemPrice">
-                <text>￥10    (门市价￥6)</text>
-            </view>
-         </view> 
-          <!--  item demo-->
       </view>
   </view>
   <!--  支付方式 -->
@@ -59,23 +37,23 @@
   <view class="orderInfo">
     <view>
         <text class="commonTitle">下单地点:</text>
-        <text class="commonContent">未来鲜森瞪羚谷创业园</text>
+        <text class="commonContent">{{orderDetail.address}}</text>
     </view> 
     <view>
         <text class="commonTitle">下单时间:</text>
-        <text class="commonContent">2018-04-09   20:18:23</text>
+        <text class="commonContent">{{orderDetail.created_time}}</text>
     </view> 
     <view>
         <text class="commonTitle">商品金额:</text>
-        <text class="commonContent">￥50.00</text>
+        <text class="commonContent">￥{{orderDetail.amount}}</text>
     </view> 
     <view>
         <text class="commonTitle">优惠金额:</text>
-        <text class="commonContent special">-￥5.00</text>
+        <text class="commonContent special">-￥{{orderDetail.discount}}</text>
     </view> 
     <view>
         <text class="commonTitle">实付金额:</text>
-        <text class="commonContent">￥45.00</text>
+        <text class="commonContent">￥{{orderDetail.real_amount}}</text>
     </view> 
   </view>
   <!-- tip -->

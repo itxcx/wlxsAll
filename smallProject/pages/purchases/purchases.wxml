@@ -8,7 +8,7 @@
                 <!-- 全部 -->  
                 <swiper-item > 
                   <scroll-view scroll-y="true" style="height:100vh;"bindscrolltolower="searchScrollLower">
-                  <view wx:for="{{allList}}" wx:key="unique" wx:for-item="item" class="items" bindtap="showDetailMsg">
+                  <view wx:for="{{allList}}" wx:key="unique" wx:for-item="item" class="items" wx:for-index="index" data-index="{{index}}" bindtap="showDetailMsg">
                       <view class="itemImg"><image src="../../images/purchases/wlxs_logo.png"></image></view>
                       <view class="itemContent">
                               <view class="itemStatus">
@@ -38,7 +38,7 @@
                 </swiper-item>  
                 <!-- 待支付 -->  
                  <swiper-item>  
-                  <view wx:for="{{unpaid}}" wx:key="unique" wx:for-item="item" class="items">
+                  <view wx:for="{{unpaid}}" wx:key="unique" wx:for-item="item" class="items" wx:for-index="index" data-index="{{index}}" bindtap="showDetailMsg">
                       <view class="itemImg"><image src="../../images/purchases/wlxs_logo.png"></image></view>
                       <view class="itemContent">
                               <view class="itemStatus">
@@ -70,7 +70,7 @@
                 </swiper-item>  
                 <!-- 已退款 -->  
                  <swiper-item>  
-                  <view wx:for="{{refunded}}" wx:key="unique" wx:for-item="item" class="items">
+                  <view wx:for="{{refunded}}" wx:key="unique" wx:for-item="item" class="items" wx:for-index="index" data-index="{{index}}" bindtap="showDetailMsg">
                       <view class="itemImg"><image src="../../images/purchases/wlxs_logo.png"></image></view>
                       <view class="itemContent">
                               <view class="itemStatus">

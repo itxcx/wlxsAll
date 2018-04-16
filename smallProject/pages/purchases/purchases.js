@@ -18,9 +18,9 @@ Page({
           countNum: 6, //商品总数
           real_amount: 10.00,
           goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price:'8.00'},
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00' },
+            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1'},
+            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
           ]
         },
       ],
@@ -36,9 +36,9 @@ Page({
           countNum: 6, //商品总数
           real_amount: 10.00,
           goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00' },
+            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
           ]
         },
       ],
@@ -54,9 +54,9 @@ Page({
           countNum: 6, //商品总数
           real_amount: 10.00,
           goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00' },
+            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
           ]
         }
       ]
@@ -115,14 +115,28 @@ Page({
   },
   onLoad: function() {
     //默认请求全部数据
+    wx.setStorageSync('currentPage', '0');
     this.getOrderList(0);
   },
 
   //查看订单详情
-  showDetailMsg: function() {
-      wx.navigateTo({
-        url: '../orderDetail/orderDetail'
-      });
+  showDetailMsg: function(e) {
+    var currentPage = wx.getStorageSync('currentPage'); //当前分类
+    var index = e.currentTarget.dataset.index;
+    //获取当前点击对象
+    var detailData = null;
+    if (currentPage == 0) {
+      detailData = this.data.allList[index];
+    } else if (currentPage == 1) {
+      detailData = this.data.unpaid[index];
+    } else {
+      detailData = this.data.refunded[index];
+    }
+    console.log(detailData);
+    wx.setStorageSync('detailData', detailData);
+    wx.navigateTo({
+      url: '../orderDetail/orderDetail'
+    });
   },
 
   // 滑动切换tab 
@@ -169,6 +183,13 @@ Page({
   },
   //加载更多方法
   searchScrollLower: function() {
+    /*****
+     * 思路： 设置canGet = true，page = 0，页面拉到最底部时， canGet = false, 将菊花图显示，
+     *            此时触发获取数据的方法，
+     *            等到success时, 将获取到的数据进行处理，将菊花图隐藏，canGet = true, page++
+     *            然后渲染页面
+     * ps: 每次请求数据前先判断 canGet 的值，避免多次发送请求，最后一次请求需要做处理
+     * *****/ 
      //0 全部   4 是支付成功   7 支付失败      9 退款
    // console.log(this.data.allList);
    console.log('scroll');

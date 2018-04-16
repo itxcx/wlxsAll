@@ -8,32 +8,32 @@
                 <!-- 全部 -->  
                 <swiper-item > 
                   <scroll-view scroll-y="true" style="height:100vh;"bindscrolltolower="searchScrollLower">
-                  <view wx:for="{{allList}}" wx:key="unique" wx:for-item="item" class="items">
+                  <view wx:for="{{allList}}" wx:key="unique" wx:for-item="item" class="items" bindtap="showDetailMsg">
                       <view class="itemImg"><image src="../../images/purchases/wlxs_logo.png"></image></view>
                       <view class="itemContent">
                               <view class="itemStatus">
-                                <text>未来鲜森   {{item.addr}}</text>
+                                <text>未来鲜森   {{item.address}}</text>
                                 <text style="float: right">{{item.purType}}</text>
                               </view>
                               <view class="itemTime">
-                                <text>{{item.purTime}}</text>
+                                <text>{{item.created_time}}</text>
                               </view>
 
                               <view class="purItemList">
-                                  <view class="itemName" wx:for="{{item.purItemList}}" wx:for-item="items" wx:key="unique">
-                                      <text>{{items.name}}</text>
-                                      <text style="float: right;">x{{items.itemNum}}</text>
+                                  <view class="itemName" wx:for="{{item.goodslist}}" wx:for-item="items" wx:key="unique">
+                                      <text>{{items.goods_name}}</text>
+                                      <text style="float: right;">x{{items.count}}</text>
                                   </view>
                               </view>
 
                                 <view class="purItemCount">
                                       <text>共{{item.countNum}}件商品</text>
                                       <text style="margin-left: 15px;">实付</text>
-                                      <text style="color: #000;font-size: 0.85rem;">￥{{item.countAmount}}</text>
+                                      <text style="color: #000;font-size: 0.85rem;">￥{{item.real_amount}}</text>
                                 </view>
                       </view>
                   </view>  
-                  <view class="itemBottomTip">{{item.tipTitle}}</view>
+                  <view class="itemBottomTip">{{allTipTitle}}</view>
                   </scroll-view> 
                 </swiper-item>  
                 <!-- 待支付 -->  
@@ -66,7 +66,7 @@
                                 </view>
                       </view>
                   </view>  
-                   <view class="itemBottomTip">{{tipTitle}}</view>
+                   <view class="itemBottomTip">{{unpaidTipTitle}}</view>
                 </swiper-item>  
                 <!-- 已退款 -->  
                  <swiper-item>  
@@ -95,7 +95,7 @@
                                 </view>
                       </view>
                   </view>
-                   <view class="itemBottomTip">{{tipTitle}}</view> 
+                   <view class="itemBottomTip">{{refundedTipTitle}}</view>
                 </swiper-item>  
             </swiper>  
 </view>

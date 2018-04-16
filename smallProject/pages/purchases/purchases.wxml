@@ -42,24 +42,24 @@
                       <view class="itemImg"><image src="../../images/purchases/wlxs_logo.png"></image></view>
                       <view class="itemContent">
                               <view class="itemStatus">
-                                <text>未来鲜森   {{item.addr}}</text>
+                                <text>未来鲜森   {{item.address}}</text>
                                 <text style="float: right">{{item.purType}}</text>
                               </view>
                               <view class="itemTime">
-                                <text>{{item.purTime}}</text>
+                                <text>{{item.created_time}}</text>
                               </view>
 
                               <view class="purItemList">
-                                  <view class="itemName" wx:for="{{item.purItemList}}" wx:for-item="items" wx:key="unique">
-                                      <text>{{items.name}}</text>
-                                      <text style="float: right;">x{{items.itemNum}}</text>
+                                  <view class="itemName" wx:for="{{item.goodslist}}" wx:for-item="items" wx:key="unique">
+                                      <text>{{items.goods_name}}</text>
+                                      <text style="float: right;">x{{items.count}}</text>
                                   </view>
                               </view>
 
-                                <view class="purItemCount" style="border-bottom: 1px solid #f2f2f2;">
+                                <view class="purItemCount">
                                       <text>共{{item.countNum}}件商品</text>
                                       <text style="margin-left: 15px;">实付</text>
-                                      <text style="color: #000;font-size: 0.85rem;">￥{{item.countAmount}}</text>
+                                      <text style="color: #000;font-size: 0.85rem;">￥{{item.real_amount}}</text>
                                 </view>
                                 <view class="goPay">
                                       <text bindtap="goPay">去支付</text>
@@ -74,24 +74,24 @@
                       <view class="itemImg"><image src="../../images/purchases/wlxs_logo.png"></image></view>
                       <view class="itemContent">
                               <view class="itemStatus">
-                                <text>未来鲜森   {{item.addr}}</text>
+                                <text>未来鲜森   {{item.address}}</text>
                                 <text style="float: right">{{item.purType}}</text>
                               </view>
                               <view class="itemTime">
-                                <text>{{item.purTime}}</text>
+                                <text>{{item.created_time}}</text>
                               </view>
 
                               <view class="purItemList">
-                                  <view class="itemName" wx:for="{{item.purItemList}}" wx:for-item="items" wx:key="unique">
-                                      <text>{{items.name}}</text>
-                                      <text style="float: right;">x{{items.itemNum}}</text>
+                                  <view class="itemName" wx:for="{{item.goodslist}}" wx:for-item="items" wx:key="unique">
+                                      <text>{{items.goods_name}}</text>
+                                      <text style="float: right;">x{{items.count}}</text>
                                   </view>
                               </view>
 
                                 <view class="purItemCount">
                                       <text>共{{item.countNum}}件商品</text>
-                                      <text style="margin-left: 15px;">实付￥</text>
-                                      <text style="color: #000;font-size: 0.85rem;">{{item.countAmount}}</text>
+                                      <text style="margin-left: 15px;">实付</text>
+                                      <text style="color: #000;font-size: 0.85rem;">￥{{item.real_amount}}</text>
                                 </view>
                       </view>
                   </view>

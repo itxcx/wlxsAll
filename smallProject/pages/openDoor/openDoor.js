@@ -1,8 +1,13 @@
 Page({
   data: {
-    openning: true, //开门中
+    openning: false, //开门中
     openSuccess: false, //开门成功
-    account: false, //结算
+    account: true, //结算成功
+    accountFail: false, //结算失败
+    detailInfo: {
+      amount: 20,
+      discount: 10
+    }
   },
 
   //监听页面加载
@@ -34,5 +39,15 @@ Page({
     wx.makePhoneCall({
       phoneNumber: '4007707768'
     })
+  },
+  //再次购买
+  againScan: function() {
+    wx.navigateTo({
+      url: '../index/index',
+    })
+  },
+  //查看订单
+  checkOrder: function() {
+    
   }
 })

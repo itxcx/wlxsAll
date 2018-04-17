@@ -411,6 +411,9 @@ Page({
     //     allList: da
     //   })
     //  // console.log(this.data.allList);
+    
+   var canGetData = true; //可以请求数据
+
    console.log(currentPage);
    if (currentPage == 0) {
      if (this.data.allTipTitle == '上滑获取更多数据') {

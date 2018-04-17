@@ -17,6 +17,13 @@ Page({
     if (e.detail.iv && e.detail.encryptedData) {
       var userInfo = wx.getStorageSync('userInfo');
       var code = wx.getStorageSync('code');
+      // console.log('---------');
+      // console.log(userInfo.user_iv);
+      // console.log(userInfo.user_encryptedData);
+      // console.log(e.detail.iv);
+      // console.log(e.detail.encryptedData);
+      // console.log(code);
+      // console.log('---------');
       wx.request({
         url: 'https://weilaixiansen.com/login/getUserInfo',
         method: 'GET',

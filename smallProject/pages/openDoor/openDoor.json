@@ -1,8 +1,8 @@
 {
-  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarBackgroundColor": "#66D173",
   "navigationBarTextStyle": "black",
   "backgroundColor": "#eeeeee",
-  "navigationBarTitleText": "开门操作",
+  "navigationBarTitleText": "开门购物操作",
   "backgroundTextStyle": "light",
   "disableScroll": true
 }

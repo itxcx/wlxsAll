@@ -1,2 +1,28 @@
-<!--pages/openDoor/openDoor.wxml-->
-<text>pages/openDoor/openDoor.wxml</text>
+<view class="openDoor">
+      <!-- 开门中  -->
+      <view class="openning {{openning ? 'show' : 'hide'}}" >
+            <view class="openningImg">
+                  <image src="../../images/openDoor/openning.gif"></image>
+            </view>
+            <view class="openningContent">
+                  <text>开门中...</text>
+            </view>
+      </view>
+      <!-- 开门成功 -->
+      <view class="openSuccess {{openSuccess ? 'show' : 'hide'}}">
+     
+      </view>
+      <!-- 订单信息  -->
+      <view class="account {{account ? 'show' : 'hide'}}">
+      
+      </view>
+      <view class="tipContent">
+            <text class="title">温馨提示</text>
+            <text class="items">请勿将购买商品放回收货柜</text>
+            <text >如有问题，请致电客服热线</text>
+            <text bindtap="callService"> 400-770-7768</text>
+      </view>
+      <view class="bottomBanner">
+            <image src="../../images/index/banner1.jpg"></image>
+      </view>
+</view>

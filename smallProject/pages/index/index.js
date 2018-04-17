@@ -142,9 +142,8 @@ Page({
    //联系客服
    callService: function() {
      wx.navigateTo({
-       //  url: '../userInfo/userInfo'
       //  url: '../customer/customer'
-       url: '../unpaid/unpaid'
+       url: '../openDoor/openDoor'
      })
      
    },

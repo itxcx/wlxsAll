@@ -99,14 +99,18 @@ Page({
                                       //code = 1 --- 不存在，未启用，开门失败
                                       //code = 10010 --- 支付失败  调到待支付订单页面
                                       //code = 0，开门成功
-                                      if (openRes.code == 0 ){//开门失败
+                                      if (openRes.code == 1 ){//开门失败
                                         wx.navigateTo({
                                           url: '../openDoorError/openDoorError'
                                         })
                                       } else if (oponRes.code == 10010) {//有未支付订单
-
-                                      }else if(openRes == 0) {//开门成功
-
+                                          wx.navigateTo({
+                                            url: '../unpaid/unpaid'
+                                          })
+                                      }else if(openRes.code == 0) {//开门成功
+                                        wx.navigateTo({
+                                          url: '../openDoor/openDoor'
+                                        })
                                       }
                                   }
                                 })
@@ -126,23 +130,21 @@ Page({
                             fail(res1) {
                               // 未成功跳转到签约小程序
                               console.log(res1); 
-                          
                             }
                           })
-
                       }
                   }
            })
          }
        }
      })
-     
    },
    //联系客服
    callService: function() {
      wx.navigateTo({
        //  url: '../userInfo/userInfo'
-       url: '../customer/customer'
+      //  url: '../customer/customer'
+       url: '../unpaid/unpaid'
      })
      
    },

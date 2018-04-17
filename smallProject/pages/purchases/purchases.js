@@ -11,252 +11,252 @@ Page({
     canGetRefundedPage: 0, //page
       //全部列表数据
       allList: [
-        {
-          address: '招商银行大厦',
-          purType: '已完成',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1'},
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        },
-        {
-          address: '招商银行大厦',
-          purType: '已完成',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        },
-        {
-          address: '招商银行大厦',
-          purType: '已完成',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        },
-        {
-          address: '招商银行大厦',
-          purType: '已完成',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        },
-        {
-          address: '招商银行大厦',
-          purType: '已完成',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        },
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '已完成',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1'},
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // },
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '已完成',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // },
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '已完成',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // },
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '已完成',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // },
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '已完成',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // },
       ],
       //待支付
       unpaid: [
-        {
-          address: '招商银行大厦',
-          purType: '未支付',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        },
-        {
-          address: '招商银行大厦',
-          purType: '未支付',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        },
-        {
-          address: '招商银行大厦',
-          purType: '未支付',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        },
-        {
-          address: '招商银行大厦',
-          purType: '未支付',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        },
-        {
-          address: '招商银行大厦',
-          purType: '未支付',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        },
-        {
-          address: '招商银行大厦',
-          purType: '未支付',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        },
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '未支付',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // },
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '未支付',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // },
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '未支付',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // },
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '未支付',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // },
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '未支付',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // },
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '未支付',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // },
       ],
       //已退款
       refunded: [
-        {
-          address: '招商银行大厦',
-          purType: '已退款',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        },
-        {
-          address: '招商银行大厦',
-          purType: '已退款',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        },
-        {
-          address: '招商银行大厦',
-          purType: '已退款',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        },
-        {
-          address: '招商银行大厦',
-          purType: '已退款',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        },
-        {
-          address: '招商银行大厦',
-          purType: '已退款',
-          order_id: '2018041312513887101',
-          created_time: '2018-04-08 12:00:00',
-          amount: 20,
-          discount: 10,
-          countNum: 6, //商品总数
-          real_amount: 10.00,
-          goodslist: [
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-            { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
-          ]
-        }
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '已退款',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // },
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '已退款',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // },
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '已退款',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // },
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '已退款',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // },
+        // {
+        //   address: '招商银行大厦',
+        //   purType: '已退款',
+        //   order_id: '2018041312513887101',
+        //   created_time: '2018-04-08 12:00:00',
+        //   amount: 20,
+        //   discount: 10,
+        //   countNum: 6, //商品总数
+        //   real_amount: 10.00,
+        //   goodslist: [
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //     { goods_name: '乐虎', count: 2, discount: '7.00', price: '8.00', real_price: '1' },
+        //   ]
+        // }
       ]
   },
   //获取数据方法封装
@@ -272,7 +272,11 @@ Page({
         'page': page
       },
       success: res => {
+        console.log(res);
         if (res.data.code == 0) { //返回数据
+          if(res.data.data == null) {
+            res.data.data = [];
+          }
           if (res.data.data.length > 0 && res.data.data.length == 5) { //订单数大于0并且等于5
             if (status == 0) {//全部
               this.setData({
@@ -335,7 +339,9 @@ Page({
   onLoad: function() {
     //默认请求全部数据
     wx.setStorageSync('currentPage', '0');
-    this.getOrderList(0);
+    console.log('get');
+    var page = this.data.canGetAllPage;
+    this.getOrderList(0, page);
   },
 
   //查看订单详情
@@ -365,11 +371,14 @@ Page({
     wx.setStorageSync('currentPage', listType);
     if (listType == 1) {//切换到未付款列表，如果数据为空，并且提示内容不为  '暂时没有订单数据' 时才请求数据
       if (this.data.unpaid.length == 0 && this.data.unpaidTipTitle != '暂时没有订单数据') {
-        this.getOrderList(7);
+        console.log('swipe unpaid');
+        var page = this.data.canGetUnpaidPage;
+        this.getOrderList(7, page);
       }
     } else if (listType == 2) {//切换到退款列表，数据为空，提示内容不为  '暂时没有订单数据' 时才请求数据
       if (this.data.refunded.length == 0 && this.data.refundedTipTitle != '暂时没有订单数据') {
-        this.getOrderList(9);
+        var page = this.data.canGetRefundedPage;
+        this.getOrderList(9, page);
       }
     }
   },
@@ -385,15 +394,18 @@ Page({
       })
       var listType = that.data.currentTab; //请求数据时的分类
       wx.setStorageSync('currentPage', listType);
-      if (listType == 1) {//切换到未付款列表，如果数据为空，并且提示内容不为  '暂时没有订单数据' 时才请求数据
-        if (this.data.unpaid.length == 0 && this.data.unpaidTipTitle != '暂时没有订单数据') {
-          this.getOrderList(7);
-        }
-      } else if (listType == 2) {//切换到退款列表，数据为空，提示内容不为  '暂时没有订单数据' 时才请求数据
-        if (this.data.refunded.length == 0 && this.data.refundedTipTitle != '暂时没有订单数据') {
-          this.getOrderList(9);
-        }
-      }
+      // if (listType == 1) {//切换到未付款列表，如果数据为空，并且提示内容不为 '暂时没有订单数据' 时才请求数据
+      //   if (this.data.unpaid.length == 0 && this.data.unpaidTipTitle != '暂时没有订单数据') {
+      //     console.log('click unpaid');
+      //     var page = this.data.canGetUnpaidPage;
+      //     this.getOrderList(7, page);
+      //   }
+      // } else if (listType == 2) {//切换到退款列表，数据为空，提示内容不为  '暂时没有订单数据' 时才请求数据
+      //   if (this.data.refunded.length == 0 && this.data.refundedTipTitle != '暂时没有订单数据') {
+      //     var page = this.data.canGetRefundedPage;
+      //     this.getOrderList(9, page);
+      //   }
+      // }
     }
   },
   //去支付
@@ -418,21 +430,27 @@ Page({
     //     allList: da
     //   })
     //  // console.log(this.data.allList);
-
    console.log(currentPage);
    if (currentPage == 0) {
-     if (this.data.allTipTitle == '上滑获取更多数据') {
-       //发送请求获取数据
-      this.data.allTipTitle = '加载中';
-    
-     }
+        if (this.data.allTipTitle == '上滑获取更多数据') {     
+          this.data.allTipTitle = '加载中';
+          var page = this.data.canGetAllPage;
+        //发送请求获取数据
+          this.getMoreData(0, page);
+        }
    } else if (currentPage == 1) {
-     if (this.data.unpaidTipTitle == '上滑获取更多数据') {
-       //发送请求获取数据
-     }
+          if (this.data.unpaidTipTitle == '上滑获取更多数据') {
+            this.data.unpaidTipTitle = '加载中';
+            var page = this.data.canGetUnpaidPage;
+            //发送请求获取数据
+            this.getMoreData(7, page);
+          }
    } else {
      if (this.data.refundedTipTitle == '上滑获取更多数据') {
+       this.data.refundedTipTitle = '加载中';
+       var page = this.data.canGetRefundedPage;
        //发送请求获取数据
+       this.getMoreData(9, page);
      }
    }
 
@@ -449,9 +467,59 @@ Page({
         'page': page
       },
       success: res => {
+        /***
+         *  根据分类和页数获取数据成功后，判断数据
+         *  如果数据长度为5，还可以再一次请求数据，如果返回数据长度小于5，
+         *  不能再次请求数据
+         *  
+         * ***/ 
         if (res.data.code == 0) { //返回数据
+            var getData = res.data.data;
             if(status == 0) { //全部数据
-                
+              if (getData.lenght == 5) {
+                    var da = this.data.allList.concat(getData);
+                    this.setData({
+                      allList: da,
+                      canGetAllPage: page + 1,
+                      allTipTitle: '上滑获取更多数据'
+                    })
+              } else {
+                var da = this.data.allList.concat(getData);
+                this.setData({
+                  allList: da,
+                  allTipTitle: '这是底线了'
+                })
+              }
+            }else if(status == 7) {//未支付
+              if (getData.lenght == 5) {
+                var da = this.data.unpaid.concat(getData);
+                this.setData({
+                  unpaid: da,
+                  canGetUnpaidPage: page + 1,
+                  unpaidTipTitle: '上滑获取更多数据'
+                })
+              } else {
+                var da = this.data.unpaid.concat(getData);
+                this.setData({
+                  unpaid: da,
+                  unpaidTipTitle: '这是底线了'
+                })
+              }
+            }else{//已退款
+              if (getData.lenght == 5) {
+                var da = this.data.refunded.concat(getData);
+                this.setData({
+                  refunded: da,
+                  canGetRefundedPage: page + 1,
+                  refundedTipTitle: '上滑获取更多数据'
+                })
+              } else {
+                var da = this.data.refunded.concat(getData);
+                this.setData({
+                  refunded: da,
+                  refundedTipTitle: '这是底线了'
+                })
+              }
             }
         }
       },

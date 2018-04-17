@@ -17,13 +17,6 @@ Page({
     if (e.detail.iv && e.detail.encryptedData) {
       var userInfo = wx.getStorageSync('userInfo');
       var code = wx.getStorageSync('code');
-      // console.log('---------');
-      // console.log(userInfo.user_iv);
-      // console.log(userInfo.user_encryptedData);
-      // console.log(e.detail.iv);
-      // console.log(e.detail.encryptedData);
-      // console.log(code);
-      // console.log('---------');
       wx.request({
         url: 'https://weilaixiansen.com/login/getUserInfo',
         method: 'GET',
@@ -31,6 +24,7 @@ Page({
           'user_iv': userInfo.user_iv,
           'user_encryptedData': userInfo.user_encryptedData,
           'phone_iv':  e.detail.iv ,
+          // 'phone_iv':  '',
           'phone_encryptedData': e.detail.encryptedData,
           'code': code
           },
@@ -39,7 +33,7 @@ Page({
             if(res.data.code == 0) {
               console.log(res);
               console.log(res.data);
-             wx.setStorageSync('session_key', res.data.session_key);
+             wx.setStorageSync('session_key', res.data.data.session_key);
             }
             //存储用户手机号
             wx.setStorageSync('userPhone', res.data.data.phone);

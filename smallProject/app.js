@@ -10,7 +10,6 @@ App({
        if(resss.code){ //临时会话code
             console.log(resss.code);
             wx.setStorageSync("code", resss.code);
-            console.log('sss');
             wx.getSetting({    //检查授权，获取用户信息
             success: ress => {
               console.log(ress);

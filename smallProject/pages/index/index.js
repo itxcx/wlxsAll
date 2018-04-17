@@ -23,7 +23,7 @@ Page({
      interval: 8000, //自动切换时间间隔
      duration: 1000, //滑动动画时长
      contentImg: '/images/index/content.png',
-     fail: true //是否授权信息
+     fail: false //是否授权信息
    },
   //  // 页面初始化 options为页面跳转所带来的参数
    onLoad: function () {

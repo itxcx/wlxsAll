@@ -33,10 +33,10 @@ Page({
         console.log(res);
         console.log(res.data.data);
         console.log(res.data.code);
+        // if (res.data.data == null) {
+        //   res.data.data.data = [];
+        // }
         if (res.data.code == 0) { //返回数据
-          // if(res.data.data == null) {
-          //   res.data.data = [];
-          // }
           if (res.data.data.data.length > 0 && res.data.data.data.length == 5) { //订单数大于0并且等于5
             console.log('=5')
             if (status == 0) {//全部

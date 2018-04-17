@@ -94,7 +94,20 @@ Page({
                                   method: 'GET',
                                   data: { 'session_key': session_key, 'device_number': device_number, 'contract_id': contract_id},
                                   success: function(openRes) {//开门
+                                      //websocket
+                                      console.log('open success');
+                                      //code = 1 --- 不存在，未启用，开门失败
+                                      //code = 10010 --- 支付失败  调到待支付订单页面
+                                      //code = 0，开门成功
+                                      if (openRes.code == 0 ){//开门失败
+                                        wx.navigateTo({
+                                          url: '../openDoorError/openDoorError'
+                                        })
+                                      } else if (oponRes.code == 10010) {//有未支付订单
 
+                                      }else if(openRes == 0) {//开门成功
+
+                                      }
                                   }
                                 })
                       }else{ //没签约
@@ -105,24 +118,20 @@ Page({
                             extraData: sessionRes.data.data,
                             success(res1) {
                               // 成功跳转到签约小程序,异步通知到地址
+                              console.log('success')
+                              wx.navigateBack({
+                                delta: 5
+                              })
                             },
                             fail(res1) {
-                              // 未成功跳转到签约小程序 
+                              // 未成功跳转到签约小程序
+                              console.log(res1); 
+                          
                             }
                           })
 
                       }
                   }
-           })
-
-           //1.扫码成功后  GET https://weilaixiansen.com/login/checkagree    + session_key
-           //     
-           //2.   GET  https://weilaixiansen.com/login/shop  +session_key+ 设备id + contract_id
-           //
-           //判断是否签约
-           //设备number + session_key
-           wx.navigateTo({
-             url: '../openDoor/openDoor'
            })
          }
        }

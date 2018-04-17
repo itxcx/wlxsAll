@@ -12,7 +12,8 @@
     "pages/aboutUs/aboutUs",
     "pages/cmnProblem/cmnProblem",
     "pages/customer/customer",
-    "pages/feedback/feedback"
+    "pages/feedback/feedback",
+    "pages/openDoorError/openDoorError"
   ],
   "window":{
     "backgroundTextStyle":"light",

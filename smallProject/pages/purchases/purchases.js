@@ -264,7 +264,8 @@ Page({
   getOrderList: function(status, page) {
     var session_key = wx.getStorageSync('session_key');
     wx.request({
-      url: 'https://weilaixiansen.com/login/getorderlist',
+      // url: 'https://weilaixiansen.com/login/getorderlist',
+      url: 'https://weilaixiansen.com/login/sq',
       method: 'GET',
       data: {
         'session_key': session_key,
@@ -273,48 +274,54 @@ Page({
       },
       success: res => {
         console.log(res);
+        console.log(res.data.data);
+        console.log(res.data.code);
         if (res.data.code == 0) { //返回数据
-          if(res.data.data == null) {
-            res.data.data = [];
-          }
-          if (res.data.data.length > 0 && res.data.data.length == 5) { //订单数大于0并且等于5
+          // if(res.data.data == null) {
+          //   res.data.data = [];
+          // }
+          if (res.data.data.data.length > 0 && res.data.data.data.length == 5) { //订单数大于0并且等于5
+            console.log('=5')
             if (status == 0) {//全部
               this.setData({
-                allList: res.data.data,
+                allList: res.data.data.data,
                 allTipTitle: '上滑获取更多数据',
                 canGetAllPage: page +1
               })
+              console.log(this.data.allList);
             } else if (status == 7) {//未支付
               this.setData({
-                unpaid: res.data.data,
+                unpaid: res.data.data.data,
                 unpaidTipTitle: '上滑获取更多数据',
                 canGetUnpaidPage: page + 1
               })
             } else {//已退款
               this.setData({
-                refunded: res.data.data,
+                refunded: res.data.data.data,
                 refundedTipTitle: '上滑获取更多数据',
                 canGetRefundedPage: page + 1
               })
             }
-          } else if (res.data.data.length > 0 && res.data.data.length < 5) { //订单数大于0且小于5
+          } else if (res.data.data.data.length > 0 && res.data.data.data.length < 5) { //订单数大于0且小于5
+            console.log('<5')
             if (status == 0) {//全部
               this.setData({
-                allList: res.data.data,
+                allList: res.data.data.data,
                 allTipTitle: '这是底线了~'
               })
             } else if (status == 7) {//未支付
               this.setData({
-                unpaid: res.data.data,
+                unpaid: res.data.data.data,
                 unpaidTipTitle: '这是底线了~'
               })
             } else {//已退款
               this.setData({
-                refunded: res.data.data,
+                refunded: res.data.data.data,
                 refundedTipTitle: '这是底线了~'
               })
             }
-          } else {
+          } else if (res.data.data.data.length == 0) {
+            console.log('=0');
             if (status == 0) {//全部
               this.setData({
                 allTipTitle: '暂时没有订单数据'
@@ -348,22 +355,21 @@ Page({
   showDetailMsg: function(e) {
     var currentPage = wx.getStorageSync('currentPage'); //当前分类
     var index = e.currentTarget.dataset.index;
-    //获取当前点击对象
-    var detailData = null;
-    if (currentPage == 0) {
-      detailData = this.data.allList[index];
-    } else if (currentPage == 1) {
-      detailData = this.data.unpaid[index];
-    } else {
-      detailData = this.data.refunded[index];
-    }
-    console.log(detailData);
+    //获取当前点击对象,请求接口数据
+    // var detailData = null;
+    // if (currentPage == 0) {
+    //   detailData = this.data.allList[index];
+    // } else if (currentPage == 1) {
+    //   detailData = this.data.unpaid[index];
+    // } else {
+    //   detailData = this.data.refunded[index];
+    // }
+    // console.log(detailData);
     wx.setStorageSync('detailData', detailData);
     wx.navigateTo({
       url: '../orderDetail/orderDetail'
     });
   },
-
   // 滑动切换tab 
   bindChange: function (e) {
     this.setData({ currentTab: e.detail.current });
@@ -459,7 +465,8 @@ Page({
   getMoreData: function(status, page) {
     var session_key = wx.getStorageSync('session_key');
     wx.request({
-      url: 'https://weilaixiansen.com/login/getorderlist',
+      // url: 'https://weilaixiansen.com/login/getorderlist',
+      url: 'https://weilaixiansen.com/login/sq',
       method: 'GET',
       data: {
         'session_key': session_key,
@@ -474,7 +481,7 @@ Page({
          *  
          * ***/ 
         if (res.data.code == 0) { //返回数据
-            var getData = res.data.data;
+            var getData = res.data.data.data;
             if(status == 0) { //全部数据
               if (getData.lenght == 5) {
                     var da = this.data.allList.concat(getData);

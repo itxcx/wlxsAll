@@ -62,5 +62,11 @@ Page({
       wx.navigateTo({
         url: '../cmnProblem/cmnProblem'
       })
+  },
+  //意见反馈
+  goFeedback: function () {
+    wx.navigateTo({
+      url: '../feedback/feedback'
+    })
   }
 })

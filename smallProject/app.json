@@ -12,7 +12,7 @@
     "pages/aboutUs/aboutUs",
     "pages/cmnProblem/cmnProblem",
     "pages/customer/customer",
-    "pages/test/test"
+    "pages/feedback/feedback"
   ],
   "window":{
     "backgroundTextStyle":"light",

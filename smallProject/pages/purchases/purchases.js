@@ -6,6 +6,9 @@ Page({
     allTipTitle: '',
     unpaidTipTitle: '',
     refundedTipTitle: '',
+    canGetAllPage: 0, //page
+    canGetUnpaidPage: 0, //page
+    canGetRefundedPage: 0, //page
       //全部列表数据
       allList: [
         {
@@ -258,14 +261,15 @@ Page({
   },
   //获取数据方法封装
   //0 全部   4 是支付成功   7 支付失败      9 退款
-  getOrderList: function(status) {
+  getOrderList: function(status, page) {
     var session_key = wx.getStorageSync('session_key');
     wx.request({
       url: 'https://weilaixiansen.com/login/getorderlist',
       method: 'GET',
       data: {
         'session_key': session_key,
-        'status': status
+        'status': status,
+        'page': page
       },
       success: res => {
         if (res.data.code == 0) { //返回数据
@@ -273,17 +277,20 @@ Page({
             if (status == 0) {//全部
               this.setData({
                 allList: res.data.data,
-                allTipTitle: '上滑获取更多数据'
+                allTipTitle: '上滑获取更多数据',
+                canGetAllPage: page +1
               })
             } else if (status == 7) {//未支付
               this.setData({
                 unpaid: res.data.data,
-                unpaidTipTitle: '上滑获取更多数据'
+                unpaidTipTitle: '上滑获取更多数据',
+                canGetUnpaidPage: page + 1
               })
             } else {//已退款
               this.setData({
                 refunded: res.data.data,
-                refundedTipTitle: '上滑获取更多数据'
+                refundedTipTitle: '上滑获取更多数据',
+                canGetRefundedPage: page + 1
               })
             }
           } else if (res.data.data.length > 0 && res.data.data.length < 5) { //订单数大于0且小于5
@@ -411,13 +418,13 @@ Page({
     //     allList: da
     //   })
     //  // console.log(this.data.allList);
-    
-   var canGetData = true; //可以请求数据
 
    console.log(currentPage);
    if (currentPage == 0) {
      if (this.data.allTipTitle == '上滑获取更多数据') {
        //发送请求获取数据
+      this.data.allTipTitle = '加载中';
+    
      }
    } else if (currentPage == 1) {
      if (this.data.unpaidTipTitle == '上滑获取更多数据') {
@@ -431,18 +438,21 @@ Page({
 
   },
   //获取更多数据方法封装
-  getMoreData: function(status) {
+  getMoreData: function(status, page) {
     var session_key = wx.getStorageSync('session_key');
     wx.request({
       url: 'https://weilaixiansen.com/login/getorderlist',
       method: 'GET',
       data: {
         'session_key': session_key,
-        'status': status
+        'status': status,
+        'page': page
       },
       success: res => {
         if (res.data.code == 0) { //返回数据
-          
+            if(status == 0) { //全部数据
+                
+            }
         }
       },
       fail: error => {

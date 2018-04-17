@@ -51,15 +51,17 @@
   height: 20vh;
 }
 /* account  */
-.account{
+.account, .accountFail{
   margin-top: 4vh;
   text-align: center;
+  border-bottom: 10px solid #f2f2f2;
+  padding-bottom: 4vh;
 }
-.accountImg{
+.accountImg, .accountFailImg{
   width: 100vw;
   text-align: center;
 }
-.accountImg image{
+.accountImg image, .accountFailImg image{
   width: 10vh;
   height: 11vh;
 }
@@ -79,10 +81,10 @@
   color: #d3d3d3;
   margin: 2vh 0;
 }
-.accountBtn{
+.accountBtn, .accountFailBtn{
   margin-top: 8vh;
 }
-.accountBtn text{
+.accountBtn text, .accountFailBtn text{
     display: inline-block;
     padding: 1vh 8vw;
     border: 1px solid #66D173;

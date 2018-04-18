@@ -31,25 +31,26 @@
 }
 .pointHeader view text:nth-of-type(2){
   display: block;
-  font-size: 0.6rem;
+  font-size: 0.85rem;
 }
 .pointHeader>text{
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   width: 100%;
   display: block;
   text-align: center;
   position: absolute;
   left: 0;
   bottom: 2vh; 
+  font-weight: 600;
 }
 .pointContent{
   height: 64vh;
-  width: 88vw;
+  width: 84vw;
   margin: -0.2vh 3vw 2vh 3vw;
   background: #ffffff;
   border-radius: 5px;
   overflow: auto;
-  padding: 2vh 3vw;
+  padding: 2vh 2vw 2vh 5vw;
 }
 .pointsItem{
   border-bottom: 1px solid #F2F2F2;
@@ -104,8 +105,8 @@
   display: block;
   z-index: 2;
   color: #ffffff;
-  font-size: 1.2rem;
-  
+  font-size: 1.5rem;
+  font-weight: 600;  
 }
 .ruleContent{
   width: 76vw;
@@ -116,7 +117,7 @@
   left: 10vw;
   border-radius: 5px;
   padding: 3vh 2vw;
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: #A5A5A5;
 }
 .contentItem{
@@ -124,16 +125,17 @@
 }
 .commonText{
   display: block;
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   margin: 2vh 0 2vh 6vw;
 }
 .specialItem text:nth-of-type(1){
-    font-size: 1rem;
+    font-size: 0.7rem;
     color: #66D173;
 }
 .specialItem text:nth-of-type(2){
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: #737373;
+    font-weight: 600;
     margin-left: 2vw;
 }
 

@@ -1,7 +1,6 @@
 .container{
   width: 100%;
   background: #F1F1F1;
-  
 }
 .swiper-tab{  
   height: 80rpx;
@@ -48,19 +47,19 @@
 /* swipe  */
 .swiper-box{ 
     width: 100%;
-      height: 98vh;   
-    margin: 7vh 0 0 0;
+    height: 98vh;   
+    margin: 7.5vh 0 0 0;
     overflow: auto;
  }  
 swiper-item{
   width: 100%;
-   overflow: auto; 
+  overflow: auto; 
 }
 swiper-item .items{
   margin-bottom: 2vh;
   background: #ffffff;
-   overflow: hidden; 
-  padding: 2vh 4vw;
+  overflow: hidden; 
+  padding: 2vh 4vw 0 4vw;
   font-size: 0.95rem;
   color: #6E6E6E;
 }
@@ -91,13 +90,15 @@ swiper-item .itemContent{
 }
 .purItemCount{
   text-align: right;
-  padding: 1vh 0;
+  height: 7vh;
   font-size: 0.85rem;
+  line-height: 7vh;
 }
 .itemBottomTip{
   font-size: 0.9rem;
   color: #B6B6B6;
   text-align: center;
+  padding-bottom: 8vh;
 }
 
 .goPay{

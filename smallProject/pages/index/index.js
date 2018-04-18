@@ -87,6 +87,8 @@ Page({
              method: 'GET',
              data: {'session_key': session_key},
              success: function(sessionRes) {
+               console.log(sessionRes);
+               console.log('-----')
                       if (sessionRes.data.code == 0) { //如果已经签约
                                 var contract_id = sessionRes.data.contract_id;
                                 wx.request({
@@ -95,19 +97,21 @@ Page({
                                   data: { 'session_key': session_key, 'device_number': device_number, 'contract_id': contract_id},
                                   success: function(openRes) {//开门
                                       //websocket
+                                      console.log(openRes);
+                                      console.log('--')
                                       console.log('open success');
                                       //code = 1 --- 不存在，未启用，开门失败
                                       //code = 10010 --- 支付失败  调到待支付订单页面
                                       //code = 0，开门成功
-                                      if (openRes.code == 1 ){//开门失败
+                                      if (openRes.data.code == 1 ){//开门失败
                                         wx.navigateTo({
                                           url: '../openDoorError/openDoorError'
                                         })
-                                      } else if (oponRes.code == 10010) {//有未支付订单
+                                      } else if (openRes.data.code == 10010) {//有未支付订单
                                           wx.navigateTo({
                                             url: '../unpaid/unpaid'
                                           })
-                                      }else if(openRes.code == 0) {//开门成功
+                                      }else if(openRes.data.code == 0) {//开门成功
                                         wx.navigateTo({
                                           url: '../openDoor/openDoor'
                                         })
@@ -123,9 +127,9 @@ Page({
                             success(res1) {
                               // 成功跳转到签约小程序,异步通知到地址
                               console.log('success')
-                              wx.navigateBack({
-                                delta: 5
-                              })
+                              // wx.navigateBack({
+                              //   delta: 5
+                              // })
                             },
                             fail(res1) {
                               // 未成功跳转到签约小程序

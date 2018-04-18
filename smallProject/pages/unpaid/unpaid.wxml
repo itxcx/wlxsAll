@@ -1,0 +1,12 @@
+<view class="unpaid">
+    <view class="unpaidImg">
+        <image src="../../images/openDoor/unpaid.png"></image>
+    </view>
+    <view class="unpaidContent">
+          <text>您有1笔订单未付款</text>
+          <text>请先付款后重新扫码开门购物</text>
+    </view>
+    <view class="checkDetail">
+          <text>查看订单</text>
+    </view>
+</view>

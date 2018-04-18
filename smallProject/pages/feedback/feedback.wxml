@@ -1,0 +1,18 @@
+<view class="feedback">
+    <view class="feedbackContent">
+      <textarea   auto-focus placeholder="请输入内容" maxlength="200" bindinput="showInputLength" placeholder-class='placeholder'/>
+       <view class="inputLength">
+          <text>{{inputLength}}</text>/
+          <text>{{allowInput}}</text>
+      </view>
+      <view class="addFile">
+          <image wx:for="{{imgPath}}" wx:key="unique" src="{{item}}" class="imageItem"></image>
+         <image bindtap="addFile"  src="../../images/feedback/addFile.jpg" class="imageItem"></image>
+      </view>
+      <view class="confirmBtn">提交</view>
+      <view class="feedbackTip">
+            <text>提交成功后，客服会在工作日48小时内联系您，请您保持电话</text>
+            <text>畅通。(如您不希望回访，可在意见中标注无需回访)</text>
+      </view>
+    </view>
+</view>

@@ -13,20 +13,27 @@ Page({
   //监听页面加载
   onLoad: function () {
     var that = this;
-    this.socketBack(that);
-  // wx.request({
-  //   url: '',
-  //   success: function(res) {
-  //     this.socketBack()
-  //   }
-  // })
+    //this.socketBack(that);
+    var session_key = wx.getStorageSync('session_key');
+    console.log(session_key);
+  wx.request({
+    url: 'https://weilaixiansen.com/login/socketRegist',
+    data: {session_key: session_key},
+    success: (res) => {
+      //console.log(res);
+      if(res.data.code == 0) {
+       var sid = res.data.data.session_id
+       this.socketBack(that, sid);
+      }
+    }
+  })
   },
   //socket方法
-  socketBack: function (that) {
+  socketBack: function (that,sid) {
     //创建websocket连接
     wx.connectSocket({
       //url: 'wss://wss.weilaixiansen.com/' + session_id
-      url: 'wss://wss.weilaixiansen.com?sid_fdf86cd25c34488bb5c1bfdb6e55a7a1'
+      url: 'wss://wss.weilaixiansen.com?' + sid
     })
     //连接打开
     wx.onSocketOpen(function (res) {
@@ -43,6 +50,10 @@ Page({
     wx.onSocketMessage(function (res) {
       console.log(res);
       console.log('收到服务器内容：' + res.data);
+     
+    })
+    wx.onSocketClose(function (res) {
+      console.log('WebSocket 已关闭！')
     })
   },
   //客服电话

@@ -29,19 +29,4 @@ app.get('*', (req, res) => {
   res.send(html);
 });
 
-////////
-app.use((req, res, next) => {
-  console.log('ssss');
-  if(req.url === '/login' || req.url === '/api/login/getUserInfo') {
-    next();
-  }else{
-    if(req.session.userinfo && req.session.userinfo.username) {
-      next();
-    }else{
-      res.redirect('/login');
-    }
-  }
-});
-
-
 app.listen(90);

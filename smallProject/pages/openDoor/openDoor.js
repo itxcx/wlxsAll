@@ -12,36 +12,38 @@ Page({
 
   //监听页面加载
   onLoad: function () {
-  //创建websocket连接
-    // wx.connectSocket({
-    //   url: 'wss://wss.weilaixiansen.com'
-    // })
-    // //连接打开
-    // wx.onSocketOpen(function (res) {
-    //   console.log('WebSocket连接已打开！');
-    //   this.setData({
-    //     openning: true
-    //   })
-    // })
-    // //连接打开失败
-    // wx.onSocketError(function (res) {
-    //   console.log('WebSocket连接打开失败，请检查！');
-    // })
-    // //服务器数据
-    // wx.onSocketMessage(function (res) {
-    //   console.log('收到服务器内容：' + res.data);
-    // })
-
+    var that = this;
+    this.socketBack(that);
+  // wx.request({
+  //   url: '',
+  //   success: function(res) {
+  //     this.socketBack()
+  //   }
+  // })
+  },
+  //socket方法
+  socketBack: function (that) {
+    //创建websocket连接
     wx.connectSocket({
-      url: 'wss://wss.weilaixiansen.com'
+      //url: 'wss://wss.weilaixiansen.com/' + session_id
+      url: 'wss://wss.weilaixiansen.com?sid_fdf86cd25c34488bb5c1bfdb6e55a7a1'
     })
+    //连接打开
     wx.onSocketOpen(function (res) {
-      console.log('WebSocket连接已打开！')
+      console.log('WebSocket连接已打开！');
+      that.setData({
+        openning: true
+      })
     })
+    //连接打开失败
     wx.onSocketError(function (res) {
       console.log('WebSocket连接打开失败，请检查！')
     })
-
+    //服务器数据
+    wx.onSocketMessage(function (res) {
+      console.log(res);
+      console.log('收到服务器内容：' + res.data);
+    })
   },
   //客服电话
   callService: function () {

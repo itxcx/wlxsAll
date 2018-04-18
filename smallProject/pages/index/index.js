@@ -188,24 +188,5 @@ Page({
            url: '../getNumber/getNumber'
          })
      } 
-    //  else if (!userMessage && getPhone) {
-    //    console.log('用户信息没有获取到，手机号获取到了');
-    //    //如果手机号存在，用户信息没有授权，则只获取用户信息
-    //    var userMsg = res.detail;
-    //    if (userMsg.rawData) { //获取授权成功
-    //    //将按钮隐藏
-    //      this.setData({
-    //        fail: true
-    //      })
-    //      //设置storage
-    //      var userInfo = {
-    //        'userInfo': userMsg.userInfo,
-    //        'user_iv': userMsg.iv,
-    //        'user_encryptedData': userMsg.encryptedData,
-    //      }
-    //      wx.setStorageSync('userInfo', userInfo);
-    //      console.log('用户信息已经获取');
-    //  }
-  //  }
    }
 })

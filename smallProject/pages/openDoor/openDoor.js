@@ -42,8 +42,8 @@ Page({
   },
   //再次购买
   againScan: function() {
-    wx.navigateTo({
-      url: '../index/index',
+    wx.navigateBack({
+      delta: 10,
     })
   },
   //查看订单

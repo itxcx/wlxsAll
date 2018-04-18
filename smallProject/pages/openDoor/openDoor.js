@@ -2,8 +2,8 @@ Page({
   data: {
     openning: false, //开门中
     openSuccess: false, //开门成功
-    account: false, //结算成功
-    accountFail: true, //结算失败
+    account: true, //结算成功
+    accountFail: false, //结算失败
     detailInfo: {
       amount: 20,
       discount: 10
@@ -52,6 +52,6 @@ Page({
   },
   //去付款
   goPay: function() {
-    
+
   }
 })

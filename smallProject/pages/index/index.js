@@ -142,10 +142,9 @@ Page({
    //联系客服
    callService: function() {
      wx.navigateTo({
-       url: '../customer/customer'
-      // url: '../openDoor/openDoor'
+       //url: '../customer/customer'
+      url: '../openDoor/openDoor'
      })
-     
    },
    //个人中心
    goUserInfo: function() {

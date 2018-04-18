@@ -2,7 +2,7 @@ Page({
   data: {
     avatarUrl: '',  //用户头像
     userPhone: '',//用户手机号
-    coupon:'2', //优惠券
+    coupon:'3', //优惠券
     memberPoints:'556' //会员积分
   },
   //  // 页面初始化 options为页面跳转所带来的参数

@@ -31,7 +31,7 @@
   <!--  支付方式 -->
   <view class="payMode">
     <text class="commonTitle">支付方式:</text>
-    <text class="commonContent">微信免密代扣</text>
+    <text class="commonContent">微信代扣</text>
   </view>
   <!-- 订单说明 -->
   <view class="orderInfo">

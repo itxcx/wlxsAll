@@ -80,7 +80,7 @@ Page({
          if(res) {
           var path = res.result;
           var device_number = path.split('?')[1].split('=')[1]; //设备id
-          var session_key = wx.getStorageSync('session_key'); 
+          var session_key = wx.getStorageSync('session_key');
           //扫码成功后请求接口， 发送session_key
            wx.request({
              url: 'https://weilaixiansen.com/login/checkagree',
@@ -91,32 +91,10 @@ Page({
                console.log('-----')
                       if (sessionRes.data.code == 0) { //如果已经签约
                                 var contract_id = sessionRes.data.contract_id;
-                                wx.request({
-                                  url: 'https://weilaixiansen.com/login/shop',
-                                  method: 'GET',
-                                  data: { 'session_key': session_key, 'device_number': device_number, 'contract_id': contract_id},
-                                  success: function(openRes) {//开门
-                                      //websocket
-                                      console.log(openRes);
-                                      console.log('--')
-                                      console.log('open success');
-                                      //code = 1 --- 不存在，未启用，开门失败
-                                      //code = 10010 --- 支付失败  调到待支付订单页面
-                                      //code = 0，开门成功
-                                      if (openRes.data.code == 1 ){//开门失败
-                                        wx.navigateTo({
-                                          url: '../openDoorError/openDoorError'
-                                        })
-                                      } else if (openRes.data.code == 10010) {//有未支付订单
-                                          wx.navigateTo({
-                                            url: '../unpaid/unpaid'
-                                          })
-                                      }else if(openRes.data.code == 0) {//开门成功
-                                        wx.navigateTo({
-                                          url: '../openDoor/openDoor'
-                                        })
-                                      }
-                                  }
+                                wx.setStorageSync('contract_id', contract_id);
+                                wx.setStorageSync('device_number', device_number); //device_number
+                                wx.navigateTo({
+                                  url: '../openDoor/openDoor',
                                 })
                       }else{ //没签约
                        // sessionRes.data.data
@@ -146,8 +124,8 @@ Page({
    //联系客服
    callService: function() {
      wx.navigateTo({
-       //url: '../customer/customer'
-      url: '../openDoor/openDoor'
+      url: '../customer/customer'
+      // url: '../openDoor/openDoor'
      })
    },
    //个人中心

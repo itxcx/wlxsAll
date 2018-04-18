@@ -21,7 +21,7 @@ Page({
   getOrderList: function(status, page) {
     var session_key = wx.getStorageSync('session_key');
     wx.request({
-      url: 'https://weilaixiansen.com/login/getorderlist',
+      url: 'https://weilaixiansen.com/login/getorderdetail',
       method: 'GET',
       data: {
         'session_key': session_key,
@@ -29,47 +29,52 @@ Page({
         'page': page
       },
       success: res => {
+        console.log(res);
+       var Data = [];
+        if (res.data.data != null) {
+          Data = res.data.data.data;
+        }
         if (res.data.code == 0) { //返回数据
-          if (res.data.data.data.length > 0 && res.data.data.data.length == 5) { //订单数大于0等于5
+          if (Data.length > 0 && Data.length == 5) { //订单数大于0等于5
             if (status == 0) {//全部
               this.setData({
-                allList: res.data.data.data,
+                allList: Data,
                 allTipTitle: '上滑获取更多数据',
                 canGetAllPage: page +1
               })
               console.log(this.data.allList);
             } else if (status == 7) {//未支付
               this.setData({
-                unpaid: res.data.data.data,
+                unpaid: Data,
                 unpaidTipTitle: '上滑获取更多数据',
                 canGetUnpaidPage: page + 1
               })
             } else {//已退款
               this.setData({
-                refunded: res.data.data.data,
+                refunded: Data,
                 refundedTipTitle: '上滑获取更多数据',
                 canGetRefundedPage: page + 1
               })
             }
-          } else if (res.data.data.data.length > 0 && res.data.data.data.length < 5) { //订单数大于0且小于5
+          } else if (Data.length > 0 && Data.length < 5) { //订单数大于0且小于5
             console.log('<5')
             if (status == 0) {//全部
               this.setData({
-                allList: res.data.data.data,
+                allList: Data,
                 allTipTitle: '这是底线了~'
               })
             } else if (status == 7) {//未支付
               this.setData({
-                unpaid: res.data.data.data,
+                unpaid: Data,
                 unpaidTipTitle: '这是底线了~'
               })
             } else {//已退款
               this.setData({
-                refunded: res.data.data.data,
+                refunded: Data,
                 refundedTipTitle: '这是底线了~'
               })
             }
-          } else if (res.data.data.data.length == 0) {
+          } else if (Data.length == 0) {
             console.log('=0');
             if (status == 0) {//全部
               this.setData({
@@ -196,7 +201,7 @@ Page({
   getMoreData: function(status, page) {
     var session_key = wx.getStorageSync('session_key');
     wx.request({
-       url: 'https://weilaixiansen.com/login/getorderlist',
+       url: 'https://weilaixiansen.com/login/getorderdetail',
       method: 'GET',
       data: {
         'session_key': session_key,
@@ -211,8 +216,12 @@ Page({
          *  
          * ***/ 
         if (res.data.code == 0) { //返回数据
-            var getData = res.data.data.data;
-            console.log(getData);
+        var getData = [];
+          if (res.data.data != null) {
+            getData = res.data.data.data;
+          }
+            // var getData = res.data.data.data;
+            // console.log(getData);
             if(status == 0) { //全部数据
               if (getData.lenght == 5) {
                 console.log('other =5')

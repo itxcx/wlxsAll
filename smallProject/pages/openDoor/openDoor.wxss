@@ -95,3 +95,101 @@
 .accountBtn text:nth-of-type(2) {
   margin-left: 10vw;
 }
+/* error  */
+.openError{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.errorImg{
+  margin-top: 5vh;
+  width: 100vw;
+  height: 35vh;
+  text-align: center;
+}
+.errorImg image{
+  height: 35vh;
+  width: 35vh;
+}
+.errorContent{
+  padding: 3vh 5vw;
+  text-align: center;
+}
+.contentTitle{
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 3vh;
+}
+.contentItem{
+  display: block;
+  font-size: 0.7rem;
+}
+.openAgain{
+  width: 100vw;
+  height: 20vh;
+  text-align: center;
+  margin-top: 4vh;
+}
+.openAgain image{
+  width: 20vh;
+  height: 20vh;
+}
+.repair{
+  width: 100vw;
+  margin-top: 5vh;
+  text-align: center;
+}
+.repair text{
+  display: block;
+  border: 1px solid #66D173;
+  width: 30vw;
+  margin-left: 35vw;
+  padding: 1vh 0;
+  border-radius: 20px;
+  color: #66D173;
+  font-size: 0.85rem;
+}
+/* 未支付订单  */
+.unpaid{
+  width: 100vw;
+  height: 100vh;
+}
+.unpaidImg {
+  width: 100vw;
+  height: 35vh;
+  margin-top: 5vh;
+  text-align: center;
+}
+.unpaidImg image{
+  height: 35vh;
+  width: 35vh;
+}
+.unpaidContent text:nth-of-type(1){
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 4vh;
+}
+.unpaidContent text:nth-of-type(2){
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  margin-top: 2vh;
+}
+.checkDetail{
+  width: 100vw;
+  text-align: center;
+  margin-top: 8vh;
+}
+.checkDetail text{
+  display: block;
+  width: 70vw;
+  margin-left: 15vw;
+  background: #66D173;
+  padding: 1vh 0;
+  color: #ffffff;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}

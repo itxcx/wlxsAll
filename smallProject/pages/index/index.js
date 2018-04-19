@@ -21,8 +21,8 @@ Page({
      indicatorActiveColor: '#ffffff',
      autoplay: true,
      circular: true,
-     previous: '20px',
-     next: '20px',
+     previous: '15px',
+     next: '25px',
      interval: 8000, //自动切换时间间隔
      duration: 1000, //滑动动画时长
      contentImg: '/images/index/content.png',

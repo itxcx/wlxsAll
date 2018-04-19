@@ -4,9 +4,9 @@
   <swiper indicator-dots="{{indicatorDots}}"  indicator-color="{{indicatorColor}}"  indicator-active-color="{{indicatorActiveColor}}"
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" previous-margin="{{previous}}" next-margin="{{next}}">  
         <block wx:for="{{imgUrls}}" wx:key="unique" >  
-          <swiper-item>  
+          <swiper-item >  
             <navigator url="{{item.link}}" hover-class="navigator-hover">  
-              <image src="{{item.url}}" class="slide-image"/> 
+                <image src="{{item.url}}" class="slide-image"/>
             </navigator>   
           </swiper-item>  
         </block>  

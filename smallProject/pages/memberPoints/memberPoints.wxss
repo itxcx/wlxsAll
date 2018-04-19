@@ -140,17 +140,29 @@
 }
 
 .ruleHideBtn{
-  width: 70vw;
-  height: 7vh;
   position: absolute;
+  width: 100vw;
+  height: 10vh;
   bottom: 12vh;
-  left: 15vw;
   color: #ffffff;
-  border-radius: 20px;
   text-align: center;
   font-size: 0.85rem;
-  line-height: 7vh;
-  background: #66D173;
+}
+.ruleHideBtn image{
+  width: 80vw;
+  height: 12vh;
+}
+.ruleHideBtn text{
+  display: block;
+  width: 100vw;
+  height: 9vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  line-height: 9vh;
+  z-index: 99;
+  font-weight: 600;
 }
 .bg{
   width: 100vw;

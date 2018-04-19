@@ -125,7 +125,7 @@ Page({
    callService: function() {
      wx.navigateTo({
       url: '../customer/customer'
-      // url: '../openDoor/openDoor'
+     // url: '../openDoor/openDoor'
      })
    },
    //个人中心

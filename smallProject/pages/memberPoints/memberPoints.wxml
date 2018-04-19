@@ -40,6 +40,9 @@
                      </text>
                 </view>
             </view>
-            <view class="ruleHideBtn" bindtap="hidePointRule">朕知道了</view>
+            <view class="ruleHideBtn" bindtap="hidePointRule">
+                <image src="../../images/memberPoints/button_bg.png"></image>
+                <text>朕知道了</text>
+            </view>
        </view> 
 </view>

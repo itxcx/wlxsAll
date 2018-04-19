@@ -8,17 +8,17 @@
 }
 textarea{
   width: 100%;
-   border-bottom: 2px solid #eeeeee;
+  border-bottom: 2px solid #eeeeee;
   height: 20vh;
   font-size: 0.95rem;
 }
 .placeholder{
-  font-size: 0.85rem;
+  font-size: 0.95rem;
 }
 .inputLength{
   margin: 0.5vh 0;
   text-align: right;
-  color: #eeeeee;
+  color: #555;
 }
 .inputLength text:nth-of-type(1){
   color: #66D173;
@@ -28,27 +28,53 @@ textarea{
 }
 .addFileBtn{
   display: inline-block;
-  width: 28vw;
-  height: 28vw;
+  width: 25vw;
+  height: 25vw;
+  margin-left: 2vw;
+}
+.imageView{
+ display: inline-block;
+  margin: 1vh 2vw;
+  border-radius: 4px;
+  position: relative;
 }
 .imageItem{
-  display: inline-block;
-  width: 27vw;
-  height: 27vw;
-  margin: 1vh 1.2vw;
-  border: 1px solid #f2f2f2;
-  border-radius: 4px;
+  width: 25vw;
+  height: 25vw;
+ 
+}
+.imgDel{
+  position: absolute;
+  right: -20px;
+  top: -15px;
+  display: block;
+  width: 90rpx;
+  height: 80rpx;
+  z-index: 99;
 }
 .confirmBtn{
-  width: 70vw;
-  margin: 4vh 15vw;
-  background: #66D173;
-  border-radius: 20px;
+  width: 94vw;
+  height: 12vh;
   text-align: center;
-  padding: 1.5vh 0;
   font-size: 0.95rem;
   color: #ffffff;
-  box-shadow: 2px 5px 15px #999999;
+  position: relative;
+}
+.confirmBtn image{
+  display: block;
+  width: 80vw;
+  height: 12vh;
+  margin-left: 7vw;
+}
+.confirmBtn text{
+  display: block;
+  width: 100%;
+  height: 9vh;
+  line-height: 9vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
 }
 .feedbackTip{
   font-size: 0.75rem;
@@ -58,4 +84,10 @@ textarea{
 }
 .feedbackTip text{
   display: block;
+}
+.show{
+  display: block;
+}
+.hide{
+  display: none;
 }

@@ -6,10 +6,17 @@
           <text>{{allowInput}}</text>
       </view>
       <view class="addFile">
-          <image wx:for="{{imgPath}}" wx:key="unique" src="{{item}}" class="imageItem"></image>
-         <image bindtap="addFile"  src="../../images/feedback/addFile.jpg" class="imageItem"></image>
+          <view wx:for="{{imgPath}}" wx:key="unique" class="imageView">
+              <image src="{{item}}" class="imageItem" bindlongtap="deleteImg"></image>
+              <image src="../../images/feedback/deleteIcon.png" class="imgDel {{deletIcon ? 'show' : 'hide'}}" wx:for-index="index" data-index="{{index}}" bindtap="confirmDel"></image>
+          </view>
+         
+         <image bindtap="addFile"  src="../../images/feedback/addFile.png" class="addFileBtn"></image>
       </view>
-      <view class="confirmBtn">提交</view>
+      <view class="confirmBtn">
+          <image src="../../images/memberPoints/button_bg.png"></image>
+          <text>提交</text>
+      </view>
       <view class="feedbackTip">
             <text>提交成功后，客服会在工作日48小时内联系您，请您保持电话</text>
             <text>畅通。(如您不希望回访，可在意见中标注无需回访)</text>

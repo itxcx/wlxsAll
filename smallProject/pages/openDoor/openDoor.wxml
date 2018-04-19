@@ -41,8 +41,6 @@
                   <image src="../../images/openDoor/open_success.png"></image>
             </view>
             <view class="detailInfo">
-                    <text>￥{{detailInfo.amount}}</text>
-                    <text>优惠: -￥{{detailInfo.discount}}</text>
                     <text>本次购物已完成，欢迎下次消费</text>
             </view>
             <view class="accountBtn">

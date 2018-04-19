@@ -157,8 +157,23 @@ Page({
     }
   },
   //去支付
-  goPay: function() {
-    console.log(1);
+  goPay: function (e) {
+    var order_id = this.data.unpaid[0].order_id;
+    wx.request({
+      url: 'https://weilaixiansen.com/login/pay',
+      method: 'GET',
+      data: {
+        order_id: order_id
+      },
+      success: function (res) {
+        console.log(res);
+        if (res.data.code == 0) {
+          console.log('支付成功');
+        } else {
+          console.log('支付失败');
+        }
+      }
+    })
   },
   //加载更多方法
   searchScrollLower: function() {

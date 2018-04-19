@@ -1,8 +1,0 @@
-{
-  "navigationBarBackgroundColor": "#66D173",
-  "navigationBarTextStyle": "white",
-  "backgroundColor": "#F1F1F1",
-  "navigationBarTitleText": "有订单未付款",
-  "backgroundTextStyle": "light",
-  "disableScroll": true
-}

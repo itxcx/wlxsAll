@@ -39,9 +39,9 @@
                 <!-- 待支付 -->  
                  <swiper-item>  
                  <scroll-view scroll-y="true" style="height:100vh;" bindscrolltolower="searchScrollLower">
-                  <view wx:for="{{unpaid}}" wx:key="unique" wx:for-item="item" class="items" wx:for-index="index" data-index="{{index}}" bindtap="showDetailMsg">
+                  <view wx:for="{{unpaid}}" wx:key="unique" wx:for-item="item" class="items" >
                       <view class="itemImg"><image src="../../images/purchases/wlxs_logo.png"></image></view>
-                      <view class="itemContent">
+                      <view class="itemContent" wx:for-index="index" data-index="{{index}}" bindtap="showDetailMsg">
                               <view class="itemStatus">
                                 <text>未来鲜森   {{item.address}}</text>
                                 <text style="float: right">{{item.purType}}</text>
@@ -60,11 +60,11 @@
                                 <view class="purItemCount">
                                       <text>共{{item.countNum}}件商品</text>
                                       <text style="margin-left: 15px;">实付</text>
-                                      <text style="color: #000;font-size: 0.85rem;">￥{{item.real_amount}}</text>
+                                      <text style="color: #000;font-size: 1.1rem;">￥{{item.real_amount}}</text>
                                 </view>
-                                <view class="goPay">
-                                      <text bindtap="goPay">去支付</text>
-                                </view>
+                      </view>
+                      <view class="goPay">
+                            <text bindtap="goPay">去支付</text>
                       </view>
                   </view>  
                    <view class="itemBottomTip">{{unpaidTipTitle}}</view>
@@ -101,6 +101,5 @@
                    <view class="itemBottomTip">{{refundedTipTitle}}</view>
                    </scroll-view> 
                 </swiper-item>  
-                
             </swiper>  
 </view>

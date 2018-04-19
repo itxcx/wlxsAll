@@ -10,7 +10,7 @@ Page({
          url: '/images/index/banner1.jpg'
        }, {
          link: '',
-         url: '/images/index/banner2.jpg'
+         url: '/images/index/active2.png'
        }, {
          link: '',
          url: '/images/index/banner3.jpg'
@@ -20,6 +20,9 @@ Page({
      indicatorColor: 'rgba(0, 0, 0, 1)',
      indicatorActiveColor: '#ffffff',
      autoplay: true,
+     circular: true,
+     previous: '20px',
+     next: '20px',
      interval: 8000, //自动切换时间间隔
      duration: 1000, //滑动动画时长
      contentImg: '/images/index/content.png',
@@ -124,8 +127,8 @@ Page({
    //联系客服
    callService: function() {
      wx.navigateTo({
-      url: '../customer/customer'
-     // url: '../openDoor/openDoor'
+     url: '../customer/customer'
+      //  url: '../paid/paid'
      })
    },
    //个人中心

@@ -56,10 +56,10 @@ swiper-item{
   overflow: auto; 
 }
 swiper-item .items{
-  margin-bottom: 2vh;
+  margin: 1vh 0 2vh 0;
   background: #ffffff;
   overflow: hidden; 
-  padding: 2vh 4vw 0 4vw;
+  padding: 2vh 4vw 1vh 4vw;
   font-size: 0.95rem;
   color: #6E6E6E;
 }
@@ -102,7 +102,7 @@ swiper-item .itemContent{
 }
 
 .goPay{
-  padding: 2vh 0 0.5vh 0;
+  padding: 0 0 0.5vh 0;
   text-align: right;
   color: #66D173;
   font-size: 0.75rem;

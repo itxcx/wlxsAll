@@ -54,9 +54,7 @@
                   <image src="../../images/openDoor/open_fail.png"></image>
             </view>
             <view class="detailInfo">
-                    <text>￥{{detailInfo.amount}}</text>
-                    <text>优惠: -￥{{detailInfo.discount}}</text>
-                    <text>本次购物扣款失败，请尽快完成扣款</text>
+                    <text>本次购物扣款失败，请尽快完成付款</text>
             </view>
             <view class="accountFailBtn">
                   <text bindtap="goPay">去付款</text>

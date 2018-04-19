@@ -24,7 +24,6 @@ Page({
           'user_iv': userInfo.user_iv,
           'user_encryptedData': userInfo.user_encryptedData,
           'phone_iv':  e.detail.iv ,
-          // 'phone_iv':  '',
           'phone_encryptedData': e.detail.encryptedData,
           'code': code
           },

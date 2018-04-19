@@ -91,6 +91,7 @@ Page({
   },
   //socket方法
   socketBack: function (that,sid) {
+    console.log(sid);
     console.log('socket begin');
     //创建websocket连接
     wx.connectSocket({
@@ -108,9 +109,12 @@ Page({
     //服务器数据
     wx.onSocketMessage(function (res) {
       console.log(res);
+      res.data = JSON.parse(res.data);
+      console.log(typeof res.data);
       console.log('收到服务器内容：' + res.data);
+      console.log(res.data.code);
       wx.setStorageSync('order_id', res.data.order_id);
-      if(res.data.status ==4 ) {//支付成功
+      if(res.data.status == 4 ) {//支付成功
         //请求数据订单信息
         that.setData({
           openning: false, //开门中
@@ -122,7 +126,7 @@ Page({
           tipContent: true, //提示内容
           bottomBanner: true, //底部图片
         })
-      } else {//支付失败
+      } else if(res.data.status == 7) {//支付失败
         that.setData({
           openning: false, //开门中
           openSuccess: false, //开门成功
@@ -133,6 +137,8 @@ Page({
           tipContent: true, //提示内容
           bottomBanner: true, //底部图片
         })
+      }else{
+        console.log(1)
       }
     })
     wx.onSocketClose(function (res) {
@@ -235,6 +241,7 @@ Page({
                         tipContent: true, //提示内容
                         bottomBanner: true, //底部图片
                       })
+                      console.log(session_key);
                       wx.request({
                         url: 'https://weilaixiansen.com/login/socketRegist',
                         data: { session_key: session_key },
@@ -272,6 +279,12 @@ Page({
           })
         }
       }
+    })
+  },
+  //未支付去查看订单
+  checkDetail: function() {
+    wx.navigateTo({
+      url: '../purchases/purchases',
     })
   },
   //查看订单

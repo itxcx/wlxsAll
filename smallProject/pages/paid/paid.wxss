@@ -1,0 +1,38 @@
+.show{
+  display: block;
+}
+.hide{
+  display: none;
+}
+.paid{
+  width: 100vw;
+  height: 100vh;
+}
+.success{
+  width: 100vw;
+  text-align: center;
+  padding: 5vh 0;
+}
+.success image{
+  width: 15vw;
+  height: 17vw;
+}
+.success text{
+  margin-top: 5vh;
+  display: block;
+  text-align: center;
+}
+.error{
+  width: 100vw;
+  text-align: center;
+  padding: 5vh 0;
+}
+.error image{
+  width: 15vw;
+  height: 17vw;
+}
+.error text{
+  margin-top: 5vh;
+  display: block;
+  text-align: center;
+}

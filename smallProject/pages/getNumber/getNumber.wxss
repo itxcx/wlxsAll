@@ -42,12 +42,12 @@
 }
 .dealList{
   margin: 3vh 4vw;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   border-top: 1px solid #f2f2f2;
   padding: 3vh 4vw;
 }
 .dealTitle{
-  font-size: 0.85rem;
+  font-size: 1rem;
   display: block;
   text-align: center;
   font-weight: 600;

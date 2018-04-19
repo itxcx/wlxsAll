@@ -1,0 +1,10 @@
+<view class="paid">
+        <view class="success {{success ? 'show' : 'hide'}}">
+              <image src="../../images/openDoor/open_success.png"></image>
+              <text>支付成功</text>
+        </view>
+        <view class="error {{error ? 'show' : 'hide'}}">
+              <image src="../../images/openDoor/open_fail.png"></image>
+              <text>支付失败</text>
+        </view>
+</view>

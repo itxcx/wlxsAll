@@ -33,15 +33,17 @@ Page({
      var scope_userInfo = wx.getStorageSync('scope_userInfo');
      var userMessage = wx.getStorageSync('userInfo'); //用户信息
      var getPhone = wx.getStorageSync('userPhone'); //手机号
-     console.log(scope_userInfo);
+     var session_key = wx.getStorageSync('session_key');
+     console.log('用户授权：'+scope_userInfo);
      console.log(userMessage);
      console.log('手机号' +getPhone);
-     if (scope_userInfo == 'true' && userMessage && getPhone) {
+     console.log('session_key：'+ session_key);
+     if (scope_userInfo == 'true' && userMessage && getPhone && session_key) {
        console.log('用户信息和手机号已经获得!');
        this.setData({
          fail: true
        })
-     } else if (scope_userInfo == 'true' && !userMessage&& !getPhone) {
+     } else if ( !userMessage || !getPhone || !session_key) {
        wx.getUserInfo({
          success: res1 => {
            var userInfo = {
@@ -145,13 +147,17 @@ Page({
      var scope_userInfo = wx.getStorageSync('scope_userInfo');
      var userMessage = wx.getStorageSync('userInfo'); //用户信息
      var getPhone = wx.getStorageSync('userPhone'); //手机号
+     var session_key = wx.getStorageSync('session_key');
      console.log(getPhone);
      console.log(userMessage);
+     console.log(scope_userInfo);
+     console.log(session_key);
      //如果没有用户信息和手机号，提示授权用户信息，授权成功跳转至获取手机号页面
-     if ((scope_userInfo == 'false' && userMessage && !getPhone) || (scope_userInfo == 'false' && !userMessage && !getPhone) || (scope_userInfo == 'true' && !userMessage && !getPhone)) {
+     if ((scope_userInfo == 'false' && userMessage && !getPhone) || (scope_userInfo == 'false' && !userMessage && !getPhone) || (scope_userInfo == 'true' && !userMessage && !getPhone) || (scope_userInfo == 'false' && userMessage && getPhone)) {
        console.log('都没有获取到,去获取');
         var userMsg = res.detail;
-        if (userMsg.rawData) { //获取授权成功
+        console.log(res.detail);
+        if (userMsg.userInfo && userMsg.userInfo.nickName) { //获取授权成功
           wx.navigateTo({
             url: '../getNumber/getNumber'
           })
@@ -172,6 +178,10 @@ Page({
          wx.navigateTo({
            url: '../getNumber/getNumber'
          })
+     } else if (getPhone && userMessage && scope_userInfo == 'true' && session_key) {
+       wx.navigateTo({
+         url: '../getNumber/getNumber'
+       })
      } 
    }
 })

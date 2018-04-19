@@ -69,7 +69,7 @@
               <text>您有1笔订单未付款</text>
               <text>请先付款后重新扫码开门购物</text>
         </view>
-        <view class="checkDetail">
+        <view class="checkDetail" bindtap="checkDetail">
               <text>查看订单</text>
         </view>
     </view>

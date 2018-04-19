@@ -1,4 +1,4 @@
-//二维码链接内容会以参数q的形式带给页面，在onLoad事件中提取"q"参数并自行UrlDecode一次，即可获取原二维码的完整内容。
+
 App({
   onLaunch: function () {
     var global_this = this;
@@ -8,13 +8,13 @@ App({
         console.log('login');
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
        if(resss.code){ //临时会话code
-            console.log(resss.code);
+         console.log('临时会话code'+resss.code);
             wx.setStorageSync("code", resss.code);
             wx.getSetting({    //检查授权，获取用户信息
             success: ress => {
               console.log(ress);
               var userInfo = wx.getStorageSync('userInfo');
-              if (ress.authSetting['scope.userInfo'] && !userInfo) {
+              if (ress.authSetting['scope.userInfo']) {
                 console.log('userInfo is true');
                 wx.setStorageSync('scope_userInfo', 'true');
                 // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
@@ -47,7 +47,7 @@ App({
                     }
                   },
                 })
-              } else if (!ress.authSetting['scope.userInfo'] && !userInfo) {
+              } else if (!ress.authSetting['scope.userInfo'] || !userInfo) {
                 console.log('userInfo is false');
                 wx.setStorageSync('scope_userInfo', 'false');
                 //没有授权

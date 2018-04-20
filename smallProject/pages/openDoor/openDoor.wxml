@@ -16,11 +16,15 @@
             <view class="openSuccessContent">
                   <text>开门成功</text>
             </view>
-            <!-- <view class=""></view> -->
       </view>
       <!-- 结算中  -->
-      <view class="{{close ? 'show' : 'hide'}}">
-            结算中
+      <view class="openSuccess {{close ? 'show' : 'hide'}}">
+            <view class="openSuccessImg">
+                  <image src="../../images/openDoor/close.gif"></image>
+            </view>
+            <view class="openSuccessContent">
+                  <text>已关门，结算中...</text>
+            </view>
       </view>
        <!-- 开门失败  -->
        <view class="openError {{openError ? 'show' : 'hide'}}">
@@ -47,12 +51,27 @@
             </view>
             <view class="detailInfo">
                     <text>￥{{detailAmount}}</text>
-                    <text>-￥{{detailDiscount}}</text>
+                    <text>优惠 -￥{{detailDiscount}}</text>
                     <text>本次购物已完成，欢迎下次消费</text>
             </view>
             <view class="accountBtn">
                   <text bindtap="againScan">再次购买</text>
                   <text bindtap="checkOrder">查看订单</text>
+            </view>
+      </view>
+      <!-- 没有购买  -->
+      <view class="account {{account ? 'show' : 'hide'}}">
+            <view class="accountImg">
+                  <image src="../../images/openDoor/open_success.png"></image>
+            </view>
+            <view class="detailInfo">
+                    <text>￥{{detailAmount}}</text>
+                    <text></text>
+                    <text>本次购物已完成，欢迎下次消费</text>
+            </view>
+            <view class="accountBtn">
+                  <text bindtap="againScan">再次购买</text>
+                  <text bindtap="checkOrder">完成</text>
             </view>
       </view>
       <!-- 订单信息失败  -->

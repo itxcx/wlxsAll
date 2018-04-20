@@ -65,6 +65,15 @@
   width: 10vh;
   height: 11vh;
 }
+.detailInfo text:nth-of-type(1){
+    display: block;
+    font-size: 1.5rem;
+}
+.detailInfo text:nth-of-type(2){
+    display: block;
+    font-size: 0.85rem;
+    color: #66D173;
+}
 .detailInfo text:nth-of-type(3){
   display: block;
   font-size: 0.95rem;
@@ -114,7 +123,7 @@
 }
 .contentItem{
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
 }
 .openAgain{
   width: 100vw;

@@ -166,11 +166,16 @@ Page({
         order_id: order_id
       },
       success: function (res) {
-        console.log(res);
         if (res.data.code == 0) {
-          console.log('支付成功');
+          wx.setStorageSync('success', 'success');
+          wx.navigateTo({
+            url: '../paid/paid',
+          })
         } else {
-          console.log('支付失败');
+          wx.setStorageSync('success', 'error');
+          wx.navigateTo({
+            url: '../paid/paid',
+          })
         }
       }
     })

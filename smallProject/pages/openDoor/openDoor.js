@@ -2,12 +2,17 @@ Page({
   data: {
     openning: true, //开门中
     openSuccess: false, //开门成功
+    close: false, //关门结算
     account: false, //结算成功
     accountFail: false, //结算失败
     openError: false,//开门失败
     unpaid: false, //未支付订单
+    noPay: false, //没有购买
     tipContent: true, //提示内容
     bottomBanner: true, //底部图片
+    isRequest: true, //轮询
+    detailAmount: '', //订单金额
+    detailDiscount: ''//折扣金额
   },
 
   //监听页面加载
@@ -16,19 +21,10 @@ Page({
     var device_number = wx.getStorageSync('device_number');
     var contract_id = wx.getStorageSync('contract_id');
     var that = this;
-    // wx.request({
-    //   url: 'https://weilaixiansen.com/login/socketRegist',
-    //   data: { session_key: session_key },
-    //   success: (res) => {
-    //     console.log('--------------------------');
-    //     console.log(res);
-    //     if (res.data.code == 0) {
-
-    //       var sid = res.data.data.session_id;
-    //       this.socketBack(that, sid);
-    //     }
-    //   }
-    // })
+    console.log('socket start!');
+    console.log('session_key:' + session_key);
+    console.log('socket end!');
+    //返回订单id
     wx.request({
       url: 'https://weilaixiansen.com/login/shop',
       method: 'GET',
@@ -45,10 +41,12 @@ Page({
          that.setData({
            openning: false, //开门中
            openSuccess: false, //开门成功
+           close: false, //关门结算
            account: false, //结算成功
            accountFail: false, //结算失败
            openError: true,//开门失败
            unpaid: false, //未支付订单
+           noPay: false, //没有购买
            tipContent: false, //提示内容
            bottomBanner: false, //底部图片
          })
@@ -56,94 +54,122 @@ Page({
          that.setData({
            openning: false, //开门中
            openSuccess: false, //开门成功
+           close: false, //关门结算
            account: false, //结算成功
            accountFail: false, //结算失败
            openError: false,//开门失败
            unpaid: true, //未支付订单
+           noPay: false, //没有购买
            tipContent: false, //提示内容
            bottomBanner: false, //底部图片
          })
         } else if (openRes.data.code == 0) {//开门成功
+          var order_id = openRes.data.data.order_id;
+          console.log(order_id);
           that.setData({
             openning: false, //开门中
             openSuccess: true, //开门成功
+            close: false, //关门结算
             account: false, //结算成功
             accountFail: false, //结算失败
             openError: false,//开门失败
             unpaid: false, //未支付订单
+            noPay: false, //没有购买
             tipContent: true, //提示内容
             bottomBanner: true, //底部图片
           })
-          wx.request({
-            url: 'https://weilaixiansen.com/login/socketRegist',
-            data: { session_key: session_key },
-            success: (res) => {
-              //console.log(res);
-              if (res.data.code == 0) {
-                var sid = res.data.data.session_id
-                that.socketBack(that, sid);
-              }
+          var timer = setInterval(function() {
+            that.getCode(order_id, that);
+            if (!that.data.isRequest) {
+              clearInterval(timer);
             }
-          })
+          }, 1000)
         }
       }
     })
   },
-  //socket方法
-  socketBack: function (that,sid) {
-    console.log(sid);
-    console.log('socket begin');
-    //创建websocket连接
-    wx.connectSocket({
-      //url: 'wss://wss.weilaixiansen.com/' + session_id
-      url: 'wss://wss.weilaixiansen.com?' + sid
-    })
-    //连接打开
-    wx.onSocketOpen(function (res) {
-      console.log('WebSocket连接已打开！');
-    })
-    //连接打开失败
-    wx.onSocketError(function (res) {
-      console.log('WebSocket连接打开失败，请检查！');
-    })
-    //服务器数据
-    wx.onSocketMessage(function (res) {
-      console.log(res);
-      res.data = JSON.parse(res.data);
-      console.log(typeof res.data);
-      console.log('收到服务器内容：' + res.data);
-      console.log(res.data.code);
-      wx.setStorageSync('order_id', res.data.order_id);
-      if(res.data.status == 4 ) {//支付成功
-        //请求数据订单信息
-        that.setData({
-          openning: false, //开门中
-          openSuccess: false, //开门成功
-          account: true, //结算成功
-          accountFail: false, //结算失败
-          openError: false,//开门失败
-          unpaid: false, //未支付订单
-          tipContent: true, //提示内容
-          bottomBanner: true, //底部图片
-        })
-      } else if(res.data.status == 7) {//支付失败
-        that.setData({
-          openning: false, //开门中
-          openSuccess: false, //开门成功
-          account: false, //结算成功
-          accountFail: true, //结算失败
-          openError: false,//开门失败
-          unpaid: false, //未支付订单
-          tipContent: true, //提示内容
-          bottomBanner: true, //底部图片
-        })
-      }else{
-        console.log(1)
-      }
-    })
-    wx.onSocketClose(function (res) {
-      console.log('WebSocket 已关闭！');
-    })
+  //轮询方法
+  getCode: function(order_id, that) {
+    console.log(order_id);
+    var isRequest = that.data.isRequest;
+    console.log(isRequest);
+      if(isRequest) {
+          wx.request({
+            url: 'https://weilaixiansen.com/login/getOrderTagsDetail',
+            method: 'GET',
+            data: {
+             order_id: order_id
+            },
+            success: function(res) {//请求成功
+                console.log(res);
+                if(res.data.data.status == 3) {//关门结算
+                    that.setData({
+                      openning: false, //开门中
+                      openSuccess: false, //开门成功
+                      close: true, //关门结算
+                      account: false, //结算成功
+                      accountFail: false, //结算失败
+                      openError: false,//开门失败
+                      unpaid: false, //未支付订单
+                      noPay: false, //没有购买
+                      tipContent: true, //提示内容
+                      bottomBanner: true, //底部图片
+                    })
+                } else if (res.data.data.status == 4) {//支付成功
+                  that.setData({
+                    openning: false, //开门中
+                    openSuccess: false, //开门成功
+                    close: false, //关门结算
+                    account: true, //结算成功
+                    accountFail: false, //结算失败
+                    openError: false,//开门失败
+                    unpaid: false, //未支付订单
+                    tipContent: true, //提示内容
+                    noPay: false, //没有购买
+                    bottomBanner: true, //底部图片
+                    detailAmount: res.data.data.amount, //订单金额
+                    detailDiscount: res.data.data.discount//折扣金额
+                  })
+                  that.data.isRequest = false;
+                } else if (res.data.data.status== 7) {//支付失败
+                  that.setData({
+                    openning: false, //开门中
+                    openSuccess: false, //开门成功
+                    close: false, //关门结算
+                    account: false, //结算成功
+                    accountFail: true, //结算失败
+                    openError: false,//开门失败
+                    unpaid: false, //未支付订单
+                    noPay: false, //没有购买
+                    tipContent: true, //提示内容
+                    bottomBanner: true, //底部图片
+                    detailAmount: res.data.data.amount, //订单金额
+                    detailDiscount: res.data.data.discount//折扣金额
+                  })
+                  that.data.isRequest = false;
+                }else if(res.data.data.status == 10) {//开门没有购买
+                  that.setData({
+                    openning: false, //开门中
+                    openSuccess: false, //开门成功
+                    close: false, //关门结算
+                    account: false, //结算成功
+                    accountFail: true, //结算失败
+                    openError: false,//开门失败
+                    unpaid: false, //未支付订单
+                    noPay: true, //没有购买
+                    tipContent: true, //提示内容
+                    bottomBanner: true, //底部图片
+                    detailAmount: 0, //订单金额
+                    detailDiscount: 0//折扣金额
+                  })
+                  that.data.isRequest = false;
+                }
+            },
+            fail: function() {
+
+            }
+          })
+      }else{}
   },
   //客服电话
   callService: function () {
@@ -198,6 +224,7 @@ Page({
             success: function (sessionRes) {
               if (sessionRes.data.code == 0) { //如果已经签约
                 var contract_id = sessionRes.data.contract_id;
+
                 wx.request({
                   url: 'https://weilaixiansen.com/login/shop',
                   method: 'GET',
@@ -242,17 +269,6 @@ Page({
                         bottomBanner: true, //底部图片
                       })
                       console.log(session_key);
-                      wx.request({
-                        url: 'https://weilaixiansen.com/login/socketRegist',
-                        data: { session_key: session_key },
-                        success: (res) => {
-                          //console.log(res);
-                          if (res.data.code == 0) {
-                            var sid = res.data.data.session_id
-                            that.socketBack(that, sid);
-                          }
-                        }
-                      })
                     }
                   }
                 })

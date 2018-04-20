@@ -1,31 +1,4 @@
 .pinConDet{
-  padding: 30rpx;
-}
-.pinConDet .title{
-  color: #3491f0;
-  font-size: 15px;
-  height: 100rpx;
-  line-height: 100rpx;
-}
-.pinConDet .tabBox{
-  border-bottom: 1px solid #3491f0;
-}
-.pinConDet .tab-item{
-  font-size: 15px;
-  display:inline-block;
-  width: 120rpx;
-  margin-left: 20rpx;
-  background: #e9f2fa;
-  color: #3491f0;
-  height: 60rpx;
-  line-height: 60rpx;
-  text-align: center;
-}
-.pinConDet .active{
-  background: #3491f0;
-  color: #fff;
-}
-.tab-content swiper-item view{
-  padding: 30rpx;
-  font-size: 15px;
+  width: 100vw;
+  height: 100vh;
 }

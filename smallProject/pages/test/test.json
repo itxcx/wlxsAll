@@ -1,6 +1,6 @@
 {
-  "navigationBarBackgroundColor": "#66D173",
-  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
   "backgroundColor": "#eeeeee",
   "navigationBarTitleText": "测试",
   "backgroundTextStyle": "light"

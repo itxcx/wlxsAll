@@ -10,6 +10,7 @@ Page({
     noPay: false, //没有购买
     tipContent: true, //提示内容
     bottomBanner: true, //底部图片
+
     isRequest: true, //轮询
     detailAmount: '', //订单金额
     detailDiscount: ''//折扣金额
@@ -77,6 +78,7 @@ Page({
             noPay: false, //没有购买
             tipContent: true, //提示内容
             bottomBanner: true, //底部图片
+            isRequest: true, //轮询
           })
           var timer = setInterval(function() {
             that.getCode(order_id, that);
@@ -165,11 +167,11 @@ Page({
                   that.data.isRequest = false;
                 }
             },
-            fail: function() {
-
+            fail: function(error) {
+                console.log(error);
             }
           })
-      }else{}
+      }
   },
   //客服电话
   callService: function () {
@@ -234,9 +236,7 @@ Page({
                     'contract_id': contract_id
                   },
                   success: function (openRes) {//开门
-                    //websocket
                     console.log(openRes);
-                    console.log('--')
                     console.log('open success');
                     if (openRes.data.code == 1) {//开门失败
                       that.setData({
@@ -278,6 +278,7 @@ Page({
                         noPay: false, //没有购买
                         tipContent: true, //提示内容
                         bottomBanner: true, //底部图片
+                        isRequest: true, //轮询
                       })
                       var timer = setInterval(function () {
                         that.getCode(order_id, that);

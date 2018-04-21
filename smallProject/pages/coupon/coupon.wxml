@@ -26,4 +26,5 @@
           <text>有效期：{{item.startDate}}至{{item.endDate}}</text>
       </view>
   </view>
+  <view class="tip">暂时没有可用优惠券</view>
 </view>

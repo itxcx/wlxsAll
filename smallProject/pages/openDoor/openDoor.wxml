@@ -60,7 +60,7 @@
             </view>
       </view>
       <!-- 没有购买  -->
-      <view class="account {{account ? 'show' : 'hide'}}">
+      <view class="account {{noPay ? 'show' : 'hide'}}">
             <view class="accountImg">
                   <image src="../../images/openDoor/open_success.png"></image>
             </view>
@@ -81,7 +81,7 @@
             </view>
             <view class="detailInfo">
                     <text>￥{{detailAmount}}</text>
-                    <text>-￥{{detailDiscount}}</text>
+                    <text>优惠 -￥{{detailDiscount}}</text>
                     <text>本次购物扣款失败，请尽快完成付款</text>
             </view>
             <view class="accountFailBtn">

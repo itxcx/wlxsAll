@@ -1,26 +1,21 @@
-// pages/memberPoints/memberPoints.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
       memberPoints: '556',
       bg: false,
       getPointsList: [
         {
           getType: '购物获得',
-          pointNum:  '+1',
+          pointNum:  '+10',
           getDate: '2018-04-10 12:12:12'
         },
         {
           getType: '购物获得',
-          pointNum: '+2',
+          pointNum: '+20',
           getDate: '2018-04-10 12:12:12'
         },
         {
           getType: '购物获得',
-          pointNum: '+3',
+          pointNum: '+39',
           getDate: '2018-04-10 12:12:12'
         }, {
           getType: '购物获得',
@@ -104,7 +99,6 @@ Page({
         }
       ],
       animationData: {},
-
   },
 
   /**
@@ -125,12 +119,7 @@ Page({
    */
   onShow: function () {
    
-    // setTimeout(function () {
-    //   animation.translate(30).step()
-    //   this.setData({
-    //     animationData: animation.export()
-    //   })
-    // }.bind(this), 1000)
+
   },
 
   /**
@@ -167,6 +156,7 @@ Page({
   onShareAppMessage: function () {
   
   },
+  //动画方法
   //查看积分规则
   showPointRule: function() {
     this.setData({

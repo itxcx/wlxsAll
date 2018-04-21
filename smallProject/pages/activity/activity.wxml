@@ -2,4 +2,5 @@
       <view class="activeItem" wx:for="{{activityList}}" wx:key="unique">
           <image src="{{item.path}}"></image>
       </view>
+      <view class="more">更多活动，敬请期待...</view>
 </view>

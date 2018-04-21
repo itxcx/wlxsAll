@@ -61,22 +61,6 @@ Page({
        })
      }
    },
-  //  // 页面渲染完成
-  //  onReady: function () {
-     
-  //  },
-  //  // 页面显示
-  //  onShow: function () {
-     
-  //  },
-  //   // 页面隐藏
-  //  onHide: function () {
-    
-  //  },
-  //    // 页面关闭
-  //  onUnload: function () {
-   
-  //  },
    //扫码开门
    openDoorScan: function() {
      wx.scanCode({
@@ -95,14 +79,13 @@ Page({
                console.log(sessionRes);
                console.log('-----')
                       if (sessionRes.data.code == 0) { //如果已经签约
-                                var contract_id = sessionRes.data.contract_id;
-                                wx.setStorageSync('contract_id', contract_id);
-                                wx.setStorageSync('device_number', device_number); //device_number
-                                wx.navigateTo({
-                                  url: '../openDoor/openDoor',
-                                })
+                          var contract_id = sessionRes.data.contract_id;
+                          wx.setStorageSync('contract_id', contract_id);
+                          wx.setStorageSync('device_number', device_number); //device_number
+                          wx.navigateTo({
+                            url: '../openDoor/openDoor',
+                          })
                       }else{ //没签约
-                       // sessionRes.data.data
                           wx.navigateToMiniProgram({
                             appId: 'wxbd687630cd02ce1d',
                             path: 'pages/index/index',
@@ -110,9 +93,6 @@ Page({
                             success(res1) {
                               // 成功跳转到签约小程序,异步通知到地址
                               console.log('success')
-                              // wx.navigateBack({
-                              //   delta: 5
-                              // })
                             },
                             fail(res1) {
                               // 未成功跳转到签约小程序
@@ -130,14 +110,11 @@ Page({
    callService: function() {
      wx.navigateTo({
        url: '../customer/customer'
-      //  url: '../test/test'
      })
    },
    //个人中心
    goUserInfo: function() {
-     //this.userInfoHandler();
         wx.navigateTo({
-         //  url: '../test/test'
          url: '../userInfo/userInfo'
         })
    },

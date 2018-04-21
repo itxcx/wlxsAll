@@ -2,10 +2,10 @@ Page({
   data: {
     avatarUrl: '',  //用户头像
     userPhone: '',//用户手机号
-    coupon:'3', //优惠券
+    coupon:'0', //优惠券
     memberPoints:'556' //会员积分
   },
-  //  // 页面初始化 options为页面跳转所带来的参数
+  // 页面初始化 
    onLoad: function (options) {
      var userInfo = wx.getStorageSync('userInfo').userInfo;
      console.log(userInfo);
@@ -17,24 +17,7 @@ Page({
        userPhone: userPhone
      })
    },
-  //  // 页面渲染完成
-  //  onReady: function () {
-
-  //  },
-  //  // 页面显示
-  //  onShow: function () {
-
-  //  },
-  //   // 页面隐藏
-  //  onHide: function () {
-
-  //  },
-  //    // 页面关闭
-  //  onUnload: function () {
-
-  //  },
-
-
+  
   //跳转优惠券页面
    goCoupon: function() {
      wx.navigateTo({

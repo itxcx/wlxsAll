@@ -12,7 +12,7 @@
                       <view class="itemImg"><image src="../../images/purchases/wlxs_logo.png"></image></view>
                       <view class="itemContent">
                               <view class="itemStatus">
-                                <text>未来鲜森   {{item.address}}</text>
+                                 <text>未来鲜森   {{item.address}}</text> 
                                 <text style="float: right">{{item.purType}}</text>
                               </view>
                               <view class="itemTime">

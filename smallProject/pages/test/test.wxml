@@ -1,5 +1,0 @@
-<view class="pinConDet">
-        <button bindtap="socketTest">test</button>  
-       <!-- <button bindtap="test"></button> -->
-       <!-- <web-view src="https://www.weilaixiansen.com/test.html"></web-view>  -->
- </view> 

@@ -33,3 +33,6 @@
     font-size: 0.95rem;
     color: #6a6a6a;
 }
+.cusTop .item:nth-last-of-type(1),  .cusBottom .item:nth-last-of-type(1){
+  border: none;
+}

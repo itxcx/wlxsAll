@@ -112,3 +112,10 @@ swiper-item .itemContent{
   padding: 0.5vh 4vw;
   border-radius: 20px;
 }
+.itemStatus text:nth-of-type(1){
+   display: inline-block;
+   width: 50vw;
+   overflow: hidden;
+   text-overflow:ellipsis;
+   white-space: nowrap;
+}

@@ -57,7 +57,6 @@ Page({
               })
             }
           } else if (Data.length > 0 && Data.length < 5) { //订单数大于0且小于5
-            console.log('<5')
             if (status == 0) {//全部
               this.setData({
                 allList: Data,
@@ -75,7 +74,6 @@ Page({
               })
             }
           } else if (Data.length == 0) {
-            console.log('=0');
             if (status == 0) {//全部
               this.setData({
                 allTipTitle: '暂时没有订单数据'
@@ -131,7 +129,6 @@ Page({
     wx.setStorageSync('currentPage', listType);
     if (listType == 1) {//切换到未付款列表，如果数据为空，并且提示内容不为  '暂时没有订单数据' 时才请求数据
       if (this.data.unpaid.length == 0 && this.data.unpaidTipTitle != '暂时没有订单数据') {
-        console.log('swipe unpaid');
         var page = this.data.canGetUnpaidPage;
         this.getOrderList(7, page);
       }
@@ -190,7 +187,6 @@ Page({
      * ps: 每次请求数据前先判断 canGet 的值，避免多次发送请求，最后一次请求需要做处理
      * *****/ 
      //0 全部   4 是支付成功   7 支付失败      9 退款
-   // console.log(this.data.allList);
    console.log('scroll');
    var currentPage = wx.getStorageSync('currentPage'); //判断当前是哪个分类
    if (currentPage == 0) {
@@ -233,18 +229,14 @@ Page({
          *  根据分类和页数获取数据成功后，判断数据
          *  如果数据长度为5，还可以再一次请求数据，如果返回数据长度小于5，
          *  不能再次请求数据
-         *  
          * ***/ 
         if (res.data.code == 0) { //返回数据
-        var getData = [];
+          var getData = [];
           if (res.data.data != null) {
             getData = res.data.data.data;
           }
-            // var getData = res.data.data.data;
-            // console.log(getData);
             if(status == 0) { //全部数据
               if (getData.lenght == 5) {
-                console.log('other =5')
                     var da = this.data.allList.concat(getData);
                     this.setData({
                       allList: da,
@@ -252,7 +244,6 @@ Page({
                       allTipTitle: '上滑获取更多数据'
                     })
               } else {
-                console.log('other !=5')
                 var da = this.data.allList.concat(getData);
                 this.setData({
                   allList: da,

@@ -13,6 +13,7 @@
                 <view class="getType">
                       <text>{{item.getType}}</text>
                       <text>{{item.getDate}}</text>
+                      <text></text>
                 </view>
                 <!-- 积分 -->
                 <view class="pointNum">{{item.pointNum}}</view>

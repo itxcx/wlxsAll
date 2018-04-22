@@ -3,7 +3,7 @@ Page({
     avatarUrl: '',  //用户头像
     userPhone: '',//用户手机号
     coupon:'0', //优惠券
-    memberPoints:'556' //会员积分
+    memberPoints:'556'
   },
   // 页面初始化 
    onLoad: function (options) {
@@ -47,5 +47,5 @@ Page({
      wx.navigateTo({
        url: '../aboutUs/aboutUs'
      });
-   }
+   },
 })

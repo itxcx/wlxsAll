@@ -3,100 +3,100 @@ Page({
       memberPoints: '556',
       bg: false,
       getPointsList: [
-        {
-          getType: '购物获得',
-          pointNum:  '+10',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+20',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+39',
-          getDate: '2018-04-10 12:12:12'
-        }, {
-          getType: '购物获得',
-          pointNum: '+52',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+53',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+45',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+55',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+15',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+53',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+55',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+58',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+51',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+50',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+56',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+52',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+51',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+52',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+51',
-          getDate: '2018-04-10 12:12:12'
-        },
-        {
-          getType: '购物获得',
-          pointNum: '+51',
-          getDate: '2018-04-10 12:12:12'
-        }
+        // {
+        //   getType: '购物获得',
+        //   pointNum:  '+10',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+20',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+39',
+        //   getDate: '2018-04-10 12:12:12'
+        // }, {
+        //   getType: '购物获得',
+        //   pointNum: '+52',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+53',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+45',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+55',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+15',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+53',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+55',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+58',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+51',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+50',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+56',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+52',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+51',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+52',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+51',
+        //   getDate: '2018-04-10 12:12:12'
+        // },
+        // {
+        //   getType: '购物获得',
+        //   pointNum: '+51',
+        //   getDate: '2018-04-10 12:12:12'
+        // }
       ],
       animationData: {},
   },
@@ -104,7 +104,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function () {
+   
   },
 
   /**

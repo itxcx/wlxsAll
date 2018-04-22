@@ -48,6 +48,12 @@ Page({
   //  onUnload: function () {
 
   //  },
+  //转发
+  onShareAppMessage: function (res) {
+    //  wx.showShareMenu({
+    //    withShareTicket: true
+    //  })
+  },
   //联系客服
   contactService: function() {
     wx.makePhoneCall({

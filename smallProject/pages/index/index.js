@@ -61,6 +61,12 @@ Page({
        })
      }
    },
+   //转发
+   onShareAppMessage: function (res) {
+    //  wx.showShareMenu({
+    //    withShareTicket: true
+    //  })
+   },
    //扫码开门
    openDoorScan: function() {
      wx.scanCode({

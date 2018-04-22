@@ -11,12 +11,12 @@
           <view wx:for="{{getPointsList}}" wx:key="unique" class="pointsItem">
                 <!-- 获取方式及时间  -->
                 <view class="getType">
-                      <text>{{item.getType}}</text>
-                      <text>{{item.getDate}}</text>
+                      <text>购物获得</text>
+                      <text>{{item.created_time}}</text>
                       <text></text>
                 </view>
                 <!-- 积分 -->
-                <view class="pointNum">{{item.pointNum}}</view>
+                <view class="pointNum">+{{item.real_amount}}</view>
           </view>
       </scroll-view>
       <view class="bg {{bg ? 'bgShow ': 'bgHide'}}"></view>

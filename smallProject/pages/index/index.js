@@ -167,6 +167,5 @@ Page({
          url: '../getNumber/getNumber'
        })
      } 
-   
    }
 })

@@ -9,6 +9,19 @@ App({
        if(resss.code){ //临时会话code
          console.log('临时会话code'+resss.code);
             wx.setStorageSync("code", resss.code);
+            //session_key
+            wx.request({
+              url: 'https://weilaixiansen.com/login/getKey',
+              method: 'GET',
+              data: {
+                'code': resss.code
+                },
+                success: function(resSession) {
+                  if (resSession.data.code == 0) {
+                    wx.setStorageSync('session_key', resSession.data.data.session_key);
+                  }
+                }
+            })
             wx.getSetting({    //检查授权，获取用户信息
             success: ress => {
               console.log(ress);

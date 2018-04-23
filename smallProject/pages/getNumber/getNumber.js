@@ -17,6 +17,7 @@ Page({
     if (e.detail.iv && e.detail.encryptedData) {
       var userInfo = wx.getStorageSync('userInfo');
       var code = wx.getStorageSync('code');
+      var SessionKey = wx.getStorageSync('session_key');
       wx.request({
         url: 'https://weilaixiansen.com/login/getUserInfo',
         method: 'GET',
@@ -25,7 +26,7 @@ Page({
           'user_encryptedData': userInfo.user_encryptedData,
           'phone_iv':  e.detail.iv ,
           'phone_encryptedData': e.detail.encryptedData,
-          'code': code
+          'session_key': SessionKey
           },
           success: res => {
             console.log(res);

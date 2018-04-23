@@ -155,7 +155,7 @@ Page({
                     openSuccess: false, //开门成功
                     close: false, //关门结算
                     account: false, //结算成功
-                    accountFail: true, //结算失败
+                    accountFail: false, //结算失败
                     openError: false,//开门失败
                     unpaid: false, //未支付订单
                     noPay: true, //没有购买
@@ -333,10 +333,10 @@ Page({
         if (res.data.code == 0) {
           var detailData = res.data.data;
           wx.setStorageSync('detailData', detailData);
-          wx.navigateTo({
-            url: '../orderDetail/orderDetail'
-          });
         }
+        wx.navigateTo({
+          url: '../orderDetail/orderDetail'
+        });
       }
     })
   }

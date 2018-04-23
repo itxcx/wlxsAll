@@ -1,19 +1,18 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
 Page({
    data: {
      imgUrls: [
        {
          link: '/pages/index/index',
-         url: '/images/index/banner1.jpg'
-       }, {
-         link: '',
-         url: '/images/index/active2.png'
-       }, {
-         link: '',
          url: '/images/index/banner3.jpg'
+       }, {
+         link: '',
+         url: '/images/index/banner2.png'
+       }, {
+         link: '',
+         url: '/images/index/banner1.jpg'
        }
      ],
      indicatorDots: true,
@@ -43,22 +42,22 @@ Page({
        this.setData({
          fail: true
        })
-     } else if ( !userMessage || !getPhone || !session_key) {
-       wx.getUserInfo({
-         success: res1 => {
-           var userInfo = {
-             'userInfo': res1.userInfo,
-             'user_iv': res1.iv,
-             'user_encryptedData': res1.encryptedData,
-           }
-           console.log(userInfo);
-           wx.setStorageSync('userInfo', userInfo);
-           console.log(wx.getStorageSync('userInfo'));
-           wx.navigateTo({
-             url: '../getNumber/getNumber'
-           })
-         },
-       })
+    //  } else if ( !userMessage || !getPhone || !session_key) {
+    //    wx.getUserInfo({
+    //      success: res1 => {
+    //        var userInfo = {
+    //          'userInfo': res1.userInfo,
+    //          'user_iv': res1.iv,
+    //          'user_encryptedData': res1.encryptedData,
+    //        }
+    //        console.log(userInfo);
+    //        wx.setStorageSync('userInfo', userInfo);
+    //        console.log(wx.getStorageSync('userInfo'));
+    //        wx.navigateTo({
+    //          url: '../getNumber/getNumber'
+    //        })
+    //      },
+    //    })
      }
    },
    //转发
@@ -137,13 +136,11 @@ Page({
      console.log(session_key);
      //如果没有用户信息和手机号，提示授权用户信息，授权成功跳转至获取手机号页面
      if ((scope_userInfo == 'false' && userMessage && !getPhone) || (scope_userInfo == 'false' && !userMessage && !getPhone) || (scope_userInfo == 'true' && !userMessage && !getPhone) || (scope_userInfo == 'false' && userMessage && getPhone)) {
+       console.log(1)
        console.log('都没有获取到,去获取');
         var userMsg = res.detail;
         console.log(res.detail);
         if (userMsg.userInfo && userMsg.userInfo.nickName) { //获取授权成功
-          wx.navigateTo({
-            url: '../getNumber/getNumber'
-          })
             //设置storage
             var userInfo = {
               'userInfo': userMsg.userInfo,
@@ -153,18 +150,23 @@ Page({
             wx.setStorageSync('userInfo', userInfo);
             wx.setStorageSync('scope_userInfo', 'true');
             console.log('用户信息已经获取');
-            
+              wx.navigateTo({
+                 url: '../getNumber/getNumber'
+               })
         }
      } else if (scope_userInfo == 'true' && userMessage && !getPhone) {
+       console.log(2)
        console.log('手机号没有获取到,去获取');
        //如果用户信息已授权，查询手机号码，跳转
          wx.navigateTo({
            url: '../getNumber/getNumber'
          })
      } else if (getPhone && userMessage && scope_userInfo == 'true' && session_key) {
+       console.log(3)
        wx.navigateTo({
          url: '../getNumber/getNumber'
        })
      } 
+   
    }
 })

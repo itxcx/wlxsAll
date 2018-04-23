@@ -1,4 +1,3 @@
-
 App({
   onLaunch: function () {
     var global_this = this;
@@ -47,7 +46,7 @@ App({
                     }
                   },
                 })
-              } else if (!ress.authSetting['scope.userInfo'] || !userInfo) {
+              } else if (!ress.authSetting['scope.userInfo']) {
                 console.log('userInfo is false');
                 wx.setStorageSync('scope_userInfo', 'false');
                 //没有授权
@@ -74,11 +73,11 @@ App({
                         //验证手机号是否存在，如果不存在，跳转到获取手机号页面
                         var getUserPhone = wx.getStorageSync('userPhone');
                         console.log(getUserPhone);
-                        if (!getUserPhone) {
-                          wx.navigateTo({
-                            url: '../getNumber/getNumber'
-                          });
-                        }
+                        // if (!getUserPhone) {
+                        //   wx.navigateTo({
+                        //     url: '../getNumber/getNumber'
+                        //   });
+                        // }
                         // 可以将 res 发送给后台解码出 unionId
                         // this.globalData.userInfo = res.userInfo
                         // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -98,8 +97,6 @@ App({
               } 
             },
             fail: (error) => {
-              console.log('`````````');
-              console.log(error);
               console.log('this is getSetting fail');
             }
           })

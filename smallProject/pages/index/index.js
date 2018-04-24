@@ -28,38 +28,30 @@ Page({
      contentImg: '/images/index/content.png',
      fail: false //是否授权信息
    },
-  //  // 页面初始化 options为页面跳转所带来的参数
-   onLoad: function () {
-     console.log('wlxs');
+   // 页面初始化 options为页面跳转所带来的参数
+   onLoad: function (options) {
+     console.log(options);
+     //获取扫码后的设备id
+     if (options.q != undefined) {
+       var path = decodeURIComponent(options.q);
+       var device_number = path.split('?')[1].split('=')[1];
+       wx.setStorageSync('device_number', device_number);//设备id
+       console.log(device_number);
+     }
+
      var scope_userInfo = wx.getStorageSync('scope_userInfo');
      var userMessage = wx.getStorageSync('userInfo'); //用户信息
      var getPhone = wx.getStorageSync('userPhone'); //手机号
      var session_key = wx.getStorageSync('session_key');
-     console.log('用户授权：'+scope_userInfo);
+     console.log('用户授权：' + scope_userInfo);
      console.log(userMessage);
-     console.log('手机号' +getPhone);
-     console.log('session_key：'+ session_key);
+     console.log('手机号' + getPhone);
+     console.log('session_key：' + session_key);
      if (scope_userInfo == 'true' && userMessage && getPhone && session_key) {
        console.log('用户信息和手机号已经获得!');
        this.setData({
          fail: true
-       })
-    //  } else if ( !userMessage || !getPhone || !session_key) {
-    //    wx.getUserInfo({
-    //      success: res1 => {
-    //        var userInfo = {
-    //          'userInfo': res1.userInfo,
-    //          'user_iv': res1.iv,
-    //          'user_encryptedData': res1.encryptedData,
-    //        }
-    //        console.log(userInfo);
-    //        wx.setStorageSync('userInfo', userInfo);
-    //        console.log(wx.getStorageSync('userInfo'));
-    //        wx.navigateTo({
-    //          url: '../getNumber/getNumber'
-    //        })
-    //      },
-    //    })
+       }) 
      }
    },
    //转发
@@ -77,7 +69,7 @@ Page({
           var path = res.result;
           var device_number = path.split('?')[1].split('=')[1]; //设备id
           var session_key = wx.getStorageSync('session_key');
-          //扫码成功后请求接口， 发送session_key
+          //扫码成功后请求接口， 发送session_key,
            wx.request({
              url: 'https://weilaixiansen.com/login/checkagree',
              method: 'GET',
@@ -127,47 +119,22 @@ Page({
    },
    //设置主动调用用户信息方法
    userInfoHandler: function(res) {
-     console.log('调用主动获取用户信息方法！');
-     var scope_userInfo = wx.getStorageSync('scope_userInfo');
-     var userMessage = wx.getStorageSync('userInfo'); //用户信息
-     var getPhone = wx.getStorageSync('userPhone'); //手机号
-     var session_key = wx.getStorageSync('session_key');
-     console.log(getPhone);
-     console.log(userMessage);
-     console.log(scope_userInfo);
-     console.log(session_key);
-     //如果没有用户信息和手机号，提示授权用户信息，授权成功跳转至获取手机号页面
-     if ((scope_userInfo == 'false' && userMessage && !getPhone) || (scope_userInfo == 'false' && !userMessage && !getPhone) || (scope_userInfo == 'true' && !userMessage && !getPhone) || (scope_userInfo == 'false' && userMessage && getPhone)) {
-       console.log(1)
-       console.log('都没有获取到,去获取');
-        var userMsg = res.detail;
-        console.log(res.detail);
-        if (userMsg.userInfo && userMsg.userInfo.nickName) { //获取授权成功
-            //设置storage
-            var userInfo = {
-              'userInfo': userMsg.userInfo,
-              'user_iv': userMsg.iv,
-              'user_encryptedData': userMsg.encryptedData,
-            }
-            wx.setStorageSync('userInfo', userInfo);
-            wx.setStorageSync('scope_userInfo', 'true');
-            console.log('用户信息已经获取');
-              wx.navigateTo({
-                 url: '../getNumber/getNumber'
-               })
-        }
-     } else if (scope_userInfo == 'true' && userMessage && !getPhone) {
-       console.log(2)
-       console.log('手机号没有获取到,去获取');
-       //如果用户信息已授权，查询手机号码，跳转
+       var userMsg = res.detail;
+       console.log(res.detail);
+       if (userMsg.userInfo && userMsg.userInfo.nickName) { //获取授权成功
+         //设置storage
+         var userInfo = {
+           'userInfo': userMsg.userInfo,
+           'user_iv': userMsg.iv,
+           'user_encryptedData': userMsg.encryptedData,
+         }
+         wx.setStorageSync('userInfo', userInfo);
+         wx.setStorageSync('scope_userInfo', 'true');
+         console.log('用户信息已经获取');
          wx.navigateTo({
            url: '../getNumber/getNumber'
          })
-     } else if (getPhone && userMessage && scope_userInfo == 'true' && session_key) {
-       console.log(3)
-       wx.navigateTo({
-         url: '../getNumber/getNumber'
-       })
-     } 
+       }
+     
    }
 })

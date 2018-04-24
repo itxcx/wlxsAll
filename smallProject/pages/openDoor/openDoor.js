@@ -1,6 +1,6 @@
 Page({
   data: {
-    openning: true, //开门中
+    // openning: true, //开门中
     openSuccess: false, //开门成功
     close: false, //关门结算
     account: false, //结算成功
@@ -8,6 +8,7 @@ Page({
     openError: false,//开门失败
     unpaid: false, //未支付订单
     noPay: false, //没有购买
+    alipay: false,//提示使用支付宝
     tipContent: true, //提示内容
     bottomBanner: true, //底部图片
 
@@ -17,79 +18,97 @@ Page({
   },
 
   //监听页面加载
-  onLoad: function () {
-    var session_key = wx.getStorageSync('session_key');
-    var device_number = wx.getStorageSync('device_number');
-    var contract_id = wx.getStorageSync('contract_id');
+  onLoad: function (options) {
+    var status = options.optStatus;
+    console.log(status);
     var that = this;
-    console.log('socket start!');
-    console.log('session_key:' + session_key);
-    console.log('socket end!');
-    //返回订单id
-    wx.request({
-      url: 'https://weilaixiansen.com/login/shop',
-      method: 'GET',
-      data: { 'session_key': session_key, 
-                 'device_number': device_number, 
-                 'contract_id': contract_id
-      },
-      success: function (openRes) {//开门
-        //websocket
-        console.log(openRes);
-        console.log('--')
-        console.log('open success');
-        if (openRes.data.code == 1) {//开门失败
-         that.setData({
-           openning: false, //开门中
-           openSuccess: false, //开门成功
-           close: false, //关门结算
-           account: false, //结算成功
-           accountFail: false, //结算失败
-           openError: true,//开门失败
-           unpaid: false, //未支付订单
-           noPay: false, //没有购买
-           tipContent: false, //提示内容
-           bottomBanner: false, //底部图片
-         })
-        } else if (openRes.data.code == 10010) {//有未支付订单
-         that.setData({
-           openning: false, //开门中
-           openSuccess: false, //开门成功
-           close: false, //关门结算
-           account: false, //结算成功
-           accountFail: false, //结算失败
-           openError: false,//开门失败
-           unpaid: true, //未支付订单
-           noPay: false, //没有购买
-           tipContent: false, //提示内容
-           bottomBanner: false, //底部图片
-         })
-        } else if (openRes.data.code == 0) {//开门成功
-          var order_id = openRes.data.data.order_id;
-          wx.setStorageSync('order_id', order_id);
-          console.log('开门成功orderid'+order_id);
-          that.setData({
-            openning: false, //开门中
-            openSuccess: true, //开门成功
-            close: false, //关门结算
-            account: false, //结算成功
-            accountFail: false, //结算失败
-            openError: false,//开门失败
-            unpaid: false, //未支付订单
-            noPay: false, //没有购买
-            tipContent: true, //提示内容
-            bottomBanner: true, //底部图片
-            isRequest: true, //轮询
-          })
-          var timer = setInterval(function() {
-            that.getCode(order_id, that);
-            if (!that.data.isRequest) {
-              clearInterval(timer);
-            }
-          }, 1000)
-        }
-      }
-    })
+    var order_id = wx.getStorageSync('order_id');
+   
+    if (status == 'openDoorSuccess') {  //开门成功
+     that.setData({
+      //  openning: false, //开门中
+       openSuccess: true, //开门成功
+       close: false, //关门结算
+       account: false, //结算成功
+       accountFail: false, //结算失败
+       openError: false,//开门失败
+       unpaid: false, //未支付订单
+       noPay: false, //没有购买
+       alipay: false,//提示使用支付宝
+       tipContent: true, //提示内容
+       bottomBanner: true, //底部图片
+       isRequest: true, //轮询
+     })
+     var timer = setInterval(function () {
+       that.getCode(order_id, that);
+       if (!that.data.isRequest) {
+         clearInterval(timer);
+       }
+     }, 1000)
+   } else if (status == 'openDoorTimeOut' ) {//开门超时
+      that.setData({
+        // openning: false, //开门中
+        openSuccess: false, //开门成功
+        close: false, //关门结算
+        account: false, //结算成功
+        accountFail: false, //结算失败
+        openError: true,//开门失败
+        unpaid: false, //未支付订单
+        noPay: false, //没有购买
+        alipay: false,//提示使用支付宝
+        tipContent: false, //提示内容
+        bottomBanner: false, //底部图片
+        isRequest: true, //轮询
+      })
+      var pages = getCurrentPages();
+      var currPage = pages[pages.length - 1];   //当前页面
+      var prevPage = pages[pages.length - 2];  //上一个页面
+      prevPage.setData({
+        fail: true
+      })
+   } else if (status == 'noPay' ) {//有未支付订单
+      that.setData({
+        // openning: false, //开门中
+        openSuccess: false, //开门成功
+        close: false, //关门结算
+        account: false, //结算成功
+        accountFail: false, //结算失败
+        openError: false,//开门失败
+        unpaid: true, //未支付订单
+        noPay: false, //没有购买
+        alipay: false,//提示使用支付宝
+        tipContent: false, //提示内容
+        bottomBanner: false, //底部图片
+        isRequest: true, //轮询
+      })
+      var pages = getCurrentPages();
+      var currPage = pages[pages.length - 1];   //当前页面
+      var prevPage = pages[pages.length - 2];  //上一个页面
+      prevPage.setData({
+        fail: true
+      })
+   } else if(status == 'alipay') {//提示使用支付宝
+      that.setData({
+        // openning: false, //开门中
+        openSuccess: false, //开门成功
+        close: false, //关门结算
+        account: false, //结算成功
+        accountFail: false, //结算失败
+        openError: false,//开门失败
+        unpaid: true, //未支付订单
+        noPay: false, //没有购买
+        alipay: false,//提示使用支付宝
+        tipContent: false, //提示内容
+        bottomBanner: false, //底部图片
+        isRequest: true, //轮询
+      })
+      var pages = getCurrentPages();
+      var currPage = pages[pages.length - 1];   //当前页面
+      var prevPage = pages[pages.length - 2];  //上一个页面
+      prevPage.setData({
+        fail: true
+      })
+   }
   },
   //轮询方法
   getCode: function(order_id, that) {
@@ -107,7 +126,7 @@ Page({
                 console.log(res);
                 if(res.data.data.status == 3) {//关门结算
                     that.setData({
-                      openning: false, //开门中
+                      // openning: false, //开门中
                       openSuccess: false, //开门成功
                       close: true, //关门结算
                       account: false, //结算成功
@@ -115,12 +134,13 @@ Page({
                       openError: false,//开门失败
                       unpaid: false, //未支付订单
                       noPay: false, //没有购买
+                      alipay: false,//提示使用支付宝
                       tipContent: true, //提示内容
                       bottomBanner: true, //底部图片
                     })
                 } else if (res.data.data.status == 4) {//支付成功
                   that.setData({
-                    openning: false, //开门中
+                    // openning: false, //开门中
                     openSuccess: false, //开门成功
                     close: false, //关门结算
                     account: true, //结算成功
@@ -129,6 +149,7 @@ Page({
                     unpaid: false, //未支付订单
                     tipContent: true, //提示内容
                     noPay: false, //没有购买
+                    alipay: false,//提示使用支付宝
                     bottomBanner: true, //底部图片
                     detailAmount: res.data.data.amount, //订单金额
                     detailDiscount: res.data.data.discount//折扣金额
@@ -136,7 +157,7 @@ Page({
                   that.data.isRequest = false;
                 } else if (res.data.data.status== 7) {//支付失败
                   that.setData({
-                    openning: false, //开门中
+                    // openning: false, //开门中
                     openSuccess: false, //开门成功
                     close: false, //关门结算
                     account: false, //结算成功
@@ -144,6 +165,7 @@ Page({
                     openError: false,//开门失败
                     unpaid: false, //未支付订单
                     noPay: false, //没有购买
+                    alipay: false,//提示使用支付宝
                     tipContent: true, //提示内容
                     bottomBanner: true, //底部图片
                     detailAmount: res.data.data.amount, //订单金额
@@ -152,7 +174,7 @@ Page({
                   that.data.isRequest = false;
                 }else if(res.data.data.status == 10) {//开门没有购买
                   that.setData({
-                    openning: false, //开门中
+                    // openning: false, //开门中
                     openSuccess: false, //开门成功
                     close: false, //关门结算
                     account: false, //结算成功
@@ -160,6 +182,7 @@ Page({
                     openError: false,//开门失败
                     unpaid: false, //未支付订单
                     noPay: true, //没有购买
+                    alipay: false,//提示使用支付宝
                     tipContent: true, //提示内容
                     bottomBanner: true, //底部图片
                     detailAmount: 0, //订单金额

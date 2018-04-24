@@ -30,7 +30,7 @@ swiper{
 .footer{
   display: flex;
   position: absolute;
-  bottom: 0;
+  bottom: 3vh;
   left: 0;
 }
 .footer view{
@@ -64,9 +64,9 @@ swiper{
  .authorize{
   width: 100vw;
   height: 25vh; 
-  opacity: 0;
+  opacity: 0.5;
   position: fixed;
-  bottom: 0;
+  bottom: 3vh;
   left: 0;
   z-index: 999;
   border: 0;

@@ -101,6 +101,10 @@
               <text>查看订单</text>
         </view>
     </view>
+    <!-- 提示使用支付宝  -->
+    <view class="alipay {{alipay ? 'show' : 'hide'}}">
+          当日购买次数已达上限，请使用支付宝购买。
+    </view>
       <view class="tipContent {{tipContent ? 'show' : 'hide'}}">
             <text class="title">温馨提示</text>
             <text class="items">请勿将购买商品放回收货柜</text>

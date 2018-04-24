@@ -66,7 +66,8 @@ Page({
          })
         } else if (openRes.data.code == 0) {//开门成功
           var order_id = openRes.data.data.order_id;
-          console.log(order_id);
+          wx.setStorageSync('order_id', order_id);
+          console.log('开门成功orderid'+order_id);
           that.setData({
             openning: false, //开门中
             openSuccess: true, //开门成功
@@ -92,7 +93,7 @@ Page({
   },
   //轮询方法
   getCode: function(order_id, that) {
-    console.log(order_id);
+    console.log('轮询方法里orderId:'+order_id);
     var isRequest = that.data.isRequest;
     console.log(isRequest);
       if(isRequest) {
@@ -179,9 +180,11 @@ Page({
       phoneNumber: '4007707768'
     })
   },
-  //再次购买
+  //返回首页
   againScan: function() {
-    this.openDoorScan();
+    wx.navigateBack({
+      delta: 10
+    })
   },
   //去支付
   goPay: function() {
@@ -238,6 +241,7 @@ Page({
                   success: function (openRes) {//开门
                     console.log(openRes);
                     console.log('open success');
+                    console.log(openRes.data.code);
                     if (openRes.data.code == 1) {//开门失败
                       that.setData({
                         openning: false, //开门中
@@ -266,7 +270,8 @@ Page({
                       })
                     } else if (openRes.data.code == 0) {//开门成功
                       var order_id = openRes.data.data.order_id;
-                      console.log(order_id);
+                      wx.setStorageSync('order_id', order_id);
+                      console.log('开门成功orderid：'+order_id);
                       that.setData({
                         openning: false, //开门中
                         openSuccess: true, //开门成功
@@ -324,7 +329,7 @@ Page({
   //查看订单
   checkOrder: function() {
     var order_id = wx.getStorageSync('order_id');
-    console.log(order_id);
+    console.log('查看订单点击orderid: '+order_id);
     wx.request({
       url: 'https://weilaixiansen.com/login/getOrderTagsDetail',
       data: { order_id: order_id },
@@ -338,6 +343,12 @@ Page({
           url: '../orderDetail/orderDetail'
         });
       }
+    })
+  },
+  //没有购物，返回首页
+  noPay: function() {
+    wx.navigateBack({
+      delta: 10
     })
   }
 })

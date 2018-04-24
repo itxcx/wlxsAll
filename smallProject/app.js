@@ -18,6 +18,7 @@ App({
                 },
                 success: function(resSession) {
                   if (resSession.data.code == 0) {
+                    console.log(resSession.data.data.session_key);
                     wx.setStorageSync('session_key', resSession.data.data.session_key);
                   }
                 }

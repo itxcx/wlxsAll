@@ -55,7 +55,7 @@
                     <text>本次购物已完成，欢迎下次消费</text>
             </view>
             <view class="accountBtn">
-                  <text bindtap="againScan">再次购买</text>
+                  <text bindtap="againScan">返回首页</text>
                   <text bindtap="checkOrder">查看订单</text>
             </view>
       </view>
@@ -70,8 +70,8 @@
                     <text>本次购物已完成，欢迎下次消费</text>
             </view>
             <view class="accountBtn">
-                  <text bindtap="againScan">再次购买</text>
-                  <text bindtap="checkOrder">完成</text>
+                  <!-- <text bindtap="againScan">再次购买</text> -->
+                  <text bindtap="noPay">完成</text>
             </view>
       </view>
       <!-- 订单信息失败  -->

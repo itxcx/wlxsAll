@@ -5,6 +5,8 @@ Page({
   // 页面初始化 
    onLoad: function () {
      var data = wx.getStorageSync('detailData');
+     console.log('订单详情查看数据如下');
+     console.log(data);
      this.setData({
        orderDetail: data
      })

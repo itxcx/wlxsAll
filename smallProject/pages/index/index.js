@@ -4,16 +4,17 @@ const app = getApp()
 Page({
    data: {
      imgUrls: [
-       {
-         link: '/pages/index/index',
-         url: '/images/index/banner3.jpg'
-       }, {
-         link: '',
-         url: '/images/index/banner2.png'
-       }, {
-         link: '',
-         url: '/images/index/banner1.jpg'
-       }
+      //  {
+      //    link: '/pages/index/index',
+      //    url: '/images/index/banner3.jpg'
+      //    }
+      //  }, {
+      //    link: '',
+      //    url: '/images/index/banner2.png'
+      //  }, {
+      //    link: '',
+      //    url: '/images/index/banner1.jpg'
+      //  }
      ],
      indicatorDots: true,
      indicatorColor: 'rgba(0, 0, 0, 1)',
@@ -29,6 +30,7 @@ Page({
    },
   //  // 页面初始化 options为页面跳转所带来的参数
    onLoad: function () {
+     console.log('wlxs');
      var scope_userInfo = wx.getStorageSync('scope_userInfo');
      var userMessage = wx.getStorageSync('userInfo'); //用户信息
      var getPhone = wx.getStorageSync('userPhone'); //手机号

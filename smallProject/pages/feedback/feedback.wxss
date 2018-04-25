@@ -92,3 +92,16 @@ textarea{
 .hide{
   display: none;
 }
+.loading{
+  width: 50vw;
+  height: 20vh;
+  background: rgba(0,0,0,.8);
+  border-radius: 20px;
+  position: fixed;
+  margin: auto;
+  left: 0; 
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 100;
+}

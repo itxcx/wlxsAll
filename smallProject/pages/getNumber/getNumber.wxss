@@ -76,10 +76,10 @@ button{
   position: fixed;
   bottom: 5vh;
   left: 10vw;
-  height: 6vh;
-  line-height: 6vh;
+  height: 7vh;
+  line-height: 7vh;
   color: #ffffff;
   border-radius: 20px;
   border: none;
-  /* box-shadow: 1px 4px 2px 2px  #999999; */
+  
 }

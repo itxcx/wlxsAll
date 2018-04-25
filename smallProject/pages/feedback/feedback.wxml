@@ -1,6 +1,6 @@
 <view class="feedback">
     <view class="feedbackContent">
-      <textarea   auto-focus placeholder="请输入内容" maxlength="200" bindinput="showInputLength" placeholder-class='placeholder'/>
+      <textarea   auto-focus placeholder="请输入内容" maxlength="200" name="feedContent" bindinput="showInputLength" placeholder-class='placeholder'/>
        <view class="inputLength">
           <text>{{inputLength}}</text>/
           <text>{{allowInput}}</text>
@@ -13,12 +13,15 @@
          
          <image bindtap="addFile"  src="../../images/feedback/addFile.png" class="addFileBtn"></image>
       </view>
-      <view class="confirmBtn">
+      <view class="confirmBtn" bindtap="uploadSubmit">
           <image src="../../images/memberPoints/button_bg.png"></image>
           <text>提交</text>
       </view>
       <view class="feedbackTip">
             <text>提交成功后，客服会在工作日48小时内联系您，请您保持电话畅通。(如您不希望回访，可在意见中标注无需回访)</text>
       </view>
+    </view>
+    <view class="loading {{showFeed ? 'shwo' : 'hide'}}">
+          <text>{{uploadIndex}}</text>
     </view>
 </view>

@@ -3,12 +3,16 @@ Page({
       inputLength: 0,
       allowInput: 200,
       imgPath: [],
+      feedContent: '',
       deletIcon: false, //删除图标
+      uploadIndex: '',
+      showFeed: true
   },
   //计算输入长度
   showInputLength: function(e) {
     this.setData({
-      inputLength: e.detail.value.length
+      inputLength: e.detail.value.length,
+      feedContent: e.detail.value
     })
   },
   //添加文件
@@ -49,5 +53,41 @@ Page({
         deletIcon: false
       })
     }
+  },
+  //提交方法
+  uploadSubmit: function() {
+    var imgIndex = 0;
+    var imgArray = this.data.imgPath;//图片路径数组
+    console.log(imgArray);
+    var imgArrayLength = imgArray.length;
+    //如果不是最后一张图片，调用上传方法
+    if ( imgIndex < imgArrayLength ) {
+      this.imagesUpload(imgArray, imgIndex);
+      imgIndex++; //上传下一张图片
+    } else {
+      //上传成功
+    }
+  },
+  //上传图片方法封装
+  imagesUpload: function (imgArray, imgIndex) {
+    var feedText = this.data.feedContent;//输入内容
+    console.log(this.data.feedContent);
+    wx.uploadFile({
+      url: "https://weilaixiansen.com/login/feedback",
+      filePath: imgArray[imgIndex],
+      name: "uploadImage",
+      formData: {
+        "feedContent": feedText,  
+      },
+      header: {
+        "Content-Type": "multipart/form-data"  
+      },
+      success: function (res) {
+        console.log(res);
+        if(res.data.code == 0) {
+
+        }
+      }
+    })
   }
 })

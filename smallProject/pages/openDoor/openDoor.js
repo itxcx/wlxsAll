@@ -39,6 +39,12 @@ Page({
        bottomBanner: true, //底部图片
        isRequest: true, //轮询
      })
+     var pages = getCurrentPages();
+     var currPage = pages[pages.length - 1];   //当前页面
+     var prevPage = pages[pages.length - 2];  //上一个页面
+     prevPage.setData({
+       fail: true
+     })
      var timer = setInterval(function () {
        that.getCode(order_id, that);
        if (!that.data.isRequest) {
@@ -66,7 +72,7 @@ Page({
       prevPage.setData({
         fail: true
       })
-   } else if (status == 'noPay' ) {//有未支付订单
+   } else if (status == 'nopay' ) {//有未支付订单
       that.setData({
         // openning: false, //开门中
         openSuccess: false, //开门成功
@@ -107,6 +113,21 @@ Page({
       var prevPage = pages[pages.length - 2];  //上一个页面
       prevPage.setData({
         fail: true
+      })
+   }else if(status == 'openDoorError') {//各种错误，返回首页后还需要授权
+      that.setData({
+        // openning: false, //开门中
+        openSuccess: false, //开门成功
+        close: false, //关门结算
+        account: false, //结算成功
+        accountFail: false, //结算失败
+        openError: true,//开门失败
+        unpaid: false, //未支付订单
+        noPay: false, //没有购买
+        alipay: false,//提示使用支付宝
+        tipContent: false, //提示内容
+        bottomBanner: false, //底部图片
+        isRequest: true, //轮询
       })
    }
   },
@@ -328,7 +349,7 @@ Page({
                     // 成功跳转到签约小程序,异步通知到地址
                     console.log('success')
                     wx.navigateBack({
-                      delta: 5
+                      delta: 10
                     })
                   },
                   fail(res1) {

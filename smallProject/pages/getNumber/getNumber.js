@@ -44,18 +44,19 @@ Page({
                fail: true
              })
              console.log('end');
-             var sessCode = wx.getStorageSync('session_key');
-             console.log(sessCode);
+             var session_key = wx.getStorageSync('session_key');
+             console.log(session_key);
              wx.request({
                url: 'https://weilaixiansen.com/login/wxappback',//存储用户信息，检查签约状态
                data: {
-                 session_key: sessCode
+                 session_key: session_key
                },
                success: function (rst) {
                  // 获取用户信息
                  console.log(rst); //返回session_key ，未签约会返回签约需要的参数
                  // rst.session_key存储，每次交互都返回
                  if (rst.data.code == 1) { //未签约
+                  console.log('weiqianyue,quqianyue');
                    wx.navigateToMiniProgram({
                      appId: 'wxbd687630cd02ce1d',
                      path: 'pages/index/index',
@@ -63,20 +64,19 @@ Page({
                      success(res1) {
                        // 成功跳转到签约小程序,异步通知到地址
                        console.log(' return miniprogram')
+                       //检查签约状态，获取签约号，直接开门
+                       //签约成功获取签约号
                        wx.navigateBack({
                          delta: 5
                        })
+                          ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                      },
                      fail(res1) {
                        // 未成功跳转到签约小程序  
                        console.log('not return miniprogram')
                      }
                    })
-                 } else {
-                   wx.navigateBack({
-                     delta: 5
-                   })
-                 }
+                 } 
                }
              })
             }

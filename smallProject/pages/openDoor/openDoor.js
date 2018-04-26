@@ -101,11 +101,11 @@ Page({
         account: false, //结算成功
         accountFail: false, //结算失败
         openError: false,//开门失败
-        unpaid: true, //未支付订单
+        unpaid: false, //未支付订单
         noPay: false, //没有购买
-        alipay: false,//提示使用支付宝
-        tipContent: false, //提示内容
-        bottomBanner: false, //底部图片
+        alipay: true,//提示使用支付宝
+        tipContent: true, //提示内容
+        bottomBanner: true, //底部图片
         isRequest: true, //轮询
       })
       var pages = getCurrentPages();
@@ -231,27 +231,57 @@ Page({
     })
   },
   //去支付
-  goPay: function() {
-    var order_id = wx.getStorageSync('order_id');
+  goPay: function (e) {
+    var order_id = this.data.unpaid[0].order_id;
+    var session_key = wx.getStorageSync('session_key');
     wx.request({
-      url: 'https://weilaixiansen.com/login/pay',
+      url: 'https://weilaixiansen.com/login/payonline',
       method: 'GET',
       data: {
-       order_id: order_id
+        order_id: order_id,
+        session_key: session_key
       },
-      success: function(res) {
-          if(res.data.code == 0) {
-            wx.setStorageSync('success', 'success');
-            wx.navigateTo({
-              url: '../paid/paid',
-            })
-          }else{
-            wx.setStorageSync('success', 'error');
-            wx.navigateTo({
-              url: '../paid/paid',
-            })
-            
-          }
+      success: function (res) {
+        console.log(res);
+        if (res.data.code == 0) {
+          wx.setStorageSync('success', 'success');
+          wx.navigateTo({
+            url: '../paid/paid',
+          })
+        } else if (res.data.code == 2) {//线上支付,主动支付方法
+          wx.requestPayment({
+            "appId": res.data.data.appId,
+            "timeStamp": res.data.data.timeStamp,
+            "nonceStr": res.data.data.nonceStr,
+            "package": res.data.data.package,
+            "signType": res.data.data.signType,
+            "paySign": res.data.data.paySign,
+            success: function (res) {
+              console.log(res);
+              wx.setStorageSync('success', 'success');
+              wx.navigateTo({
+                url: '../paid/paid',
+              })
+              var timer = setTimeout(function () {
+                wx.navigateBack({
+                  delta: 5
+                })
+                clearTimeout(this);
+              }, 1500)
+            },
+            fail: function () {
+              wx.setStorageSync('success', 'error');
+              wx.navigateTo({
+                url: '../paid/paid',
+              })
+            }
+          })
+        } else {
+          wx.setStorageSync('success', 'error');
+          wx.navigateTo({
+            url: '../paid/paid',
+          })
+        }
       }
     })
   },

@@ -102,9 +102,15 @@
         </view>
     </view>
     <!-- 提示使用支付宝  -->
-    <view class="alipay {{alipay ? 'show' : 'hide'}}">
-          当日购买次数已达上限，请使用支付宝购买。
-    </view>
+     <view class="accountFail {{alipay ? 'show' : 'hide'}}">
+            <view class="accountFailImg">
+                  <image src="../../images/openDoor/open_fail.png"></image>
+            </view>
+            <view class="detailInfo">
+                    <text>本次购物扣款失败，请尽快完成付款</text>
+            </view>
+      </view>
+      <!-- 有好几个页面需要的模块  -->
       <view class="tipContent {{tipContent ? 'show' : 'hide'}}">
             <text class="title">温馨提示</text>
             <text class="items">请勿将购买商品放回收货柜</text>

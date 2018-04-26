@@ -4,17 +4,6 @@ const app = getApp()
 Page({
    data: {
      imgUrls: [
-      //  {
-      //    link: '/pages/index/index',
-      //    url: '/images/index/banner3.jpg'
-      //    }
-      //  }, {
-      //    link: '',
-      //    url: '/images/index/banner2.png'
-      //  }, {
-      //    link: '',
-      //    url: '/images/index/banner1.jpg'
-      //  }
      ],
      indicatorDots: true,
      indicatorColor: 'rgba(0, 0, 0, 1)',

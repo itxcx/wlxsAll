@@ -19,6 +19,8 @@ Page({
   //获取数据方法封装
   //0 全部   4 是支付成功   7 支付失败      9 退款
   getOrderList: function(status, page) {
+    console.log(status);
+    console.log(page);
     var session_key = wx.getStorageSync('session_key');
     wx.request({
       url: 'https://weilaixiansen.com/login/getorderdetail',
@@ -156,19 +158,53 @@ Page({
   //去支付
   goPay: function (e) {
     var order_id = this.data.unpaid[0].order_id;
+    var session_key = wx.getStorageSync('session_key');
     wx.request({
-      url: 'https://weilaixiansen.com/login/pay',
+      url: 'https://weilaixiansen.com/login/payonline',
       method: 'GET',
       data: {
-        order_id: order_id
+        order_id: order_id,
+        session_key: session_key
       },
       success: function (res) {
+        console.log(res);
         if (res.data.code == 0) {
           wx.setStorageSync('success', 'success');
           wx.navigateTo({
             url: '../paid/paid',
           })
-        } else {
+        } else if (res.data.code == 2) {//线上支付,主动支付方法
+            /*
+            {"appId":"wx651389f810901b2d","timeStamp":"1524720636","nonceStr":"83ab0b13719ba7c929a84678b92ed5c0","package":"prepay_id=wx261330361826465d62a86c591300716527","signType":"MD5","paySign":"F1AD1D9F0D9CDAC3C8E8BA277A865CD2"}
+            */
+            wx.requestPayment({
+              "appId": res.data.data.appId,
+              "timeStamp": res.data.data.timeStamp,
+              "nonceStr": res.data.data.nonceStr,
+              "package": res.data.data.package,
+              "signType": res.data.data.signType,
+              "paySign": res.data.data.paySign,
+              success: function (res) {
+                console.log(res);
+                wx.setStorageSync('success', 'success');
+                wx.navigateTo({
+                  url: '../paid/paid',
+                })
+                var timer = setTimeout(function() {
+                  wx.navigateBack({
+                    delta: 5
+                  })
+                  clearTimeout(this);
+                }, 1500)
+              },
+              fail: function() {
+                wx.setStorageSync('success', 'error');
+                wx.navigateTo({
+                  url: '../paid/paid',
+                })
+              }
+            })
+        } else  {
           wx.setStorageSync('success', 'error');
           wx.navigateTo({
             url: '../paid/paid',
@@ -193,6 +229,7 @@ Page({
         if (this.data.allTipTitle == '上滑获取更多数据') {     
           this.data.allTipTitle = '加载中';
           var page = this.data.canGetAllPage;
+          console.log(page);
         //发送请求获取数据
           this.getMoreData(0, page);
         }
@@ -236,11 +273,12 @@ Page({
             getData = res.data.data.data;
           }
             if(status == 0) { //全部数据
-              if (getData.lenght == 5) {
+              if (getData.length == 5) {
+                var newPage = page + 1;
                     var da = this.data.allList.concat(getData);
                     this.setData({
                       allList: da,
-                      canGetAllPage: page + 1,
+                      canGetAllPage: newPage,
                       allTipTitle: '上滑获取更多数据'
                     })
               } else {
@@ -251,11 +289,12 @@ Page({
                 })
               }
             }else if(status == 7) {//未支付
-              if (getData.lenght == 5) {
+              if (getData.length == 5) {
+                var newPage = page + 1;
                 var da = this.data.unpaid.concat(getData);
                 this.setData({
                   unpaid: da,
-                  canGetUnpaidPage: page + 1,
+                  canGetUnpaidPage: newPage,
                   unpaidTipTitle: '上滑获取更多数据'
                 })
               } else {
@@ -266,11 +305,12 @@ Page({
                 })
               }
             }else{//已退款
-              if (getData.lenght == 5) {
+              if (getData.length == 5) {
+                var newPage = page + 1;
                 var da = this.data.refunded.concat(getData);
                 this.setData({
                   refunded: da,
-                  canGetRefundedPage: page + 1,
+                  canGetRefundedPage: newPage,
                   refundedTipTitle: '上滑获取更多数据'
                 })
               } else {

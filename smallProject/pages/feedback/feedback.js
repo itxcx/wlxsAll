@@ -5,8 +5,6 @@ Page({
       imgPath: [],
       feedContent: '',
       deletIcon: false, //删除图标
-      uploadIndex: '',
-      showFeed: true
   },
   //计算输入长度
   showInputLength: function(e) {
@@ -70,22 +68,29 @@ Page({
   },
   //上传图片方法封装
   imagesUpload: function (imgArray, imgIndex) {
+    var that = this;
     var feedText = this.data.feedContent;//输入内容
     console.log(this.data.feedContent);
+    var session_key = wx.getStorageSync('session_key');
     wx.uploadFile({
       url: "https://weilaixiansen.com/login/feedback",
       filePath: imgArray[imgIndex],
       name: "uploadImage",
       formData: {
-        "feedContent": feedText,  
+        "feedContent": feedText, 
+        "session_key": session_key
       },
       header: {
-        "Content-Type": "multipart/form-data"  
+        "Content-Type": "multipart/form-data"
       },
       success: function (res) {
         console.log(res);
+        res.data = JSON.parse(res.data);
+        console.log(res.data.code);
         if(res.data.code == 0) {
-
+          console.log(imgIndex);
+        }else{
+          console.log('上传失败');
         }
       }
     })

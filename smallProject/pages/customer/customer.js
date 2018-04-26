@@ -71,8 +71,8 @@ Page({
   },
   //意见反馈
   goFeedback: function () {
-    // wx.navigateTo({
-    //   url: '../feedback/feedback'
-    // })
+    wx.navigateTo({
+      url: '../feedback/feedback'
+    })
   }
 })

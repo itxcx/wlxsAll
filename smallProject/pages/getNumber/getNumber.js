@@ -76,7 +76,11 @@ Page({
                        console.log('not return miniprogram')
                      }
                    })
-                 } 
+                 } else {
+                   wx.navigateBack({
+                     delta: 5
+                   })
+                 }
                }
              })
             }

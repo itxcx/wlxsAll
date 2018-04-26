@@ -21,7 +21,4 @@
             <text>提交成功后，客服会在工作日48小时内联系您，请您保持电话畅通。(如您不希望回访，可在意见中标注无需回访)</text>
       </view>
     </view>
-    <view class="loading {{showFeed ? 'shwo' : 'hide'}}">
-          <text>{{uploadIndex}}</text>
-    </view>
 </view>

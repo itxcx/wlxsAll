@@ -51,8 +51,12 @@
         <text class="commonTitle">优惠金额:</text>
         <text class="commonContent special">-￥{{orderDetail.discount}}</text>
     </view> 
-    <view>
+    <view class="{{statusCommon ? 'show' : 'hide'}}">
         <text class="commonTitle">实付金额:</text>
+        <text class="commonContent">￥{{orderDetail.real_amount}}</text>
+    </view> 
+    <view class="{{statusUnpay ? 'show' : 'hide'}}">
+        <text class="commonTitle">未付金额:</text>
         <text class="commonContent">￥{{orderDetail.real_amount}}</text>
     </view> 
   </view>
@@ -60,5 +64,9 @@
     <view class="tip">
       <text>*如对订单有疑问，请致电客服热线</text>
       <text bindtap="callService">400-770-7768</text>
+    </view>
+    <view class="goPay {{statusUnpay ? 'show' : 'hide'}}" bindtap="goPay">
+        <image src="../../images/memberPoints/button_bg.png"></image>
+        <text>未支付</text>
     </view>
 </view>

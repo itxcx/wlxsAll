@@ -99,7 +99,6 @@ Page({
                               //直接跳到开门页面
                               wx.navigateTo({
                                 url: '../openDoor/openDoor?optStatus=openDoorSuccess',
-                                // url: '../test/test?optStatus=openDoorSuccess',
                               })
                               if (global_this.userInfoReadyCallback) {
                                 global_this.userInfoReadyCallback(resGetUserInfo);
@@ -126,7 +125,6 @@ Page({
                                   //直接跳到开门页面
                                   wx.navigateTo({
                                     url: '../openDoor/openDoor?optStatus=openDoorSuccess',
-                                    //url: '../test/test?optStatus=openDoorSuccess',
                                   })
                                   if (global_this.userInfoReadyCallback) {
                                     global_this.userInfoReadyCallback(res)
@@ -136,7 +134,6 @@ Page({
                             },
                             fail() { //用户点击取消处理方法
                               console.log('fail');
-                              //wx.setStorageSync('fail', 'true');
                             }
                           })
                         }
@@ -145,7 +142,6 @@ Page({
                         console.log('this is getSetting fail');
                       }
                     })
-                    //////////////////////////////////////
                   } else if (resSession.data.code == 1) {
                     /***********
                      * 各种失败情况，返回session_key，页面留在首页，用户点击重新获取信息
@@ -212,7 +208,6 @@ Page({
                               //直接跳到开门页面
                               wx.navigateTo({
                                 url: '../openDoor/openDoor?optStatus=nopay',
-                                //url: '../test/test?optStatus=nopay',
                               })
                               if (global_this.userInfoReadyCallback) {
                                 global_this.userInfoReadyCallback(resGetUserInfo);
@@ -239,7 +234,6 @@ Page({
                                   //直接跳到开门页面
                                   wx.navigateTo({
                                     url: '../openDoor/openDoor?optStatus=nopay',
-                                    //url: '../test/test?optStatus=nopay',
                                   })
                                   if (global_this.userInfoReadyCallback) {
                                     global_this.userInfoReadyCallback(res)
@@ -285,7 +279,6 @@ Page({
                               //直接跳到开门页面
                               wx.navigateTo({
                                 url: '../openDoor/openDoor?optStatus=openDoorTimeOut',
-                                //url: '../test/test?optStatus=openDoorTimeOut',
                               })
                               if (global_this.userInfoReadyCallback) {
                                 global_this.userInfoReadyCallback(resGetUserInfo);
@@ -312,7 +305,6 @@ Page({
                                   //直接跳到开门页面
                                   wx.navigateTo({
                                     url: '../openDoor/openDoor?optStatus=openDoorTimeOut',
-                                    //url: '../test/test?optStatus=openDoorTimeOut',
                                   })
                                   if (global_this.userInfoReadyCallback) {
                                     global_this.userInfoReadyCallback(res)
@@ -363,16 +355,12 @@ Page({
                                 path: 'pages/index/index',
                                 extraData: resSession.data.data.data,
                                 success(res1) {
-                                  wx.navigateBack({
-                                    delta: 2
-                                  })
                                 },
                                 fail(res1) {
                                   // 未成功跳转到签约小程序
                                   console.log(res1);
                                 }
                               })
-                              ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                               if (global_this.userInfoReadyCallback) {
                                 global_this.userInfoReadyCallback(resGetUserInfo);
                               }
@@ -401,9 +389,6 @@ Page({
                                     path: 'pages/index/index',
                                     extraData: resSession.data.data.data,
                                     success(res1) {
-                                      wx.navigateBack({
-                                        delta: 2
-                                      })
                                     },
                                     fail(res1) {
                                       // 未成功跳转到签约小程序
@@ -418,7 +403,6 @@ Page({
                             },
                             fail() { //用户点击取消处理方法
                               console.log('fail');
-                              //wx.setStorageSync('fail', 'true');
                             }
                           })
                         }
@@ -453,7 +437,6 @@ Page({
                               //直接跳到开门页面
                               wx.navigateTo({
                                 url: '../openDoor/openDoor?optStatus=alipay',
-                                // url: '../test/test?optStatus=alipay',
                               })
                               if (global_this.userInfoReadyCallback) {
                                 global_this.userInfoReadyCallback(resGetUserInfo);
@@ -479,8 +462,7 @@ Page({
                                   wx.setStorageSync('userInfo', userInfo);
                                   //直接跳到开门页面
                                   wx.navigateTo({
-                                    url: '../openDoor/openDoor?optStatus=alipay',
-                                    // url: '../test/test?optStatus=alipay',
+                                    url: '../openDoor/openDoor?optStatus=alipay'
                                   })
                                   if (global_this.userInfoReadyCallback) {
                                     global_this.userInfoReadyCallback(res)
@@ -490,7 +472,6 @@ Page({
                             },
                             fail() { //用户点击取消处理方法
                               console.log('fail');
-                              //wx.setStorageSync('fail', 'true');
                             }
                           })
                         }
@@ -499,7 +480,6 @@ Page({
                         console.log('this is getSetting fail');
                       }
                     })
-                    //////////////////////////////////////
                   }
                 }
               })
@@ -514,9 +494,7 @@ Page({
    
    //转发
    onShareAppMessage: function (res) {
-    //  wx.showShareMenu({
-    //    withShareTicket: true
-    //  })
+    
    },
    //扫码开门
    openDoorScan: function() {

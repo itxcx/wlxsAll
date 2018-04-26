@@ -266,7 +266,7 @@ Page({
                 wx.navigateBack({
                   delta: 5
                 })
-                clearTimeout(this);
+                clearTimeout(timer);
               }, 1500)
             },
             fail: function () {
@@ -370,7 +370,6 @@ Page({
                 })
                
               } else { //没签约
-                // sessionRes.data.data
                 wx.navigateToMiniProgram({
                   appId: 'wxbd687630cd02ce1d',
                   path: 'pages/index/index',

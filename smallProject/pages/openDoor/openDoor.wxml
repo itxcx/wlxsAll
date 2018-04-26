@@ -106,8 +106,8 @@
             <view class="accountFailImg">
                   <image src="../../images/openDoor/open_fail.png"></image>
             </view>
-            <view class="detailInfo">
-                    <text>本次购物扣款失败，请尽快完成付款</text>
+            <view class="alipay">
+                    <text>今日购物已达上限，请使用支付宝。</text>
             </view>
       </view>
       <!-- 有好几个页面需要的模块  -->

@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.94",
+	"libVersion": "1.9.90",
 	"appid": "wx651389f810901b2d",
 	"projectname": "%E6%9C%AA%E6%9D%A5%E9%B2%9C%E6%A3%AESHOP",
 	"condition": {
@@ -29,8 +29,15 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "模拟更新",
+					"pathName": "pages/index/index",
+					"query": ""
+				}
+			]
 		}
 	}
 }

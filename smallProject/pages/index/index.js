@@ -19,6 +19,7 @@ Page({
    },
   // 页面初始化 options为页面跳转所带来的参数
    onLoad: function(options) {
+     this.updateVersion();
      var global_this = this;
      console.log(options);
      var userModal = wx.getStorageSync('userInfo');
@@ -186,6 +187,8 @@ Page({
                     * 有未支付订单
                     */
                     var userPhone = resSession.data.data.phone;
+                    var order_id = resSession.data.data.order_id;
+                    wx.setStorageSync('order_id', order_id);
                     wx.setStorageSync('userPhone', userPhone);
                     //获取用户信息
                     wx.getSetting({    //检查授权，获取用户信息
@@ -207,7 +210,7 @@ Page({
                               console.log('存储的用户信息：' + wx.getStorageSync('userInfo'));
                               //直接跳到开门页面
                               wx.navigateTo({
-                                url: '../openDoor/openDoor?optStatus=nopay',
+                                url: '../openDoor/openDoor?optStatus=unpaid',
                               })
                               if (global_this.userInfoReadyCallback) {
                                 global_this.userInfoReadyCallback(resGetUserInfo);
@@ -233,7 +236,7 @@ Page({
                                   wx.setStorageSync('userInfo', userInfo);
                                   //直接跳到开门页面
                                   wx.navigateTo({
-                                    url: '../openDoor/openDoor?optStatus=nopay',
+                                    url: '../openDoor/openDoor?optStatus=unpaid',
                                   })
                                   if (global_this.userInfoReadyCallback) {
                                     global_this.userInfoReadyCallback(res)
@@ -534,7 +537,7 @@ Page({
                                 })
                               } else if (openRes.data.code == 10010) {//有未支付
                                 wx.navigateTo({
-                                  url: '../openDoor/openDoor?optStatus=nopay',
+                                  url: '../openDoor/openDoor?optStatus=unpaid',
                                 })
                               } else if (openRes.data.code == 0) {//开门成功
                                 var order_id = openRes.data.data.order_id;
@@ -570,7 +573,7 @@ Page({
    //联系客服
    callService: function() {
      wx.navigateTo({
-       url: '../customer/customer'
+     url: '../customer/customer'
      })
    },
    //个人中心
@@ -605,5 +608,28 @@ Page({
            })
          }
        }
+   },
+   //版本更新
+   updateVersion: function() {
+     const updateManager = wx.getUpdateManager();
+     updateManager.onCheckForUpdate(function (res) {
+       // 请求完新版本信息的回调
+       console.log(res.hasUpdate);
+     })
+     updateManager.onUpdateReady(function () {
+       wx.showModal({
+         title: '更新提示',
+         content: '新版本已经准备好，是否重启应用？',
+         success: function (res) {
+           if (res.confirm) {
+             // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+             updateManager.applyUpdate();
+           }
+         }
+       })
+     })
+     updateManager.onUpdateFailed(function () {
+       // 新的版本下载失败
+     })
    }
 })

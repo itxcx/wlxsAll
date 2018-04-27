@@ -1,4 +1,3 @@
-// pages/paid/paid.js
 Page({
   data: {
       success: false,
@@ -17,5 +16,11 @@ Page({
           error: true
         })
       }
+  },
+  //支付完成按钮
+  complateIndex: function() {
+    wx.navigateBack({
+      delta: 9
+    })
   }
 })

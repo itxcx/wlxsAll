@@ -51,7 +51,7 @@ Page({
          clearInterval(timer);
        }
      }, 1000)
-   } else if (status == 'openDoorTimeOut' ) {//开门超时
+    } else if (status == 'openDoorTimeOut') {//开门超时
       that.setData({
         // openning: false, //开门中
         openSuccess: false, //开门成功
@@ -72,7 +72,7 @@ Page({
       prevPage.setData({
         fail: true
       })
-   } else if (status == 'nopay' ) {//有未支付订单
+    } else if (status == 'unpaid' ) {//有未支付订单
       that.setData({
         // openning: false, //开门中
         openSuccess: false, //开门成功
@@ -232,58 +232,128 @@ Page({
   },
   //去支付
   goPay: function (e) {
-    var order_id = this.data.unpaid[0].order_id;
+    var order_id = wx.getStorageSync('order_id');
     var session_key = wx.getStorageSync('session_key');
     wx.request({
-      url: 'https://weilaixiansen.com/login/payonline',
-      method: 'GET',
+      url: 'https://weilaixiansen.com/login/wxappback',//存储用户信息，检查签约状态
       data: {
-        order_id: order_id,
         session_key: session_key
       },
-      success: function (res) {
-        console.log(res);
-        if (res.data.code == 0) {
-          wx.setStorageSync('success', 'success');
-          wx.navigateTo({
-            url: '../paid/paid',
-          })
-        } else if (res.data.code == 2) {//线上支付,主动支付方法
-          wx.requestPayment({
-            "appId": res.data.data.appId,
-            "timeStamp": res.data.data.timeStamp,
-            "nonceStr": res.data.data.nonceStr,
-            "package": res.data.data.package,
-            "signType": res.data.data.signType,
-            "paySign": res.data.data.paySign,
-            success: function (res) {
-              console.log(res);
-              wx.setStorageSync('success', 'success');
-              wx.navigateTo({
-                url: '../paid/paid',
-              })
-              var timer = setTimeout(function () {
-                wx.navigateBack({
-                  delta: 5
-                })
-                clearTimeout(timer);
-              }, 1500)
+      success: function (rst) {
+        // 获取用户信息
+        console.log(rst); //返回session_key ，未签约会返回签约需要的参数
+        // rst.session_key存储，每次交互都返回
+        if (rst.data.code == 1) { //未签约
+          console.log('weiqianyue,quqianyue');
+          wx.navigateToMiniProgram({
+            appId: 'wxbd687630cd02ce1d',
+            path: 'pages/index/index',
+            extraData: rst.data.data,
+            success(res1) {
+              
+              // //签约成功获取签约号
+              // setTimeout(function () {
+              //   wx.request({
+              //     url: 'https://weilaixiansen.com/login/payonline',
+              //     method: 'GET',
+              //     data: {
+              //       order_id: order_id,
+              //       session_key: session_key
+              //     },
+              //     success: function (res) {
+              //       console.log(res);
+              //       if (res.data.code == 0) {
+              //         wx.setStorageSync('success', 'success');
+              //         wx.navigateTo({
+              //           url: '../paid/paid',
+              //         })
+              //       } else if (res.data.code == 2) {//线上支付,主动支付方法
+              //         wx.requestPayment({
+              //           "appId": res.data.data.appId,
+              //           "timeStamp": res.data.data.timeStamp,
+              //           "nonceStr": res.data.data.nonceStr,
+              //           "package": res.data.data.package,
+              //           "signType": res.data.data.signType,
+              //           "paySign": res.data.data.paySign,
+              //           success: function (res) {
+              //             console.log(res);
+              //             wx.setStorageSync('success', 'success');
+              //             wx.navigateTo({
+              //               url: '../paid/paid',
+              //             })
+              //           },
+              //           fail: function () {
+              //             wx.setStorageSync('success', 'error');
+              //             wx.navigateTo({
+              //               url: '../paid/paid',
+              //             })
+              //           }
+              //         })
+              //       } else {
+              //         wx.setStorageSync('success', 'error');
+              //         wx.navigateTo({
+              //           url: '../paid/paid',
+              //         })
+              //       }
+              //     }
+              //   })
+              // }, 20000)
+
             },
-            fail: function () {
-              wx.setStorageSync('success', 'error');
-              wx.navigateTo({
-                url: '../paid/paid',
-              })
+            fail(res1) {
+              // 未成功跳转到签约小程序  
+              console.log('not return miniprogram')
             }
           })
         } else {
-          wx.setStorageSync('success', 'error');
-          wx.navigateTo({
-            url: '../paid/paid',
+          wx.request({
+            url: 'https://weilaixiansen.com/login/payonline',
+            method: 'GET',
+            data: {
+              order_id: order_id,
+              session_key: session_key
+            },
+            success: function (res) {
+              console.log(res);
+              if (res.data.code == 0) {
+                wx.setStorageSync('success', 'success');
+                wx.navigateTo({
+                  url: '../paid/paid',
+                })
+              } else if (res.data.code == 2) {//线上支付,主动支付方法
+                wx.requestPayment({
+                  "appId": res.data.data.appId,
+                  "timeStamp": res.data.data.timeStamp,
+                  "nonceStr": res.data.data.nonceStr,
+                  "package": res.data.data.package,
+                  "signType": res.data.data.signType,
+                  "paySign": res.data.data.paySign,
+                  success: function (res) {
+                    console.log(res);
+                    wx.setStorageSync('success', 'success');
+                    wx.navigateTo({
+                      url: '../paid/paid',
+                    })
+                  },
+                  fail: function () {
+                    wx.setStorageSync('success', 'error');
+                    wx.navigateTo({
+                      url: '../paid/paid',
+                    })
+                  }
+                })
+              } else {
+                wx.setStorageSync('success', 'error');
+                wx.navigateTo({
+                  url: '../paid/paid',
+                })
+              }
+            }
           })
         }
       }
     })
+    /////
   },
   //扫码开门
   openDoorScan: function () {
@@ -393,12 +463,9 @@ Page({
       }
     })
   },
+  
+ 
   //未支付去查看订单
-  checkDetail: function() {
-    wx.navigateTo({
-      url: '../purchases/purchases',
-    })
-  },
   //查看订单
   checkOrder: function() {
     var order_id = wx.getStorageSync('order_id');

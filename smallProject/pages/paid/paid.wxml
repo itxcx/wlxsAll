@@ -13,6 +13,10 @@
             <text >如有问题，请致电客服热线</text>
             <text bindtap="callService"> 400-770-7768</text>
       </view>
+       <view class="complate" bindtap="complateIndex">
+       <image src="../../images/memberPoints/button_bg.png"></image>
+            <text>完成</text>
+        </view>
       <view class="bottomBanner">
             <image src="../../images/index/banner1.jpg"></image>
       </view>

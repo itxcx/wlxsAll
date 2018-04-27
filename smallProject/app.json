@@ -13,9 +13,7 @@
     "pages/cmnProblem/cmnProblem",
     "pages/customer/customer",
     "pages/feedback/feedback",
-    "pages/paid/paid",
-    "pages/test/test",
-    "pages/test1/test1"
+    "pages/paid/paid"
   ],
   "window":{
     "backgroundTextStyle":"light",

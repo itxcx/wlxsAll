@@ -67,6 +67,6 @@
     </view>
     <view class="goPay {{statusUnpay ? 'show' : 'hide'}}" bindtap="goPay">
         <image src="../../images/memberPoints/button_bg.png"></image>
-        <text>未支付</text>
+        <text>去支付</text>
     </view>
 </view>

@@ -89,8 +89,8 @@
 }
 .goPay{
   position: fixed;
-  background: #F1F1F1;
-  bottom: 0;
+  background: #ffffff;
+  bottom: 1vh;
   left: 0;
   height: 8vh;
   width: 100%;
@@ -109,7 +109,7 @@
   font-size: 0.95rem;
   color: #ffffff;
   position: fixed;
-  bottom: 0.5vh;
+  bottom: 1.5vh;
   left: 10vw;
   z-index: 2;
 }

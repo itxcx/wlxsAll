@@ -40,8 +40,8 @@
           <view class="openAgain">
               <image src="../../images/index/bt_open.png" bindtap="openDoorScan"></image>
           </view>
-          <view class="repair">
-                <text>报修</text>
+          <view class="repair" bindtap="noPay">
+                <text>关闭</text>
           </view>
        </view>
       <!-- 订单信息成功  -->
@@ -97,7 +97,7 @@
               <text>您有1笔订单未付款</text>
               <text>请先付款后重新扫码开门购物</text>
         </view>
-        <view class="checkDetail" bindtap="checkDetail">
+        <view class="checkDetail" bindtap="checkOrder">
               <text>查看订单</text>
         </view>
     </view>

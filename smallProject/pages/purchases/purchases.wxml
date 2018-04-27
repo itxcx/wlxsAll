@@ -102,4 +102,29 @@
                    </scroll-view> 
                 </swiper-item>  
             </swiper>  
+
+            <view class="modalLoading {{loading ? 'show' : 'hide'}}">
+              <view class="spinner ">
+                  <view class="spinner-container container1">
+                    <view class="circle1"></view>
+                    <view class="circle2"></view>
+                    <view class="circle3"></view>
+                    <view class="circle4"></view>
+                </view>
+                <view class="spinner-container container2">
+                  <view class="circle1"></view>
+                  <view class="circle2"></view>
+                  <view class="circle3"></view>
+                  <view class="circle4"></view>
+                </view>
+                <view class="spinner-container container3">
+                  <view class="circle1"></view>
+                  <view class="circle2"></view>
+                  <view class="circle3"></view>
+                  <view class="circle4"></view>
+                </view>
+              </view> 
+             <view class="loadingText">支付中</view>
+          </view>
+           
 </view>

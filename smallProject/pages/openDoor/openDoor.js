@@ -14,7 +14,8 @@ Page({
 
     isRequest: true, //轮询
     detailAmount: '', //订单金额
-    detailDiscount: ''//折扣金额
+    detailDiscount: '',//折扣金额
+     loading: false,
   },
 
   //监听页面加载
@@ -232,6 +233,7 @@ Page({
   },
   //去支付
   goPay: function (e) {
+    var that = this;
     var order_id = wx.getStorageSync('order_id');
     var session_key = wx.getStorageSync('session_key');
     wx.request({
@@ -250,55 +252,6 @@ Page({
             path: 'pages/index/index',
             extraData: rst.data.data,
             success(res1) {
-              
-              // //签约成功获取签约号
-              // setTimeout(function () {
-              //   wx.request({
-              //     url: 'https://weilaixiansen.com/login/payonline',
-              //     method: 'GET',
-              //     data: {
-              //       order_id: order_id,
-              //       session_key: session_key
-              //     },
-              //     success: function (res) {
-              //       console.log(res);
-              //       if (res.data.code == 0) {
-              //         wx.setStorageSync('success', 'success');
-              //         wx.navigateTo({
-              //           url: '../paid/paid',
-              //         })
-              //       } else if (res.data.code == 2) {//线上支付,主动支付方法
-              //         wx.requestPayment({
-              //           "appId": res.data.data.appId,
-              //           "timeStamp": res.data.data.timeStamp,
-              //           "nonceStr": res.data.data.nonceStr,
-              //           "package": res.data.data.package,
-              //           "signType": res.data.data.signType,
-              //           "paySign": res.data.data.paySign,
-              //           success: function (res) {
-              //             console.log(res);
-              //             wx.setStorageSync('success', 'success');
-              //             wx.navigateTo({
-              //               url: '../paid/paid',
-              //             })
-              //           },
-              //           fail: function () {
-              //             wx.setStorageSync('success', 'error');
-              //             wx.navigateTo({
-              //               url: '../paid/paid',
-              //             })
-              //           }
-              //         })
-              //       } else {
-              //         wx.setStorageSync('success', 'error');
-              //         wx.navigateTo({
-              //           url: '../paid/paid',
-              //         })
-              //       }
-              //     }
-              //   })
-              // }, 20000)
-
             },
             fail(res1) {
               // 未成功跳转到签约小程序  
@@ -306,50 +259,69 @@ Page({
             }
           })
         } else {
-          wx.request({
-            url: 'https://weilaixiansen.com/login/payonline',
-            method: 'GET',
-            data: {
-              order_id: order_id,
-              session_key: session_key
-            },
-            success: function (res) {
-              console.log(res);
-              if (res.data.code == 0) {
-                wx.setStorageSync('success', 'success');
-                wx.navigateTo({
-                  url: '../paid/paid',
-                })
-              } else if (res.data.code == 2) {//线上支付,主动支付方法
-                wx.requestPayment({
-                  "appId": res.data.data.appId,
-                  "timeStamp": res.data.data.timeStamp,
-                  "nonceStr": res.data.data.nonceStr,
-                  "package": res.data.data.package,
-                  "signType": res.data.data.signType,
-                  "paySign": res.data.data.paySign,
-                  success: function (res) {
-                    console.log(res);
-                    wx.setStorageSync('success', 'success');
-                    wx.navigateTo({
-                      url: '../paid/paid',
-                    })
-                  },
-                  fail: function () {
-                    wx.setStorageSync('success', 'error');
-                    wx.navigateTo({
-                      url: '../paid/paid',
-                    })
-                  }
-                })
-              } else {
-                wx.setStorageSync('success', 'error');
-                wx.navigateTo({
-                  url: '../paid/paid',
-                })
-              }
-            }
+       
+          that.setData({
+            loading: true
           })
+          setTimeout(function() {
+            wx.request({
+              url: 'https://weilaixiansen.com/login/payonline',
+              method: 'GET',
+              data: {
+                order_id: order_id,
+                session_key: session_key
+              },
+              success: function (res) {
+                console.log(res);
+                if (res.data.code == 0) {
+                  wx.setStorageSync('success', 'success');
+                  that.setData({
+                    loading: false
+                  })
+                  wx.navigateTo({
+                    url: '../paid/paid',
+                  })
+                } else if (res.data.code == 2) {//线上支付,主动支付方法
+                  wx.requestPayment({
+                    "appId": res.data.data.appId,
+                    "timeStamp": res.data.data.timeStamp,
+                    "nonceStr": res.data.data.nonceStr,
+                    "package": res.data.data.package,
+                    "signType": res.data.data.signType,
+                    "paySign": res.data.data.paySign,
+                    success: function (res) {
+                      console.log(res);
+                      wx.setStorageSync('success', 'success');
+                      that.setData({
+                        loading: false
+                      })
+                      wx.navigateTo({
+                        url: '../paid/paid',
+                      })
+                    },
+                    fail: function () {
+                      wx.setStorageSync('success', 'error');
+                      that.setData({
+                        loading: false
+                      })
+                      wx.navigateTo({
+                        url: '../paid/paid',
+                      })
+                    }
+                  })
+                } else {
+                  wx.setStorageSync('success', 'error');
+                  that.setData({
+                    loading: false
+                  })
+                  wx.navigateTo({
+                    url: '../paid/paid',
+                  })
+                }
+              }
+            })
+          }, 3000)
+         
         }
       }
     })

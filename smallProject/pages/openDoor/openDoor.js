@@ -15,7 +15,8 @@ Page({
     isRequest: true, //轮询
     detailAmount: '', //订单金额
     detailDiscount: '',//折扣金额
-     loading: false,
+    real_amount:'',//实付金额
+    loading: false,
   },
 
   //监听页面加载
@@ -174,7 +175,8 @@ Page({
                     alipay: false,//提示使用支付宝
                     bottomBanner: true, //底部图片
                     detailAmount: res.data.data.amount, //订单金额
-                    detailDiscount: res.data.data.discount//折扣金额
+                    detailDiscount: res.data.data.discount,//折扣金额
+                    real_amount: res.data.data.real_amount,//实付金额
                   })
                   that.data.isRequest = false;
                 } else if (res.data.data.status== 7) {//支付失败
@@ -191,7 +193,8 @@ Page({
                     tipContent: true, //提示内容
                     bottomBanner: true, //底部图片
                     detailAmount: res.data.data.amount, //订单金额
-                    detailDiscount: res.data.data.discount//折扣金额
+                    detailDiscount: res.data.data.discount,//折扣金额
+                    real_amount: res.data.data.real_amount,//实付金额
                   })
                   that.data.isRequest = false;
                 }else if(res.data.data.status == 10) {//开门没有购买
@@ -208,7 +211,8 @@ Page({
                     tipContent: true, //提示内容
                     bottomBanner: true, //底部图片
                     detailAmount: 0, //订单金额
-                    detailDiscount: 0//折扣金额
+                    detailDiscount: 0,//折扣金额
+                    real_amount: 0,//实付金额
                   })
                   that.data.isRequest = false;
                 }

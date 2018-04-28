@@ -89,7 +89,6 @@
 }
 .goPay{
   position: fixed;
-  background: #ffffff;
   bottom: 1vh;
   left: 0;
   height: 8vh;

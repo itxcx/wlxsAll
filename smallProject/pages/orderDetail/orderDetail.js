@@ -62,7 +62,6 @@ Page({
           })
         }
         else {
-          
           that.setData({
             loading: true
           })
@@ -85,6 +84,9 @@ Page({
                     url: '../paid/paid',
                   })
                 } else if (res.data.code == 2) {//线上支付,主动支付方法
+                  that.setData({
+                    loading: false
+                  })
                   wx.requestPayment({
                     "appId": res.data.data.appId,
                     "timeStamp": res.data.data.timeStamp,
@@ -95,17 +97,11 @@ Page({
                     success: function (res) {
                       console.log(res);
                       wx.setStorageSync('success', 'success');
-                      that.setData({
-                        loading: false
-                      })
                       wx.navigateTo({
                         url: '../paid/paid',
                       })
                     },
                     fail: function () {
-                      that.setData({
-                        loading: false
-                      })
                       wx.setStorageSync('success', 'error');
                       wx.navigateTo({
                         url: '../paid/paid',
@@ -123,7 +119,7 @@ Page({
                 }
               }
             })
-          }, 3000)
+          }, 2000)
         }
       }
     })

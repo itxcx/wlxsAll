@@ -9,6 +9,8 @@ import 'iview/dist/styles/iview.css';
 
 // import echarts from 'echarts';
 import highcharts from 'highcharts';
+// 业务模块
+import Login from './components/Login'; //登录模块
 
 Vue.use(iView);
 Vue.config.productionTip = false;
@@ -17,7 +19,7 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: { App, Login },
   template: '<App/>'
 })
 //axios for ajax

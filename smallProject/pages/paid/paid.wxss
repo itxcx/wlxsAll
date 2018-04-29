@@ -71,8 +71,9 @@
   position: relative;
 }
 .complate image{
-  width: 97%;
+  width: 70%;
   height: 12vh;
+  margin-left: 15vw;
 }
 .complate text{
   display: block;

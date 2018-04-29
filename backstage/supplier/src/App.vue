@@ -18,11 +18,11 @@
   del, dfn, em, font, img, ins, kbd, q, s, samp,
   small, strike, strong, sub, sup, tt, var,
   b, u, i, center,
-  header,footer,nav,section,article,aside,
+  header, footer, nav, section, article, aside,
   .container-fluid,.container,
   dl, dt, dd, ol, ul, li,
   fieldset, form, label, legend,
-  table, caption, tbody, tfoot, thead, tr, th, td {
+  table, caption, tbody, tfoot, thead, tr, th, td{
     margin: 0;
     padding: 0;
     border: 0;
@@ -31,5 +31,6 @@
   }
   html, body{
     background: #f2f2f2;
+    font-size: 1vh;
   }
 </style>

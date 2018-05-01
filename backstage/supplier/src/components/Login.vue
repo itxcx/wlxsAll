@@ -74,7 +74,6 @@
       .password{
         margin-top: 3.748vh;
       }
-
     }
   }
 </style>

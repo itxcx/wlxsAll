@@ -7,13 +7,14 @@
       <section class="userInfo">
         <div class="phone">
           <span></span>
-          <input type="number" name="phone" placeholder="请输入手机号"/>
+          <input type="number" pattern="[0-9]*" aria-describedby="basic-addon1" name="phone" placeholder="请输入手机号"/>
         </div>
         <div class="password">
           <span></span>
           <input type="text" name="password" placeholder="请输入登录密码"/>
         </div>
       </section>
+      <section class="userInfo_submit">登录</section>
     </div>
 </template>
 
@@ -74,6 +75,17 @@
       .password{
         margin-top: 3.748vh;
       }
+    }
+    .userInfo_submit{
+      margin: 7.496vh auto;
+      width: 79.2vw;
+      height: 10.4198vh;
+      background: url("../../static/images/button_bg.png") no-repeat center center;
+      background-size: cover;
+      text-align: center;
+      font-size: 2.2488rem;
+      color: #fff;
+      line-height: 8.4198vh;
     }
   }
 </style>

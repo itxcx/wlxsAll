@@ -47,6 +47,7 @@
 <style lang="less">
   .Main{
     background: #f5f5f5;
+    font-family: "PingFang SC-Medium";
     .topBanner{
       width: 100vw;
       height: 23.2383vh;

@@ -13,6 +13,8 @@ import highcharts from 'highcharts';
 import Login from './components/Login'; //登录模块
 import Main from './components/Main'; //首页模块
 import FooterBar from './components/FooterBar'; //尾部
+import Repertory from './components/Repertory'; //库存
+
 
 
 Vue.use(iView);
@@ -22,7 +24,7 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App, Login, Main, FooterBar },
+  components: { App, Login, Main, FooterBar, Repertory },
   template: '<App/>'
 })
 //axios for ajax

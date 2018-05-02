@@ -1,7 +1,7 @@
 <template>
     <div class="Main">
       <section class="topBanner"></section>
-      <section class="repertory">
+      <section class="repertory" @click="goRepertory">
         <div></div>
         <dl>
           <dt>售货柜库存</dt>
@@ -39,7 +39,12 @@
         FooterBar
       },
       methods: {
-
+        //查看库存
+        goRepertory() {
+          this.$router.push({
+            path: '/repertory'
+          })
+        }
       }
     }
 </script>

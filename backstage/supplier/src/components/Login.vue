@@ -14,7 +14,7 @@
           <input type="text" name="password" placeholder="请输入登录密码"/>
         </div>
       </section>
-      <section class="userInfo_submit">登录</section>
+      <section class="userInfo_submit" @click="submitUserinfo">登录</section>
     </div>
 </template>
 
@@ -25,7 +25,13 @@
         return {}
       },
       methods: {
-
+        //提交按钮方法
+        submitUserinfo() {
+          //跳转到主页
+          this.$router.push({
+            name: 'main'
+          })
+        }
       }
     }
 </script>
@@ -49,31 +55,52 @@
       font-weight: 500;
     }
     .logo{
-      width: 21.333vw;
-      height: 21.333vw;
-      background: url("../../static/images/wlxs_logo.png") no-repeat center center;
+      width: 21.067vw;
+      height: 14.5427vh;
+      background: url("../../static/images/logo.png") no-repeat center center;
       background-size: cover;
       margin: 8.395vh auto;
     }
     .userInfo{
       margin-top: 7.87vh;
       .phone, .password{
+        position: relative;
         height: 5.997vh;
         width: 74.666vw;
         border: 1px solid #f2f2f2;
         border-radius: 20px;
         margin: 0 auto;
         input{
+          position: absolute;
+          top: 1.5vh;
+          left: 13.6vw;
           width: 53.333vw;
           height: 2.998vh;
-          margin: 1.5vh 0;
+          border: none;
         }
         ::placeholder{
           font-size: 1.949rem;
         }
       }
+      .phone span{
+        display: inline-block;
+        margin: 1.2vh 4vw;
+        width: 5.6vw;
+        height: 3.597vh;
+        background: url("../../static/images/account.png") no-repeat center center;
+        background-size: cover;
+      }
+
       .password{
         margin-top: 3.748vh;
+        span{
+          display: inline-block;
+          margin: 1.2vh 4vw;
+          width: 5.6vw;
+          height: 3.597vh;
+          background: url("../../static/images/password.png") no-repeat center center;
+          background-size: cover;
+        }
       }
     }
     .userInfo_submit{

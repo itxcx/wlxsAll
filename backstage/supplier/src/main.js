@@ -11,6 +11,9 @@ import 'iview/dist/styles/iview.css';
 import highcharts from 'highcharts';
 // 业务模块
 import Login from './components/Login'; //登录模块
+import Main from './components/Main'; //首页模块
+import FooterBar from './components/FooterBar'; //尾部
+
 
 Vue.use(iView);
 Vue.config.productionTip = false;
@@ -19,7 +22,7 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App, Login },
+  components: { App, Login, Main, FooterBar },
   template: '<App/>'
 })
 //axios for ajax

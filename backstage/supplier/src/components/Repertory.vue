@@ -17,6 +17,15 @@
           </Option>
         </Select>
       </header>
+      <section class="updateTime">
+        <p>
+          <span>上次库存更新时间:</span>
+          <span>2018-5-1</span>
+        </p>
+        <div>
+          <span>地图模式 ></span>
+        </div>
+      </section>
     </div>
 </template>
 
@@ -189,7 +198,36 @@
     header{
       background: #5fcf6c;
       height: 7.496vh;
+    }
+    .updateTime{
+      border-bottom: 1px solid #e5e5e5;
+      padding: 0.7448vh 5.333vw;
+      overflow: hidden;
+      p{
+        width: 61.334vw;
+        font-size: 1.949vh;
+        color: #9f9f9f;
+        float: left;
+        height: 4.1229vh;
+        line-height: 4.1229vh;
+      }
+      div{
+        width: 28vw;
+        float: right;
+        text-align: center;
+        span{
+          float: right;
+          display: block;
+          width: 20.6667vw;
+          height: 4.1229vh;
+          line-height: 4.1229vh;
+          font-size: 1.724rem;
+          color: #65d172;
+          border: 1px solid #65d172;
+          border-radius: 20px;
 
+        }
+      }
     }
   }
   .ivu-select:nth-of-type(1){
@@ -213,12 +251,15 @@
     text-align: right;
     height: 7.496vh;
     span{
+      display: inline-block;
       font-size: 2.248rem!important;
       height: 7.496vh!important;
       line-height: 7.496vh!important;
     }
+    .ivu-icon{
+      color: #ffffff;
+    }
   }
-.ivu-icon{
-  color: #ffffff;
-}
+
+
 </style>

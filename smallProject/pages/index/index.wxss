@@ -80,6 +80,7 @@ swiper{
   z-index: 100;
   margin-top: 4vh;
   text-align: center;
+  background: #ffffff;
 }
 .openning image{
   width: 35vh;

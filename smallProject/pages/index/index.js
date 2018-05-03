@@ -572,8 +572,7 @@ Page({
    //联系客服
    callService: function() {
      wx.navigateTo({
-    //  url: '../customer/customer'
-       url: '../test/test'
+     url: '../customer/customer'
      })
    },
    //个人中心

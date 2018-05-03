@@ -11,6 +11,7 @@ Page({
      circular: true,
      previous: '15px',
      next: '25px',
+     indexModal: false,
      interval: 8000, //自动切换时间间隔
      duration: 1000, //滑动动画时长
      contentImg: '/images/index/content.png',
@@ -47,6 +48,9 @@ Page({
                }
              })
            } else if (options.q != undefined) {
+              global_this.setData({
+                indexModal: true
+              })
               var path = decodeURIComponent(options.q);
               var device_number = path.split('?')[1].split('=')[1];
               wx.setStorageSync('device_number', device_number);//设备id
@@ -60,6 +64,10 @@ Page({
                   'device_number': device_number
                 },
                 success: function (resSession) {
+                  //模态框隐藏
+                  global_this.setData({
+                    indexModal: false
+                  })
                   wx.setStorageSync('device_number', '');
                   console.log(resSession);
                   //存储session_key
@@ -500,10 +508,14 @@ Page({
    },
    //扫码开门
    openDoorScan: function() {
+     var that = this;
      wx.scanCode({
        onlyFromCamera: true,
        success: (res) => {
          if(res) {
+           that.setData({
+             indexModal: true
+           })
           var path = res.result;
           var device_number = path.split('?')[1].split('=')[1]; //设备id
           var session_key = wx.getStorageSync('session_key');
@@ -513,6 +525,9 @@ Page({
              method: 'GET',
              data: {'session_key': session_key},
              success: function(sessionRes) {
+               that.setData({
+                 indexModal: false
+               })
                console.log(sessionRes);
                console.log('-----')
                       if (sessionRes.data.code == 0) { //如果已经签约

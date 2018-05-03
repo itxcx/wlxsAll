@@ -198,7 +198,10 @@
         background: #5fcf6c;
         border: none;
         outline: none;
-
+        option{
+          border: none;
+          outline: none;
+        }
       }
     }
   }

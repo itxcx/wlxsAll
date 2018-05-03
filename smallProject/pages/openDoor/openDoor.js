@@ -11,7 +11,7 @@ Page({
     alipay: false,//提示使用支付宝
     tipContent: true, //提示内容
     bottomBanner: true, //底部图片
-
+    indexModal: false,
     isRequest: true, //轮询
     detailAmount: '', //订单金额
     detailDiscount: '',//折扣金额
@@ -334,6 +334,9 @@ Page({
       onlyFromCamera: true,
       success: (res) => {
         if (res) {
+          that.setData({
+            indexModal: true
+          })
           var path = res.result;
           var device_number = path.split('?')[1].split('=')[1]; //设备id
           var session_key = wx.getStorageSync('session_key');
@@ -343,6 +346,9 @@ Page({
             method: 'GET',
             data: { 'session_key': session_key },
             success: function (sessionRes) {
+              that.setData({
+                indexModal: false
+              })
               if (sessionRes.data.code == 0) { //如果已经签约
                 var contract_id = sessionRes.data.contract_id;
                 //返回订单id

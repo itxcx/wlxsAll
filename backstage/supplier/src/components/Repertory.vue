@@ -1,21 +1,21 @@
 <template>
     <div class="Repertory">
       <header>
-        <select v-model="prov">
-          <option v-for="option in arrAll" :value="option.name">
+        <Select v-model="prov">
+          <Option v-for="option in arrAll" :value="option.name">
             {{ option.name }}
-          </option>
-        </select>
-        <select v-model="city">
-          <option v-for="option in cityArr" :value="option.name">
+          </Option>
+        </Select>
+        <Select v-model="city">
+          <Option v-for="option in cityArr" :value="option.name">
             {{ option.name }}
-          </option>
-        </select>
-        <select v-model="district" v-if="district">
-          <option v-for="option in districtArr" :value="option.name">
+          </Option>
+        </Select>
+        <Select v-model="district" v-if="district">
+          <Option v-for="option in districtArr" :value="option.name">
             {{ option.name }}
-          </option>
-        </select>
+          </Option>
+        </Select>
       </header>
     </div>
 </template>
@@ -26,7 +26,7 @@
       data() {
         return {
           arrAll: [
-              {name: "选择城市", sub: [{name: "请选择"}], type: 1},
+              {name: "城市", sub: [{name: "请选择"}], type: 1},
               {
                 name: "西安",
                 sub: [
@@ -189,20 +189,36 @@
     header{
       background: #5fcf6c;
       height: 7.496vh;
-      select{
-        margin: 0;
-        padding: 0;
-        width: 31vw;
-        height: 7.496vh;
-        font-size: 2.398vh;
-        background: #5fcf6c;
-        border: none;
-        outline: none;
-        option{
-          border: none;
-          outline: none;
-        }
-      }
+
     }
   }
+  .ivu-select:nth-of-type(1){
+    border: none;
+    width: 20vw;
+  }
+  .ivu-select:nth-of-type(2){
+    border: none;
+    width: 40vw;
+  }
+  .ivu-select:nth-of-type(3){
+    border: none;
+    width: 35vw;
+  }
+  .ivu-select-single .ivu-select-selection{
+    background: #5fcf6c;
+    border: none;
+    outline: medium;
+    color: #ffffff;
+    font-size: 2.248rem;
+    text-align: right;
+    height: 7.496vh;
+    span{
+      font-size: 2.248rem!important;
+      height: 7.496vh!important;
+      line-height: 7.496vh!important;
+    }
+  }
+.ivu-icon{
+  color: #ffffff;
+}
 </style>

@@ -26,6 +26,24 @@
           <span>地图模式 ></span>
         </div>
       </section>
+      <section class="device">
+        <ul>
+          <li v-for="item in RepertoryArray" class="device_item">
+            <dl>
+              <dt>{{item.address}}</dt>
+              <dd>智能售货柜</dd>
+            </dl>
+            <div class="device_info">
+              <ul>
+                <li v-for="items in item.deviceList">
+                  <span>{{items.name}}</span>
+                  <span>库存<span>{{items.acount}}</span>件</span>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </section>
     </div>
 </template>
 
@@ -147,7 +165,35 @@
           city: '请选择售货柜',
           district: '请选择商品',
           cityArr: [],
-          districtArr: []
+          districtArr: [],
+          RepertoryArray: [
+            {
+              "address" : "瞪羚谷",
+              "deviceList": [
+                {
+                  "name": "未来鲜森-瞪羚谷1",
+                  "acount": '900'
+                },
+                {
+                  "name": "未来鲜森-瞪羚谷2",
+                  "acount": '88'
+                }
+              ]
+            },
+            {
+              "address" : "招商银行",
+              "deviceList": [
+                {
+                  "name": "未来鲜森-招商银行1",
+                  "acount": '20'
+                },
+                {
+                  "name": "未来鲜森-招商银行2",
+                  "acount": '20'
+                }
+              ]
+            }
+          ]
         }
       },
       methods: {
@@ -194,7 +240,7 @@
 
 <style lang="less">
   .Repertory{
-    background: #fff;
+
     header{
       background: #5fcf6c;
       height: 7.496vh;
@@ -203,6 +249,7 @@
       border-bottom: 1px solid #e5e5e5;
       padding: 0.7448vh 5.333vw;
       overflow: hidden;
+      background: #fff;
       p{
         width: 61.334vw;
         font-size: 1.949vh;
@@ -226,6 +273,56 @@
           border: 1px solid #65d172;
           border-radius: 20px;
 
+        }
+      }
+    }
+    .device{
+      .device_item{
+        margin-bottom: 1.449vh;
+        background: #fff;
+        overflow: hidden;
+        dl{
+          display: inline-block;
+          float: left;
+          font-size: 2.3988vh;
+          padding: 4.1229vh 8vw 3.748vh 5.333vw;
+          dd{
+            font-size: 1.874rem;
+            color: #9f9f9f;
+          }
+        }
+        .device_info{
+          display: inline-block;
+          ul{
+            list-style: none;
+            li{
+              width: 65.333vw;
+              &:nth-last-of-type(1) {
+                border: none;
+              }
+              border-bottom: 1px solid #e5e5e5;
+              font-size: 2.2488rem;
+              color: #373737;
+              overflow: hidden;
+              padding: 1.874vh 0 2.2488vh 0;
+              >span:nth-of-type(1){
+
+                display: inline-block;
+                width: 43.55vw;
+              }
+              span:nth-of-type(2){
+                display: inline-block;
+                color: #999898;
+                width: 20.6vw;
+                text-align: right;
+                span{
+                  display: inline-block;
+                  font-size: 2.848vh;
+                  color: #65d172;
+                }
+              }
+            }
+          }
         }
       }
     }

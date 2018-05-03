@@ -78,43 +78,5 @@ swiper{
   top: 0;
   left: 0;
   z-index: 100;
-  margin-top: 4vh;
-  text-align: center;
-  background: #ffffff;
-}
-.openning image{
-  width: 35vh;
-  height: 35vh;
-}
-.openningContent{
-  margin-top: 5vh;
-  font-size: 1.2rem;
-}
-.tipContent{
-  margin: 4vh 0;
-  width: 100vw;
-  text-align: center;
-   color: #d3d3d3;
-  font-size: 0.95rem;
-}
-.tipContent .title{
-  display: block;
-  text-align: center;
-  font-size: 1rem;
-  margin: 5vh 0 2vh 0;
-  color: #000000;
-}
-.tipContent .items{
-  display: block;
-}
-.bottomBanner{
-  width: 94vw;
-  height: 20vh;
-  position: fixed;
-  bottom: 1vh;
-  left: 3vw;
-}
-.bottomBanner image{
-  width: 94vw;
-  height: 20vh;
+  background: rgba(0,0,0,0);
 }

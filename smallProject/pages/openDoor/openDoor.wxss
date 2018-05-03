@@ -90,9 +90,6 @@
   color: #d3d3d3;
   margin: 2vh 0;
 }
-.accountBtn, .accountFailBtn{
-  
-}
 .accountBtn text, .accountFailBtn text{
     display: inline-block;
     padding: 1vh 8vw;
@@ -352,5 +349,5 @@
   top: 0;
   left: 0;
   z-index: 100;
-  background: #ffffff;
+  background: rgba(0,0,0,0);
 }

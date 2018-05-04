@@ -6,6 +6,7 @@ import Main from '../components/Main' //首页
 import Statement from '../components/Statement' //智能报表
 import Personal from '../components/Personal' //个人中心
 import Repertory from '../components/Repertory' //库存
+import Exhibing from '../components/Exhibing' //上货
 //引入主要的数据模块
 
 
@@ -38,6 +39,11 @@ export default new Router({
       path: '/repertory',
       name: 'repertory',
       component: Repertory
+    },
+    {
+      path: '/exhibing',
+      name: 'exhibing',
+      component: Exhibing
     }
   ]
 })

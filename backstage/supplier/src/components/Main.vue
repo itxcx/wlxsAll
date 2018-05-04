@@ -47,15 +47,17 @@
         },
         //上货扫一扫
         exhibitScan() {
-          console.log(1);
-          wx.scanQRCode({
-            needResult: 1,
-            scanType: ["qrCode"],
-            success: function (res) {
-              var result = res.resultStr;
-              console.log("扫描结果："+result);
-            }
-          });
+          this.$router.push({
+            path: '/exhibing'
+          })
+          // wx.scanQRCode({
+          //   needResult: 1,
+          //   scanType: ["qrCode"],
+          //   success: function (res) {
+          //     var result = res.resultStr;
+          //     console.log("扫描结果："+result);
+          //   }
+          // });
         }
       }
     }

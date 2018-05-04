@@ -9,7 +9,7 @@
         </dl>
       </section>
       <section class="handle">
-        <aside class="exhibit">
+        <aside class="exhibit" @click="exhibitScan">
           <div></div>
           <dl>
             <dt>商品上架</dt>
@@ -44,6 +44,18 @@
           this.$router.push({
             path: '/repertory'
           })
+        },
+        //上货扫一扫
+        exhibitScan() {
+          console.log(1);
+          wx.scanQRCode({
+            needResult: 1,
+            scanType: ["qrCode"],
+            success: function (res) {
+              var result = res.resultStr;
+              console.log("扫描结果："+result);
+            }
+          });
         }
       }
     }

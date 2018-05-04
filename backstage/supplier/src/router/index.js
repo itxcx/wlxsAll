@@ -7,6 +7,7 @@ import Statement from '../components/Statement' //智能报表
 import Personal from '../components/Personal' //个人中心
 import Repertory from '../components/Repertory' //库存
 import Exhibing from '../components/Exhibing' //上货
+import DoorClose from '../components/DoorClose' //关门
 //引入主要的数据模块
 
 
@@ -44,6 +45,11 @@ export default new Router({
       path: '/exhibing',
       name: 'exhibing',
       component: Exhibing
+    },
+    {
+      path: '/doorclose',
+      name: 'doorclose',
+      component: DoorClose
     }
   ]
 })

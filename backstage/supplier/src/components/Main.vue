@@ -48,7 +48,8 @@
         //上货扫一扫
         exhibitScan() {
           this.$router.push({
-            path: '/exhibing'
+            // path: '/exhibing'
+            path: '/doorclose'
           })
           // wx.scanQRCode({
           //   needResult: 1,

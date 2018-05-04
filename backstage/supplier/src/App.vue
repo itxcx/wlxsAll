@@ -30,7 +30,7 @@
     vertical-align: baseline;
   }
   html, body{
-    background: #f2f2f2;
+    font-family: "PingFang SC";
     font-size: 1vh;
   }
 </style>

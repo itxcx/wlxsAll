@@ -15,6 +15,7 @@ import Main from './components/Main'; //首页模块
 import FooterBar from './components/FooterBar'; //尾部
 import Repertory from './components/Repertory'; //库存
 import Exhibing from './components/Exhibing'; //库存
+import DoorClose from './components/DoorClose'; //库存
 
 
 
@@ -25,7 +26,7 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App, Login, Main, FooterBar, Repertory, Exhibing },
+  components: { App, Login, Main, FooterBar, Repertory, Exhibing, DoorClose },
   template: '<App/>'
 })
 //axios for ajax

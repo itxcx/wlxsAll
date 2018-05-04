@@ -78,9 +78,11 @@
         padding-top: 0.6vh;
         dt{
           font-size: 2.248rem;
+          color: #373737;
         }
         dd{
           font-size: 1.949rem;
+          color: #9f9f9f;
         }
       }
     }
@@ -103,9 +105,11 @@
           padding-top: 0.6vh;
           dt{
             font-size: 2.248rem;
+            color: #373737;
           }
           dd{
             font-size: 1.949rem;
+            color: #9f9f9f;
           }
         }
       }

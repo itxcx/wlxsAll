@@ -87,7 +87,7 @@
     z-index: 999;
     dl{
       width: 33.3333%;
-      height: @footerHeight;
+
       float: left;
       text-align: center;
       cursor: pointer;

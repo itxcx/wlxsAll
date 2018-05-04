@@ -22,11 +22,14 @@
           <span>上次库存更新时间:</span>
           <span>2018-5-1</span>
         </p>
-        <div>
+        <div v-show="!mapMode" @click="changeMode">
           <span>地图模式 ></span>
         </div>
+        <div v-show="mapMode" @click="changeMode">
+          <span>列表模式 ></span>
+        </div>
       </section>
-      <section class="device">
+      <section class="device" v-show="!mapMode">
         <ul>
           <li v-for="item in RepertoryArray" class="device_item">
             <dl>
@@ -44,6 +47,7 @@
           </li>
         </ul>
       </section>
+      <section id="allmap" class="map" v-show="mapMode"></section>
     </div>
 </template>
 
@@ -166,13 +170,14 @@
           district: '请选择商品',
           cityArr: [],
           districtArr: [],
+          mapMode: false, //地图模式
           RepertoryArray: [
             {
               "address" : "瞪羚谷",
               "deviceList": [
                 {
                   "name": "未来鲜森-瞪羚谷1",
-                  "acount": '900'
+                  "acount": '90'
                 },
                 {
                   "name": "未来鲜森-瞪羚谷2",
@@ -196,7 +201,33 @@
           ]
         }
       },
+      beforeUpdate() { //初始化
+        // this.$nextTick( () => {
+          this.mapShow();
+        // })
+      },
       methods: {
+        mapShow() {
+          // 百度地图API功能
+          var map = new BMap.Map("allmap"); //创建Map实例34.2755593788,108.9541677863
+          map.centerAndZoom(new BMap.Point(108.98416, 34.27555), 15); //初始化地图,设置中心点坐标和地图级别
+          //添加地图类型控件
+          map.addControl(new BMap.MapTypeControl({
+            mapTypes:[
+              BMAP_NORMAL_MAP,
+              BMAP_HYBRID_MAP
+            ]}));
+          map.setCurrentCity("西安"); //设置地图显示的城市 此项是必须设置的
+          map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+
+          var pt = new BMap.Point(108.98416, 34.27555);
+          var myIcon = new BMap.Icon("http://lbsyun.baidu.com/jsdemo/img/fox.gif", new BMap.Size(300,157));
+          var marker2 = new BMap.Marker(pt,{icon:myIcon}); //创建标注
+          map.addOverlay(marker2);
+        },
+        changeMode() {
+          this.mapMode = !this.mapMode;
+        },
         updateCity: function () {
           for (var i in this.arrAll) {
             var obj = this.arrAll[i];
@@ -240,7 +271,10 @@
 
 <style lang="less">
   .Repertory{
-
+    /* 去除百度地图水印 */
+    .anchorBL{
+      display:none;
+    }
     header{
       background: #5fcf6c;
       height: 7.496vh;
@@ -325,6 +359,10 @@
           }
         }
       }
+    }
+    .map{
+      width: 100vw;
+      height: 87vh;
     }
   }
   .ivu-select:nth-of-type(1){

@@ -264,8 +264,8 @@
                   anchor: new BMap.Size(5, 5)
                 });
                 var marker = new BMap.Marker(pt, {icon: myIcon}); //创建标注
-                var stock = data[i].deviceList[j].acount;
-                var label = new BMap.Label("库存" + stock + "件",{ position: pt,offset: new BMap.Size(-35,-30)});
+                var acount = data[i].deviceList[j].acount;
+                var label = new BMap.Label("库存" + acount + "件",{ position: pt,offset: new BMap.Size(-35,-30)});
                 label.setStyle({
                   color : "#ffffff",
                   fontSize : "12px",

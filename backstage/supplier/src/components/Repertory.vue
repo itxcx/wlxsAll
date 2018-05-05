@@ -221,7 +221,8 @@
           map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
 
           var pt = new BMap.Point(108.98416, 34.27555);
-          var myIcon = new BMap.Icon("http://lbsyun.baidu.com/jsdemo/img/fox.gif", new BMap.Size(300,157));
+          // var myIcon = new BMap.Icon("http://lbsyun.baidu.com/jsdemo/img/fox.gif", new BMap.Size(300,157));
+          var myIcon = new BMap.Icon("static/images/1ocation.png", new BMap.Size(300,157));
           var marker2 = new BMap.Marker(pt,{icon:myIcon}); //创建标注
           map.addOverlay(marker2);
         },

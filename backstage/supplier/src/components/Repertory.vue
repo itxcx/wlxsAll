@@ -31,14 +31,14 @@
       </section>
       <section class="device" v-show="!mapMode">
         <ul>
-          <li v-for="item in RepertoryArray" class="device_item">
+          <li v-for="(item, index) in RepertoryArray" class="device_item" :key="index">
             <dl>
               <dt>{{item.address}}</dt>
               <dd>智能售货柜</dd>
             </dl>
             <div class="device_info">
               <ul>
-                <li v-for="items in item.deviceList">
+                <li v-for="(items, index1) in item.deviceList" :key="index1">
                   <span>{{items.name}}</span>
                   <span>库存<span>{{items.acount}}</span>件</span>
                 </li>
@@ -198,34 +198,22 @@
                 }
               ]
             }
-          ]
+          ],
+          pointsList: [
+            {'longitude': 108.98416, 'latitude': 34.27555, 'stock': 16},
+            {'longitude': 108.95416, 'latitude': 34.25555, 'stock': 55},
+            {'longitude': 108.96416, 'latitude': 34.26555, 'stock': 33},
+            {'longitude': 108.97416, 'latitude': 34.28555, 'stock': 11},
+          ],
         }
       },
-      beforeUpdate() { //初始化
-        // this.$nextTick( () => {
+      mounted() { //初始化
+        this.$nextTick( () => {
           this.mapShow();
-        // })
+        })
       },
       methods: {
-        mapShow() {
-          // 百度地图API功能
-          var map = new BMap.Map("allmap"); //创建Map实例34.2755593788,108.9541677863
-          map.centerAndZoom(new BMap.Point(108.98416, 34.27555), 15); //初始化地图,设置中心点坐标和地图级别
-          //添加地图类型控件
-          map.addControl(new BMap.MapTypeControl({
-            mapTypes:[
-              BMAP_NORMAL_MAP,
-              BMAP_HYBRID_MAP
-            ]}));
-          map.setCurrentCity("西安"); //设置地图显示的城市 此项是必须设置的
-          map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
-
-          var pt = new BMap.Point(108.98416, 34.27555);
-          // var myIcon = new BMap.Icon("http://lbsyun.baidu.com/jsdemo/img/fox.gif", new BMap.Size(300,157));
-          var myIcon = new BMap.Icon("static/images/1ocation.png", new BMap.Size(300,157));
-          var marker2 = new BMap.Marker(pt,{icon:myIcon}); //创建标注
-          map.addOverlay(marker2);
-        },
+        //切换显示
         changeMode() {
           this.mapMode = !this.mapMode;
         },
@@ -252,6 +240,45 @@
           } else {
             this.district = '';
           }
+        },
+        //创建地图方法
+        mapShow() {
+          // 百度地图API功能
+          var map = new BMap.Map("allmap"); //创建Map实例34.2755593788,108.9541677863
+          map.centerAndZoom(new BMap.Point(108.98416, 34.27555), 15); //初始化地图,设置中心点坐标和地图级别
+          map.enableScrollWheelZoom();
+          this.pointShow(map);
+        },
+        //创建标注点方法
+        pointShow(map) {
+          var data = this.pointsList;
+          if(data.length > 0) {
+            for(var i = 0; i < data.length; i++) {
+              var longitude = data[i].longitude, latitude = data[i].latitude;
+              var pt = new BMap.Point(longitude, latitude);
+              //定义icon时一定要设置anchor属性,否则显示点位会随着地图的缩放移动
+              var myIcon = new BMap.Icon("./static/images/location_normal.png", new BMap.Size(300,157), {
+                anchor: new BMap.Size(5, 5)
+              });
+              var marker = new BMap.Marker(pt, {icon: myIcon}); //创建标注
+              var stock = data[i].stock;
+              var label = new BMap.Label("库存" + stock + "件",{ position: pt,offset: new BMap.Size(-35,-30)});
+              label.setStyle({
+                color : "#ffffff",
+                fontSize : "12px",
+                height : "25px",
+                width: "90px",
+                borderRadius: "10px",
+                textAlign: "center",
+                lineHeight : "20px",
+                background: "#ff8827",
+                fontFamily:"微软雅黑",
+                border: "none"
+              });
+              marker.setLabel(label);
+              map.addOverlay(marker);
+            }
+          }
         }
       },
       beforeMount: function () {
@@ -266,7 +293,7 @@
         city: function () {
           this.updateDistrict();
         }
-      }
+      },
     }
 </script>
 
@@ -396,6 +423,5 @@
       color: #ffffff;
     }
   }
-
 
 </style>

@@ -1,0 +1,219 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+
+}
+/********************** 订单详情 ****************************/
+.OrderSucItem {
+  background: #f2f2f2;
+  width: 100vw;
+  height: 100vh;
+  .itemInfo{
+    font-size: 2.5vh;
+    background: #fff;
+    padding: 0 3vw;
+    .orderId, .userId, .orderTime{
+      padding: 2vh 0;
+      border-bottom: 1px solid #f2f2f2;
+    }
+    .orderId, .userId, .orderTime{
+      span:nth-of-type(1){
+        display: inline-block;
+        color: #939393;
+        width: 11.5vh;
+      }
+    }
+    .orderAddress{
+      padding: 2vh 0;
+      border-bottom: 1px solid #f2f2f2;
+      overflow: hidden;
+      span:nth-of-type(1){
+        float: left;
+        width: 11.5vh;
+        color: #939393;
+      }
+      span:nth-of-type(2){
+        float: left;
+        width: 73vw;
+      }
+    }
+    .listTitle{
+      height: 7vh;
+      line-height: 7vh;
+      border-bottom: 1px solid #f2f2f2;
+      span:nth-of-type(1){
+        font-weight: 600;
+      }
+      span:nth-of-type(2){
+        float: right;
+        padding-right: 2vw;
+        font-weight: 600;
+        color: #f73c3b;
+        font-size: 2vh;
+      }
+    }
+    .orderList{
+      list-style: none;
+      li{
+        padding: 1vh 0;
+        overflow: hidden;
+        border-bottom: 1px solid #f2f2f2;
+        .itemImg{
+          width: 10vh;
+          height: 10vh;
+          background: url(images/logo.png) no-repeat center center;
+          background-size: cover;
+          border-radius: 5px;
+          border: 1px solid #f2f2f2;
+          float: left;
+        }
+        dl{
+          padding-top: 2vh;
+          float: left;
+          margin-left: 3vw;
+          width: 58vw;
+          height: 10vh;
+          margin-bottom: 0;
+          dt,dd{
+            font-weight: normal;
+          }
+          dd{
+            span:nth-of-type(1){
+              color: #f73c3b;
+            }
+            span:nth-of-type(2){
+              font-size: 2vh;
+              text-decoration: line-through;
+            }
+          }
+        }
+        div:nth-of-type(2){
+          margin-left: 3vw;
+          height: 10vh;
+          line-height: 10vh;
+          text-align: center;
+          float: left;
+          width: 10vw;
+        }
+      }
+    }
+    .amount, .discount{
+      padding: 2vh 0;
+      border-bottom: 1px solid #f2f2f2;
+      span:nth-of-type(1){
+        width: 12vh;
+        display: inline-block;
+        color: #939393;
+      }
+      span:nth-of-type(2){
+        float: right;
+        margin-right: 2vh;
+        font-size: 3vh;
+        color: #f73c3b;
+      }
+    }
+    .orderMsg{
+      padding: 2vh 3vw;
+      text-align: right;
+      font-size: 1.8vh;
+      color: #f73c3b;
+      word-wrap: break-word;
+      font-weight: 600;
+    }
+  }
+  .msg{
+    margin: 15vh 0;
+    text-align: center;
+    color: #222;
+    height: 5vh;
+  }
+}
+/************************** 开门提示 ***********************************/
+.OpenDoorSuccess {
+  background: #f2f2f2;
+  padding: 6vh 0 12vh 0;
+  width: 100vw;
+  height: 100vh;
+  .statusMsg{
+    >div{
+      padding: 10vh 0 0 0 ;
+    }
+    .doorTrue{
+      width: 20vh;
+      height: 20vh;
+      margin: 2vh auto;
+      background: url(images/kmcg.png) no-repeat center center;
+      background-size: cover;
+    }
+
+    .statusMsg{
+      text-align: center;
+      font-size: 5vh;
+      color: #F6504E;
+    }
+    .tipText{
+      width: 50vw;
+      margin: 5vh auto;
+      text-align: center;
+      font-size: 2.8vh;
+      color: #898989;
+    }
+    .goFocus{
+      position: fixed;
+      bottom: 2vh;
+      left: 0;
+      width: 100vw;
+      text-align: center;
+      button{
+        width: 83vw;
+        height: 8vh;
+        font-size: 3vh;
+        color: #fff;
+        background: #F73D3B;
+        border: none;
+        font-weight: 600;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+.OpenDoorError {
+  background: #f2f2f2;
+  padding: 6vh 0 12vh 0;
+  height: 100vh;
+  .statusMsg{
+    >div{
+      padding: 10vh 0 0 0 ;
+    }
+    .doorFalse{
+      width: 20vh;
+      height: 20vh;
+      margin: 2vh auto;
+      background: url(images/kmcs.png) no-repeat center center;
+      background-size: cover;
+    }
+    .statusMsg{
+      text-align: center;
+      font-size: 5vh;
+      color: #F6504E;
+    }
+    .receiveMsg{
+      width: 100vw;
+      padding: 2vh 2vw;
+      font-size: 2.8vh;
+      color: #f73c3b;
+      text-align: center;
+    }
+    .tipText{
+      width: 50vw;
+      margin: 5vh auto;
+      text-align: left;
+      font-size: 2.8vh;
+      color: #898989;
+    }
+  }
+}
+

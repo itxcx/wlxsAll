@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="keywords" content="未来鲜森,新零售,创新"/>
+    <meta name="description" content="未来鲜森"/>
+    <title>未来鲜森</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="OpenDoorSuccess">
+    <section class="statusMsg">
+        <div>
+            <div class="doorTrue"></div>
+            <p class="statusMsg">正在结算</p>
+            <p class="tipText">请勿将购买商品放回收货柜,如有问题,请致电客服热线<br/>400-770-7768</p>
+        </div>
+    </section>
+</div>
+</body>
+</html>
+<script>
+    $(function() {
+        var path = decodeURIComponent(window.location.href);
+        var parames = path.split('?')[1].split('&');
+        var orderId = parames[0].split('=')[1]; //orderid
+        console.log(orderId)
+        var amount = parames[1].split('=')[1]; //金额
+        var u = navigator.userAgent; //手机型号
+        var device = ""; //当前设备信息
+        if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) { //安卓手机
+            device = "Android";
+        } else if (u.indexOf('iPhone') > -1) { //苹果手机
+            device = "iPhone";
+        }
+        //判断机型调用支付方法
+        if(device === "Android" && amount > 0) {
+
+            payAndroid(orderId, amount);
+        } else if(device === "iPhone" && amount > 0) {
+
+            payiPhone (orderId, amount);
+        }
+        //Android调用支付
+        function payAndroid(orderId, amount) {
+            var orderinfo =
+                "TXCODE=SP7010,"+
+                "WAPVER=1.2,"+
+                "MERCHANTID=105791000001444,"+
+                "ORDERID="+ orderId + "," +
+                "PAYMENT="+ amount + "," +
+                "MAGIC=55529186a330f98a74d73557b07706f2,"+
+                "BRANCHID=610000000,"+
+                "POSID=014536920,"+
+                "CURCODE=01,"+
+                "REMARK1=wlxs,"+
+                "REMARK2=wrhg,"+
+                "SUPPORTACCOUNTTYPE=3";
+            window.mbcpay.b2c(orderinfo);
+        }
+
+        //iphone调用支付
+        function payiPhone (orderId, amount) {
+            window.location="/mbcpay.b2c?" + MBC_PAYINFO(orderId, amount);
+        }
+
+        function MBC_PAYINFO(orderId, amount){
+            var orderinfo =
+                "TXCODE=SP7010,"+
+                "WAPVER=1.2,"+
+                "MERCHANTID=105791000001444,"+
+                "ORDERID="+ orderId + "," +
+                "PAYMENT="+ amount + "," +
+                "MAGIC=55529186a330f98a74d73557b07706f2,"+
+                "BRANCHID=610000000,"+
+                "POSID=014536920,"+
+                "CURCODE=01,"+
+                "REMARK1=wlxs,"+
+                "REMARK2=wrhg,"+
+                "SUPPORTACCOUNTTYPE=3";
+            return orderinfo;
+        }
+
+    })
+</script>

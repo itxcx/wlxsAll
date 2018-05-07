@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+        <meta name="keywords" content="未来鲜森,新零售,创新"/>
+        <meta name="description" content="未来鲜森"/>
+        <title>未来鲜森</title>
+        <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="style.css"/>
+        <script src="js/jquery-3.2.1.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="OpenDoorError">
+            <section class="statusMsg">
+                <div>
+                    <div class="doorFalse"></div>
+                    <p class="receiveMsg"></p>
+                    <p class="tipText">如锁已开请正常购物，关门后会自动结算。如锁没有开，请重试或尝试其他未来鲜森无人售货柜。</p>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>
+<script>
+    $(function() {
+        function getUrlQuery(){ //从url中获取
+            var name = null;
+            var value = null;
+            var str = location.href;
+            var num = str.indexOf("?");
+            str = str.substr(num + 1);
+            var arr = str.split("&");
+            for(var i = 0; i < arr.length; i++){
+                num = arr[i].indexOf("=");
+                if(num > 0){
+                    name = arr[i].substring(0, num);
+                    value = arr[i].substr(num + 1);
+                    this[name] = value;
+                }
+            }
+        }
+        var params = new getUrlQuery();
+        var  receiveMsg = decodeURI(params.msg) !== 'undefined' ? decodeURI(params.msg) : ' ';
+        $('.receiveMsg').html(receiveMsg);
+    })
+</script>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="keywords" content="未来鲜森,新零售,创新"/>
+    <meta name="description" content="未来鲜森"/>
+    <title>未来鲜森</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="OpenDoorSuccess">
+        <section class="statusMsg">
+            <div>
+                <div class="doorTrue"></div>
+                <p class="statusMsg">开门成功</p>
+                <p class="tipText">请勿将购买商品放回收货柜,如有问题,请致电客服热线<br/>400-770-7768</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+<script>
+    $(function() {
+        var url = decodeURIComponent(window.location.href);
+        var sid = path.split('?')[1];
+        //var sid = 'sid_73703efbea15a11dcb7db7a44ee97000';
+        var socketPath = 'ws://wss.weilaixiansen.com:37023?' + sid; //测试地址
+        if('WebSocket' in window) {
+            var websocket = new WebSocket(socketPath);
+            /*建立连接*/
+            websocket.onopen = function () {
+                websocket.send('connection success'); //发送消息
+                console.log('websocket connection success!');
+            };
+            /*接收消息*/
+            websocket.onmessage = function (res) {
+                console.log(res);
+                var receiveData = res.data;
+                console.log('-------------------');
+                console.log(receiveData);
+                // 调用支付,传参进去
+                 var orderId = res.data.orderId;//订单id
+                 var amount = res.data.amount;//金额
+                 if(receiveData === 'success') {
+                     window.location.href = 'account.html?orderId=' + orderId + '&amount=' + amount;
+                 }
+            };
+            websocket.onerror = function(error) {
+                console.log(error);
+            }
+        } else {
+            console.log('WebSocket is not support!');
+        }
+    })
+</script>

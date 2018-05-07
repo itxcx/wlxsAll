@@ -2,18 +2,18 @@
     <div class="Repertory">
       <header>
         <Select v-model="prov">
-          <Option v-for="option in arrAll" :value="option.name">
-            {{ option.name }}
+          <Option v-for="(opt1, indexall) in arrAll" :value="opt1.name" :key="indexall">
+            {{ opt1.name }}
           </Option>
         </Select>
         <Select v-model="city">
-          <Option v-for="option in cityArr" :value="option.name">
-            {{ option.name }}
+          <Option v-for="(opt2, indexcity) in cityArr" :value="opt2.name" :key="indexcity">
+            {{ opt2.name }}
           </Option>
         </Select>
         <Select v-model="district" v-if="district">
-          <Option v-for="option in districtArr" :value="option.name">
-            {{ option.name }}
+          <Option v-for="(opt3, indexdistrict) in districtArr" :value="opt3.name" :key="indexdistrict">
+            {{ opt3.name }}
           </Option>
         </Select>
       </header>
@@ -53,7 +53,7 @@
 
 <script>
     export default {
-      name: "repertory",
+      name: "Repertory",
       data() {
         return {
           arrAll: [
@@ -338,7 +338,6 @@
           color: #65d172;
           border: 1px solid #65d172;
           border-radius: 20px;
-
         }
       }
     }
@@ -372,7 +371,6 @@
               overflow: hidden;
               padding: 1.874vh 0 2.2488vh 0;
               >span:nth-of-type(1){
-
                 display: inline-block;
                 width: 43.55vw;
               }

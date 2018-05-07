@@ -103,7 +103,6 @@
     }
     .handle{
       display: flex;
-
       .exhibit, .ship{
         background: #fff;
         border-radius: 5px;

@@ -16,7 +16,7 @@ import FooterBar from './components/FooterBar'; //尾部
 import Repertory from './components/Repertory'; //库存
 import Exhibing from './components/Exhibing'; //入库
 import DoorClose from './components/DoorClose'; //入库关门
-import InStorDone from './components/InStorDone'; //入库完成
+import InStoreDone from './components/InStoreDone'; //入库完成
 
 
 
@@ -29,7 +29,7 @@ new Vue({
   store,
   components: {
     App, Login, Main, FooterBar, Repertory, Exhibing, DoorClose,
-    InStorDone
+    InStoreDone
   },
   template: '<App/>'
 })

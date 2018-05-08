@@ -29,6 +29,7 @@
           <span>列表模式 ></span>
         </div>
       </section>
+      <!-- 查看模式显示 -->
       <section class="device" v-show="!mapMode">
         <ul>
           <li v-for="(item, index) in RepertoryArray" class="device_item" :key="index">

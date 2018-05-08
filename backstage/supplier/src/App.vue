@@ -33,4 +33,7 @@
     font-family: "PingFang SC";
     font-size: 1vh;
   }
+  ul{
+    list-style: none;
+  }
 </style>

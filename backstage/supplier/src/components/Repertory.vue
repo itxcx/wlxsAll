@@ -507,7 +507,7 @@
         city: '选择城市', //城市
         device: '全部售货柜', //设备
         product: '选择商品', //商品
-        cityDown: true, //控制城市选择显示
+        cityDown: false, //控制城市选择显示
         deviceDown: true, //控制设备选择显示
         productDown: true, //控制商品选择显示
         active: true,
@@ -595,23 +595,23 @@
       })
     },
     methods: {
-      //点击选择城市
+      //选择城市
       selectCity() {
-        this.cityDown = !this.cityDown;
+        this.cityDown = false;
         this.deviceDown = true;
         this.productDown = true;
       },
-      //点击选择设备
+      //选择设备
       selectDevice() {
-        this.deviceDown = !this.deviceDown;
         this.cityDown = true;
+        this.deviceDown = false;
         this.productDown = true;
       },
-      //点击选择商品
+      //选择商品
       selectProduct() {
-        this.productDown = !this.productDown;
         this.cityDown = true;
         this.deviceDown = true;
+        this.productDown = false;
       },
       //点击切换设备列表
       changeDistrict(index) {
@@ -623,15 +623,14 @@
       },
       //列表选择城市
       entryCity(e) {
-        // console.log(e);
-        // console.log(e.target.innerHTML);
         this.city = e.target.innerHTML;
-        this.selectDevice();
+        this.cityDown = !this.cityDown;
+        this.deviceDown = !this.deviceDown;
       },
       //列表选择机柜
       entryDevice(e) {
         this.device = e.target.innerHTML;
-      }
+      },
     }
   })
 </script>

@@ -450,7 +450,7 @@
       <!-- 城市列表 -->
       <section v-show="!cityDown" class="cityList">
         <ul>
-          <li>西安</li>
+          <li @click="entryCity">西安</li>
           <li>北京</li>
           <li>上海</li>
           <li>广州</li>
@@ -469,16 +469,20 @@
       <section v-show="!deviceDown" class="deviceList">
         <aside class="left">
           <ul>
-            <li>全部</li>
-            <li>雁塔区</li>
-            <li>高新区</li>
+            <li v-for="(item, index) in deviceList" @click="changeDistrict(index)" :class="item.show ? 'special' : 'normal'">
+              {{item.district}}
+            </li>
           </ul>
         </aside>
         <aside class="right">
           <ul>
-            <li>
-              <div>未来鲜森-No.0001</div>
-              <div>西安</div>
+            <li v-for="(item, index) in showDeviceList">
+                <p @click="entryDevice">{{item.name}}</p>
+                <p>
+                  <span></span>
+                  <span>{{item.addr}}</span>
+                </p>
+                <p>距当前定位地址5千米</p>
             </li>
           </ul>
         </aside>
@@ -506,7 +510,89 @@
         cityDown: true, //控制城市选择显示
         deviceDown: true, //控制设备选择显示
         productDown: true, //控制商品选择显示
+        active: true,
+        deviceList: [
+          {
+            'district': '全部',
+            'show': true,
+            'list': [
+              {
+                'addr': '西安市高新区锦业路69号瞪羚谷E座',
+                'name': '未来鲜森-0001'
+              },
+              {
+                'addr': '西安市高新区锦业路69号瞪羚谷E座',
+                'name': '未来鲜森-0002'
+              },
+              {
+                'addr': '西安市高新区锦业路69号瞪羚谷E座',
+                'name': '未来鲜森-0003'
+              },
+              {
+                'addr': '西安市高新区锦业路69号瞪羚谷E座',
+                'name': '未来鲜森-0004'
+              },
+              {
+                'addr': '西安市高新区锦业路69号瞪羚谷E座',
+                'name': '未来鲜森-0005'
+              },
+              {
+                'addr': '西安市高新区锦业路69号瞪羚谷E座',
+                'name': '未来鲜森-0006'
+              },
+            ]
+          },
+          {
+            'district': '雁塔区',
+            'show': false,
+            'list': [
+              {
+                'addr': '西安市高新区锦业路69号瞪羚谷E座',
+                'name': '未来鲜森-0003'
+              },
+              {
+                'addr': '西安市高新区锦业路69号瞪羚谷E座',
+                'name': '未来鲜森-0004'
+              }
+            ]
+          },
+          {
+            'district': '高新区',
+            'show': false,
+            'list': [
+              {
+                'addr': '西安市高新区锦业路69号瞪羚谷E座',
+                'name': '未来鲜森-0001'
+              },
+              {
+                'addr': '西安市高新区锦业路69号瞪羚谷E座',
+                'name': '未来鲜森-0002'
+              }
+            ]
+          },
+          {
+            'district': '夜未央',
+            'show': false,
+            'list': [
+              {
+                'addr': '西安市高新区锦业路69号瞪羚谷E座',
+                'name': '未来鲜森-0005'
+              },
+              {
+                'addr': '西安市高新区锦业路69号瞪羚谷E座',
+                'name': '未来鲜森-0006'
+              }
+            ]
+          }
+        ],
+        showDeviceList: []
       }
+    },
+    mounted() {
+      this.$nextTick( () => {
+        //初始化方法 显示全部设备
+        this.showDeviceList = this.deviceList[0].list;
+      })
     },
     methods: {
       //点击选择城市
@@ -526,6 +612,25 @@
         this.productDown = !this.productDown;
         this.cityDown = true;
         this.deviceDown = true;
+      },
+      //点击切换设备列表
+      changeDistrict(index) {
+        this.showDeviceList = this.deviceList[index].list;
+        for(var i = 0; i < this.deviceList.length; i++) {
+          this.deviceList[i].show = false;
+        }
+        this.deviceList[index].show = true;
+      },
+      //列表选择城市
+      entryCity(e) {
+        // console.log(e);
+        // console.log(e.target.innerHTML);
+        this.city = e.target.innerHTML;
+        this.selectDevice();
+      },
+      //列表选择机柜
+      entryDevice(e) {
+        this.device = e.target.innerHTML;
       }
     }
   })
@@ -533,9 +638,15 @@
 
 <style lang="less">
   .Repertory{
+    background: #ffffff;
+    padding-top: 7.3718vh;
     header{
+      position: fixed;
+      top: 0;
+      left: 0;
       background: #65d172;
       color: #ffffff;
+      height: 7.3718vh;
       ul{
         list-style: none;
         overflow: hidden;
@@ -576,17 +687,46 @@
         }
       }
       .deviceList{
-
         .left{
           width: 27.4466vw;
           float: left;
-          border: 1px solid pink;
+          font-size: 2.2488rem;
+          li{
+            padding: 2.2398vh 0;
+            text-align: center;
+          }
         }
         .right{
           width: 72.5534vw;
           float: right;
-          border: 1px solid red;
-
+          ul{
+            li{
+              font-size: 2.2488rem;
+              color: #373737;
+              padding: 0 4vw;
+              border-bottom: 1px solid #e5e5e5;
+              p:nth-of-type(1) {
+                padding: 2.6236vh 0 1.874vh 0;
+              }
+              p:nth-of-type(2) {
+                font-size: 1.949rem;
+                color: #999898;
+                span:nth-of-type(1){
+                  display: inline-block;
+                  width: 3.733vw;
+                  height: 2.548vh;
+                  background: url("../../static/images/location_icon.png") no-repeat center center;
+                  background-size: cover;
+                  vertical-align: bottom;
+                }
+              }
+              p:nth-of-type(3) {
+                font-size: 1.799rem;
+                color: #939393;
+                padding: 2.6236vh 0;
+              }
+            }
+          }
         }
       }
     }
@@ -600,5 +740,13 @@
     background: url("../../static/images/up.png") no-repeat center center;
     background-size: cover;
     transition: all 0.1s ease-out;
+  }
+  .normal{
+    background: #f4f2f2;
+    color: #373737;
+  }
+  .special{
+    background: #ffffff;
+    color: #65d172;
   }
 </style>

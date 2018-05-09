@@ -55,8 +55,8 @@
       font-weight: 500;
     }
     .logo{
-      width: 21.067vw;
-      height: 14.5427vh;
+      width: 21.8667vw;
+      height: 16.9427vh;
       background: url("../../static/images/logo.png") no-repeat center center;
       background-size: cover;
       margin: 8.395vh auto;
@@ -67,7 +67,7 @@
         position: relative;
         height: 5.997vh;
         width: 74.666vw;
-        border: 1px solid #f2f2f2;
+        border: 1px solid #e8e8e8;
         border-radius: 20px;
         margin: 0 auto;
         input{
@@ -86,7 +86,7 @@
         display: inline-block;
         margin: 1.2vh 4vw;
         width: 5.6vw;
-        height: 3.597vh;
+        height: 3.5982vh;
         background: url("../../static/images/account.png") no-repeat center center;
         background-size: cover;
       }
@@ -97,7 +97,7 @@
           display: inline-block;
           margin: 1.2vh 4vw;
           width: 5.6vw;
-          height: 3.597vh;
+          height: 4.0982vh;
           background: url("../../static/images/password.png") no-repeat center center;
           background-size: cover;
         }

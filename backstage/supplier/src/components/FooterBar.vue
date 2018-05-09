@@ -83,21 +83,18 @@
     left: 0;
     bottom: 0;
     text-align: center;
-    padding-top: 5px;
     z-index: 999;
     dl{
       width: 33.3333%;
-
       float: left;
       text-align: center;
-      cursor: pointer;
+      padding-top: 0.5496vh;
       dt{
         width: 6.4vw;
-        height: 3.283vh;
+        height: 4.0233vh;
         margin: 0 auto;
       }
       dd{
-        margin-top: 0.5997vh;
         font-size: 1.7991rem;
       }
     }

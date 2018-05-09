@@ -66,6 +66,8 @@
 
 <style lang="less">
   .Main{
+    width:100vw;
+    height: 100vh;
     background: #f5f5f5;
     font-family: "PingFang SC-Medium";
     .topBanner{

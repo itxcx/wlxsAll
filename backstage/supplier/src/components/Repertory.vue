@@ -59,37 +59,47 @@
       </section>
       <!-- 商品列表 -->
       <section v-show="!productDown" class="productList">
-        <section class="updateTime">
-          <p>
-            <span>上次库存更新时间:</span>
-            <span>2018-5-1</span>
-          </p>
-          <div v-show="!mapMode" @click="changeMode">
-            <span>地图模式 ></span>
-          </div>
-          <div v-show="mapMode" @click="changeMode">
-            <span>列表模式 ></span>
-          </div>
+        <!-- 商品条目 -->
+        <section class="productItem" v-show="!itemIsSelect">
+          <ul>
+            <li v-for="(item, index) in productItem" @click="itemSelect">{{item}}</li>
+          </ul>
         </section>
-        <section class="device" v-show="!mapMode">
-          <!--<ul>-->
-            <!--<li v-for="(item, index) in deviceList" class="device_item" :key="index">-->
-              <!--<dl>-->
-                <!--<dt>{{item.address}}</dt>-->
-                <!--<dd>智能售货柜</dd>-->
-              <!--</dl>-->
-              <!--<div class="device_info">-->
-                <!--<ul>-->
-                  <!--<li>-->
-                    <!--<span>{{items.name}}</span>-->
-                    <!--<span>库存<span>{{items.acount}}</span>件</span>-->
-                  <!--</li>-->
-                <!--</ul>-->
-              <!--</div>-->
-            <!--</li>-->
-          <!--</ul>-->
+        <!-- 显示模式 -->
+        <section class="productContent" v-show="itemIsSelect">
+          <section class="updateTime">
+            <p>
+              <span>上次库存更新时间:</span>
+              <span>2018-5-1</span>
+            </p>
+            <div v-show="!mapMode" @click="changeMode">
+              <span>地图模式 ></span>
+            </div>
+            <div v-show="mapMode" @click="changeMode">
+              <span>列表模式 ></span>
+            </div>
+          </section>
+          <section class="device" v-show="!mapMode">
+            <ul>
+              <li v-for="(item, index) in RepertoryArray" class="device_item" :key="index">
+                <dl>
+                  <dt>{{item.address}}</dt>
+                  <dd>智能售货柜</dd>
+                </dl>
+                <div class="device_info">
+                  <ul>
+                    <li v-for="(items, index1) in item.deviceList" :key="index1">
+                      <span>{{items.name}}</span>
+                      <span>库存<span>{{items.acount}}</span>件</span>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </section>
+          <section id="allmap" class="map" v-show="mapMode"></section>
         </section>
-        <section id="allmap" class="map" v-show="mapMode"></section>
+
       </section>
     </section>
   </div>
@@ -107,7 +117,9 @@
         deviceDown: true, //控制设备选择显示
         productDown: true, //控制商品选择显示
         active: true,
+        itemIsSelect: false,// 是否选择具体商品
         mapMode: false, //地图模式
+        productItem: ['乐虎', '农夫山泉', '酸奶', '矿泉水', '蛋糕', '果汁', '啤酒', '鸭脖'],//商品条目
         deviceList: [
           {
             'district': '全部',
@@ -117,37 +129,43 @@
                 'addr': '西安市高新区锦业路69号瞪羚谷E座',
                 'name': '未来鲜森-0001',
                 "longitude": 108.98416,
-                "latitude": 34.28555
+                "latitude": 34.28555,
+                "count": 55
               },
               {
                 'addr': '西安市高新区锦业路69号瞪羚谷E座',
                 'name': '未来鲜森-0002',
                 "longitude": 108.95416,
-                "latitude": 34.25555
+                "latitude": 34.25555,
+                "count": 55
               },
               {
                 'addr': '西安市高新区锦业路69号瞪羚谷E座',
                 'name': '未来鲜森-0003',
                 "longitude": 108.96416,
-                "latitude": 34.26555
+                "latitude": 34.26555,
+                "count": 55
               },
               {
                 'addr': '西安市高新区锦业路69号瞪羚谷E座',
                 'name': '未来鲜森-0004',
                 "longitude": 108.94416,
-                "latitude": 34.24555
+                "latitude": 34.24555,
+                "count": 55
               },
               {
                 'addr': '西安市高新区锦业路69号瞪羚谷E座',
                 'name': '未来鲜森-0005',
                 "longitude": 108.99416,
-                "latitude": 34.29555
+                "latitude": 34.29555,
+                "count": 55
               },
               {
                 'addr': '西安市高新区锦业路69号瞪羚谷E座',
                 'name': '未来鲜森-0006',
                 "longitude": 108.93416,
-                "latitude": 34.23555
+                "latitude": 34.23555,
+                "count": 55
               },
             ]
           },
@@ -159,13 +177,15 @@
                 'addr': '西安市高新区锦业路69号瞪羚谷E座',
                 'name': '未来鲜森-0003',
                 "longitude": 108.96416,
-                "latitude": 34.26555
+                "latitude": 34.26555,
+                "count": 55
               },
               {
                 'addr': '西安市高新区锦业路69号瞪羚谷E座',
                 'name': '未来鲜森-0004',
                 "longitude": 108.94416,
-                "latitude": 34.24555
+                "latitude": 34.24555,
+                "count": 55
               }
             ]
           },
@@ -177,13 +197,15 @@
                 'addr': '西安市高新区锦业路69号瞪羚谷E座',
                 'name': '未来鲜森-0001',
                 "longitude": 108.98416,
-                "latitude": 34.28555
+                "latitude": 34.28555,
+                "count": 55
               },
               {
                 'addr': '西安市高新区锦业路69号瞪羚谷E座',
                 'name': '未来鲜森-0002',
                 "longitude": 108.95416,
-                "latitude": 34.25555
+                "latitude": 34.25555,
+                "count": 55
               },
             ]
           },
@@ -195,24 +217,63 @@
                 'addr': '西安市高新区锦业路69号瞪羚谷E座',
                 'name': '未来鲜森-0005',
                 "longitude": 108.99416,
-                "latitude": 34.29555
+                "latitude": 34.29555,
+                "count": 55
               },
               {
                 'addr': '西安市高新区锦业路69号瞪羚谷E座',
                 'name': '未来鲜森-0006',
                 "longitude": 108.93416,
-                "latitude": 34.23555
+                "latitude": 34.23555,
+                "count": 55
               }
             ]
           }
         ],
-        showDeviceList: []
+        showDeviceList: [],
+        RepertoryArray: [
+          {
+            "address": "瞪羚谷",
+            "deviceList": [
+              {
+                "name": "未来鲜森-瞪羚谷1",
+                "acount": '90',
+                "longitude": 108.98416,
+                "latitude": 34.27555
+              },
+              {
+                "name": "未来鲜森-瞪羚谷2",
+                "acount": '88',
+                "longitude": 108.95416,
+                "latitude": 34.25555
+              }
+            ]
+          },
+          {
+            "address": "招商银行",
+            "deviceList": [
+              {
+                "name": "未来鲜森-招商银行1",
+                "acount": '20',
+                "longitude": 108.96416,
+                "latitude": 34.26555
+              },
+              {
+                "name": "未来鲜森-招商银行2",
+                "acount": '20',
+                "longitude": 108.97416,
+                "latitude": 34.28555
+              }
+            ]
+          }
+        ]
       }
     },
     mounted() {
       this.$nextTick( () => {
         //初始化方法 显示全部设备
         this.showDeviceList = this.deviceList[0].list;
+        this.mapShow();
       })
     },
     methods: {
@@ -221,6 +282,7 @@
         this.cityDown = false;
         this.deviceDown = true;
         this.productDown = true;
+        this.product = '选择商品';
       },
       //选择设备
       selectDevice() {
@@ -228,12 +290,14 @@
         this.deviceDown = false;
         this.productDown = true;
         this.city = '西安';
+        this.product = '选择商品';
       },
       //选择商品
       selectProduct() {
         this.cityDown = true;
         this.deviceDown = true;
         this.productDown = false;
+        this.itemIsSelect = false;
       },
       //点击切换设备列表
       changeDistrict(index) {
@@ -256,6 +320,12 @@
         this.cityDown = true;
         this.deviceDown = true;
         this.productDown = false;
+        this.itemIsSelect = false;
+      },
+      //列表选择商品
+      itemSelect(e) {
+        this.product = e.target.innerHTML;
+        this.itemIsSelect = true;
       },
       //切换显示
       changeMode() {
@@ -263,7 +333,7 @@
       },
       //创建地图方法
       mapShow() {
-// 百度地图API功能
+      // 百度地图API功能
         var map = new BMap.Map("allmap"); //创建Map实例34.2755593788,108.9541677863
         map.centerAndZoom(new BMap.Point(108.98416, 34.27555), 15); //初始化地图,设置中心点坐标和地图级别
         map.enableScrollWheelZoom();
@@ -271,18 +341,18 @@
       },
       //创建标注点方法
       pointShow(map) {
-        var data = this.deviceList;
+        var data = this.RepertoryArray;
         if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
-            for (var j = 0; j < data[i].list.length; j++) {
-              var longitude = data[i].list[j].longitude, latitude = data[i].list[j].latitude;
+            for (var j = 0; j < data[i].deviceList.length; j++) {
+              var longitude = data[i].deviceList[j].longitude, latitude = data[i].deviceList[j].latitude;
               var pt = new BMap.Point(longitude, latitude);
 //定义icon时一定要设置anchor属性,否则显示点位会随着地图的缩放移动,此点是不会变动的,icon设置点是根据此点的位置来设置的
               var myIcon = new BMap.Icon("./static/images/location_normal.png", new BMap.Size(68, 70), {
                 anchor: new BMap.Size(5, 5)
               });
               var marker = new BMap.Marker(pt, {icon: myIcon}); //创建标注
-              var acount = data[i].list[j].acount;
+              var acount = data[i].deviceList[j].acount;
               var label = new BMap.Label("库存" + acount + "件", {position: pt, offset: new BMap.Size(-35, -30)});
               label.setStyle({
                 color: "#ffffff",
@@ -400,6 +470,23 @@
         }
       }
       .productList{
+        /*商品条目列表展示*/
+        .productItem{
+          margin-top: 2vh;
+          ul{
+            list-style: none;
+            li{
+              text-align: center;
+              font-size: 2.3988vh;
+              border: 1px solid #80858f;
+              padding: 0.323vh 0;
+              margin: 0.654vh 1.32vw;
+              width: 30.258vw;
+              border-radius: 7px;
+              float: left;
+            }
+          }
+        }
         .updateTime {
           border-bottom: 1px solid #e5e5e5;
           padding: 0.7448vh 5.333vw;

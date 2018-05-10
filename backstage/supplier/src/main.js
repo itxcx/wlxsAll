@@ -17,6 +17,7 @@ import Repertory from './components/Repertory'; //库存
 import Exhibing from './components/Exhibing'; //入库
 import DoorClose from './components/DoorClose'; //入库关门
 import InStoreDone from './components/InStoreDone'; //入库完成
+import Scan from './components/Scan'; //入库完成
 
 
 
@@ -29,7 +30,7 @@ new Vue({
   store,
   components: {
     App, Login, Main, FooterBar, Repertory, Exhibing, DoorClose,
-    InStoreDone
+    InStoreDone, Scan
   },
   template: '<App/>'
 })

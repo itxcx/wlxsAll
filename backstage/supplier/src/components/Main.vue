@@ -48,17 +48,9 @@
         //上货扫一扫
         exhibitScan() {
           this.$router.push({
-            // path: '/exhibing'
-            path: '/doorclose'
+            path: '/exhibing'
+            // path: '/doorclose'
           })
-          // wx.scanQRCode({
-          //   needResult: 1,
-          //   scanType: ["qrCode"],
-          //   success: function (res) {
-          //     var result = res.resultStr;
-          //     console.log("扫描结果："+result);
-          //   }
-          // });
         }
       }
     }

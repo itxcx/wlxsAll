@@ -9,6 +9,7 @@ import Repertory from '../components/Repertory' //库存
 import Exhibing from '../components/Exhibing' //上货
 import DoorClose from '../components/DoorClose' //关门
 import InStoreDone from '../components/InStoreDone' //入库完成
+import Scan from '../components/Scan' //入库完成
 //引入主要的数据模块
 
 Vue.use(Router);
@@ -54,6 +55,11 @@ export default new Router({
       path: '/inStoreDone',
       name: 'inStoreDone',
       component: InStoreDone
+    },
+    {
+      path: '/scan',
+      name: 'scan',
+      component: Scan
     }
   ]
 })

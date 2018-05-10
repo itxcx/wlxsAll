@@ -116,7 +116,7 @@
       <!-- 有好几个页面需要的模块  -->
       <view class="tipContent {{tipContent ? 'show' : 'hide'}}">
             <text class="title">温馨提示</text>
-            <text class="items">请勿将购买商品放回收货柜</text>
+            <text class="items">请勿将购买商品放回售货柜</text>
             <text >如有问题，请致电客服热线</text>
             <text bindtap="callService"> 400-770-7768</text>
       </view>

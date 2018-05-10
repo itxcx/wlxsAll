@@ -48,6 +48,7 @@ Page({
                }
              })
            } else if (options.q != undefined) {
+             //首页模态框显示
               global_this.setData({
                 indexModal: true
               })
@@ -64,10 +65,7 @@ Page({
                   'device_number': device_number
                 },
                 success: function (resSession) {
-                  //模态框隐藏
-                  global_this.setData({
-                    indexModal: false
-                  })
+                  
                   wx.setStorageSync('device_number', '');
                   console.log(resSession);
                   //存储session_key
@@ -107,6 +105,12 @@ Page({
                               //直接跳到开门页面
                               wx.navigateTo({
                                 url: '../openDoor/openDoor?optStatus=openDoorSuccess',
+                                success: function() {
+                                  //模态框隐藏
+                                  global_this.setData({
+                                    indexModal: false
+                                  })
+                                }
                               })
                               if (global_this.userInfoReadyCallback) {
                                 global_this.userInfoReadyCallback(resGetUserInfo);
@@ -133,6 +137,12 @@ Page({
                                   //直接跳到开门页面
                                   wx.navigateTo({
                                     url: '../openDoor/openDoor?optStatus=openDoorSuccess',
+                                    success: function() {
+                                      //模态框隐藏
+                                      global_this.setData({
+                                        indexModal: false
+                                      })
+                                    }
                                   })
                                   if (global_this.userInfoReadyCallback) {
                                     global_this.userInfoReadyCallback(res)
@@ -156,6 +166,12 @@ Page({
                     */
                     wx.navigateTo({
                       url: '../openDoor/openDoor?optStatus=openDoorError',
+                      success: function() {
+                        //模态框隐藏
+                        global_this.setData({
+                          indexModal: false
+                        })
+                      }
                     })
                   } else if (resSession.data.code == 3) {
                     /***********
@@ -218,6 +234,12 @@ Page({
                               //直接跳到开门页面
                               wx.navigateTo({
                                 url: '../openDoor/openDoor?optStatus=unpaid',
+                                success: function() {
+                                  //模态框隐藏
+                                  global_this.setData({
+                                    indexModal: false
+                                  })
+                                }
                               })
                               if (global_this.userInfoReadyCallback) {
                                 global_this.userInfoReadyCallback(resGetUserInfo);
@@ -244,6 +266,12 @@ Page({
                                   //直接跳到开门页面
                                   wx.navigateTo({
                                     url: '../openDoor/openDoor?optStatus=unpaid',
+                                    success: function() {
+                                      //模态框隐藏
+                                      global_this.setData({
+                                        indexModal: false
+                                      })
+                                    }
                                   })
                                   if (global_this.userInfoReadyCallback) {
                                     global_this.userInfoReadyCallback(res)
@@ -289,6 +317,12 @@ Page({
                               //直接跳到开门页面
                               wx.navigateTo({
                                 url: '../openDoor/openDoor?optStatus=openDoorTimeOut',
+                                success: function () {
+                                  //模态框隐藏
+                                  global_this.setData({
+                                    indexModal: false
+                                  })
+                                }
                               })
                               if (global_this.userInfoReadyCallback) {
                                 global_this.userInfoReadyCallback(resGetUserInfo);
@@ -315,6 +349,12 @@ Page({
                                   //直接跳到开门页面
                                   wx.navigateTo({
                                     url: '../openDoor/openDoor?optStatus=openDoorTimeOut',
+                                    success: function () {
+                                      //模态框隐藏
+                                      global_this.setData({
+                                        indexModal: false
+                                      })
+                                    }
                                   })
                                   if (global_this.userInfoReadyCallback) {
                                     global_this.userInfoReadyCallback(res)
@@ -447,6 +487,12 @@ Page({
                               //直接跳到开门页面
                               wx.navigateTo({
                                 url: '../openDoor/openDoor?optStatus=alipay',
+                                success: function () {
+                                  //模态框隐藏
+                                  global_this.setData({
+                                    indexModal: false
+                                  })
+                                }
                               })
                               if (global_this.userInfoReadyCallback) {
                                 global_this.userInfoReadyCallback(resGetUserInfo);
@@ -472,7 +518,13 @@ Page({
                                   wx.setStorageSync('userInfo', userInfo);
                                   //直接跳到开门页面
                                   wx.navigateTo({
-                                    url: '../openDoor/openDoor?optStatus=alipay'
+                                    url: '../openDoor/openDoor?optStatus=alipay',
+                                    success: function () {
+                                      //模态框隐藏
+                                      global_this.setData({
+                                        indexModal: false
+                                      })
+                                    }
                                   })
                                   if (global_this.userInfoReadyCallback) {
                                     global_this.userInfoReadyCallback(res)
@@ -513,6 +565,7 @@ Page({
        onlyFromCamera: true,
        success: (res) => {
          if(res) {
+           //显示模态框
            that.setData({
              indexModal: true
            })
@@ -525,9 +578,6 @@ Page({
              method: 'GET',
              data: {'session_key': session_key},
              success: function(sessionRes) {
-               that.setData({
-                 indexModal: false
-               })
                console.log(sessionRes);
                console.log('-----')
                       if (sessionRes.data.code == 0) { //如果已经签约
@@ -548,10 +598,22 @@ Page({
                               if (openRes.data.code == 1) {//开门失败
                                 wx.navigateTo({
                                   url: '../openDoor/openDoor?optStatus=openDoorTimeOut',
+                                  success: function() {
+                                    //隐藏模态框
+                                    that.setData({
+                                      indexModal: false
+                                    })
+                                  }
                                 })
                               } else if (openRes.data.code == 10010) {//有未支付
                                 wx.navigateTo({
                                   url: '../openDoor/openDoor?optStatus=unpaid',
+                                  success: function () {
+                                    //隐藏模态框
+                                    that.setData({
+                                      indexModal: false
+                                    })
+                                  }
                                 })
                               } else if (openRes.data.code == 0) {//开门成功
                                 var order_id = openRes.data.data.order_id;
@@ -559,6 +621,12 @@ Page({
                                 console.log('开门成功orderid' + order_id);
                                 wx.navigateTo({
                                   url: '../openDoor/openDoor?optStatus=openDoorSuccess',
+                                  success: function () {
+                                    //隐藏模态框
+                                    that.setData({
+                                      indexModal: false
+                                    })
+                                  }
                                 })
                               }
                             }

@@ -1,6 +1,12 @@
 <view class="activity">
-      <view class="activeItem" wx:for="{{activityList}}" wx:key="unique">
-          <image src="{{item.path}}"></image>
-      </view>
-      <view class="more">暂无活动</view>
+      <view class="activityImg">
+    <image src="../../images/index/image_noactivity.png"></image>
+  </view>
+  <view class="activityContent">
+    <text>暂时没有活动</text>
+  </view>
+  <!-- <view class="openBtn">
+    <text bindtap="openDoor">扫码开门</text>
+    <view class="modal {{modal ? 'show' : 'hide'}}"></view>
+  </view> -->
 </view>

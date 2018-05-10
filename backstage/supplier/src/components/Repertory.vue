@@ -122,67 +122,67 @@
         productItem: ['乐虎', '农夫山泉', '酸奶', '矿泉水', '蛋糕', '果汁', '啤酒', '鸭脖'],//商品条目
         deviceList: [
           {
-            'district': '全部',
-            'show': true,
-            'list': [
-              {
-                'addr': '西安市高新区锦业路69号瞪羚谷E座',
-                'name': '未来鲜森-0001',
-                "longitude": 108.98416,
-                "latitude": 34.28555,
-                "count": 55
-              },
-              {
-                'addr': '西安市高新区锦业路69号瞪羚谷E座',
-                'name': '未来鲜森-0002',
-                "longitude": 108.95416,
-                "latitude": 34.25555,
-                "count": 55
-              },
-              {
-                'addr': '西安市高新区锦业路69号瞪羚谷E座',
-                'name': '未来鲜森-0003',
-                "longitude": 108.96416,
-                "latitude": 34.26555,
-                "count": 55
-              },
-              {
-                'addr': '西安市高新区锦业路69号瞪羚谷E座',
-                'name': '未来鲜森-0004',
-                "longitude": 108.94416,
-                "latitude": 34.24555,
-                "count": 55
-              },
-              {
-                'addr': '西安市高新区锦业路69号瞪羚谷E座',
-                'name': '未来鲜森-0005',
-                "longitude": 108.99416,
-                "latitude": 34.29555,
-                "count": 55
-              },
-              {
-                'addr': '西安市高新区锦业路69号瞪羚谷E座',
-                'name': '未来鲜森-0006',
-                "longitude": 108.93416,
-                "latitude": 34.23555,
-                "count": 55
-              },
-            ]
-          },
+          "district": "全部",
+          "show": true,
+          "list": [
+            {
+              "addr": "西安市高新区锦业路69号瞪羚谷E座",
+              "name": "未来鲜森-0001",
+              "longitude": 108.98416,
+              "latitude": 34.28555,
+              "count": 55
+            },
+            {
+              "addr": "西安市高新区锦业路69号瞪羚谷E座",
+              "name": "未来鲜森-0002",
+              "longitude": 108.95416,
+              "latitude": 34.25555,
+              "count": 55
+            },
+            {
+              "addr": "西安市高新区锦业路69号瞪羚谷E座",
+              "name": "未来鲜森-0003",
+              "longitude": 108.96416,
+              "latitude": 34.26555,
+              "count": 55
+            },
+            {
+              "addr": "西安市高新区锦业路69号瞪羚谷E座",
+              "name": "未来鲜森-0004",
+              "longitude": 108.94416,
+              "latitude": 34.24555,
+              "count": 55
+            },
+            {
+              "addr": "西安市高新区锦业路69号瞪羚谷E座",
+              "name": "未来鲜森-0005",
+              "longitude": 108.99416,
+              "latitude": 34.29555,
+              "count": 55
+            },
+            {
+              "addr": "西安市高新区锦业路69号瞪羚谷E座",
+              "name": "未来鲜森-0006",
+              "longitude": 108.93416,
+              "latitude": 34.23555,
+              "count": 55
+            }
+          ]
+        },
           {
-            'district': '雁塔区',
-            'show': false,
-            'list': [
+            "district": "雁塔区",
+            "show": false,
+            "list": [
               {
-                'addr': '西安市高新区锦业路69号瞪羚谷E座',
-                'name': '未来鲜森-0003',
+                "addr": "西安市高新区锦业路69号瞪羚谷E座",
+                "name": "未来鲜森-0003",
                 "longitude": 108.96416,
                 "latitude": 34.26555,
                 "count": 55
               },
               {
-                'addr': '西安市高新区锦业路69号瞪羚谷E座',
-                'name': '未来鲜森-0004',
+                "addr": "西安市高新区锦业路69号瞪羚谷E座",
+                "name": "未来鲜森-0004",
                 "longitude": 108.94416,
                 "latitude": 34.24555,
                 "count": 55
@@ -190,39 +190,39 @@
             ]
           },
           {
-            'district': '高新区',
-            'show': false,
-            'list': [
+            "district": "高新区",
+            "show": false,
+            "list": [
               {
-                'addr': '西安市高新区锦业路69号瞪羚谷E座',
-                'name': '未来鲜森-0001',
+                "addr": "西安市高新区锦业路69号瞪羚谷E座",
+                "name": "未来鲜森-0001",
                 "longitude": 108.98416,
                 "latitude": 34.28555,
                 "count": 55
               },
               {
-                'addr': '西安市高新区锦业路69号瞪羚谷E座',
-                'name': '未来鲜森-0002',
+                "addr": "西安市高新区锦业路69号瞪羚谷E座",
+                "name": "未来鲜森-0002",
                 "longitude": 108.95416,
                 "latitude": 34.25555,
                 "count": 55
-              },
+              }
             ]
           },
           {
-            'district': '夜未央',
-            'show': false,
-            'list': [
+            "district": "夜未央",
+            "show": false,
+            "list": [
               {
-                'addr': '西安市高新区锦业路69号瞪羚谷E座',
-                'name': '未来鲜森-0005',
+                "addr": "西安市高新区锦业路69号瞪羚谷E座",
+                "name": "未来鲜森-0005",
                 "longitude": 108.99416,
                 "latitude": 34.29555,
                 "count": 55
               },
               {
-                'addr': '西安市高新区锦业路69号瞪羚谷E座',
-                'name': '未来鲜森-0006',
+                "addr": "西安市高新区锦业路69号瞪羚谷E座",
+                "name": "未来鲜森-0006",
                 "longitude": 108.93416,
                 "latitude": 34.23555,
                 "count": 55
@@ -237,13 +237,13 @@
             "deviceList": [
               {
                 "name": "未来鲜森-瞪羚谷1",
-                "acount": '90',
+                "acount": "90",
                 "longitude": 108.8662555440,
                 "latitude": 34.2023934917
               },
               {
                 "name": "未来鲜森-瞪羚谷2",
-                "acount": '88',
+                "acount": "88",
                 "longitude": 108.8662555440,
                 "latitude": 34.2043934917
               }
@@ -254,13 +254,13 @@
             "deviceList": [
               {
                 "name": "未来鲜森-招商银行1",
-                "acount": '20',
+                "acount": "20",
                 "longitude": 108.9372220000,
                 "latitude": 34.2328420000
               },
               {
                 "name": "未来鲜森-招商银行2",
-                "acount": '20',
+                "acount": "20",
                 "longitude": 108.9372220000,
                 "latitude": 34.2348420000
               }
@@ -340,19 +340,21 @@
         geolocation.getCurrentPosition(function(position) {
           if(this.getStatus() == BMAP_STATUS_SUCCESS) {
             if(position && position.point) {
-              var mk = new BMap.Marker(position.point);
-              map.addOverlay(mk);
+              // var mk = new BMap.Marker(position.point);
+              // map.addOverlay(mk);
               map.panTo(position.point);
-              console.log(position);
-              var longitude = null, latitude = null;
-              if(position.point.lng  && position.point.lat) {
-                longitude = position.point.lng;
-                latitude = position.point.lat;
+              var lng = null, lat = null;
+              if(position.point.lng && position.point.lat) {
+                lng = position.point.lng;
+                lat = position.point.lat;
               }else{
-                longitude = 108.8514655870;
-                latitude = 34.2207597143;
+                //lat:34.2777999 lng:108.95309828
+                //lng 108.8663351092
+                //lat 34.202367335728
+                lng = 108.8514655870;
+                lat = 34.2207597143;
               }
-              that.mapShow(map, longitude, latitude);
+              that.mapShow(map, lng, lat);
             }
 
           }
@@ -362,10 +364,12 @@
         })
       },
       //创建地图方法
-      mapShow(map, longitude, latitude) {
+      mapShow(map, lng, lat) {
+        lng += 0.0020795652;
+        lat -= 0.002026155972;
       // 百度地图API功能
       // var map = new BMap.Map("allmap"); //创建Map实例  h5获取的经纬度 lat:34.2777999 lng:108.95309828
-        map.centerAndZoom(new BMap.Point(longitude, latitude), 15); //初始化地图,设置中心点坐标和地图级别
+        map.centerAndZoom(new BMap.Point(lng, lat), 15); //初始化地图,设置中心点坐标和地图级别
         map.enableScrollWheelZoom();
         this.pointShow(map);
       },
@@ -415,6 +419,10 @@
 
 <style lang="less">
   .Repertory{
+    /* 去除百度地图水印 */
+    .anchorBL {
+      display: none;
+    }
     background: #ffffff;
     padding-top: 7.3718vh;
     header{

@@ -348,9 +348,6 @@
                 lng = position.point.lng;
                 lat = position.point.lat;
               }else{
-                //lat:34.2777999 lng:108.95309828
-                //lng 108.8663351092
-                //lat 34.202367335728
                 lng = 108.8514655870;
                 lat = 34.2207597143;
               }

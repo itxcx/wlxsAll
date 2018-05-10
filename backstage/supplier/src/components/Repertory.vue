@@ -238,14 +238,14 @@
               {
                 "name": "未来鲜森-瞪羚谷1",
                 "acount": '90',
-                "longitude": 108.98416,
-                "latitude": 34.27555
+                "longitude": 108.8662555440,
+                "latitude": 34.2023934917
               },
               {
                 "name": "未来鲜森-瞪羚谷2",
                 "acount": '88',
-                "longitude": 108.95416,
-                "latitude": 34.25555
+                "longitude": 108.8662555440,
+                "latitude": 34.2043934917
               }
             ]
           },
@@ -255,14 +255,14 @@
               {
                 "name": "未来鲜森-招商银行1",
                 "acount": '20',
-                "longitude": 108.96416,
-                "latitude": 34.26555
+                "longitude": 108.9372220000,
+                "latitude": 34.2328420000
               },
               {
                 "name": "未来鲜森-招商银行2",
                 "acount": '20',
-                "longitude": 108.97416,
-                "latitude": 34.28555
+                "longitude": 108.9372220000,
+                "latitude": 34.2348420000
               }
             ]
           }
@@ -273,7 +273,8 @@
       this.$nextTick( () => {
         //初始化方法 显示全部设备
         this.showDeviceList = this.deviceList[0].list;
-        this.mapShow();
+        //获取定位,显示地图
+        this.getNowPosition();
       })
     },
     methods: {
@@ -331,11 +332,40 @@
       changeMode() {
         this.mapMode = !this.mapMode;
       },
+      // 获取用户当前位置经纬度
+      getNowPosition() {
+        var that = this;
+        var map = new BMap.Map("allmap"); //创建Map实例
+        var geolocation = new BMap.Geolocation();
+        geolocation.getCurrentPosition(function(position) {
+          if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+            if(position && position.point) {
+              var mk = new BMap.Marker(position.point);
+              map.addOverlay(mk);
+              map.panTo(position.point);
+              console.log(position);
+              var longitude = null, latitude = null;
+              if(position.point.lng  && position.point.lat) {
+                longitude = position.point.lng;
+                latitude = position.point.lat;
+              }else{
+                longitude = 108.8514655870;
+                latitude = 34.2207597143;
+              }
+              that.mapShow(map, longitude, latitude);
+            }
+
+          }
+          else {
+            alert('failed' + this.getStatus());
+          }
+        })
+      },
       //创建地图方法
-      mapShow() {
+      mapShow(map, longitude, latitude) {
       // 百度地图API功能
-        var map = new BMap.Map("allmap"); //创建Map实例34.2755593788,108.9541677863
-        map.centerAndZoom(new BMap.Point(108.98416, 34.27555), 15); //初始化地图,设置中心点坐标和地图级别
+      // var map = new BMap.Map("allmap"); //创建Map实例  h5获取的经纬度 lat:34.2777999 lng:108.95309828
+        map.centerAndZoom(new BMap.Point(longitude, latitude), 15); //初始化地图,设置中心点坐标和地图级别
         map.enableScrollWheelZoom();
         this.pointShow(map);
       },
@@ -347,7 +377,7 @@
             for (var j = 0; j < data[i].deviceList.length; j++) {
               var longitude = data[i].deviceList[j].longitude, latitude = data[i].deviceList[j].latitude;
               var pt = new BMap.Point(longitude, latitude);
-//定义icon时一定要设置anchor属性,否则显示点位会随着地图的缩放移动,此点是不会变动的,icon设置点是根据此点的位置来设置的
+              //定义icon时一定要设置anchor属性,否则显示点位会随着地图的缩放移动,此点是不会变动的,icon设置点是根据此点的位置来设置的
               var myIcon = new BMap.Icon("./static/images/location_normal.png", new BMap.Size(68, 70), {
                 anchor: new BMap.Size(5, 5)
               });
@@ -371,6 +401,13 @@
             }
           }
         }
+      },
+      //计算距离方法
+      getDistance(longitude1, latitude1, longitude2, latitude2) {
+        var point1 = new BMap.Point(longitude1, latitude1);
+        var point2 = new BMap.Point(longitude2, latitude2);
+        var distance = map.getDistance(point1,point2);
+        return distance;
       }
     }
   })

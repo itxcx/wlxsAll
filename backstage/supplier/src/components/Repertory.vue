@@ -389,16 +389,16 @@
               var acount = data[i].deviceList[j].acount;
               var label = new BMap.Label("库存" + acount + "件", {position: pt, offset: new BMap.Size(-35, -30)});
               label.setStyle({
-                color: "#ffffff",
-                fontSize: "12px",
-                height: "25px",
-                width: "90px",
-                borderRadius: "10px",
-                textAlign: "center",
-                lineHeight: "20px",
-                background: "#ff8827",
-                fontFamily: "微软雅黑",
-                border: "none"
+                "color": "#ffffff",
+                "fontSize": "12px",
+                "height": "25px",
+                "width": "90px",
+                "borderRadius": "10px",
+                "textAlign": "center",
+                "lineHeight": "20px",
+                "background": "#ff8827",
+                "fontFamily": "微软雅黑",
+                "border": "none"
               });
               marker.setLabel(label);
               map.addOverlay(marker);

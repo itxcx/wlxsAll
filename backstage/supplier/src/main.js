@@ -11,6 +11,7 @@ import 'iview/dist/styles/iview.css';
 // import echarts from 'echarts';
 import highcharts from 'highcharts';
 
+
 // 业务模块
 import Login from './components/Login'; //登录模块
 import Main from './components/Main'; //首页模块

@@ -25,7 +25,7 @@
         return {}
       },
       methods: {
-        //提交按钮方法
+       //提交按钮方法
         submitUserinfo() {
           //跳转到主页
           this.$router.push({

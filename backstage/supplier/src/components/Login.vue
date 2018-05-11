@@ -7,11 +7,11 @@
       <section class="userInfo">
         <div class="phone">
           <span></span>
-          <input type="number" pattern="[0-9]*" aria-describedby="basic-addon1" name="phone" placeholder="请输入手机号"/>
+          <input type="number" pattern="[0-9]*" v-model="phone" aria-describedby="basic-addon1" name="phone" placeholder="请输入手机号"/>
         </div>
         <div class="password">
           <span></span>
-          <input type="text" name="password" placeholder="请输入登录密码"/>
+          <input type="text" name="password" v-model="password" placeholder="请输入登录密码"/>
         </div>
       </section>
       <section class="userInfo_submit" @click="submitUserinfo">登录</section>
@@ -22,15 +22,30 @@
     export default {
       name: "login",
       data() {
-        return {}
+        return {
+          phone: '',
+          password: ''
+        }
       },
       methods: {
        //提交按钮方法
         submitUserinfo() {
-          //跳转到主页
-          this.$router.push({
-            name: 'main'
-          })
+          var phone = this.phone;
+          var password = this.password;
+          if(phone && password) {
+            this.$http({
+              url: '',
+              method: 'POST',
+              data: {'phone': phone, 'password': password}
+            }).then(function (res) {
+              console.log(res);
+              this.$router.push({
+                path: '/main'
+              })
+            }).catch(function(error) {
+              console.log(error);
+            })
+          }
         }
       }
     }

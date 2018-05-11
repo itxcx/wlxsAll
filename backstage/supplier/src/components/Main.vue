@@ -38,15 +38,13 @@
       components:{
         FooterBar
       },
+      //页面初始化
       mounted() {
         this.$nextTick(() => {
           this.getConfigParames();
         })
       },
       methods: {
-        onDeviceReady() {
-          console.log('this is device model');
-        },
         //查看库存
         goRepertory() {
           this.$router.push({

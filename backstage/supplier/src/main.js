@@ -3,7 +3,6 @@ import App from './App';
 import router from './router';
 import axios from 'axios';//Ajax
 import store from './store'; //vuex 全局数据管理
-import VueCordova from 'vue-cordova'
 
 //iview ui框架
 import iView from 'iview';
@@ -11,6 +10,7 @@ import 'iview/dist/styles/iview.css';
 
 // import echarts from 'echarts';
 import highcharts from 'highcharts';
+
 // 业务模块
 import Login from './components/Login'; //登录模块
 import Main from './components/Main'; //首页模块
@@ -21,11 +21,8 @@ import DoorClose from './components/DoorClose'; //入库关门
 import InStoreDone from './components/InStoreDone'; //入库完成
 import Scan from './components/Scan'; //入库完成
 
-
-
 Vue.use(iView);
 Vue.config.productionTip = false;
-// Vue.use(VueCordova)
 
 new Vue({
   el: '#app',
@@ -41,5 +38,5 @@ new Vue({
 Vue.prototype.$ajax = axios;
 // Vue.prototype.Echarts = echarts; //vue 原型扩展 echarts
  Vue.prototype.Highcharts = highcharts; //vue 原型扩展 echarts
- Vue.prototype.cordova = VueCordova; //cordova 原型扩展
+ // Vue.prototype.VueCordova = VueCordova; //cordova 原型扩展
 

@@ -38,7 +38,14 @@
       components:{
         FooterBar
       },
+      mounted() {
+        this.$nextTick(() => {
+        })
+      },
       methods: {
+        onDeviceReady() {
+          console.log('this is device model');
+        },
         //查看库存
         goRepertory() {
           this.$router.push({
@@ -47,13 +54,18 @@
         },
         //上货扫一扫
         exhibitScan() {
-          console.log(this.cordova);
-          console.log(this.cordova.options);
-
-          // this.$router.push({
-          //   path: '/exhibing'
-          //   // path: '/doorclose'
-          // })
+          alert('ssssss1111111');
+          console.log(cordova.plugins.barcodeScanner);
+          // cordova.plugins.barcodeScanner.scan();
+            // function (result) {
+            //   console.log('ssssssss');
+            //   alert("We got a barcode\n" +
+            //     "Result: " + result.text + "\n" +
+            //     "Format: " + result.format + "\n" +
+            //     "Cancelled: " + result.cancelled);
+            // },function (error) {
+            //   alert(error);
+            // })
         }
       }
     }

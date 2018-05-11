@@ -47,10 +47,13 @@
         },
         //上货扫一扫
         exhibitScan() {
-          this.$router.push({
-            path: '/exhibing'
-            // path: '/doorclose'
-          })
+          console.log(this.cordova);
+          console.log(this.cordova.options);
+
+          // this.$router.push({
+          //   path: '/exhibing'
+          //   // path: '/doorclose'
+          // })
         }
       }
     }

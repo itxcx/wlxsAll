@@ -8,7 +8,6 @@
       <button @click="startRecognize">1.创建控件</button>
       <button @click="startScan">2.开始扫描</button>
       <button @click="cancelScan">3.结束扫描</button>
-
       <button @click="closeScan">4.关闭控件</button>
     </footer>
   </div>

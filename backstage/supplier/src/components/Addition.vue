@@ -22,7 +22,7 @@
           <li></li>
         </ul>
       </section>
-      <section class="addBtn">
+      <section class="addBtn" @click="goAddItem">
         <p>添加商品</p>
       </section>
     </div>
@@ -42,7 +42,14 @@
             this.$nextTick(() => {
             })
         },
-        methods: {}
+        methods: {
+          //添加商品和标签
+          goAddItem() {
+            this.$router.push({
+              path: '/addItem'
+            })
+          }
+        }
     }
 </script>
 

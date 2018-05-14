@@ -20,7 +20,9 @@ import Repertory from './components/Repertory'; //库存
 import Exhibing from './components/Exhibing'; //入库
 import DoorClose from './components/DoorClose'; //入库关门
 import InStoreDone from './components/InStoreDone'; //入库完成
-import Scan from './components/Scan'; //入库完成
+import Scan from './components/Scan'; //扫码
+import Addition from './components/Addition'; //添加商品主页
+import AddItem from './components/AddItem'; //添加条目
 
 Vue.use(iView);
 Vue.config.productionTip = false;
@@ -31,7 +33,7 @@ new Vue({
   store,
   components: {
     App, Login, Main, FooterBar, Repertory, Exhibing, DoorClose,
-    InStoreDone, Scan
+    InStoreDone, Scan, Addition, AddItem
   },
   template: '<App/>'
 })

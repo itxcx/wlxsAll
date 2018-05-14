@@ -19,11 +19,19 @@
       </section>
       <section class="itemList">
         <ul>
-          <li></li>
+          <li v-for="(item, index) in this.$store.state.exhibData.itemList" @click="editItemList(index)">
+            <div>
+              <span>{{item.itemName}}</span>
+              <span v-show="item.numberList.length > 0 ? true : false">{{item.numberList.length}}</span>
+            </div>
+          </li>
         </ul>
       </section>
       <section class="addBtn" @click="goAddItem">
         <p>添加商品</p>
+      </section>
+      <section class="confirmBtn" @click="exhibConfirm">
+        <p>确认入库</p>
       </section>
     </div>
 </template>
@@ -48,6 +56,24 @@
             this.$router.push({
               path: '/addItem'
             })
+          },
+          //查看已经添加商品的信息
+          editItemList(index) {
+            this.$router.push({
+              path: '/addItem',
+              query: {
+                proName: this.$store.state.exhibData.itemList[index].itemName,
+                numberList: this.$store.state.exhibData.itemList[index].numberList
+              }
+            })
+          },
+          //确认入库方法
+          exhibConfirm() {
+            this.$store.state.exhibData.address = this.location;
+            for(var i = 0; i < this.$store.state.exhibData.itemList; i++) {
+              this.$store.state.exhibData.count += this.$store.state.exhibData.itemList[i].count;
+            }
+            console.log(this.$store.state.exhibData);
           }
         }
     }
@@ -114,6 +140,13 @@
         }
       }
     }
+    .itemList{
+      ul{
+        li{
+          border-bottom: 2px solid #e5e5e5;
+        }
+      }
+    }
     .addBtn{
       width: 100%;
       p{
@@ -126,6 +159,23 @@
         border: 1px dashed #65d172;
         border-radius: 20px;
         line-height: 6.0179vh;
+      }
+    }
+    .confirmBtn{
+      width: 100vw;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      p{
+        width: 79.2vw;
+        height: 10.419vh;
+        margin: 0 auto;
+        color: #fff;
+        font-size: 2.2488rem;
+        text-align: center;
+        background: url("../../static/images/button_bg.png") no-repeat center center;
+        background-size: cover;
+        line-height: 7.419vh;
       }
     }
   }

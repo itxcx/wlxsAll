@@ -3,7 +3,17 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 //全局数据
 const state = {
-
+  exhibData: {
+    address: '',
+    count: '',
+    itemList: [
+      {
+        itemName: '',
+        count: '',
+        numberList: []
+      }
+    ]
+  }
 };
 //数据操作
 const mutations = {

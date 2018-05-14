@@ -40,9 +40,21 @@
       },
       //页面初始化
       mounted() {
+        var that = this;
         this.$nextTick(() => {
           //发送请求，获取配置参数
-          this.getConfigParames();
+          this.$ajax({
+            url: 'http://merchant.test.weilaixiansen.com/merchant/config',
+            method: 'GET'
+          }).then(function(res) {
+            if(res.data.code == 0) {
+              var appId = res.data.data.appId;
+              var noncestr = res.data.data.noncestr;
+              var timestamp = res.data.data.timestamp;
+              var signature = res.data.data.signature;
+            }
+            that.getConfigParames(appId, noncestr, timestamp, signature);
+          })
         })
       },
       methods: {
@@ -53,9 +65,9 @@
           })
         },
         //获取config
-        getConfigParames() {
+        getConfigParames(_appId, _nonceStr, _timestamp, _signature) {
           wx.config({
-            debug : true,
+            debug : false,
             appId : _appId,
             timestamp : _timestamp,
             nonceStr : _nonceStr,
@@ -75,13 +87,16 @@
             scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
             success: function (res) {
               var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+              var device_number = result.split('?')[1].split('=')[1];//截取设备id
               that.scanResult(result);
             }
           })
         },
         //扫一扫结果处理回调方法
         scanResult(result) {
-          console.log(result);
+          this.$router.push({
+            path: '/exhibing'
+          })
         }
       }
     }

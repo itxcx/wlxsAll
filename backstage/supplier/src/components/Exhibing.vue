@@ -26,6 +26,20 @@
 
         }
       },
+      mounted() {
+        this.$nextTick(() => {
+          var ws = new WebSocket(''); //websocket
+          ws.onopen = function() {
+            ws.send('back');
+          }
+          ws.onconnection = function(res) {
+            console.log(res);
+          }
+          ws.onerror = function(error) {
+            console.log(error);
+          }
+        })
+      },
       methods: {
 
       }

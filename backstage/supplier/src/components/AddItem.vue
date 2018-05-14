@@ -71,7 +71,19 @@
               itemData.itemName = this.proName;
               itemData.numberList = this.allProNumberArray;
               itemData.count = this.allProNumberArray.length;
-              this.$store.state.exhibData.itemList.push(itemData);
+              var isAdd = false;
+              var addIndex = null;
+              for(var i = 0; i < this.$store.state.exhibData.itemList.length; i++) {
+                if(itemData.itemName === this.$store.state.exhibData.itemList[i].itemName) {
+                  isAdd = true;
+                  addIndex = i;
+                }
+              }
+              if(!isAdd) {
+                this.$store.state.exhibData.itemList.push(itemData);
+              }else{
+                this.$store.state.exhibData.itemList[addIndex].numberList = itemData.numberList;
+              }
             }
             this.$router.push({
               path: '/addition'

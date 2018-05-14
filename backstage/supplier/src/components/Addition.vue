@@ -27,8 +27,8 @@
           </li>
         </ul>
       </section>
-      <section class="addBtn" @click="goAddItem">
-        <p>添加商品</p>
+      <section class="addBtn">
+        <p @click="goAddItem">添加商品</p>
       </section>
       <section class="confirmBtn" @click="exhibConfirm">
         <p>确认入库</p>

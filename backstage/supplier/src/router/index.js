@@ -9,9 +9,10 @@ import Repertory from '../components/Repertory' //库存
 import Exhibing from '../components/Exhibing' //上货
 import DoorClose from '../components/DoorClose' //关门
 import InStoreDone from '../components/InStoreDone' //入库完成
-import Scan from '../components/Scan' //入库完成
-import Addition from '../components/Addition' //入库完成
-import AddItem from '../components/AddItem' //入库完成
+import Scan from '../components/Scan' //扫码
+import Addition from '../components/Addition' //添加商品
+import AddItem from '../components/AddItem' //添加条目
+import CheckExhibing from '../components/CheckExhibing' //入库核验
 //引入主要的数据模块
 
 Vue.use(Router);
@@ -72,6 +73,11 @@ export default new Router({
       path: '/addItem',
       name: 'addItem',
       component: AddItem
+    },
+    {
+      path: '/checkExhibing',
+      name: 'checkExhibing',
+      component: CheckExhibing
     }
   ]
 })

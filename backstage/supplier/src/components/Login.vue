@@ -32,8 +32,10 @@
         submitUserinfo() {
           var phone = this.phone;
           var password = this.password;
+          console.log(phone);
+          console.log(password);
           if(phone && password) {
-            this.$http({
+            this.$ajax({
               url: '',
               method: 'POST',
               data: {'phone': phone, 'password': password}

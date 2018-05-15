@@ -36,15 +36,15 @@
       },
       methods: {
         transformRequest(data) {
-          var ret = '';
-          for (var it in data) {
+          let ret = '';
+          for (let it in data) {
             ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
           }
           return ret;
         },
         //手机号输入失焦
         phoneBlur(){
-          var phoneCheck = /^1[34578]\d{9}$/;
+          let phoneCheck = /^1[345789]\d{9}$/;
           if(!phoneCheck.test(this.phone)){
             this.modalFun('手机号输入错误', 2000);
           } else {
@@ -61,11 +61,10 @@
         },
        //提交按钮方法
         submitUserinfo() {
-          var that = this;
-          var phone = this.phone;
-          var password = this.password;
+          let that = this;
+          let phone = this.phone;
+          let password = this.password;
           if(!this.submitAlready) {
-            console.log(1);
             this.submitAlready = true;
             if(this.phoneLegal && password) {
               this.$ajax({

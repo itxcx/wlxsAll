@@ -32,6 +32,14 @@
   html, body{
     font-family: "PingFang SC";
     font-size: 1vh;
+    filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+  }
+  html{
+    filter: grayscale(100%);
+    /*-webkit-filter: grayscale(100%);*/
+    /*-moz-filter: grayscale(100%);*/
+    /*filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);*/
+    filter: grayscale(1);
   }
   ul{
     list-style: none;

@@ -71,7 +71,7 @@
                 method: 'GET'
               }).then((res) => {
                 if(res.data.code == 0) {
-                  this.modalFun('登录成功', 1000);
+                  this.modalFun('登录成功,即将跳转', 1000);
                   setTimeout(() => {
                     this.$router.push({
                       path: '/main'
@@ -86,6 +86,8 @@
                 this.modalFun('操作错误,请重试', 2000);
               })
             }
+          }else{
+            this.modalFun('稍后重试', 1000);
           }
         }
       }

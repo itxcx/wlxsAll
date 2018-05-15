@@ -33,8 +33,7 @@
       mounted() {
         this.$nextTick(() => {
           let device_number = this.$route.query.device_number;
-          alert(device_number);
-          this.openDoor(device_number);
+          this.openDoor(device_number);//调用开门方法
         })
       },
       methods: {
@@ -45,9 +44,13 @@
           ws.onopen = function() {
             ws.send('back');
           }
-          ws.onconnection = function(res) { //接收消息方法
-            alert(res);
-            console.log(res);
+          ws.onmessage= function(res) { //接收消息方法
+            //接收orderId
+            let msg = JSON.parse(res.data);
+            if(msg && msg.order_id) {
+              let order_id = msg.order_id;
+              alert(order_id);
+            }
           }
           ws.onerror = function(error) {
             console.log(error);
@@ -59,10 +62,6 @@
             url: `http://merchant.test.weilaixiansen.com/login/shopflow?device_number=${device_number}`,
             method: 'GET'
           }).then((res) => {
-            alert(res.data);
-            alert(res.data.code);
-            alert(res.data.sid);
-            alert(res.data.address);
             if(res.data.code == 0) { //开门成功
               this.openSuccess = true;
               let sid = res.data.sid;
@@ -75,7 +74,7 @@
               this.openSuccess = false;
             }
           }).catch((error) => {
-            alert(error);
+            console.log(error);
           })
         }
       }

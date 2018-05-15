@@ -18,8 +18,24 @@
       data() {
         return {}
       },
+      mounted() {
+        this.$nextTick(() => {
+          let order_id = this.$route.query.order_id;
+          this.getExhibOrderInfo(order_id);
+        })
+      },
       methods: {
-
+        //调用接口,获取上货详细信息
+        getExhibOrderInfo(order_id) {
+          this.$ajax({
+            url: '',
+            method: 'GET'
+          }).then((res) => {
+            console.log(res);
+          }).catch((error) => {
+            console.log(error);
+          })
+        }
       }
     }
 </script>

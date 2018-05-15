@@ -36,11 +36,11 @@
       },
       methods: {
         transformRequest(data) {
-          let ret = '';
-          for (let it in data) {
-            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+          let resData = '';
+          for (let resKey in data) {
+            resData += encodeURIComponent(resKey) + '=' + encodeURIComponent(data[resKey]) + '&'
           }
-          return ret;
+          return resData;
         },
         //手机号输入失焦
         phoneBlur(){

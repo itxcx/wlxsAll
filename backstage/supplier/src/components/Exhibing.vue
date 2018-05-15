@@ -39,7 +39,7 @@
       methods: {
         //websocket
         openDoorWs(sid) {
-          const socketPath = 'ws://wss.weilaixiansen.com:37023?' + sid;
+          const socketPath = `ws://wss.weilaixiansen.com:37023?${sid}`;
           const ws = new WebSocket(socketPath);
           ws.onopen = function() {
             ws.send('back');
@@ -48,8 +48,12 @@
             //接收orderId
             let msg = JSON.parse(res.data);
             if(msg && msg.order_id) {
-              let order_id = msg.order_id;
-              alert(order_id);
+              let order_id = msg.order_id;//orderid
+              localStorage.setItem('order_id', order_id);
+              this.$router.push({
+                path: '/doorClose',
+                query: {order_id: order_id}
+              })
             }
           }
           ws.onerror = function(error) {
@@ -65,6 +69,8 @@
             if(res.data.code == 0) { //开门成功
               this.openSuccess = true;
               let sid = res.data.sid;
+              let device_address = res.data.address;
+              localStorage.setItem('device_address', device_address);
               this.openDoorWs(sid); //建立websocket连接
             }else if(res.data.code == 3) {
               this.$router.push({

@@ -47,12 +47,9 @@
             method: 'GET'
           }).then((res) => {
             if(res.data.code == 0) {
-              var appId = res.data.data.appId;
-              var noncestr = res.data.data.noncestr;
-              var timestamp = res.data.data.timestamp;
-              var signature = res.data.data.signature;
+              let configData = res.data.data;
+              this.getConfigParames(configData.appId, configData.noncestr, configData.timestamp, configData.signature);
             }
-            this.getConfigParames(appId, noncestr, timestamp, signature);
           })
         })
       },
@@ -81,12 +78,11 @@
         //微信扫一扫
         wxScan() {
           wx.scanQRCode({
-            needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-            scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+            needResult: 1,
+            scanType: ["qrCode", "barCode"],
             success: (res) => {
-              var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-              var device_number = result.split('?')[1].split('=')[1];//截取设备id
-              alert(device_number);
+              let result = res.resultStr;
+              let device_number = result.split('?')[1].split('=')[1];//设备id
               if(device_number) {
                 this.scanResult(device_number);
               }

@@ -7,7 +7,7 @@
       <section class="userInfo">
         <div class="phone">
           <span></span>
-          <input type="number" pattern="[0-9]*" v-model="phone" aria-describedby="basic-addon1" name="phone" placeholder="请输入手机号"/>
+          <input type="number" pattern="[0-9]*" v-model="phone" aria-describedby="basic-addon1" name="phone" placeholder="请输入手机号" @blur="phoneBlur"/>
         </div>
         <div class="password">
           <span></span>
@@ -15,6 +15,9 @@
         </div>
       </section>
       <section class="userInfo_submit" @click="submitUserinfo">登录</section>
+      <section class="tipModal" v-show="tipStatus">
+        <p>{{tipText}}</p>
+      </section>
     </div>
 </template>
 
@@ -24,29 +27,66 @@
       data() {
         return {
           phone: '',
-          password: ''
+          password: '',
+          tipStatus: false,//错误提示框显示控制
+          tipText: '',//提示框内容
+          submitAlready: false,
+          phoneLegal: false
         }
       },
       methods: {
+        transformRequest(data) {
+          var ret = '';
+          for (var it in data) {
+            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+          }
+          return ret;
+        },
+        //手机号输入失焦
+        phoneBlur(){
+          var phoneCheck = /^1[34578]\d{9}$/;
+          if(!phoneCheck.test(this.phone)){
+            this.modalFun('手机号输入错误', 2000);
+          } else {
+            this.phoneLegal = true;
+          }
+        },
+        //错误提示框显示控制
+        modalFun(text, timer){
+          this.tipStatus = true;
+          this.tipText = text;
+          setTimeout(() => {
+            this.tipStatus = false;
+          },timer)
+        },
        //提交按钮方法
         submitUserinfo() {
+          var that = this;
           var phone = this.phone;
           var password = this.password;
-          console.log(phone);
-          console.log(password);
-          if(phone && password) {
-            this.$ajax({
-              url: '',
-              method: 'POST',
-              data: {'phone': phone, 'password': password}
-            }).then(function (res) {
-              console.log(res);
-              this.$router.push({
-                path: '/main'
+          if(!this.submitAlready) {
+            console.log(1);
+            this.submitAlready = true;
+            if(this.phoneLegal && password) {
+              this.$ajax({
+                url: '',
+                method: 'POST',
+                data: {'phone': phone, 'password': password}
+              }).then(function (res) {
+                console.log(res);
+                if(res.data.code == 0) {
+                  that.$router.push({
+                    path: '/main'
+                  })
+                }else{
+                  that.submitAlready = false;
+                  that.modalFun('用户信息错误', 2000);
+                }
+              }).catch(function(error) {
+                that.submitAlready = false;
+                that.modalFun('操作错误，请重试', 2000);
               })
-            }).catch(function(error) {
-              console.log(error);
-            })
+            }
           }
         }
       }
@@ -61,6 +101,26 @@
     width: 100vw;
     height: 100vh;
     background: @page_background;
+    .tipModal{
+      background: rgba(0,0,0,.7);
+      border-radius: 10px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: auto;
+      width: 45vw;
+      height: 9vh;
+      z-index: 99;
+      color: #fff;
+      text-align: center;
+      font-size: 3.5vw;
+      padding: 3vh 0;
+      span{
+        font-size: 7vh;
+      }
+    }
     .login_top{
       width: 100vw;
       background: @header_background;

@@ -1,8 +1,12 @@
 <template>
     <div class="Exhibing">
       <section class="exhib_img"></section>
-      <article>
+      <article v-show="openSuccess">
         <p>门已开请放入商品,上货完成</p>
+        <p>请及时关门</p>
+      </article>
+      <article v-show="!openSuccess">
+        <p>开门超时,请重试,上货完成</p>
         <p>请及时关门</p>
       </article>
       <section class="exhib_tips">
@@ -23,25 +27,52 @@
       name: "exhibing",
       data() {
         return {
-
+          openSuccess: true,
         }
       },
       mounted() {
         this.$nextTick(() => {
-          var ws = new WebSocket(''); //websocket
+          let device_number = this.$route.query.device_number;
+          alert(device_number);
+          this.openDoor(device_number);
+        })
+      },
+      methods: {
+        //websocket
+        openDoorWs(sid) {
+          const socketPath = 'ws://wss.weilaixiansen.com:37023?' + sid;
+          const ws = new WebSocket(socketPath);
           ws.onopen = function() {
             ws.send('back');
           }
-          ws.onconnection = function(res) {
+          ws.onconnection = function(res) { //接收消息方法
             console.log(res);
           }
           ws.onerror = function(error) {
             console.log(error);
           }
-        })
-      },
-      methods: {
+        },
+        //开门命令
+        openDoor(device_number) {
+          this.$ajax({
+            url: `http://merchant.test.weilaixiansen.com/login/shopflow?device_number=${device_number}`,
+            method: 'GET'
+          }).then((res) => {
+            alert(res.data);
+            alert(res.data.code);
+            alert(res.data.sid);
+            alert(res.data.address);
+            if(res.data.code == 0) { //开门成功
+              this.openSuccess = true;
+              let sid = res.data.sid;
+              this.openDoorWs(sid); //建立websocket连接
+            }else{ //开门超时
+              this.openSuccess = false;
+            }
+          }).catch((error) => {
 
+          })
+        }
       }
     }
 </script>

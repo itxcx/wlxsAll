@@ -40,20 +40,19 @@
       },
       //页面初始化
       mounted() {
-        var that = this;
         this.$nextTick(() => {
           //发送请求，获取配置参数
           this.$ajax({
             url: 'http://merchant.test.weilaixiansen.com/merchant/config',
             method: 'GET'
-          }).then(function(res) {
+          }).then((res) => {
             if(res.data.code == 0) {
               var appId = res.data.data.appId;
               var noncestr = res.data.data.noncestr;
               var timestamp = res.data.data.timestamp;
               var signature = res.data.data.signature;
             }
-            that.getConfigParames(appId, noncestr, timestamp, signature);
+            this.getConfigParames(appId, noncestr, timestamp, signature);
           })
         })
       },
@@ -81,21 +80,23 @@
         },
         //微信扫一扫
         wxScan() {
-          var that = this;
           wx.scanQRCode({
             needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
             scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
-            success: function (res) {
+            success: (res) => {
               var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
               var device_number = result.split('?')[1].split('=')[1];//截取设备id
-              that.scanResult(result);
+              if(device_number) {
+                this.scanResult(device_number);
+              }
             }
           })
         },
         //扫一扫结果处理回调方法
-        scanResult(result) {
+        scanResult(device_number) {
           this.$router.push({
-            path: '/exhibing'
+            path: '/exhibing',
+            query: {device_number: device_number}
           })
         }
       }
@@ -150,7 +151,7 @@
         margin-left: 2.667vw;
         padding: 2.6236vh 4vw;
         div{
-          width: 12vw;
+          width: 12.1vw;
           height: 12.1vw;
           float: left;
           margin-right: 3.333vw;

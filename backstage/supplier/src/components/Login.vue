@@ -70,7 +70,6 @@
                 url: `http://merchant.test.weilaixiansen.com/merchant/login?phone=${phone}&password=${password}`,
                 method: 'GET'
               }).then((res) => {
-                console.log(res);
                 if(res.data.code == 0) {
                   this.modalFun('登录成功', 1000);
                   setTimeout(() => {

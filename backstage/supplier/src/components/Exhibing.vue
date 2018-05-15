@@ -46,6 +46,7 @@
             ws.send('back');
           }
           ws.onconnection = function(res) { //接收消息方法
+            alert(res);
             console.log(res);
           }
           ws.onerror = function(error) {
@@ -66,11 +67,15 @@
               this.openSuccess = true;
               let sid = res.data.sid;
               this.openDoorWs(sid); //建立websocket连接
+            }else if(res.data.code == 3) {
+              this.$router.push({
+                path: '/'
+              })
             }else{ //开门超时
               this.openSuccess = false;
             }
           }).catch((error) => {
-
+            alert(error);
           })
         }
       }

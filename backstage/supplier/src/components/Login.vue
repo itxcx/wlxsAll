@@ -52,7 +52,7 @@
           }
         },
         //错误提示框显示控制
-        modalFun(text, timer){
+        modalFun(text, timer) {
           this.tipStatus = true;
           this.tipText = text;
           setTimeout(() => {
@@ -61,29 +61,30 @@
         },
        //提交按钮方法
         submitUserinfo() {
-          let that = this;
           let phone = this.phone;
           let password = this.password;
           if(!this.submitAlready) {
             this.submitAlready = true;
             if(this.phoneLegal && password) {
               this.$ajax({
-                url: '',
-                method: 'POST',
-                data: {'phone': phone, 'password': password}
-              }).then(function (res) {
+                url: 'http://merchant.test.weilaixiansen.com/merchant/login?phone=' + phone + '&password=' + password,
+                method: 'GET'
+              }).then((res) => {
                 console.log(res);
                 if(res.data.code == 0) {
-                  that.$router.push({
-                    path: '/main'
+                  this.modalFun('用户信息错误', 2000);
+                  setTimeout(function() {
+                    this.$router.push({
+                      path: '/main'
+                    })
                   })
                 }else{
-                  that.submitAlready = false;
-                  that.modalFun('用户信息错误', 2000);
+                  this.submitAlready = false;
+                  this.modalFun('用户信息错误', 2000);
                 }
-              }).catch(function(error) {
-                that.submitAlready = false;
-                that.modalFun('操作错误，请重试', 2000);
+              }).catch((error) => {
+                this.submitAlready = false;
+                this.modalFun('操作错误，请重试', 2000);
               })
             }
           }

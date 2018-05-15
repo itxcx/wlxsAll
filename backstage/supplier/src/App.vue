@@ -35,7 +35,7 @@
     filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
   }
   html{
-    filter: grayscale(100%);
+    /*filter: grayscale(100%);*/
     /*-webkit-filter: grayscale(100%);*/
     /*-moz-filter: grayscale(100%);*/
     /*filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);*/

@@ -67,24 +67,24 @@
             this.submitAlready = true;
             if(this.phoneLegal && password) {
               this.$ajax({
-                url: 'http://merchant.test.weilaixiansen.com/merchant/login?phone=' + phone + '&password=' + password,
+                url: `http://merchant.test.weilaixiansen.com/merchant/login?phone=${phone}&password=${password}`,
                 method: 'GET'
               }).then((res) => {
                 console.log(res);
                 if(res.data.code == 0) {
-                  this.modalFun('用户信息错误', 2000);
-                  setTimeout(function() {
+                  this.modalFun('登录成功', 1000);
+                  setTimeout(() => {
                     this.$router.push({
                       path: '/main'
                     })
-                  })
+                  }, 1000)
                 }else{
                   this.submitAlready = false;
                   this.modalFun('用户信息错误', 2000);
                 }
               }).catch((error) => {
                 this.submitAlready = false;
-                this.modalFun('操作错误，请重试', 2000);
+                this.modalFun('操作错误,请重试', 2000);
               })
             }
           }

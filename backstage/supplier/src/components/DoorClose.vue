@@ -30,14 +30,19 @@
         })
       },
       methods: {
-        //调用接口,获取上货详细信息
-        getExhibOrderInfo(order_id) {
+        //调用接口,获取上货详细信息,参数订单ID-order_id && 操作类型-ation
+        getExhibOrderInfo(order_id, action) {
           this.$ajax({
-            url: '',
-            method: 'GET',
-            data: {order_id: order_id, action: action}
+            url: `http://merchant.test.weilaixiansen.com/login/closeDetailbyOrderId?action=${action}&order_id=${order_id}`,
+            method: 'GET'
           }).then((res) => {
             //如果数据请求成功,跳转到核验页面
+            if(res.data.code == 0) {
+              localStorage.setItem('exhibData', res.data.data);
+              this.$router.push({
+                path: '/checkExhibing'
+              })
+            }
             console.log(res);
           }).catch((error) => {
             console.log(error);

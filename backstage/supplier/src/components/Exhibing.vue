@@ -56,7 +56,7 @@
             }
           }
           ws.onerror = function(error) {
-            console.log(error);
+
           }
         },
         //开门命令

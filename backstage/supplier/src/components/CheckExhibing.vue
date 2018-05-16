@@ -74,14 +74,13 @@
             let exhibData = localStorage.getItem('exhibData');
             alert(exhibData);
             let location = localStorage.getItem('device_address');
-            alert(location);
             if(location) {
               this.location = location; //设备地址
             }
           })
         },
         methods: {
-
+          //解析数据
         }
     }
 </script>

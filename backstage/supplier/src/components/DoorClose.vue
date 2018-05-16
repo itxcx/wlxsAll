@@ -20,8 +20,13 @@
       },
       mounted() {
         this.$nextTick(() => {
-          let order_id = this.$route.query.order_id;
-          this.getExhibOrderInfo(order_id);
+          let order_id = localStorage.getItem('order_id');
+          let operate = localStorage.getItem('operate');
+          let action = 0; //判断上下货操作
+          if(operate !== 'exhib') {
+            action = 1;
+          }
+          this.getExhibOrderInfo(order_id, action);
         })
       },
       methods: {
@@ -29,8 +34,10 @@
         getExhibOrderInfo(order_id) {
           this.$ajax({
             url: '',
-            method: 'GET'
+            method: 'GET',
+            data: {order_id: order_id, action: action}
           }).then((res) => {
+            //如果数据请求成功,跳转到核验页面
             console.log(res);
           }).catch((error) => {
             console.log(error);

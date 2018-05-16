@@ -73,6 +73,7 @@
         },
         //上货
         exhibitScan() {
+          localStorage.setItem('operate', 'exhib'); //上货操作
           this.wxScan();//调用扫码开门
         },
         //微信扫一扫

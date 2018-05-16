@@ -51,8 +51,7 @@
               let order_id = msg.order_id;//orderid
               localStorage.setItem('order_id', order_id);
               this.$router.push({
-                path: '/doorClose',
-                query: {order_id: order_id}
+                path: '/doorClose'
               })
             }
           }

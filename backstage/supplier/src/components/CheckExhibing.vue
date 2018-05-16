@@ -71,7 +71,10 @@
         },
         mounted() {
           this.$nextTick(() => {
-
+            let location = localStorage.getItem('device_address');
+            if(location) {
+              this.location = localStorage.getItem('device_address');
+            }
           })
         },
         methods: {

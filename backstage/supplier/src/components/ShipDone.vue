@@ -1,9 +1,9 @@
 <template>
-  <div class="ExhibingDone">
+  <div class="ShipDone">
     <header>
       <div class="pageTitle">
         <span><</span>
-        <span>上货完成</span>
+        <span>下架完成</span>
       </div>
       <div class="location">
         <span></span>
@@ -11,15 +11,15 @@
       </div>
     </header>
     <section class="exhibInfo">
-      <h3>本次上架商品
+      <h3>本次下架商品
         <span>{{itemList.total_count}}</span>个
       </h3>
       <p>
-        <span></span>
-        <span>已实际上货数量为标准，问题商品请开柜带走</span>
+        扣款
       </p>
     </section>
-    <section class="checkContent">
+    <section class="checkContent" v-show="itemList.goods.length">
+      <p>自家商品</p>
       <ul class="headerList">
         <li>序号</li>
         <li>商品名称</li>
@@ -31,7 +31,24 @@
           <span>{{index + 1}}</span>
           <span>{{item.goods_name}}</span>
           <span>{{item.goods_count}}</span>
-          <span @click="showLabel(index)">查看</span>
+          <span @click="showLabel(index, 'own')">查看</span>
+        </li>
+      </ul>
+    </section>
+    <section class="checkContent" v-show="itemList.sale_goods.length">
+      <p>其他商品</p>
+      <ul class="headerList">
+        <li>序号</li>
+        <li>商品名称</li>
+        <li>数量</li>
+        <li>编号</li>
+      </ul>
+      <ul class="checkItemList">
+        <li v-for="(item, index) in itemList.sale_goods">
+          <span>{{index + 1}}</span>
+          <span>{{item.goods_name}}</span>
+          <span>{{item.goods_count}}</span>
+          <span @click="showLabel(index, 'other')">查看</span>
         </li>
       </ul>
     </section>
@@ -61,15 +78,14 @@
         modalToggle: false, //标签列表查看显示
         labelInfo: {},
         itemList: {
-          "goods": [
-             {
-             "goods_name": "清谷田园",
-             "goods_count": 1,
-             "tags": ["AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741",
+          "goods": [{
+            "goods_name": "清谷田园",
+            "goods_count": 1,
+            "tags": ["AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741",
               "AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741",
               "AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741",
               "AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741"]
-            },
+          },
             {
               "goods_name": "清谷田园2",
               "goods_count": 13,
@@ -80,7 +96,7 @@
             "goods_name": "伊利每益添原味",
             "goods_count": 1,
             "goods_price": "6.50",
-            "tags": ["AAAC2273"]
+            "tags": ["AAAC2273","AAAC2273","AAAC2273","AAAC2273","AAAC2273","AAAC2273"]
           }],
           "total_count": 14
         }, //商品列表
@@ -88,7 +104,7 @@
     },
     mounted() {
       this.$nextTick(() => {
-       // this.itemList = localStorage.getItem('exhibData');
+        //this.itemList = localStorage.getItem('exhibData');
         this.location = localStorage.getItem('device_address');
         console.log(this.location);
 
@@ -96,9 +112,14 @@
     },
     methods: {
       //查看标签
-      showLabel(index) {
+      showLabel(index, type) {
         this.modalToggle = true;
-        this.labelInfo = this.itemList.goods[index];
+        if(type === 'own') {
+          this.labelInfo = this.itemList.goods[index];
+        }else{
+          this.labelInfo = this.itemList.sale_goods[index];
+        }
+
       },
       //完成按钮方法
       exhibDone() {
@@ -115,7 +136,7 @@
 </script>
 
 <style lang="less">
-  .ExhibingDone{
+  .ShipDone{
     padding-bottom: 12vh;
     width: 100vw;
     header{
@@ -191,6 +212,12 @@
       }
     }
     .checkContent{
+      p{
+        font-size: 2.3988rem;
+        padding: 2.2488vh 0;
+        font-weight: bold;
+        padding-left: 1.6667vw;
+      }
       .headerList{
         border-bottom: 1px solid #e5e5e5;
         overflow: hidden;

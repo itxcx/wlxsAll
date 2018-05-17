@@ -14,6 +14,8 @@ import Addition from '../components/Addition' //添加商品
 import AddItem from '../components/AddItem' //添加条目
 import CheckExhibing from '../components/CheckExhibing' //入库核验
 import ExhibingDone from '../components/ExhibingDone' //上货完成
+import Ship from '../components/Ship' //下货
+import ShipDone from '../components/ShipDone' //下货完成
 //引入主要的数据模块
 
 Vue.use(Router);
@@ -84,6 +86,16 @@ export default new Router({
       path: '/exhibingDone',
       name: 'exhibingDone',
       component: ExhibingDone
+    },
+    {
+      path: '/ship',
+      name: 'ship',
+      component: Ship
+    },
+    {
+      path: '/shipDone',
+      name: 'shipDone',
+      component: ShipDone
     }
   ]
 })

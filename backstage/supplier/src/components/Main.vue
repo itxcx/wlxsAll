@@ -16,7 +16,7 @@
             <dd>放入售货柜中</dd>
           </dl>
         </aside>
-        <aside class="ship">
+        <aside class="ship"  @click="shipScan">
           <div></div>
           <dl>
             <dt>商品下架</dt>
@@ -76,6 +76,11 @@
           localStorage.setItem('operate', 'exhib'); //上货操作
           this.wxScan();//调用扫码开门
         },
+        //下货
+        shipScan() {
+          localStorage.setItem('operate', 'ship'); //上货操作
+          this.wxScan();//调用扫码开门
+        },
         //微信扫一扫
         wxScan() {
           wx.scanQRCode({
@@ -92,10 +97,18 @@
         },
         //扫一扫结果处理回调方法
         scanResult(device_number) {
-          this.$router.push({
-            path: '/exhibing',
-            query: {device_number: device_number}
-          })
+          let operate = localStorage.getItem('operate'); //判断操作类型
+          if(operate === 'exhib') { //上货
+            this.$router.push({
+              path: '/exhibing',
+              query: {device_number: device_number}
+            })
+          }else if(operate === 'ship') { //下货
+            this.$router.push({
+              path: '/ship',
+              query: {device_number: device_number}
+            })
+          }
         }
       }
     }

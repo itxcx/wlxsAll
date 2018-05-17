@@ -39,9 +39,16 @@
             //如果数据请求成功,跳转到核验页面
             if(res.data.code == 0) {
               localStorage.setItem('exhibData', res.data.data);
-              this.$router.push({
-                path: '/exhibingDone'
-              })
+              let operate = localStorage.getItem('operate');
+              if(operate === 'exhib') { //上货完成
+                this.$router.push({
+                  path: '/exhibingDone'
+                })
+              }else{ //下货完成
+                this.$router.push({
+                  path: '/shipDone'
+                })
+              }
             }
             console.log(res);
           }).catch((error) => {

@@ -13,6 +13,7 @@ import Scan from '../components/Scan' //扫码
 import Addition from '../components/Addition' //添加商品
 import AddItem from '../components/AddItem' //添加条目
 import CheckExhibing from '../components/CheckExhibing' //入库核验
+import ExhibingDone from '../components/ExhibingDone' //上货完成
 //引入主要的数据模块
 
 Vue.use(Router);
@@ -78,6 +79,11 @@ export default new Router({
       path: '/checkExhibing',
       name: 'checkExhibing',
       component: CheckExhibing
+    },
+    {
+      path: '/exhibingDone',
+      name: 'exhibingDone',
+      component: ExhibingDone
     }
   ]
 })

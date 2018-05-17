@@ -24,6 +24,7 @@ import Scan from './components/Scan'; //扫码
 import Addition from './components/Addition'; //添加商品主页
 import AddItem from './components/AddItem'; //添加条目
 import CheckExhibing from './components/CheckExhibing'; //入库核验
+import ExhibingDone from './components/ExhibingDone'; //上货完成
 
 Vue.use(iView);
 Vue.config.productionTip = false;
@@ -34,7 +35,7 @@ new Vue({
   store,
   components: {
     App, Login, Main, FooterBar, Repertory, Exhibing, DoorClose,
-    InStoreDone, Scan, Addition, AddItem, CheckExhibing
+    InStoreDone, Scan, Addition, AddItem, CheckExhibing, ExhibingDone
   },
   template: '<App/>'
 })

@@ -14,14 +14,13 @@
         <ul class="headerList">
           <li>序号</li>
           <li>名称</li>
-          <li>单价</li>
           <li>数量</li>
           <li>总价</li>
         </ul>
         <ul class="checkItemList">
-          <li v-for="(item, index) in itemList">
+          <li v-for="(item, index) in itemList.goods">
             <span>{{index + 1}}</span>
-            <span>{{item.name}}</span>
+            <span>{{item.goods_name}}</span>
             <span>{{item.amount}}</span>
             <span>{{item.countNum}}</span>
             <span>{{item.amount * item.countNum}}</span>
@@ -44,43 +43,35 @@
         name: "check-exhibing",
         data() {
             return {
-              location: '西安市高新区锦业路瞪羚谷E座1F',
-              itemList: [
-                {
-                  name: '乐虎',
-                  countNum: 20,
-                  amount: 100
-                },
-                {
-                  name: '果汁',
-                  countNum: 20,
-                  amount: 100
-                },
-                {
-                  name: '孤独',
-                  countNum: 20,
-                  amount: 100
-                },
-                {
-                  name: '啤酒',
-                  countNum: 20,
-                  amount: 100
-                }
-              ]
+              location: '', //设备地址
+              itemList: {}, //商品列表
             }
         },
+      /* {
+              "goods": [{
+              "goods_name": "清谷田园",
+              "goods_count": 1,
+              "tags": ["AAAC8741"]
+            }],
+              "sale_goods": [{
+              "goods_name": "伊利每益添原味",
+              "goods_count": 1,
+              "goods_price": "6.50",
+              "tags": ["AAAC2273"]
+            }],
+              "total_count": 1
+            }*/
         mounted() {
           this.$nextTick(() => {
-            let exhibData = localStorage.getItem('exhibData');
-            alert(exhibData);
-            let location = localStorage.getItem('device_address');
+            this.itemList = localStorage.getItem('exhibData');
+            this.location = localStorage.getItem('device_address');
             if(location) {
               this.location = location; //设备地址
             }
+            //this.parseExhibData(exhibData);
           })
         },
         methods: {
-          //解析数据
         }
     }
 </script>

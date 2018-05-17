@@ -40,7 +40,7 @@
             if(res.data.code == 0) {
               localStorage.setItem('exhibData', res.data.data);
               this.$router.push({
-                path: '/checkExhibing'
+                path: '/exhibingDone'
               })
             }
             console.log(res);

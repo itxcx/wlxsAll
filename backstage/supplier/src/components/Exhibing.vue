@@ -50,6 +50,7 @@
             if(msg && msg.order_id) {
               let order_id = msg.order_id;//orderid
               localStorage.setItem('order_id', order_id);
+              alert(order_id);
               this.$router.push({
                 path: '/doorclose'
               })

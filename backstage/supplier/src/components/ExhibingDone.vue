@@ -67,8 +67,8 @@
       this.$nextTick(() => {
         this.itemList = localStorage.getItem('exhibData');
         this.location = localStorage.getItem('device_address');
-        console.log(this.location);
-
+        alert(this.itemList);
+        alert(this.location);
       })
     },
     methods: {

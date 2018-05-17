@@ -1,5 +1,5 @@
 <template>
-  <div class="CheckExhibing">
+  <div class="ExhibingDone">
     <header>
       <div class="pageTitle">
         <span><</span>
@@ -31,24 +31,43 @@
           <span>{{index + 1}}</span>
           <span>{{item.goods_name}}</span>
           <span>{{item.goods_count}}</span>
-          <span>查看</span>
+          <span @click="showLabel(index)">查看</span>
         </li>
       </ul>
+    </section>
+    <section class="confirmBtn">
+      <p @click="exhibDone">完成</p>
+    </section>
+    <section class="labelModal" v-show="modalToggle">
+      <section class="labelContent">
+        <p>{{labelInfo.goods_name}}-标签标号</p>
+        <div class="labelList">
+          <ul>
+            <li v-for="label in labelInfo.tags">{{label}}</li>
+          </ul>
+        </div>
+      </section>
+      <section class="closeBtn" @click="closeBtn">关闭</section>
     </section>
   </div>
 </template>
 
 <script>
   export default {
-    name: "check-exhibing",
+    name: "ExhibingDone",
     data() {
       return {
         location: '', //设备地址
+        modalToggle: false, //标签列表查看显示
+        labelInfo: {},
         itemList: {
           "goods": [{
             "goods_name": "清谷田园",
             "goods_count": 1,
-            "tags": ["AAAC8741"]
+            "tags": ["AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741",
+              "AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741",
+              "AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741",
+              "AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741"]
           },
             {
               "goods_name": "清谷田园2",
@@ -66,35 +85,37 @@
         }, //商品列表
       }
     },
-    /* {
-            "goods": [{
-            "goods_name": "清谷田园",
-            "goods_count": 1,
-            "tags": ["AAAC8741"]
-          }],
-            "sale_goods": [{
-            "goods_name": "伊利每益添原味",
-            "goods_count": 1,
-            "goods_price": "6.50",
-            "tags": ["AAAC2273"]
-          }],
-            "total_count": 1
-          }*/
     mounted() {
       this.$nextTick(() => {
-        //this.itemList = localStorage.getItem('exhibData');
+        this.itemList = localStorage.getItem('exhibData');
         this.location = localStorage.getItem('device_address');
         console.log(this.location);
 
       })
     },
     methods: {
+      //查看标签
+      showLabel(index) {
+        this.modalToggle = true;
+        this.labelInfo = this.itemList.goods[index];
+      },
+      //完成按钮方法
+      exhibDone() {
+        this.$router.push({
+          path: '/main'
+        })
+      },
+      //关闭显示框
+      closeBtn() {
+        this.modalToggle = false;
+      }
     }
   }
 </script>
 
 <style lang="less">
-  .CheckExhibing{
+  .ExhibingDone{
+    padding-bottom: 12vh;
     width: 100vw;
     header{
       background: #65d172;
@@ -222,6 +243,82 @@
             background: #f7f7f7;
           }
         }
+      }
+    }
+    .confirmBtn{
+      position: fixed;
+      left: 10.4vw;
+      bottom: 0;
+      height: 10.4198vh;
+      width: 79.2vw;
+      z-index: 2;
+      p{
+        width: 79.2vw;
+        height: 10.4198vh;
+        background: url("../../static/images/button_bg.png") no-repeat center center;
+        background-size: cover;
+        text-align: center;
+        font-size: 2.2488rem;
+        color: #fff;
+        line-height: 8.4198vh;
+      }
+    }
+    .labelModal{
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      z-index: 9;
+      background: rgba(0,0,0,.5);
+      top: 0;
+      left: 0;
+      .labelContent{
+        width: 90vw;
+        height: 74.9625vh;
+        background: #fff;
+        border-radius: 10px;
+        position: absolute;
+        left: 4.666vw;
+        bottom: 13.4178vh;
+        p{
+          height: 7.496vh;
+          width: 100%;
+          background: #65d172;
+          color: #fff;
+          font-size: 2.6986rem;
+          font-weight: bold;
+          text-align: center;
+          line-height: 7.496vh;
+          border-radius: 10px 10px 0 0;
+        }
+        .labelList{
+          height: 66vh;
+          overflow: auto;
+          padding: 1.5vh 0;
+          ul{
+            li{
+              margin: 0 4vw;
+              padding: 0 1.333vw;
+              font-size: 2.3988rem;
+              color: #373737;
+              border-bottom: 1px solid #e5e5e5;
+              height: 7.4962vh;
+              line-height: 7.4962vh;
+            }
+          }
+        }
+      }
+      .closeBtn{
+        width: 79.2vw;
+        height: 10.4198vh;
+        background: url("../../static/images/button_bg.png") no-repeat center center;
+        background-size: cover;
+        text-align: center;
+        font-size: 2.2488rem;
+        color: #fff;
+        line-height: 8.4198vh;
+        position: absolute;
+        bottom: 0;
+        left: 10.4vw;
       }
     }
   }

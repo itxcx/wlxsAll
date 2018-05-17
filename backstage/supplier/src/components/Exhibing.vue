@@ -33,7 +33,6 @@
       mounted() {
         this.$nextTick(() => {
           let device_number = this.$route.query.device_number;
-          alert(device_number);
           this.openDoor(device_number);//调用开门方法
         })
       },
@@ -51,11 +50,13 @@
             if(msg && msg.order_id) {
               let order_id = msg.order_id;//orderid
               localStorage.setItem('order_id', order_id);
-              alert(order_id);
               this.$router.push({
                 path: '/doorclose'
               })
             }
+          }
+          ws.onclose = function() {
+            console.log('close');
           }
           ws.onerror = function(error) {
 
@@ -71,7 +72,6 @@
               this.openSuccess = true;
               let sid = res.data.sid;
               let device_address = res.data.address;
-              alert('sid:' + sid);
               localStorage.setItem('device_address', device_address);
               this.openDoorWs(sid); //建立websocket连接
             }else if(res.data.code == 3) {

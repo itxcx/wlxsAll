@@ -54,6 +54,9 @@
             })
           }
         }
+        ws.onclose = function() {
+          console.log('close');
+        }
         ws.onerror = function(error) {
 
         }

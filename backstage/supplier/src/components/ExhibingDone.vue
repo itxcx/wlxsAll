@@ -65,10 +65,8 @@
     },
     mounted() {
       this.$nextTick(() => {
-        this.itemList = localStorage.getItem('exhibData');
+        this.itemList = JSON.parse(localStorage.getItem('exhibData'));
         this.location = localStorage.getItem('device_address');
-        alert(this.itemList);
-        alert(this.location);
       })
     },
     methods: {

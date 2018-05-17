@@ -38,9 +38,8 @@
           }).then((res) => {
             //如果数据请求成功,跳转到核验页面
             if(res.data.code == 0) {
-              alert('code:'+ res.data.code);
+              res.data.data = JSON.stringify(res.data.data);
               localStorage.setItem('exhibData', res.data.data);
-              alert(res.data.data);
               let operate = localStorage.getItem('operate');
               if(operate === 'exhib') { //上货完成
                 this.$router.push({

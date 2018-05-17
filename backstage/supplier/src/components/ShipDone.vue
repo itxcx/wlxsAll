@@ -77,34 +77,12 @@
         location: '', //设备地址
         modalToggle: false, //标签列表查看显示
         labelInfo: {},
-        itemList: {
-          "goods": [{
-            "goods_name": "清谷田园",
-            "goods_count": 1,
-            "tags": ["AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741",
-              "AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741",
-              "AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741",
-              "AAAC8741","AAAC8741","AAAC8741","AAAC8741","AAAC8741"]
-          },
-            {
-              "goods_name": "清谷田园2",
-              "goods_count": 13,
-              "tags": ["AAAC8741"]
-            }
-          ],
-          "sale_goods": [{
-            "goods_name": "伊利每益添原味",
-            "goods_count": 1,
-            "goods_price": "6.50",
-            "tags": ["AAAC2273","AAAC2273","AAAC2273","AAAC2273","AAAC2273","AAAC2273"]
-          }],
-          "total_count": 14
-        }, //商品列表
+        itemList: {}, //商品列表
       }
     },
     mounted() {
       this.$nextTick(() => {
-        //this.itemList = localStorage.getItem('exhibData');
+        this.itemList = localStorage.getItem('exhibData');
         this.location = localStorage.getItem('device_address');
         console.log(this.location);
 

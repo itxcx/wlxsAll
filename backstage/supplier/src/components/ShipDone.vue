@@ -78,11 +78,11 @@
         modalToggle: false, //标签列表查看显示
         labelInfo: {},
         itemList: {}, //商品列表
+        price: '',//价格
       }
     },
     mounted() {
       this.$nextTick(() => {
-        alert(1);
         this.itemList = JSON.parse(localStorage.getItem('exhibData'));
         this.location = localStorage.getItem('device_address');
       })

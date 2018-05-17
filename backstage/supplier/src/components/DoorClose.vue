@@ -46,7 +46,6 @@
                   path: '/exhibingDone'
                 })
               }else if(operate === 'ship'){ //下货完成
-                alert('ship');
                 this.$router.push({
                   path: '/shipDone'
                 })

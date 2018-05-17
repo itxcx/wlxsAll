@@ -31,7 +31,6 @@
     mounted() {
       this.$nextTick(() => {
         let device_number = this.$route.query.device_number;
-        alert(device_number);
         this.openDoor(device_number);//调用开门方法
       })
     },
@@ -72,7 +71,6 @@
             this.openSuccess = true;
             let sid = res.data.sid;
             let device_address = res.data.address;
-            alert(sid);
             localStorage.setItem('device_address', device_address);
             this.openDoorWs(sid); //建立websocket连接
           }else if(res.data.code == 3) {

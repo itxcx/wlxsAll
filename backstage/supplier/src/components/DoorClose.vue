@@ -45,7 +45,8 @@
                 this.$router.push({
                   path: '/exhibingDone'
                 })
-              }else{ //下货完成
+              }else if(operate === 'ship'){ //下货完成
+                alert('ship');
                 this.$router.push({
                   path: '/shipDone'
                 })

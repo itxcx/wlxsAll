@@ -18,7 +18,7 @@
         扣款
       </p>
     </section>
-    <section class="checkContent" v-show="itemList.goods.length">
+    <section class="checkContent">
       <p>自家商品</p>
       <ul class="headerList">
         <li>序号</li>
@@ -35,7 +35,7 @@
         </li>
       </ul>
     </section>
-    <section class="checkContent" v-show="itemList.sale_goods.length">
+    <section class="checkContent">
       <p>其他商品</p>
       <ul class="headerList">
         <li>序号</li>
@@ -71,7 +71,7 @@
 
 <script>
   export default {
-    name: "ExhibingDone",
+    name: "ShipDone",
     data() {
       return {
         location: '', //设备地址
@@ -82,10 +82,9 @@
     },
     mounted() {
       this.$nextTick(() => {
-        this.itemList = localStorage.getItem('exhibData');
+        alert(1);
+        this.itemList = JSON.parse(localStorage.getItem('exhibData'));
         this.location = localStorage.getItem('device_address');
-        console.log(this.location);
-
       })
     },
     methods: {
@@ -94,10 +93,9 @@
         this.modalToggle = true;
         if(type === 'own') {
           this.labelInfo = this.itemList.goods[index];
-        }else{
+        }else if(type === 'other'){
           this.labelInfo = this.itemList.sale_goods[index];
         }
-
       },
       //完成按钮方法
       exhibDone() {

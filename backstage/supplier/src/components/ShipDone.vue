@@ -15,7 +15,7 @@
         <span>{{itemList.total_count}}</span>个
       </h3>
       <p>
-        扣款
+        (扣款: <span>{{price}}</span>元)
       </p>
     </section>
     <section class="checkContent">
@@ -78,12 +78,18 @@
         modalToggle: false, //标签列表查看显示
         labelInfo: {},
         itemList: {}, //商品列表
-        price: '',//价格
+        price: 0,//价格
       }
     },
     mounted() {
       this.$nextTick(() => {
         this.itemList = JSON.parse(localStorage.getItem('exhibData'));
+        if(this.itemList.sale_goods.length > 0) {
+          for(let i = 0; i < this.itemList.sale_goods.length; i++) {
+            this.price += this.itemList.sale_goods[i].goods_count;
+          }
+        }
+        this.price = this.price.toFixed(2);//显示价格
         this.location = localStorage.getItem('device_address');
       })
     },
@@ -170,20 +176,13 @@
       }
       p{
         height: 2.923vh;
-        span:nth-of-type(1) {
+        font-size: 2.5487vh;
+        color: #373737;
+        span {
           display: inline-block;
-          width: 3.8666vw;
-          height: 2.923vh;
-          background: url("../../static/images/image_tips.png") no-repeat center center;
-          background-size: cover;
-          vertical-align: bottom;
-        }
-        span:nth-of-type(2) {
-          display: inline-block;
-          margin-left: 5px;
           height: 2.923vh;
           font-size: 2.0989vh;
-          color: rgba(36,35,35,.93);
+          color: #65d172;
         }
       }
     }

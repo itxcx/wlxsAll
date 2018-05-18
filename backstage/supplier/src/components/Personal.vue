@@ -26,7 +26,7 @@
             <span class="itemTitle">销售记录</span>
             <span class="next"></span>
           </li>
-          <li>
+          <li @click="goRecord">
             <span></span>
             <span class="itemTitle">配送记录</span>
             <span class="next"></span>
@@ -56,6 +56,14 @@
       },
       components: {
         FooterBar
+      },
+      methods: {
+        //上下架记录
+        goRecord() {
+          this.$router.push({
+            path: '/record'
+          })
+        }
       }
     }
 </script>

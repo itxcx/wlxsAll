@@ -16,6 +16,7 @@ import CheckExhibing from '../components/CheckExhibing' //入库核验
 import ExhibingDone from '../components/ExhibingDone' //上货完成
 import Ship from '../components/Ship' //下货
 import ShipDone from '../components/ShipDone' //下货完成
+import Record from '../components/Record' //上下架记录
 //引入主要的数据模块
 
 Vue.use(Router);
@@ -96,6 +97,11 @@ export default new Router({
       path: '/shipDone',
       name: 'shipDone',
       component: ShipDone
+    },
+    {
+      path: '/record',
+      name: 'record',
+      component: Record
     }
   ]
 })

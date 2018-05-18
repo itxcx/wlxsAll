@@ -96,7 +96,7 @@
 
 <style lang="less">
   @font-color: #333;
-  @header_background: #66D173;
+  @header_background: #66D172;
   @page_background: #ffffff;
   .Login{
     width: 100vw;
@@ -162,7 +162,7 @@
       }
       .phone span{
         display: inline-block;
-        margin: 1.2vh 4vw;
+        margin: 1vh 4vw;
         width: 5.6vw;
         height: 3.5982vh;
         background: url("../../static/images/account.png") no-repeat center center;
@@ -173,7 +173,7 @@
         margin-top: 3.748vh;
         span{
           display: inline-block;
-          margin: 1.2vh 4vw;
+          margin: 1vh 4vw;
           width: 5.6vw;
           height: 4.0982vh;
           background: url("../../static/images/password.png") no-repeat center center;

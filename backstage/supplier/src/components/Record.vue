@@ -229,6 +229,7 @@
             }else{
               this.action = '';
             }
+            this.getOrderListData('', '', action, '', 0);
           }
         }
     }

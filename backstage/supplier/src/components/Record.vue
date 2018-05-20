@@ -20,9 +20,15 @@
             <span v-html="device"></span>
             <span :class="!deviceDown ? 'down' : 'up'"></span>
           </li>
-          <li v-model="action" @click="selectAction">
-            <span v-html="action"></span>
-            <span :class="!actionDown ? 'down' : 'up'"></span>
+          <li v-model="action">
+            <!--<span v-html="action"></span>-->
+            <!--<span :class="!actionDown ? 'down' : 'up'"></span>-->
+            <select name="action" id="action" @click="selectAction" @change="clickAction">
+              <option value="上下货">上下货</option>
+              <option value="上货">上货</option>
+              <option value="下货">下货</option>
+            </select>
+            <span :class="!actionTypeSelect ? 'down' : 'up'"></span>
           </li>
         </ul>
       </section>
@@ -35,7 +41,7 @@
       <!--设备列表-->
       <section class="deviceList" v-show="deviceDown">
         <ul>
-          <li v-for="(item, index) in deviceList" @click="clickDevice">{{item.address}}</li>
+          <li v-for="(item, index) in deviceList" @click="clickDevice(index)">{{item.address}}</li>
         </ul>
       </section>
       <!--上下架-->
@@ -45,7 +51,7 @@
             <p>{{item.address}}</p>
             <p>{{item.created_time}}</p>
             <p>{{item.is_unload}}</p>
-            <p @click="clickAction">查看</p>
+            <p @click="clickAction(index)">查看</p>
           </li>
         </ul>
       </section>
@@ -61,12 +67,15 @@
               address: '地址',
               device: '售货柜',
               action: '上下架',//操作
+              actionType: '上下架',
               cityDown: false,
               addressDown: false,
               deviceDown: false,
               actionDown: true,
+              actionTypeSelect: false,
               addressList: ["瞪羚谷E座", "雁塔区招商银行"], //地址列表
-              deviceList: [],//设备列表
+              deviceList: [],//选择了地址后的设备列表
+              allDeviceList: [], //没有选择地址
               recordList: [{
                 "order_id": "20180517190512650301",
                 "is_unload": 1,
@@ -157,33 +166,69 @@
               "雁塔区招商银行": [{
                 "device_id": 6101130006,
                 "address": "雁塔区招商银行右侧06"
-              }]
+              }],
+              "arealist": ["瞪羚谷E座", "雁塔区招商银行"]
             }
             this.deviceList = addressData[this.address];
 
           },
           //展示设备
           selectDevice() {
+            this.deviceList = [];
             this.deviceDown = true;
             this.addressDown = false;
             this.actionDown = false;
             this.device = '售货柜';
+            this.getDeviceListData();
+            // let addressData = JSON.parse(localStorage.getItem('addressData'));
+            let addressData = {
+              "瞪羚谷E座": [{
+                "device_id": 6101130004,
+                "address": "E座左侧04"
+              }, {
+                "device_id": 6101130005,
+                "address": "E座右侧05"
+              }],
+              "雁塔区招商银行": [{
+                "device_id": 6101130006,
+                "address": "雁塔区招商银行右侧06"
+              }],
+              "arealist": ["瞪羚谷E座", "雁塔区招商银行"]
+            }
+            if(this.address === '地址') {
+              for(let i = 0; i < addressData.arealist.length; i++) {
+                for(let j = 0; j < addressData[addressData.arealist[i]].length; j++){
+                  this.deviceList.push(addressData[addressData.arealist[i]][j]);
+                }
+              }
+            }else{
+              this.deviceList = addressData[this.address];
+            }
           },
           //选择设备
-          clickDevice(e) {
-            this.device = e.target.innerHTML;
+          clickDevice(index) {
+            this.device = this.deviceList[index].address;
+            let device_id = this.deviceList[index].device_id;
+            localStorage.setItem('device_id', device_id);
             this.deviceDown = false;
             this.addressDown = false;
-            this.actionDown = true;
-            this.getOrderListData();
+
+            this.getOrderListData('', '', '', device_id, 0);
           },
           //展示方式
-          selectAction(e) {
-
+          selectAction() {
+            this.actionTypeSelect = !this.actionTypeSelect;
           },
           //选择方式
-          clickAction() {
-
+          clickAction(e) {
+            let typeAction = e.target.value;
+            if(typeAction === '上货') {
+              this.action = 0;
+            }else if(typeAction === '下货'){
+              this.action = 1;
+            }else{
+              this.action = '';
+            }
           }
         }
     }
@@ -220,8 +265,25 @@
             font-size: 2.3988rem;
             padding: 2.098vh 0 1.874vh 0;
             text-align: center;
-            &:nth-of-type(1), &:nth-of-type(4) {
+            select{
+              background: #65d172;
+              color: #fff;
+              outline: none;
+              border: medium;
+            }
+            &:nth-of-type(4){
+              position: relative;
+              span{
+                position: absolute;
+                top: 2.773vh;
+                right: -1px;
+                width: 5.333vw;
+                height: 2.773vh;
+              }
+            }
+            &:nth-of-type(1){
               width: 20vw;
+              position: relative;
               span:nth-of-type(1) {
                 display: inline-block;
                 width: 65%;

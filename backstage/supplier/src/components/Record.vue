@@ -155,6 +155,7 @@
             this.date2 = e[1];
           },
           getMoreData(date1 = '', date2 = '', action = '', device_id = '', page = 1) {
+            alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
             this.canGetData = false;
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}`,
@@ -173,16 +174,13 @@
           },
           //请求上下架列表方法
           getOrderListData(date1 = '', date2 = '', action = '', device_id = '', page = 0) {
-            // alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
+            alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}`,
               method: 'GET'
             }).then((res) => {
                 if(res.data.code == 0) {
                   this.recordList = res.data.data;
-                  if(res.data.data.length < 5) {
-                    this.ctrlTipTitle = '没有更多数据...';
-                  }
                 }
             }).catch((error) => {
               console.log(error);
@@ -268,6 +266,8 @@
             }else{
               this.actionValue = '';
             }
+            this.ctrlTipTitle = '点击加载更多...';
+            this.canGetData = true;
             this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
           },
           //查看详情
@@ -445,7 +445,7 @@
         }
         .getMore{
           text-align: center;
-          padding: 1vh;
+          padding-bottom: 1vh;
           font-weight: bold;
           font-size: 1.924rem;
         }

@@ -1,5 +1,11 @@
 <template>
   <div class="Repertory">
+    <section class="login_top">
+        <span @click="goMain">
+          <Icon type="chevron-left"></Icon>
+        </span>
+      <p>售货柜库存</p>
+    </section>
     <header>
       <ul>
         <li v-model="city" @click="selectCity">
@@ -263,6 +269,54 @@
                 "acount": "20",
                 "longitude": 108.9372220000,
                 "latitude": 34.2348420000
+              },
+              {
+                "name": "未来鲜森-招商银行2",
+                "acount": "20",
+                "longitude": 108.9372220000,
+                "latitude": 34.2348420000
+              },
+              {
+                "name": "未来鲜森-招商银行2",
+                "acount": "20",
+                "longitude": 108.9372220000,
+                "latitude": 34.2348420000
+              },
+              {
+                "name": "未来鲜森-招商银行2",
+                "acount": "20",
+                "longitude": 108.9372220000,
+                "latitude": 34.2348420000
+              },
+              {
+                "name": "未来鲜森-招商银行2",
+                "acount": "20",
+                "longitude": 108.9372220000,
+                "latitude": 34.2348420000
+              },
+              {
+                "name": "未来鲜森-招商银行2",
+                "acount": "20",
+                "longitude": 108.9372220000,
+                "latitude": 34.2348420000
+              },
+              {
+                "name": "未来鲜森-招商银行2",
+                "acount": "20",
+                "longitude": 108.9372220000,
+                "latitude": 34.2348420000
+              },
+              {
+                "name": "未来鲜森-招商银行2",
+                "acount": "20",
+                "longitude": 108.9372220000,
+                "latitude": 34.2348420000
+              },
+              {
+                "name": "未来鲜森-招商银行2",
+                "acount": "20",
+                "longitude": 108.9372220000,
+                "latitude": 34.2348420000
               }
             ]
           }
@@ -278,6 +332,11 @@
       })
     },
     methods: {
+      goMain() {
+        this.$router.push({
+          path: '/main'
+        })
+      },
       //选择城市
       selectCity() {
         this.cityDown = false;
@@ -416,15 +475,34 @@
 
 <style lang="less">
   .Repertory{
+    width: 100vw;
+    height: 100vh;
     /* 去除百度地图水印 */
     .anchorBL {
       display: none;
     }
     background: #ffffff;
-    padding-top: 7.3718vh;
-    header{
+    .login_top{
       position: fixed;
       top: 0;
+      left: 0;
+      width: 100vw;
+      background: #65d172;
+      height: 5.997vh;
+      font-size: 2.398rem;
+      line-height: 5.997vh;
+      text-align: center;
+      color: #fff;
+      font-weight: 500;
+      span{
+        position: absolute;
+        left: 4vw;
+        top: 0;
+      }
+    }
+    header{
+      position: fixed;
+      top: 5.997vh;
       left: 0;
       background: #65d172;
       color: #ffffff;
@@ -454,6 +532,7 @@
       }
     }
     .repertoryContent{
+      padding-top: 14vh;
       .cityList{
         margin-top: 2vh;
         ul{

@@ -11,7 +11,7 @@
         </div>
         <div class="password">
           <span></span>
-          <input type="text" name="password" v-model="password" placeholder="请输入登录密码"/>
+          <input type="password" name="password" v-model="password" placeholder="请输入登录密码"/>
         </div>
       </section>
       <section class="userInfo_submit" @click="submitUserinfo">登录</section>

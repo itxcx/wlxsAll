@@ -191,20 +191,6 @@
             this.deviceDown = true;
             this.actionDown = false;
             let addressData = JSON.parse(localStorage.getItem('addressData'));
-            // let addressData = {
-            //   "瞪羚谷E座": [{
-            //     "device_id": 6101130004,
-            //     "address": "E座左侧04"
-            //   }, {
-            //     "device_id": 6101130005,
-            //     "address": "E座右侧05"
-            //   }],
-            //   "雁塔区招商银行": [{
-            //     "device_id": 6101130006,
-            //     "address": "雁塔区招商银行右侧06"
-            //   }],
-            //   "arealist": ["瞪羚谷E座", "雁塔区招商银行"]
-            // }
             this.deviceList = addressData[this.address];
 
           },
@@ -216,30 +202,6 @@
             this.actionDown = false;
             this.device = '售货柜';
             this.getDeviceListData();
-            //let addressData = JSON.parse(localStorage.getItem('addressData'));
-            // let addressData = {
-            //   "瞪羚谷E座": [{
-            //     "device_id": 6101130004,
-            //     "address": "E座左侧04"
-            //   }, {
-            //     "device_id": 6101130005,
-            //     "address": "E座右侧05"
-            //   }],
-            //   "雁塔区招商银行": [{
-            //     "device_id": 6101130006,
-            //     "address": "雁塔区招商银行右侧06"
-            //   }],
-            //   "arealist": ["瞪羚谷E座", "雁塔区招商银行"]
-            // }
-            // if(this.address === '地址') {
-            //   for(let i = 0; i < addressData.arealist.length; i++) {
-            //     for(let j = 0; j < addressData[addressData.arealist[i]].length; j++){
-            //       this.deviceList.push(addressData[addressData.arealist[i]][j]);
-            //     }
-            //   }
-            // }else{
-            //   this.deviceList = addressData[this.address];
-            // }
           },
           //选择设备
           clickDevice(index) {

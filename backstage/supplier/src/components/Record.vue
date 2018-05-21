@@ -71,7 +71,7 @@
             </p>
           </li>
         </ul>
-        <p @click="getMore">{{ctrlTipTitle}}</p>
+        <p class="getMore" @click="getMore">{{ctrlTipTitle}}</p>
       </section>
     </div>
 </template>
@@ -96,6 +96,7 @@
               actionValue: '',
               device_id: '',
               canGetData: true,
+              page: 1,
               ctrlTipTitle: '点击加载更多...',
               addressList: [], //地址列表
               deviceList: [],//选择了地址后的设备列表
@@ -139,7 +140,8 @@
           //获取更多数据方法
           getMore() {
             if(this.ctrlTipTitle === '点击加载更多...' && this.canGetData) {
-              this.getMoreData();
+              this.page++;
+              this.getMoreData(this.date1, this.date2, this.actionValue, this.device_id, this.page);
             }
           },
           goBack() {
@@ -441,6 +443,12 @@
             }
           }
         }
+        .getMore{
+          text-align: center;
+          padding: 1vh;
+          font-weight: bold;
+          font-size: 1.924rem;
+        }
       }
     }
   .ivu-date-picker{
@@ -452,7 +460,7 @@
       background: @header_background;
       border-radius: 20px;
       outline: none;
-      font-size: 1.724rem;
+      font-size: 1.924rem;
       color: #fff;
       padding-left: 2vw;
       &::placeholder{

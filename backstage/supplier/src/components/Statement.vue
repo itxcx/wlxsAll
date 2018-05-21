@@ -1,52 +1,59 @@
 <template>
     <div class="statement">
-      <header>
-        <p>今日销售额 (元)</p>
-        <p class="saleroom">{{saleroom}}</p>
-        <div class="totalCount">
-          <dl>
-            <dt>交易笔数(笔)</dt>
-            <dd>{{volume}}</dd>
-          </dl>
-          <dl>
-            <dt>售卖商品(个)</dt>
-            <dd>{{numberCount}}</dd>
-          </dl>
-        </div>
-      </header>
-      <section class="statement_content">
-        <!--今日货柜排行-->
-        <div class="counter">
-          <h3>今日货柜排行</h3>
-          <dl>
-            <dt>{{counterAddr}}</dt>
-            <dd>交易金额<span>{{countAmount}}</span>元</dd>
-          </dl>
-        </div>
-        <!--今日商品排行-->
-        <div class="goods">
-          <h3>今日商品排行</h3>
-          <dl>
-            <dt>{{goodsTop}}</dt>
-            <dd>售卖数量<span>{{goodsNum}}</span>个</dd>
-          </dl>
-        </div>
-        <!--今日上货数量-->
-        <div class="exhibit">
-          <h3>今日上货数量(个)</h3>
-          <dl>
-            <dt>{{exhibitNum}}</dt>
-            <dd>智能售货柜<span>{{exhibitDevice}}</span>台</dd>
-          </dl>
-        </div>
-        <!--今日下货数量-->
-        <div class="ship">
-          <h3>今日下货数量(个)</h3>
-          <dl>
-            <dt>{{shipNum}}</dt>
-            <dd>智能售货柜<span>{{shipDevice}}</span>台</dd>
-          </dl>
-        </div>
+      <!--<section class="headerTitle">-->
+        <!--<p>智能报表</p>-->
+      <!--</section>-->
+      <!--<header>-->
+        <!--<p>今日销售额 (元)</p>-->
+        <!--<p class="saleroom">{{saleroom}}</p>-->
+        <!--<div class="totalCount">-->
+          <!--<dl>-->
+            <!--<dt>交易笔数(笔)</dt>-->
+            <!--<dd>{{volume}}</dd>-->
+          <!--</dl>-->
+          <!--<dl>-->
+            <!--<dt>售卖商品(个)</dt>-->
+            <!--<dd>{{numberCount}}</dd>-->
+          <!--</dl>-->
+        <!--</div>-->
+      <!--</header>-->
+      <!--<section class="statement_content">-->
+        <!--&lt;!&ndash;今日货柜排行&ndash;&gt;-->
+        <!--<div class="counter">-->
+          <!--<h3>今日货柜排行</h3>-->
+          <!--<dl>-->
+            <!--<dt>{{counterAddr}}</dt>-->
+            <!--<dd>交易金额<span>{{countAmount}}</span>元</dd>-->
+          <!--</dl>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;今日商品排行&ndash;&gt;-->
+        <!--<div class="goods">-->
+          <!--<h3>今日商品排行</h3>-->
+          <!--<dl>-->
+            <!--<dt>{{goodsTop}}</dt>-->
+            <!--<dd>售卖数量<span>{{goodsNum}}</span>个</dd>-->
+          <!--</dl>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;今日上货数量&ndash;&gt;-->
+        <!--<div class="exhibit">-->
+          <!--<h3>今日上货数量(个)</h3>-->
+          <!--<dl>-->
+            <!--<dt>{{exhibitNum}}</dt>-->
+            <!--<dd>智能售货柜<span>{{exhibitDevice}}</span>台</dd>-->
+          <!--</dl>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;今日下货数量&ndash;&gt;-->
+        <!--<div class="ship">-->
+          <!--<h3>今日下货数量(个)</h3>-->
+          <!--<dl>-->
+            <!--<dt>{{shipNum}}</dt>-->
+            <!--<dd>智能售货柜<span>{{shipDevice}}</span>台</dd>-->
+          <!--</dl>-->
+        <!--</div>-->
+      <!--</section>-->
+      <section class="buildingComponent">
+        <div></div>
+        <p>正在建设，马上开放...</p>
       </section>
       <Footer-bar></Footer-bar>
     </div>
@@ -84,6 +91,29 @@
   .statement{
     height: 100vh;
     background: #fff;
+    .headerTitle{
+      width: 100vw;
+      background: #65d172;
+      height: 5.997vh;
+      font-size: 2.398rem;
+      line-height: 5.997vh;
+      text-align: center;
+      color: #fff;
+      font-weight: 500;
+    }
+    .buildingComponent{
+      div{
+        width: 21.8667vw;
+        height: 16.9427vh;
+        background: url("../../static/images/logo.png") no-repeat center center;
+        background-size: cover;
+        margin: 8.395vh auto;
+      }
+      p{
+        text-align: center;
+        font-size: 2.2488rem;
+      }
+    }
     header{
       font-family: "PingFang SC";
       width: 100%;

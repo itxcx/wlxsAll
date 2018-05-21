@@ -1,7 +1,10 @@
 <template>
     <div class="Record">
       <header>
-        <section class="login_top">上下架记录</section>
+        <section class="login_top">
+          <span @click="goBack">< 返回</span>
+          <p>上下架记录</p>
+        </section>
         <section class="selectDate">
           <DatePicker type="daterange" size="small" split-panels placeholder="选择查询日期" @on-change="dateSelect"></DatePicker>
         </section>
@@ -64,7 +67,7 @@
               <span>见详情</span>
             </p>
             <p class="showOrderInfo">
-              <span @click="clickAction(index)">查看详情</span>
+              <span @click="showOrderInfo(index)">查看详情</span>
             </p>
           </li>
         </ul>
@@ -130,6 +133,11 @@
           })
         },
         methods: {
+          goBack() {
+            this.$router.push({
+              path: '/personal'
+            })
+          },
           //选择查询时间
           dateSelect(e) {
             this.date1 = e[0];
@@ -202,6 +210,7 @@
             this.actionDown = false;
             this.device = '售货柜';
             this.getDeviceListData();
+
           },
           //选择设备
           clickDevice(index) {
@@ -229,6 +238,27 @@
               this.actionValue = '';
             }
             this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
+          },
+          //查看详情
+          showOrderInfo(index) {
+            let order_id = this.recordList[index].order_id;
+            let action = this.recordList[index].is_unload;
+            this.$ajax({
+              url: `http://merchant.test.weilaixiansen.com/login/closeDetailbyOrderId?action=${action}&order_id=${order_id}`,
+              method: 'GET'
+            }).then((res) => {
+              if(res.data.code == 0) {
+                let data = res.data.data;
+                let recordMsg = JSON.stringify(data);
+                localStorage.setItem('recordMsg', recordMsg);
+                this.$router.push({
+                  path: '/recordMsg',
+                  query: {action: action}
+                })
+              }
+            }).catch((error) => {
+              console.log(error);
+            })
           }
         }
     }
@@ -248,6 +278,11 @@
           text-align: center;
           color: #fff;
           font-weight: 500;
+          span{
+            position: absolute;
+            left: 0;
+            top: 0;
+          }
         }
         .selectDate{
           width: 47.7333vw;

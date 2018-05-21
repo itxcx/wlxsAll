@@ -71,6 +71,7 @@
             </p>
           </li>
         </ul>
+        <p @click="getMore">{{ctrlTipTitle}}</p>
       </section>
     </div>
 </template>
@@ -94,6 +95,8 @@
               date2: '',
               actionValue: '',
               device_id: '',
+              canGetData: true,
+              ctrlTipTitle: '点击加载更多...',
               addressList: [], //地址列表
               deviceList: [],//选择了地址后的设备列表
               allDeviceList: [], //没有选择地址
@@ -133,6 +136,12 @@
           })
         },
         methods: {
+          //获取更多数据方法
+          getMore() {
+            if(this.ctrlTipTitle === '点击加载更多...' && this.canGetData) {
+              this.getMoreData();
+            }
+          },
           goBack() {
             this.$router.push({
               path: '/personal'
@@ -143,6 +152,24 @@
             this.date1 = e[0];
             this.date2 = e[1];
           },
+          getMoreData(date1 = '', date2 = '', action = '', device_id = '', page = 1) {
+            this.canGetData = false;
+            this.$ajax({
+              url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}`,
+              method: 'GET'
+            }).then((res) => {
+              if(res.data.code == 0) {
+                //this.recordList = res.data.data;
+                this.recordList = this.recordList.concat(res.data.data);
+                this.canGetData = true;
+                if(res.data.data.length < 5) {
+                  this.ctrlTipTitle = '没有更多数据...';
+                }
+              }
+            }).catch((error) => {
+              console.log(error);
+            })
+          },
           //请求上下架列表方法
           getOrderListData(date1 = '', date2 = '', action = '', device_id = '', page = 0) {
             // alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
@@ -152,6 +179,9 @@
             }).then((res) => {
                 if(res.data.code == 0) {
                   this.recordList = res.data.data;
+                  if(res.data.data.length < 5) {
+                    this.ctrlTipTitle = '没有更多数据...';
+                  }
                 }
             }).catch((error) => {
               console.log(error);
@@ -232,7 +262,7 @@
             let typeAction = e.target.value;
             if(typeAction === '上货') {
               this.actionValue = 0;
-            }else if(typeAction === '下货'){
+            }else if(typeAction === '下货') {
               this.actionValue = 1;
             }else{
               this.actionValue = '';

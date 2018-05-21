@@ -3,7 +3,7 @@
       <header>
         <section class="login_top">上下架记录</section>
         <section class="selectDate">
-          <DatePicker type="daterange" size="small" split-panels placeholder="选择查询日期"></DatePicker>
+          <DatePicker type="daterange" size="small" split-panels placeholder="选择查询日期" @on-change="dateSelect"></DatePicker>
         </section>
       </header>
       <section class="selectHeader">
@@ -73,35 +73,42 @@
               deviceDown: false,
               actionDown: true,
               actionTypeSelect: false,
-              addressList: ["瞪羚谷E座", "雁塔区招商银行"], //地址列表
+              date1: '',
+              date2: '',
+              actionValue: '',
+              device_id: '',
+              //addressList: ["瞪羚谷E座", "雁塔区招商银行"], //地址列表
+              addressList: [], //地址列表
               deviceList: [],//选择了地址后的设备列表
               allDeviceList: [], //没有选择地址
-              recordList: [{
-                "order_id": "20180517190512650301",
-                "is_unload": 1,
-                "created_time": "2018-05-17 19:05:30",
-                "address": "E座左侧04"
-              }, {
-                "order_id": "20180517190423634901",
-                "is_unload": 0,
-                "created_time": "2018-05-17 19:04:41",
-                "address": "E座左侧04"
-              }, {
-                "order_id": "20180517190343732801",
-                "is_unload": 1,
-                "created_time": "2018-05-17 19:04:04",
-                "address": "E座左侧04"
-              }, {
-                "order_id": "20180517190259340501",
-                "is_unload": 0,
-                "created_time": "2018-05-17 19:03:12",
-                "address": "E座左侧04"
-              }, {
-                "order_id": "20180517190216125801",
-                "is_unload": 1,
-                "created_time": "2018-05-17 19:02:37",
-                "address": "E座左侧04"
-              }],//上下架记录数据
+              // recordList: [
+              //   {
+              //   "order_id": "20180517190512650301",
+              //   "is_unload": 1,
+              //   "created_time": "2018-05-17 19:05:30",
+              //   "address": "E座左侧04"
+              // }, {
+              //   "order_id": "20180517190423634901",
+              //   "is_unload": 0,
+              //   "created_time": "2018-05-17 19:04:41",
+              //   "address": "E座左侧04"
+              // }, {
+              //   "order_id": "20180517190343732801",
+              //   "is_unload": 1,
+              //   "created_time": "2018-05-17 19:04:04",
+              //   "address": "E座左侧04"
+              // }, {
+              //   "order_id": "20180517190259340501",
+              //   "is_unload": 0,
+              //   "created_time": "2018-05-17 19:03:12",
+              //   "address": "E座左侧04"
+              // }, {
+              //   "order_id": "20180517190216125801",
+              //   "is_unload": 1,
+              //   "created_time": "2018-05-17 19:02:37",
+              //   "address": "E座左侧04"
+              // }],//上下架记录数据
+              recordList: []
             }
         },
         mounted() {
@@ -110,6 +117,11 @@
           })
         },
         methods: {
+          dateSelect(e) {
+            //选择查询时间
+            this.date1 = e[0];
+            this.date2 = e[1];
+          },
           //请求上下架列表方法
           getOrderListData(date1 = '', date2 = '', action = '', device_id = '', page = 0) {
             this.$ajax({
@@ -133,6 +145,16 @@
                 let addressData = JSON.stringify(res.data.data);
                 localStorage.setItem('addressData', addressData);
                 this.addressList = res.data.data.arealist;
+                addressData = JSON.parse(addressData);
+                if(this.address === '地址') {
+                  for(let i = 0; i < addressData.arealist.length; i++) {
+                    for(let j = 0; j < addressData[addressData.arealist[i]].length; j++){
+                      this.deviceList.push(addressData[addressData.arealist[i]][j]);
+                    }
+                  }
+                }else{
+                  this.deviceList = addressData[this.address];
+                }
               }
             }).catch((error) => {
               console.log(error);
@@ -154,21 +176,21 @@
             this.addressDown = false;
             this.deviceDown = true;
             this.actionDown = false;
-            // let addressData = JSON.parse(localStorage.getItem('addressData'));
-            let addressData = {
-              "瞪羚谷E座": [{
-                "device_id": 6101130004,
-                "address": "E座左侧04"
-              }, {
-                "device_id": 6101130005,
-                "address": "E座右侧05"
-              }],
-              "雁塔区招商银行": [{
-                "device_id": 6101130006,
-                "address": "雁塔区招商银行右侧06"
-              }],
-              "arealist": ["瞪羚谷E座", "雁塔区招商银行"]
-            }
+            let addressData = JSON.parse(localStorage.getItem('addressData'));
+            // let addressData = {
+            //   "瞪羚谷E座": [{
+            //     "device_id": 6101130004,
+            //     "address": "E座左侧04"
+            //   }, {
+            //     "device_id": 6101130005,
+            //     "address": "E座右侧05"
+            //   }],
+            //   "雁塔区招商银行": [{
+            //     "device_id": 6101130006,
+            //     "address": "雁塔区招商银行右侧06"
+            //   }],
+            //   "arealist": ["瞪羚谷E座", "雁塔区招商银行"]
+            // }
             this.deviceList = addressData[this.address];
 
           },
@@ -180,40 +202,40 @@
             this.actionDown = false;
             this.device = '售货柜';
             this.getDeviceListData();
-            // let addressData = JSON.parse(localStorage.getItem('addressData'));
-            let addressData = {
-              "瞪羚谷E座": [{
-                "device_id": 6101130004,
-                "address": "E座左侧04"
-              }, {
-                "device_id": 6101130005,
-                "address": "E座右侧05"
-              }],
-              "雁塔区招商银行": [{
-                "device_id": 6101130006,
-                "address": "雁塔区招商银行右侧06"
-              }],
-              "arealist": ["瞪羚谷E座", "雁塔区招商银行"]
-            }
-            if(this.address === '地址') {
-              for(let i = 0; i < addressData.arealist.length; i++) {
-                for(let j = 0; j < addressData[addressData.arealist[i]].length; j++){
-                  this.deviceList.push(addressData[addressData.arealist[i]][j]);
-                }
-              }
-            }else{
-              this.deviceList = addressData[this.address];
-            }
+            //let addressData = JSON.parse(localStorage.getItem('addressData'));
+            // let addressData = {
+            //   "瞪羚谷E座": [{
+            //     "device_id": 6101130004,
+            //     "address": "E座左侧04"
+            //   }, {
+            //     "device_id": 6101130005,
+            //     "address": "E座右侧05"
+            //   }],
+            //   "雁塔区招商银行": [{
+            //     "device_id": 6101130006,
+            //     "address": "雁塔区招商银行右侧06"
+            //   }],
+            //   "arealist": ["瞪羚谷E座", "雁塔区招商银行"]
+            // }
+            // if(this.address === '地址') {
+            //   for(let i = 0; i < addressData.arealist.length; i++) {
+            //     for(let j = 0; j < addressData[addressData.arealist[i]].length; j++){
+            //       this.deviceList.push(addressData[addressData.arealist[i]][j]);
+            //     }
+            //   }
+            // }else{
+            //   this.deviceList = addressData[this.address];
+            // }
           },
           //选择设备
           clickDevice(index) {
             this.device = this.deviceList[index].address;
-            let device_id = this.deviceList[index].device_id;
-            localStorage.setItem('device_id', device_id);
+            this.device_id = this.deviceList[index].device_id;
+            //localStorage.setItem('device_id', device_id);
             this.deviceDown = false;
             this.addressDown = false;
-
-            this.getOrderListData('', '', '', device_id, 0);
+            this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
+            this.actionDown = true;
           },
           //展示方式
           selectAction() {
@@ -223,13 +245,13 @@
           clickAction(e) {
             let typeAction = e.target.value;
             if(typeAction === '上货') {
-              this.action = 0;
+              this.actionValue = 0;
             }else if(typeAction === '下货'){
-              this.action = 1;
+              this.actionValue = 1;
             }else{
-              this.action = '';
+              this.actionValue = '';
             }
-            this.getOrderListData('', '', action, '', 0);
+            this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
           }
         }
     }

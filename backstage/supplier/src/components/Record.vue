@@ -159,7 +159,6 @@
               method: 'GET'
             }).then((res) => {
               if(res.data.code == 0) {
-                //this.recordList = res.data.data;
                 this.recordList = this.recordList.concat(res.data.data);
                 this.canGetData = true;
                 if(res.data.data.length < 5) {

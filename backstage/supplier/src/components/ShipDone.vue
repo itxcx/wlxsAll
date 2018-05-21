@@ -2,7 +2,7 @@
   <div class="ShipDone">
     <header>
       <div class="pageTitle">
-        <span><</span>
+        <span @click="goBack"><Icon type="chevron-left"></Icon></span>
         <span>下架完成</span>
       </div>
       <div class="location">
@@ -112,6 +112,11 @@
       //关闭显示框
       closeBtn() {
         this.modalToggle = false;
+      },
+      goBack() {
+        this.$router.push({
+          path: '/main'
+        })
       }
     }
   }

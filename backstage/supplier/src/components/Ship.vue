@@ -1,5 +1,11 @@
 <template>
   <div class="Ship">
+    <section class="login_top">
+        <span>
+          <Icon type="chevron-left"></Icon>
+        </span>
+      <p>商品下架操作</p>
+    </section>
     <section class="ship_img"></section>
     <article v-show="openSuccess">
       <p>门已开,请取出商品</p>
@@ -91,8 +97,23 @@
   .Ship{
     width: 100vw;
     height: 100vh;
-    padding-top: 9.67vh;
     background: #fff;
+    .login_top{
+      width: 100vw;
+      background: #65d172;
+      height: 5.997vh;
+      font-size: 2.398rem;
+      line-height: 5.997vh;
+      text-align: center;
+      color: #fff;
+      font-weight: 500;
+      margin-bottom: 9.67vh;
+      span{
+        position: absolute;
+        left: 4vw;
+        top: 0;
+      }
+    }
     .ship_img{
       width: 59.2vw;
       height: 29.91vh;

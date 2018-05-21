@@ -1,7 +1,7 @@
 <template>
     <div class="RecordMsg">
       <header>
-        <span @click="goBackRecord">< 返回</span>
+        <span @click="goBackRecord"><Icon type="chevron-left"></Icon></span>
         <p>明细</p>
       </header>
       <section class="recordMsg_content">
@@ -87,7 +87,7 @@
       font-weight: 500;
       span{
         position: absolute;
-        left: 1vw;
+        left: 4vw;
         top: 0;
       }
     }

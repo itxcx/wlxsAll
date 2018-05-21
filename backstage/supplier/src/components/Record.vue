@@ -2,7 +2,9 @@
     <div class="Record">
       <header>
         <section class="login_top">
-          <span @click="goBack">< 返回</span>
+          <span @click="goBack">
+            <Icon type="chevron-left"></Icon>
+          </span>
           <p>上下架记录</p>
         </section>
         <section class="selectDate">
@@ -96,7 +98,7 @@
               actionValue: '',
               device_id: '',
               canGetData: true,
-              page: 1,
+              page: 0,
               ctrlTipTitle: '点击加载更多...',
               addressList: [], //地址列表
               deviceList: [],//选择了地址后的设备列表
@@ -155,7 +157,7 @@
             this.date2 = e[1];
           },
           getMoreData(date1 = '', date2 = '', action = '', device_id = '', page = 1) {
-            alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
+            // alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
             this.canGetData = false;
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}`,
@@ -174,7 +176,7 @@
           },
           //请求上下架列表方法
           getOrderListData(date1 = '', date2 = '', action = '', device_id = '', page = 0) {
-            alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
+            // alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}`,
               method: 'GET'
@@ -268,6 +270,7 @@
             }
             this.ctrlTipTitle = '点击加载更多...';
             this.canGetData = true;
+            this.page = 0;
             this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
           },
           //查看详情
@@ -311,7 +314,7 @@
           font-weight: 500;
           span{
             position: absolute;
-            left: 0;
+            left: 4vw;
             top: 0;
           }
         }

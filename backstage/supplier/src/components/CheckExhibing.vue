@@ -2,7 +2,7 @@
     <div class="CheckExhibing">
       <header>
         <div class="pageTitle">
-          <span><</span>
+          <span><Icon type="chevron-left"></Icon> </span>
           <span>入库核验</span>
         </div>
         <div class="location">

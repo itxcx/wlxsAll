@@ -111,60 +111,58 @@
       right: 0;
       top: 0;
       margin: auto;
-      width: 45vw;
-      height: 9vh;
+      width: 29.2998rem;
+      height: 10rem;
       z-index: 99;
       color: #fff;
       text-align: center;
-      font-size: 3.5vw;
+      font-size: 2.6677rem;
       padding: 3vh 0;
-      span{
-        font-size: 7vh;
-      }
     }
     .login_top{
       width: 100vw;
       background: @header_background;
-      height: 5.997vh;
+      height: 5.997rem;
       font-size: 2.398rem;
-      line-height: 5.997vh;
+      line-height: 5.997rem;
       text-align: center;
       color: #fff;
       font-weight: 500;
     }
     .logo{
-      width: 21.8667vw;
-      height: 16.9427vh;
+      width: 11.2934rem;
+      height: 13.9427rem;
       background: url("../../static/images/logo.png") no-repeat center center;
       background-size: cover;
-      margin: 8.395vh auto;
+      margin: 8.395rem auto;
     }
     .userInfo{
-      margin-top: 7.87vh;
+      margin-top: 5.87rem;
       .phone, .password{
         position: relative;
-        height: 5.997vh;
-        width: 74.666vw;
+        height: 6.497rem;
+        width: 39.666rem;
         border: 1px solid #e8e8e8;
         border-radius: 20px;
         margin: 0 auto;
         input{
           position: absolute;
-          top: 1.5vh;
-          left: 13.6vw;
-          width: 53.333vw;
-          height: 2.998vh;
+          top: 1.2rem;
+          left: 6.6rem;
+          width: 30.333rem;
+          height: 3.998rem;
           border: none;
+          font-size: 2.549rem;
         }
         ::placeholder{
-          font-size: 1.949rem;
+          font-size: 2.549rem;
         }
       }
       .phone span{
         display: inline-block;
-        margin: 1vh 4vw;
-        width: 5.6vw;
-        height: 3.5982vh;
+        margin: 0.85rem 1.4rem;
+        width: 3.6rem;
+        height: 3.5982rem;
         background: url("../../static/images/account.png") no-repeat center center;
         background-size: cover;
       }
@@ -173,24 +171,24 @@
         margin-top: 3.748vh;
         span{
           display: inline-block;
-          margin: 1vh 4vw;
-          width: 5.6vw;
-          height: 4.0982vh;
+          margin: 0.85rem 1.4rem;
+          width: 3.6rem;
+          height: 4.1982rem;
           background: url("../../static/images/password.png") no-repeat center center;
           background-size: cover;
         }
       }
     }
     .userInfo_submit{
-      margin: 7.496vh auto;
-      width: 79.2vw;
-      height: 10.4198vh;
+      margin: 7.496rem auto;
+      width: 39.6rem;
+      height: 8.8198rem;
       background: url("../../static/images/button_bg.png") no-repeat center center;
       background-size: cover;
       text-align: center;
-      font-size: 2.2488rem;
+      font-size: 2.5488rem;
       color: #fff;
-      line-height: 8.4198vh;
+      line-height: 6.2198rem;
     }
   }
 </style>

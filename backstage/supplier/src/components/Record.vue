@@ -91,7 +91,6 @@
               date2: '',
               actionValue: '',
               device_id: '',
-              // addressList: ["瞪羚谷E座", "雁塔区招商银行"], //地址列表
               addressList: [], //地址列表
               deviceList: [],//选择了地址后的设备列表
               allDeviceList: [], //没有选择地址

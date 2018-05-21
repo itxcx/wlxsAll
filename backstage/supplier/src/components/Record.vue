@@ -48,10 +48,24 @@
       <section class="action" v-show="actionDown">
         <ul>
           <li v-for="(item, index) in recordList">
-            <p>{{item.address}}</p>
-            <p>{{item.created_time}}</p>
-            <p>{{item.is_unload}}</p>
-            <p @click="clickAction(index)">查看</p>
+            <p class="recordListInfo">
+              <span>{{item.address}}</span>
+              <span>{{item.is_unload ? '下货' : '上货'}}</span>
+            </p>
+            <p class="recordAddr">
+              <span>上架地点:</span>
+              <span>{{item.address}}</span>
+            </p>
+            <p class="recordTime">
+              <span>上架时间:</span>
+              <span>{{item.created_time}}</span></p>
+            <p class="recordMsg">
+              <span>上架商品: </span>
+              <span>见详情</span>
+            </p>
+            <p class="showOrderInfo">
+              <span @click="clickAction(index)">查看详情</span>
+            </p>
           </li>
         </ul>
       </section>
@@ -77,7 +91,7 @@
               date2: '',
               actionValue: '',
               device_id: '',
-              //addressList: ["瞪羚谷E座", "雁塔区招商银行"], //地址列表
+              // addressList: ["瞪羚谷E座", "雁塔区招商银行"], //地址列表
               addressList: [], //地址列表
               deviceList: [],//选择了地址后的设备列表
               allDeviceList: [], //没有选择地址
@@ -124,7 +138,7 @@
           },
           //请求上下架列表方法
           getOrderListData(date1 = '', date2 = '', action = '', device_id = '', page = 0) {
-            alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
+            // alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}`,
               method: 'GET'
@@ -262,6 +276,7 @@
 <style lang="less">
   @header_background: #66D172;
     .Record{
+      background: #f1f1f1;
       header{
         background: @header_background;
         .login_top{
@@ -338,6 +353,68 @@
             }
           }
 
+        }
+      }
+      .addressList, .deviceList{
+        background: #fff;
+        ul{
+          li{
+            font-size: 2.2488rem;
+            padding: 1.1244vh 3.333vw;
+            border-bottom: 1px solid #e5e5e5;
+          }
+        }
+      }
+      .action{
+        ul{
+          li{
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            margin-bottom: 30px;
+            .recordListInfo{
+              font-size: 2.098rem;
+              color: #747475;
+              padding: 2.2488vh 3.333vw;
+              border-bottom: 1px solid #e5e5e5;
+              overflow: hidden;
+              span{
+                display: inline-block;
+                &:nth-of-type(1) {
+                  float: left;
+                }
+                &:nth-of-type(2) {
+                  float: right;
+                  color: #3ec04d;
+                }
+              }
+            }
+            .recordAddr, .recordTime, .recordMsg{
+              font-size: 2.2488rem;
+              padding: 1.1244vh 3.333vw;
+              span:nth-of-type(1) {
+                color: #999898;
+              }
+              span:nth-of-type(2) {
+                color: #373737;
+              }
+            }
+            .recordMsg{
+              border-bottom: 1px solid #e5e5e5;
+            }
+            .showOrderInfo{
+              overflow: hidden;
+              padding: 1.874vh 3.333vw;
+              span{
+                display: inline-block;
+                float: right;
+                padding: 0.249vh 4vw;
+                border: 1px solid #3ec04d;
+                color: #3ec04d;
+                border-radius: 20px;
+                font-size: 2.098rem;
+              }
+            }
+          }
         }
       }
     }

@@ -124,6 +124,7 @@
           },
           //请求上下架列表方法
           getOrderListData(date1 = '', date2 = '', action = '', device_id = '', page = 0) {
+            alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}`,
               method: 'GET'
@@ -289,6 +290,7 @@
             padding: 2.098vh 0 1.874vh 0;
             text-align: center;
             select{
+              -webkit-appearance: none;
               background: #65d172;
               color: #fff;
               outline: none;
@@ -299,7 +301,7 @@
               span{
                 position: absolute;
                 top: 2.773vh;
-                right: -1px;
+                right: -4vw;
                 width: 5.333vw;
                 height: 2.773vh;
               }

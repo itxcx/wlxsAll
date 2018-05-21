@@ -48,10 +48,10 @@
       name: "personal",
       data() {
           return {
-            nickName: '古都华天',//用户名
+            nickName: '未来鲜森',//用户名
             phone: '18295176350', //手机号
-            saleCount: '23456', //销售总额
-            saleNum: '11111',//销售数量
+            saleCount: '0', //销售总额
+            saleNum: '0',//销售数量
           }
       },
       components: {

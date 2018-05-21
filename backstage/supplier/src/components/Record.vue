@@ -117,8 +117,8 @@
           })
         },
         methods: {
+          //选择查询时间
           dateSelect(e) {
-            //选择查询时间
             this.date1 = e[0];
             this.date2 = e[1];
           },
@@ -244,6 +244,7 @@
           },
           //选择方式
           clickAction(e) {
+            this.actionTypeSelect = !this.actionTypeSelect;
             let typeAction = e.target.value;
             if(typeAction === '上货') {
               this.actionValue = 0;
@@ -300,8 +301,8 @@
               position: relative;
               span{
                 position: absolute;
-                top: 2.773vh;
-                right: -4vw;
+                top: 2.373vh;
+                right: -6vw;
                 width: 5.333vw;
                 height: 2.773vh;
               }
@@ -384,6 +385,7 @@
   }
   .ivu-input-icon-normal+.ivu-input {
     padding-right: 0;
+    box-shadow: none;
   }
   .ivu-input-small{
     padding: 0;

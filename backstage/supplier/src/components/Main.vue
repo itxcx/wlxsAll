@@ -24,6 +24,9 @@
           </dl>
         </aside>
       </section>
+      <section class="tipModal" v-show="tipStatus">
+        <p>{{tipText}}</p>
+      </section>
       <Footer-bar></Footer-bar>
     </div>
 </template>
@@ -33,7 +36,10 @@
     export default {
       name: "Main",
       data() {
-          return {}
+          return {
+            tipStatus: false,
+            tipText: '正在建设，马上开放...'
+          }
       },
       components:{
         FooterBar
@@ -59,6 +65,10 @@
           // this.$router.push({
           //   path: '/repertory'
           // })
+          this.tipStatus = true;
+          setTimeout(() => {
+            this.tipStatus = false;
+          }, 2000)
         },
         //获取config
         getConfigParames(_appId, _nonceStr, _timestamp, _signature) {
@@ -120,6 +130,23 @@
     height: 100vh;
     background: #f5f5f5;
     font-family: "PingFang SC-Medium";
+    .tipModal{
+      background: rgba(0,0,0,.7);
+      border-radius: 10px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: auto;
+      width: 29.2998rem;
+      height: 10rem;
+      z-index: 99;
+      color: #fff;
+      text-align: center;
+      font-size: 2.6677rem;
+      padding: 3vh 0;
+    }
     .topBanner{
       width: 100vw;
       height: 23.2383vh;

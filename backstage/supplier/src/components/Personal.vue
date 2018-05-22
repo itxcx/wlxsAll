@@ -21,22 +21,25 @@
       </header>
       <section class="userInfoList">
         <ul>
-          <li>
+          <li @click="showModal">
             <span></span>
             <span class="itemTitle">销售记录</span>
             <span class="next"></span>
           </li>
           <li @click="goRecord">
             <span></span>
-            <span class="itemTitle">配送记录</span>
+            <span class="itemTitle">上下货记录</span>
             <span class="next"></span>
           </li>
-          <li>
+          <li @click="showPersonalPhone">
             <span></span>
             <span class="itemTitle">联系运营人员</span>
             <span class="next"></span>
           </li>
         </ul>
+      </section>
+      <section class="tipModal" v-show="tipStatus">
+        <p>{{tipText}}</p>
       </section>
       <Footer-bar></Footer-bar>
     </div>
@@ -52,6 +55,8 @@
             phone: '',
             saleCount: '0', //销售总额
             saleNum: '0',//销售数量
+            tipStatus: false,
+            tipText: '正在建设，马上开放...'
           }
       },
       mounted() {
@@ -68,6 +73,20 @@
           this.$router.push({
             path: '/record'
           })
+        },
+        showModal() {
+          this.tipStatus = true;
+          this.tipText = '正在建设，马上开放...';
+          setTimeout(() => {
+            this.tipStatus = false;
+          }, 2000)
+        },
+        showPersonalPhone() {
+          this.tipStatus = true;
+          this.tipText = '联系电话: 182-9186-2150';
+          setTimeout(() => {
+            this.tipStatus = false;
+          }, 4000)
         }
       }
     }
@@ -78,6 +97,23 @@
     width: 100vw;
     height: 100vh;
     background: #ffffff;
+    .tipModal{
+      background: rgba(0,0,0,.7);
+      border-radius: 10px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: auto;
+      width: 29.2998rem;
+      height: 10rem;
+      z-index: 99;
+      color: #fff;
+      text-align: center;
+      font-size: 2.6677rem;
+      padding: 3vh 0;
+    }
     header{
       position: relative;
       height: 32.984vh;

@@ -5,7 +5,7 @@
           <span @click="goBack">
             <Icon type="chevron-left"></Icon>
           </span>
-          <p>上下架记录</p>
+          <p>上下货记录</p>
         </section>
         <!--<section class="selectDate">-->
           <!--<DatePicker type="daterange" size="small" split-panels placeholder="选择查询日期" @on-change="dateSelect"></DatePicker>-->
@@ -25,15 +25,15 @@
             <span v-html="device"></span>
             <span :class="!deviceDown ? 'down' : 'up'"></span>
           </li>
-          <li v-model="action">
-            <!--<span v-html="action"></span>-->
-            <!--<span :class="!actionDown ? 'down' : 'up'"></span>-->
-            <select name="action" id="action" @click="selectAction" @change="clickAction">
-              <option value="上下货">上下货</option>
-              <option value="上货">上货</option>
-              <option value="下货">下货</option>
-            </select>
-            <span :class="!actionTypeSelect ? 'down' : 'up'"></span>
+          <li v-model="action" @click="selectAction">
+            <span v-html="action"></span>
+            <span :class="!actionList ? 'down' : 'up'"></span>
+            <!--<select name="action" id="action" @click="selectAction" @change="clickAction">-->
+              <!--<option value="上下货">上下货</option>-->
+              <!--<option value="上货">上货</option>-->
+              <!--<option value="下货">下货</option>-->
+            <!--</select>-->
+            <!--<span :class="!actionTypeSelect ? 'down' : 'up'"></span>-->
           </li>
         </ul>
       </section>
@@ -49,6 +49,14 @@
           <li v-for="(item, index) in deviceList" @click="clickDevice(index)">{{item.address}}</li>
         </ul>
       </section>
+      <!-- 上下货列表显示 -->
+      <section class="actionList" v-show="actionList">
+        <ul>
+          <li @click="clickAction">上下货</li>
+          <li @click="clickAction">上货</li>
+          <li @click="clickAction">下货</li>
+        </ul>
+      </section>
       <!--上下架-->
       <section class="action" v-show="actionDown">
         <ul>
@@ -58,14 +66,14 @@
               <span>{{item.is_unload ? '下货' : '上货'}}</span>
             </p>
             <p class="recordAddr">
-              <span>上架地点:</span>
+              <span>上货地点:</span>
               <span>{{item.address}}</span>
             </p>
             <p class="recordTime">
-              <span>上架时间:</span>
+              <span>上货时间:</span>
               <span>{{item.created_time}}</span></p>
             <p class="recordMsg">
-              <span>上架商品: </span>
+              <span>上货商品: </span>
               <span>见详情</span>
             </p>
             <p class="showOrderInfo">
@@ -89,8 +97,8 @@
               city: '西安',
               address: '所有地址',
               device: '所有售货柜',
-              action: '上下架',//操作
-              actionType: '上下架',
+              action: '上下货',//操作
+              actionType: '上下货',
               cityDown: false,
               addressDown: false,
               deviceDown: false,
@@ -108,7 +116,9 @@
               addressList: [], //地址列表
               deviceList: [],//选择了地址后的设备列表
               allDeviceList: [], //没有选择地址
-              recordList: []
+              recordList: [],
+              actionList: false,
+              canGetDevice: true,
             }
         },
         mounted() {
@@ -199,6 +209,9 @@
                 }else{
                   this.deviceList = addressData[this.address];
                 }
+                this.deviceList.unshift({"device_id": '', "address": "所有售货柜"});
+                this.addressList.unshift('所有地址');
+                this.canGetDevice = true;
               }
             }).catch((error) => {
               console.log(error);
@@ -210,23 +223,33 @@
             this.addressDown = true;
             this.deviceDown = false;
             this.actionDown = false;
+            this.actionList = false;
             this.address = '所有地址';
             this.device = '所有售货柜';
-            this.action = '上下架';
+            // this.action = '上下架';
           },
           //选择地址
           clickAddress(e) {
             this.address = e.target.innerHTML;
-            this.addressDown = false;
-            this.deviceDown = false;
-            this.actionDown = true;
-            let addressData = JSON.parse(localStorage.getItem('addressData'));
-            this.deviceList = addressData[this.address];
-            this.canGetData = true;
-            this.page = 0;
-            this.device_id = '';
-            this.ctrlTipTitle = '点击加载更多...';
-            this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
+            if(this.address !== '所有地址') {
+              this.addressDown = false;
+              this.deviceDown = false;
+              this.actionDown = true;
+              this.actionList = false;
+              let addressData = JSON.parse(localStorage.getItem('addressData'));
+              this.deviceList = addressData[this.address];
+              this.canGetData = true;
+              this.page = 0;
+              this.device_id = '';
+              this.ctrlTipTitle = '点击加载更多...';
+              this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
+            }else{
+              this.addressDown = false;
+              this.deviceDown = false;
+              this.actionDown = true;
+              this.actionList = false;
+              this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
+            }
           },
           //展示设备
           selectDevice() {
@@ -234,8 +257,13 @@
             this.deviceDown = true;
             this.addressDown = false;
             this.actionDown = false;
+            this.actionList = false;
             this.device = '所有售货柜';
-            this.getDeviceListData();
+            if(this.canGetDevice) {
+              this.canGetDevice = false;
+              this.getDeviceListData();
+            }
+
           },
           //选择设备
           clickDevice(index) {
@@ -247,17 +275,27 @@
             this.canGetData = true;
             this.page = 0;
             this.actionDown = true;
+            this.actionList = false;
             this.ctrlTipTitle = '点击加载更多...';
             this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
           },
           //展示方式
           selectAction() {
-            this.actionTypeSelect = !this.actionTypeSelect;
+            // this.actionTypeSelect = !this.actionTypeSelect;
+            this.actionList = !this.actionList;
+            this.actionDown = false;
+            this.deviceDown = false;
+            this.addressDown = false;
           },
           //选择方式-
           clickAction(e) {
-            this.actionTypeSelect = !this.actionTypeSelect;
-            let typeAction = e.target.value;
+            // this.actionTypeSelect = !this.actionTypeSelect;
+            this.actionList = !this.actionList;
+            this.actionDown = true;
+            this.deviceDown = false;
+            this.addressDown = false;
+            let typeAction = e.target.innerHTML;
+            this.action = typeAction;
             // alert(typeAction);
             if(typeAction === '上货') {
               this.actionValue = 0;
@@ -350,21 +388,23 @@
             font-size: 2.3988rem;
             padding: 2.098vh 0 1.874vh 0;
             text-align: center;
-            select{
-              -webkit-appearance: none;
-              background: #65d172;
-              color: #fff;
-              outline: none;
-              border: medium;
-            }
+            /*select{*/
+              /*-webkit-appearance: none;*/
+              /*background: #65d172;*/
+              /*color: #fff;*/
+              /*outline: none;*/
+              /*border: medium;*/
+            /*}*/
             &:nth-of-type(4){
+              width: 20vw;
               position: relative;
-              span{
-                position: absolute;
-                top: 2.373vh;
-                right: -6vw;
-                width: 5.333vw;
-                height: 2.773vh;
+              span:nth-of-type(1){
+                display: inline-block;
+                width: 65%;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+                text-align: right;
               }
             }
             &:nth-of-type(1){
@@ -400,7 +440,7 @@
 
         }
       }
-      .addressList, .deviceList{
+      .addressList, .deviceList, .actionList{
         background: #fff;
         ul{
           li{

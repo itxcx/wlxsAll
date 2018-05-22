@@ -170,7 +170,7 @@
             this.date2 = e[1];
           },
           getMoreData(date1 = '', date2 = '', action = '', device_id = '', page = 1) {
-            // alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
+            //alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
             this.canGetData = false;
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}`,
@@ -189,7 +189,7 @@
           },
           //请求上下架列表方法
           getOrderListData(date1 = '', date2 = '', action = '', device_id = '', page = 0) {
-            // alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
+            //alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}`,
               method: 'GET'

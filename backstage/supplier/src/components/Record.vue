@@ -7,9 +7,9 @@
           </span>
           <p>上下架记录</p>
         </section>
-        <section class="selectDate">
-          <DatePicker type="daterange" size="small" split-panels placeholder="选择查询日期" @on-change="dateSelect"></DatePicker>
-        </section>
+        <!--<section class="selectDate">-->
+          <!--<DatePicker type="daterange" size="small" split-panels placeholder="选择查询日期" @on-change="dateSelect"></DatePicker>-->
+        <!--</section>-->
       </header>
       <section class="selectHeader">
         <ul>
@@ -87,8 +87,8 @@
         data() {
             return {
               city: '西安',
-              address: '地址',
-              device: '售货柜',
+              address: '所有地址',
+              device: '所有售货柜',
               action: '上下架',//操作
               actionType: '上下架',
               cityDown: false,
@@ -108,33 +108,6 @@
               addressList: [], //地址列表
               deviceList: [],//选择了地址后的设备列表
               allDeviceList: [], //没有选择地址
-              // recordList: [
-              //   {
-              //   "order_id": "20180517190512650301",
-              //   "is_unload": 1,
-              //   "created_time": "2018-05-17 19:05:30",
-              //   "address": "E座左侧04"
-              // }, {
-              //   "order_id": "20180517190423634901",
-              //   "is_unload": 0,
-              //   "created_time": "2018-05-17 19:04:41",
-              //   "address": "E座左侧04"
-              // }, {
-              //   "order_id": "20180517190343732801",
-              //   "is_unload": 1,
-              //   "created_time": "2018-05-17 19:04:04",
-              //   "address": "E座左侧04"
-              // }, {
-              //   "order_id": "20180517190259340501",
-              //   "is_unload": 0,
-              //   "created_time": "2018-05-17 19:03:12",
-              //   "address": "E座左侧04"
-              // }, {
-              //   "order_id": "20180517190216125801",
-              //   "is_unload": 1,
-              //   "created_time": "2018-05-17 19:02:37",
-              //   "address": "E座左侧04"
-              // }],//上下架记录数据
               recordList: []
             }
         },
@@ -170,7 +143,7 @@
             this.date2 = e[1];
           },
           getMoreData(date1 = '', date2 = '', action = '', device_id = '', page = 1) {
-            //alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
+            // alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
             this.canGetData = false;
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}`,
@@ -189,7 +162,7 @@
           },
           //请求上下架列表方法
           getOrderListData(date1 = '', date2 = '', action = '', device_id = '', page = 0) {
-            //alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
+            // alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}`,
               method: 'GET'
@@ -198,6 +171,8 @@
                   this.recordList = res.data.data;
                   if(this.recordList.length === 0) {
                     this.ctrlTipTitle = '暂时没有数据...';
+                  }else if(this.recordList.length < 5) {
+                    this.ctrlTipTitle = '没有更多数据...';
                   }
                 }
             }).catch((error) => {
@@ -215,7 +190,7 @@
                 localStorage.setItem('addressData', addressData);
                 this.addressList = res.data.data.arealist;
                 addressData = JSON.parse(addressData);
-                if(this.address === '地址') {
+                if(this.address === '所有地址') {
                   for(let i = 0; i < addressData.arealist.length; i++) {
                     for(let j = 0; j < addressData[addressData.arealist[i]].length; j++){
                       this.deviceList.push(addressData[addressData.arealist[i]][j]);
@@ -235,8 +210,8 @@
             this.addressDown = true;
             this.deviceDown = false;
             this.actionDown = false;
-            this.address = '地址';
-            this.device = '售货柜';
+            this.address = '所有地址';
+            this.device = '所有售货柜';
             this.action = '上下架';
           },
           //选择地址
@@ -249,6 +224,8 @@
             this.deviceList = addressData[this.address];
             this.canGetData = true;
             this.page = 0;
+            this.device_id = '';
+            this.ctrlTipTitle = '点击加载更多...';
             this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
           },
           //展示设备
@@ -257,7 +234,7 @@
             this.deviceDown = true;
             this.addressDown = false;
             this.actionDown = false;
-            this.device = '售货柜';
+            this.device = '所有售货柜';
             this.getDeviceListData();
           },
           //选择设备
@@ -269,8 +246,9 @@
             this.addressDown = false;
             this.canGetData = true;
             this.page = 0;
-            this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
             this.actionDown = true;
+            this.ctrlTipTitle = '点击加载更多...';
+            this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
           },
           //展示方式
           selectAction() {
@@ -280,6 +258,7 @@
           clickAction(e) {
             this.actionTypeSelect = !this.actionTypeSelect;
             let typeAction = e.target.value;
+            // alert(typeAction);
             if(typeAction === '上货') {
               this.actionValue = 0;
             }else if(typeAction === '下货') {

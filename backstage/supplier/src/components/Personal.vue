@@ -135,9 +135,11 @@
         border-radius: 50%;
         top: 1.874vh;
         left: 40vw;
+        border: 1px solid #ebeef5;
         z-index: 10;
-        background: url("../../static/images/nickname.png") no-repeat center center;
+        background: url("../../static/images/nickname.png") #fff no-repeat center center;
         background-size: cover;
+
       }
       .userInfo{
         width: 100%;

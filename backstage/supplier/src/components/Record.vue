@@ -183,6 +183,9 @@
             }).then((res) => {
                 if(res.data.code == 0) {
                   this.recordList = res.data.data;
+                  if(this.recordList.length === 0) {
+                    this.ctrlTipTitle = '没有更多数据...';
+                  }
                 }
             }).catch((error) => {
               console.log(error);
@@ -231,7 +234,6 @@
             this.actionDown = false;
             let addressData = JSON.parse(localStorage.getItem('addressData'));
             this.deviceList = addressData[this.address];
-
           },
           //展示设备
           selectDevice() {
@@ -241,7 +243,6 @@
             this.actionDown = false;
             this.device = '售货柜';
             this.getDeviceListData();
-
           },
           //选择设备
           clickDevice(index) {

@@ -103,8 +103,8 @@
     }
     .buildingComponent{
       div{
-        width: 24.8667vw;
-        height: 17.0427vh;
+        width: 11.2934rem;
+        height: 13.9427rem;
         background: url("../../static/images/logo.png") no-repeat center center;
         background-size: cover;
         margin: 8.395vh auto;

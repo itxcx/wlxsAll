@@ -499,6 +499,7 @@
   .ivu-input-icon-normal+.ivu-input {
     padding-right: 0;
     box-shadow: none;
+    -webkit-appearance: none;
   }
   .ivu-input-small{
     padding: 0;

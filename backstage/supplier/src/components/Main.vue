@@ -56,9 +56,9 @@
       methods: {
         //查看库存
         goRepertory() {
-          this.$router.push({
-            path: '/repertory'
-          })
+          // this.$router.push({
+          //   path: '/repertory'
+          // })
         },
         //获取config
         getConfigParames(_appId, _nonceStr, _timestamp, _signature) {

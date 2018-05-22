@@ -57,7 +57,6 @@
       mounted() {
         this.$nextTick(() => {
           this.phone = localStorage.getItem('phone'); //手机号
-          alert(this.phone);
         })
       },
       components: {
@@ -96,11 +95,9 @@
         width: 19.2vw;
         height: 19.2vw;
         border-radius: 50%;
-        /*border: 1px solid #65d172;*/
         top: 1.874vh;
         left: 40vw;
         z-index: 10;
-        background: #fff;
         background: url("../../static/images/wlxs_logo.png") no-repeat center center;
         background-size: cover;
       }

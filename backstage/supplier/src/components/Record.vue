@@ -62,7 +62,7 @@
         <ul>
           <li v-for="(item, index) in recordList">
             <p class="recordListInfo">
-              <span>{{item.address}}</span>
+              <span>{{item.address.search('E') != -1 ? '瞪羚谷E座': ''}}</span>
               <span>{{item.is_unload ? '下货' : '上货'}}</span>
             </p>
             <p class="recordAddr">
@@ -337,6 +337,7 @@
 <style lang="less">
   @header_background: #66D172;
     .Record{
+      padding-top: 15vh;
       background: #f1f1f1;
       .tipModal{
         background: rgba(0,0,0,.7);
@@ -356,6 +357,9 @@
         padding: 3vh 0;
       }
       header{
+        position: fixed;
+        top: 0;
+        left: 0;
         background: @header_background;
         .login_top{
           width: 100vw;
@@ -377,6 +381,10 @@
         }
       }
       .selectHeader{
+        position: fixed;
+        top: 5.997vh;
+        width: 100%;
+        left: 0;
         background: #66D172;
         color: #fff;
         border-top: 1px solid #46bb54;

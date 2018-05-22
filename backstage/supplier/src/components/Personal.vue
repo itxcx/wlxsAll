@@ -49,10 +49,15 @@
       data() {
           return {
             nickName: '未来鲜森',//用户名
-            phone: '18295176350', //手机号
+            phone: '', //手机号
             saleCount: '0', //销售总额
             saleNum: '0',//销售数量
           }
+      },
+      mounted() {
+        this.$nextTick(() => {
+          this.phone = localStorage.getItem('phone');
+        })
       },
       components: {
         FooterBar

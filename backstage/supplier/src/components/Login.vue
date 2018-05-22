@@ -71,6 +71,7 @@
                 method: 'GET'
               }).then((res) => {
                 if(res.data.code == 0) {
+                  localStorage.setItem('phone', phone);
                   this.modalFun('登录成功,即将跳转', 1000);
                   setTimeout(() => {
                     this.$router.push({

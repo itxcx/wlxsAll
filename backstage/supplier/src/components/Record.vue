@@ -66,7 +66,7 @@
               <span>{{item.is_unload ? '下货' : '上货'}}</span>
             </p>
             <p class="recordAddr">
-              <span>上货地点:</span>
+              <span>售货柜:</span>
               <span>{{item.address}}</span>
             </p>
             <p class="recordTime">
@@ -484,11 +484,20 @@
             .recordAddr, .recordTime, .recordMsg{
               font-size: 2.2488rem;
               padding: 1.1244vh 3.333vw;
+              overflow: hidden;
               span:nth-of-type(1) {
                 color: #999898;
+                text-align: right;
+                display: inline-block;
+                width: 18%;
+                float: left;
               }
               span:nth-of-type(2) {
                 color: #373737;
+                display: inline-block;
+                width: 80%;
+                padding-left: 2vw;
+                float: left;
               }
             }
             .recordMsg{

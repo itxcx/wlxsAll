@@ -144,7 +144,7 @@
       z-index: 99;
       color: #fff;
       text-align: center;
-      font-size: 2.6677rem;
+      font-size: 2.0677rem;
       padding: 3vh 0;
     }
     .topBanner{

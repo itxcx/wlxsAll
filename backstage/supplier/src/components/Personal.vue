@@ -31,9 +31,11 @@
             <span class="itemTitle">上下货记录</span>
             <span class="next"></span>
           </li>
-          <li @click="showPersonalPhone">
+          <li>
             <span></span>
-            <span class="itemTitle">联系运营人员</span>
+            <span class="itemTitle">
+              <a href="tel:18291862150">联系运营人员</a>
+            </span>
             <span class="next"></span>
           </li>
         </ul>
@@ -81,13 +83,13 @@
             this.tipStatus = false;
           }, 2000)
         },
-        showPersonalPhone() {
-          this.tipStatus = true;
-          this.tipText = '联系电话: 182-9186-2150';
-          setTimeout(() => {
-            this.tipStatus = false;
-          }, 4000)
-        }
+        // showPersonalPhone() {
+        //   this.tipStatus = true;
+        //   this.tipText = '联系电话: 182-9186-2150';
+        //   setTimeout(() => {
+        //     this.tipStatus = false;
+        //   }, 4000)
+        // }
       }
     }
 </script>
@@ -227,6 +229,9 @@
             float: right;
             margin: 3.561vh 1vw;
           }
+        }
+        a{
+          color: #5c5c5c;
         }
       }
     }

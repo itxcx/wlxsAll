@@ -184,7 +184,7 @@
                 if(res.data.code == 0) {
                   this.recordList = res.data.data;
                   if(this.recordList.length === 0) {
-                    this.ctrlTipTitle = '没有更多数据...';
+                    this.ctrlTipTitle = '暂时没有数据...';
                   }
                 }
             }).catch((error) => {

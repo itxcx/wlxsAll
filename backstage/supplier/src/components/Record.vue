@@ -449,9 +449,10 @@
         }
         .getMore{
           text-align: center;
-          padding-bottom: 1vh;
+          padding-bottom: 2vh;
           font-weight: bold;
           font-size: 1.924rem;
+          background: #fff;
         }
       }
     }

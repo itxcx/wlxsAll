@@ -13,7 +13,7 @@
       </header>
       <section class="selectHeader">
         <ul>
-          <li v-model="city">
+          <li v-model="city" @click="selectCity">
             <span v-html="city"></span>
             <span :class="!cityDown ? 'down' : 'up'"></span>
           </li>
@@ -75,6 +75,9 @@
         </ul>
         <p class="getMore" @click="getMore">{{ctrlTipTitle}}</p>
       </section>
+      <section class="tipModal" v-show="tipStatus">
+        <p>{{tipText}}</p>
+      </section>
     </div>
 </template>
 
@@ -93,6 +96,8 @@
               deviceDown: false,
               actionDown: true,
               actionTypeSelect: false,
+              tipStatus: false,//错误提示框显示控制
+              tipText: '',//提示框内容
               date1: '',
               date2: '',
               actionValue: '',
@@ -139,6 +144,14 @@
           })
         },
         methods: {
+          //点击城市
+          selectCity() {
+            this.tipStatus = true;
+            this.tipText = '其他城市暂未开放...';
+            setTimeout(() => {
+              this.tipStatus = false;
+            },2000)
+          },
           //获取更多数据方法
           getMore() {
             if(this.ctrlTipTitle === '点击加载更多...' && this.canGetData) {
@@ -230,10 +243,13 @@
           clickAddress(e) {
             this.address = e.target.innerHTML;
             this.addressDown = false;
-            this.deviceDown = true;
-            this.actionDown = false;
+            this.deviceDown = false;
+            this.actionDown = true;
             let addressData = JSON.parse(localStorage.getItem('addressData'));
             this.deviceList = addressData[this.address];
+            this.canGetData = true;
+            this.page = 0;
+            this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
           },
           //展示设备
           selectDevice() {
@@ -251,6 +267,8 @@
             //localStorage.setItem('device_id', device_id);
             this.deviceDown = false;
             this.addressDown = false;
+            this.canGetData = true;
+            this.page = 0;
             this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
             this.actionDown = true;
           },
@@ -258,7 +276,7 @@
           selectAction() {
             this.actionTypeSelect = !this.actionTypeSelect;
           },
-          //选择方式
+          //选择方式-
           clickAction(e) {
             this.actionTypeSelect = !this.actionTypeSelect;
             let typeAction = e.target.value;
@@ -303,6 +321,23 @@
   @header_background: #66D172;
     .Record{
       background: #f1f1f1;
+      .tipModal{
+        background: rgba(0,0,0,.7);
+        border-radius: 10px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: auto;
+        width: 29.2998rem;
+        height: 10rem;
+        z-index: 99;
+        color: #fff;
+        text-align: center;
+        font-size: 2.0677rem;
+        padding: 3vh 0;
+      }
       header{
         background: @header_background;
         .login_top{

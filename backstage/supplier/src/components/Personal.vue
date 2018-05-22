@@ -48,8 +48,8 @@
       name: "personal",
       data() {
           return {
-            nickName: '未来鲜森',//用户名
-            phone: '', //手机号
+            nickName: '未来鲜森',
+            phone: '',
             saleCount: '0', //销售总额
             saleNum: '0',//销售数量
           }

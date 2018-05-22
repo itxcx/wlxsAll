@@ -12,14 +12,14 @@
         <aside class="exhibit" @click="exhibitScan">
           <div></div>
           <dl>
-            <dt>商品上架</dt>
+            <dt>商品上货</dt>
             <dd>放入售货柜中</dd>
           </dl>
         </aside>
         <aside class="ship"  @click="shipScan">
           <div></div>
           <dl>
-            <dt>商品下架</dt>
+            <dt>商品下货</dt>
             <dd>售货柜中取出</dd>
           </dl>
         </aside>

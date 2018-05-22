@@ -134,7 +134,7 @@
         top: 1.874vh;
         left: 40vw;
         z-index: 10;
-        background: url("../../static/images/wlxs_logo.png") no-repeat center center;
+        background: url("../../static/images/nickname.png") no-repeat center center;
         background-size: cover;
       }
       .userInfo{

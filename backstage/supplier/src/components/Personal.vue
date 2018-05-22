@@ -56,7 +56,7 @@
       },
       mounted() {
         this.$nextTick(() => {
-          this.phone = localStorage.getItem('phone');
+          this.phone = localStorage.getItem('phone'); //手机号
         })
       },
       components: {

@@ -43,6 +43,11 @@
     /*filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);*/
     /*filter: grayscale(1);*/
   }
+  body{
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
   ul{
     list-style: none;
   }

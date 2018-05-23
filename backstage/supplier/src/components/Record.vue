@@ -59,7 +59,7 @@
       </section>
       <!--上下架-->
       <section class="action" v-show="actionDown">
-        <Scroll class="Scroll" :on-reach-bottom="handleReachBottom">
+        <Scroll class="Scroll" height="83vh" :on-reach-bottom="handleReachBottom">
           <ul>
             <li v-for="(item, index) in recordList">
               <p class="recordListInfo">
@@ -350,7 +350,7 @@
     .Record{
       width: 100vw;
       height: 100vh;
-      padding-top: 15vh;
+      padding-top: 13.5vh;
       background: #f1f1f1;
       .tipModal{
         background: rgba(0,0,0,.7);
@@ -475,14 +475,9 @@
       }
       .action{
         width: 100%;
-        height: 80vh;
-        border: 1px solid pink;
-        /*overflow-y: auto;*/
-        /*-webkit-overflow-scrolling : touch;*/
-        .Scroll{
-          height: 80vh;
-          border: 1px solid forestgreen;
-        }
+        height: 85vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling : touch;
         ul{
           li{
             background: #fff;
@@ -544,10 +539,9 @@
         }
         .getMore{
           text-align: center;
-          padding-bottom: 2vh;
+          padding: 1vh 0;
           font-weight: bold;
           font-size: 1.924rem;
-          background: #fff;
         }
       }
     }

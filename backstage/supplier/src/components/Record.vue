@@ -59,29 +59,31 @@
       </section>
       <!--上下架-->
       <section class="action" v-show="actionDown">
-        <ul>
-          <li v-for="(item, index) in recordList">
-            <p class="recordListInfo">
-              <span>{{item.address.search('E') != -1 ? '瞪羚谷E座': ''}}</span>
-              <span>{{item.is_unload ? '下货' : '上货'}}</span>
-            </p>
-            <p class="recordAddr">
-              <span>售货柜:</span>
-              <span>{{item.address}}</span>
-            </p>
-            <p class="recordTime">
-              <span>上货时间:</span>
-              <span>{{item.created_time}}</span></p>
-            <p class="recordMsg">
-              <span>上货商品: </span>
-              <span>见详情</span>
-            </p>
-            <p class="showOrderInfo">
-              <span @click="showOrderInfo(index)">查看详情</span>
-            </p>
-          </li>
-        </ul>
-        <p class="getMore" @click="getMore">{{ctrlTipTitle}}</p>
+        <Scroll class="Scroll" :on-reach-bottom="handleReachBottom">
+          <ul>
+            <li v-for="(item, index) in recordList">
+              <p class="recordListInfo">
+                <span>{{item.address.search('E') != -1 ? '瞪羚谷E座': ''}}</span>
+                <span>{{item.is_unload ? '下货' : '上货'}}</span>
+              </p>
+              <p class="recordAddr">
+                <span>售货柜:</span>
+                <span>{{item.address}}</span>
+              </p>
+              <p class="recordTime">
+                <span>上货时间:</span>
+                <span>{{item.created_time}}</span></p>
+              <p class="recordMsg">
+                <span>上货商品: </span>
+                <span>见详情</span>
+              </p>
+              <p class="showOrderInfo">
+                <span @click="showOrderInfo(index)">查看详情</span>
+              </p>
+            </li>
+          </ul>
+          <p class="getMore" @click="getMore">{{ctrlTipTitle}}</p>
+        </Scroll>
       </section>
       <section class="tipModal" v-show="tipStatus">
         <p>{{tipText}}</p>
@@ -127,6 +129,15 @@
           })
         },
         methods: {
+          handleReachBottom() {
+            alert('bottom');
+            return new Promise(resolve => {
+              setTimeout(() => {
+                this.getMoreData(this.date1, this.date2, this.actionValue, this.device_id, this.page);
+                resolve();
+              }, 1000)
+            })
+          },
           //点击城市
           selectCity() {
             this.tipStatus = true;
@@ -337,6 +348,8 @@
 <style lang="less">
   @header_background: #66D172;
     .Record{
+      width: 100vw;
+      height: 100vh;
       padding-top: 15vh;
       background: #f1f1f1;
       .tipModal{
@@ -360,6 +373,7 @@
         position: fixed;
         top: 0;
         left: 0;
+        z-index: 98;
         background: @header_background;
         .login_top{
           width: 100vw;
@@ -388,6 +402,7 @@
         background: #66D172;
         color: #fff;
         border-top: 1px solid #46bb54;
+        z-index: 98;
         ul{
           list-style: none;
           overflow: hidden;
@@ -459,6 +474,13 @@
         }
       }
       .action{
+        width: 100%;
+        height: 80vh;
+        border: 1px solid pink;
+        .Scroll{
+          height: 100%;
+          border: 1px solid red;
+        }
         ul{
           li{
             background: #fff;

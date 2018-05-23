@@ -59,7 +59,8 @@
       </section>
       <!--上下架-->
       <section class="action" v-show="actionDown">
-        <Scroll class="Scroll" height="83vh" :on-reach-bottom="handleReachBottom">
+        <!--<Scroll class="Scroll" height="83vh" :on-reach-bottom="handleReachBottom">-->
+        <loadmore :bottomMethod="getMore">
           <ul>
             <li v-for="(item, index) in recordList">
               <p class="recordListInfo">
@@ -72,7 +73,8 @@
               </p>
               <p class="recordTime">
                 <span>上货时间:</span>
-                <span>{{item.created_time}}</span></p>
+                <span>{{item.created_time}}</span>
+              </p>
               <p class="recordMsg">
                 <span>上货商品:</span>
                 <span>见详情</span>
@@ -82,8 +84,9 @@
               </p>
             </li>
           </ul>
-          <p class="getMore" @click="getMore">{{ctrlTipTitle}}</p>
-        </Scroll>
+          <p class="getMore">{{ctrlTipTitle}}</p>
+        </loadmore>
+        <!--</Scroll>-->
       </section>
       <section class="tipModal" v-show="tipStatus">
         <p>{{tipText}}</p>
@@ -114,7 +117,7 @@
               device_id: '',
               canGetData: true,
               page: 0,
-              ctrlTipTitle: '点击加载更多...',
+              ctrlTipTitle: '上滑加载更多...',
               addressList: [], //地址列表
               deviceList: [],//选择了地址后的设备列表
               allDeviceList: [], //没有选择地址
@@ -129,15 +132,6 @@
           })
         },
         methods: {
-          handleReachBottom() {
-            alert('bottom');
-            return new Promise(resolve => {
-              setTimeout(() => {
-                this.getMoreData(this.date1, this.date2, this.actionValue, this.device_id, this.page);
-                resolve();
-              }, 1000)
-            })
-          },
           //点击城市
           selectCity() {
             this.tipStatus = true;
@@ -148,7 +142,7 @@
           },
           //获取更多数据方法
           getMore() {
-            if(this.ctrlTipTitle === '点击加载更多...' && this.canGetData) {
+            if(this.canGetData) {
               this.page++;
               this.getMoreData(this.date1, this.date2, this.actionValue, this.device_id, this.page);
             }
@@ -252,7 +246,7 @@
               this.canGetData = true;
               this.page = 0;
               this.device_id = '';
-              this.ctrlTipTitle = '点击加载更多...';
+              this.ctrlTipTitle = '上滑加载更多...';
               this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
             }else{
               this.addressDown = false;
@@ -287,7 +281,7 @@
             this.page = 0;
             this.actionDown = true;
             this.actionList = false;
-            this.ctrlTipTitle = '点击加载更多...';
+            this.ctrlTipTitle = '上滑加载更多...';
             this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
           },
           //展示方式
@@ -315,7 +309,7 @@
             }else{
               this.actionValue = '';
             }
-            this.ctrlTipTitle = '点击加载更多...';
+            this.ctrlTipTitle = '上滑加载更多...';
             this.canGetData = true;
             this.page = 0;
             this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
@@ -616,5 +610,8 @@
     background: url("../../static/images/up.png") no-repeat center center;
     background-size: cover;
     transition: all 0.1s ease-out;
+  }
+  .loadmore-hint, .loadmore-hint-bottom{
+    text-align: center;
   }
 </style>

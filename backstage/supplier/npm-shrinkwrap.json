@@ -10105,6 +10105,15 @@
       "integrity": "sha512-2j/t+wIbyVMP5NvctQoSUvLkYKoWAAk2QlQiilrM2a6/ulzFgdcLUJfTvs4XQ/3eZhHiBmmEojbjmM4AzZj8JA==",
       "dev": true
     },
+    "vue-impression": {
+      "version": "0.15.19",
+      "resolved": "https://registry.npmjs.org/vue-impression/-/vue-impression-0.15.19.tgz",
+      "integrity": "sha512-MDQ+Bz9I5PFhAn+2XUqokV6UFD1LHPH05WvRrvqmhW+ZbXnKKcn2YNKY2hA/Jg3XwpJjH3J9HY+K/mQWr9fwMg==",
+      "dev": true,
+      "requires": {
+        "vue": "2.5.13"
+      }
+    },
     "vue-loader": {
       "version": "13.7.1",
       "resolved": "https://registry.npmjs.org/vue-loader/-/vue-loader-13.7.1.tgz",

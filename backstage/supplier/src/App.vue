@@ -35,6 +35,7 @@
     font-family: "PingFang SC";
     font-size: 1vh;
     overflow-x: hidden;
+    -webkit-user-select: none;
   }
   html{
     /*filter: grayscale(100%);*/

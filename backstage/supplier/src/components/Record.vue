@@ -477,9 +477,11 @@
         width: 100%;
         height: 80vh;
         border: 1px solid pink;
+        /*overflow-y: auto;*/
+        /*-webkit-overflow-scrolling : touch;*/
         .Scroll{
-          height: 100%;
-          border: 1px solid red;
+          height: 80vh;
+          border: 1px solid forestgreen;
         }
         ul{
           li{

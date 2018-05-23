@@ -30,14 +30,11 @@
     vertical-align: baseline;
   }
   html, body{
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100vw;
     height: 100vh;
     font-family: "PingFang SC";
     font-size: 1vh;
-    filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+    overflow-x: hidden;
   }
   html{
     /*filter: grayscale(100%);*/

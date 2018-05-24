@@ -64,7 +64,8 @@
           <ul>
             <li v-for="(item, index) in recordList">
               <p class="recordListInfo">
-                <span>{{item.address.search('E') != -1 ? '瞪羚谷E座': ''}}</span>
+                <!--<span>{{item.address.search('E') != -1 ? '瞪羚谷E座': ''}}</span>-->
+                <span>{{item.callName}}</span>
                 <span>{{item.is_unload ? '下货' : '上货'}}</span>
               </p>
               <p class="recordAddr">
@@ -166,6 +167,21 @@
             }).then((res) => {
               if(res.data.code == 0) {
                 this.recordList = this.recordList.concat(res.data.data);
+                for(let i = 0; i < this.recordList.length; i++) {
+                  if(this.recordList[i].address.search('E座') !== -1) {
+                    this.recordList[i].callName = '瞪羚谷E座';
+                  }else if(this.recordList[i].address.search('招招商银行') !== -1) {
+                    this.recordList[i].callName = '雁塔区招商银行';
+                  }else if(this.recordList[i].address.search('都市') !== -1) {
+                    this.recordList[i].callName = '都市之门B座';
+                  }else if(this.recordList[i].address.search('创新大厦') !== -1) {
+                    this.recordList[i].callName = '高新一路创新大厦';
+                  }else if(this.recordList[i].address.search('数字出版') !== -1) {
+                    this.recordList[i].callName = '国家数字出版基地';
+                  }else if(this.recordList[i].address.search('魔盒') !== -1) {
+                    this.recordList[i].callName = '魔盒';
+                  }
+                }
                 this.canGetData = true;
                 if(res.data.data.length < 5) {
                   this.ctrlTipTitle = '没有更多数据...';
@@ -184,6 +200,21 @@
             }).then((res) => {
                 if(res.data.code == 0) {
                   this.recordList = res.data.data;
+                  for(let i = 0; i < this.recordList.length; i++) {
+                    if(this.recordList[i].address.search('E座') !== -1) {
+                      this.recordList[i].callName = '瞪羚谷E座';
+                    }else if(this.recordList[i].address.search('招招商银行') !== -1) {
+                      this.recordList[i].callName = '雁塔区招商银行';
+                    }else if(this.recordList[i].address.search('都市') !== -1) {
+                      this.recordList[i].callName = '都市之门B座';
+                    }else if(this.recordList[i].address.search('创新大厦') !== -1) {
+                      this.recordList[i].callName = '高新一路创新大厦';
+                    }else if(this.recordList[i].address.search('数字出版') !== -1) {
+                      this.recordList[i].callName = '国家数字出版基地';
+                    }else if(this.recordList[i].address.search('魔盒') !== -1) {
+                      this.recordList[i].callName = '魔盒';
+                    }
+                  }
                   if(this.recordList.length === 0) {
                     this.ctrlTipTitle = '暂时没有数据...';
                   }else if(this.recordList.length < 5) {

@@ -311,6 +311,7 @@
         this.productDown = true;
         this.city = '西安';
         this.product = '选择商品';
+        this.device = '全部售货柜';
       },
       //选择商品
       selectProduct() {
@@ -326,6 +327,7 @@
           this.deviceList[i].show = false;
         }
         this.deviceList[index].show = true;
+        this.device = '全部售货柜';
       },
       //列表选择城市
       entryCity(e) {

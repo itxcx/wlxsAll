@@ -128,8 +128,8 @@
         deviceDown: true, //控制设备选择显示
         productDown: true, //控制商品选择显示
         active: true,
-        itemIsSelect: false,// 是否选择具体商品
-        mapMode: false, //地图模式
+        itemIsSelect: false, //是否选择具体商品
+        mapMode: false,
         productItem: ['乐虎', '农夫山泉', '酸奶', '矿泉水', '蛋糕', '果汁', '啤酒', '鸭脖'],//商品条目
         deviceList: [
           {
@@ -163,20 +163,6 @@
               "longitude": 108.94416,
               "latitude": 34.24555,
               "count": 55
-            },
-            {
-              "addr": "西安市高新区锦业路69号瞪羚谷E座",
-              "name": "未来鲜森-0005",
-              "longitude": 108.99416,
-              "latitude": 34.29555,
-              "count": 55
-            },
-            {
-              "addr": "西安市高新区锦业路69号瞪羚谷E座",
-              "name": "未来鲜森-0006",
-              "longitude": 108.93416,
-              "latitude": 34.23555,
-              "count": 55
             }
           ]
         },
@@ -199,47 +185,7 @@
                 "count": 55
               }
             ]
-          },
-          // {
-          //   "district": "高新区",
-          //   "show": false,
-          //   "list": [
-          //     {
-          //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
-          //       "name": "未来鲜森-0001",
-          //       "longitude": 108.98416,
-          //       "latitude": 34.28555,
-          //       "count": 55
-          //     },
-          //     {
-          //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
-          //       "name": "未来鲜森-0002",
-          //       "longitude": 108.95416,
-          //       "latitude": 34.25555,
-          //       "count": 55
-          //     }
-          //   ]
-          // },
-          // {
-          //   "district": "夜未央",
-          //   "show": false,
-          //   "list": [
-          //     {
-          //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
-          //       "name": "未来鲜森-0005",
-          //       "longitude": 108.99416,
-          //       "latitude": 34.29555,
-          //       "count": 55
-          //     },
-          //     {
-          //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
-          //       "name": "未来鲜森-0006",
-          //       "longitude": 108.93416,
-          //       "latitude": 34.23555,
-          //       "count": 55
-          //     }
-          //   ]
-          // }
+          }
         ],
         showDeviceList: [],
         RepertoryArray: [

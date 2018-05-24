@@ -62,13 +62,13 @@
       methods: {
         //查看库存
         goRepertory() {
-          // this.$router.push({
-          //   path: '/repertory'
-          // })
-          this.tipStatus = true;
-          setTimeout(() => {
-            this.tipStatus = false;
-          }, 2000)
+          this.$router.push({
+            path: '/repertory'
+          })
+          // this.tipStatus = true;
+          // setTimeout(() => {
+          //   this.tipStatus = false;
+          // }, 2000)
         },
         //获取config
         getConfigParames(_appId, _nonceStr, _timestamp, _signature) {

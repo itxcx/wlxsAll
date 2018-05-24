@@ -27,18 +27,18 @@
       <section v-show="!cityDown" class="cityList">
         <ul>
           <li @click="entryCity">西安</li>
-          <li>北京</li>
-          <li>上海</li>
-          <li>广州</li>
-          <li>深圳</li>
-          <li>杭州</li>
-          <li>成都</li>
-          <li>南京</li>
-          <li>苏州</li>
-          <li>重庆</li>
-          <li>武汉</li>
-          <li>昆明</li>
-          <li>拉萨</li>
+          <li @click="closeCity">北京</li>
+          <li @click="closeCity">上海</li>
+          <li @click="closeCity">广州</li>
+          <li @click="closeCity">深圳</li>
+          <li @click="closeCity">杭州</li>
+          <li @click="closeCity">成都</li>
+          <li @click="closeCity">南京</li>
+          <li @click="closeCity">苏州</li>
+          <li @click="closeCity">重庆</li>
+          <li @click="closeCity">武汉</li>
+          <li @click="closeCity">昆明</li>
+          <li @click="closeCity">拉萨</li>
         </ul>
       </section>
       <!-- 设备列表 -->
@@ -108,6 +108,9 @@
 
       </section>
     </section>
+    <section class="tipModal" v-show="tipStatus">
+      <p>{{tipText}}</p>
+    </section>
   </div>
 </template>
 
@@ -116,6 +119,8 @@
     name: 'Repertory',
     data () {
       return {
+        tipStatus: false,
+        tipText: '正在建设，马上开放...',
         city: '选择城市', //城市
         device: '全部售货柜', //设备
         product: '选择商品', //商品
@@ -195,46 +200,46 @@
               }
             ]
           },
-          {
-            "district": "高新区",
-            "show": false,
-            "list": [
-              {
-                "addr": "西安市高新区锦业路69号瞪羚谷E座",
-                "name": "未来鲜森-0001",
-                "longitude": 108.98416,
-                "latitude": 34.28555,
-                "count": 55
-              },
-              {
-                "addr": "西安市高新区锦业路69号瞪羚谷E座",
-                "name": "未来鲜森-0002",
-                "longitude": 108.95416,
-                "latitude": 34.25555,
-                "count": 55
-              }
-            ]
-          },
-          {
-            "district": "夜未央",
-            "show": false,
-            "list": [
-              {
-                "addr": "西安市高新区锦业路69号瞪羚谷E座",
-                "name": "未来鲜森-0005",
-                "longitude": 108.99416,
-                "latitude": 34.29555,
-                "count": 55
-              },
-              {
-                "addr": "西安市高新区锦业路69号瞪羚谷E座",
-                "name": "未来鲜森-0006",
-                "longitude": 108.93416,
-                "latitude": 34.23555,
-                "count": 55
-              }
-            ]
-          }
+          // {
+          //   "district": "高新区",
+          //   "show": false,
+          //   "list": [
+          //     {
+          //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
+          //       "name": "未来鲜森-0001",
+          //       "longitude": 108.98416,
+          //       "latitude": 34.28555,
+          //       "count": 55
+          //     },
+          //     {
+          //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
+          //       "name": "未来鲜森-0002",
+          //       "longitude": 108.95416,
+          //       "latitude": 34.25555,
+          //       "count": 55
+          //     }
+          //   ]
+          // },
+          // {
+          //   "district": "夜未央",
+          //   "show": false,
+          //   "list": [
+          //     {
+          //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
+          //       "name": "未来鲜森-0005",
+          //       "longitude": 108.99416,
+          //       "latitude": 34.29555,
+          //       "count": 55
+          //     },
+          //     {
+          //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
+          //       "name": "未来鲜森-0006",
+          //       "longitude": 108.93416,
+          //       "latitude": 34.23555,
+          //       "count": 55
+          //     }
+          //   ]
+          // }
         ],
         showDeviceList: [],
         RepertoryArray: [
@@ -332,6 +337,15 @@
       })
     },
     methods: {
+      //暂未开放提示方法
+      closeCity() {
+        this.tipStatus = true;
+        let timer = setTimeout(() => {
+          this.tipStatus = false;
+          clearTimeout(timer);
+        }, 1000)
+      },
+      //返回主页
       goMain() {
         this.$router.push({
           path: '/main'
@@ -362,7 +376,7 @@
       //点击切换设备列表
       changeDistrict(index) {
         this.showDeviceList = this.deviceList[index].list;
-        for(var i = 0; i < this.deviceList.length; i++) {
+        for(let i = 0; i < this.deviceList.length; i++) {
           this.deviceList[i].show = false;
         }
         this.deviceList[index].show = true;
@@ -482,6 +496,23 @@
       display: none;
     }
     background: #ffffff;
+    .tipModal{
+      background: rgba(0,0,0,.7);
+      border-radius: 10px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: auto;
+      width: 29.2998rem;
+      height: 10rem;
+      z-index: 99;
+      color: #fff;
+      text-align: center;
+      font-size: 2.0677rem;
+      padding: 3vh 0;
+    }
     .login_top{
       position: fixed;
       top: 0;

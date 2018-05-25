@@ -23,8 +23,10 @@
       </ul>
     </header>
     <section class="repertoryContent">
+      <!-- 所有商品列表 -->
+      <section v-show="allList" class="allList">dddd</section>
       <!-- 城市列表 -->
-      <section v-show="!cityDown" class="cityList">
+      <section v-show="cityDown" class="cityList">
         <ul>
           <li @click="entryCity">西安</li>
           <li @click="closeCity">北京</li>
@@ -42,7 +44,7 @@
         </ul>
       </section>
       <!-- 设备列表 -->
-      <section v-show="!deviceDown" class="deviceList">
+      <section v-show="deviceDown" class="deviceList">
         <aside class="left">
           <ul>
             <li v-for="(item, index) in deviceList" @click="changeDistrict(index)" :class="item.show ? 'special' : 'normal'">
@@ -64,7 +66,7 @@
         </aside>
       </section>
       <!-- 商品列表 -->
-      <section v-show="!productDown" class="productList">
+      <section v-show="productDown" class="productList">
         <!-- 商品条目 -->
         <section class="productItem" v-show="!itemIsSelect">
           <ul>
@@ -125,9 +127,10 @@
         device: '全部售货柜', //设备
         product: '选择商品', //商品
         cityDown: false, //控制城市选择显示
-        deviceDown: true, //控制设备选择显示
-        productDown: true, //控制商品选择显示
+        deviceDown: false, //控制设备选择显示
+        productDown: false, //控制商品选择显示
         active: true,
+        allList: true,
         itemIsSelect: false, //是否选择具体商品
         mapMode: false,
         productItem: ['乐虎', '农夫山泉', '酸奶', '矿泉水', '蛋糕', '果汁', '啤酒', '鸭脖'],//商品条目
@@ -299,26 +302,26 @@
       },
       //选择城市
       selectCity() {
-        this.cityDown = false;
-        this.deviceDown = true;
-        this.productDown = true;
+        this.cityDown = true;
+        this.deviceDown = false;
+        this.productDown = false;
         this.product = '选择商品';
       },
       //选择设备
       selectDevice() {
-        this.cityDown = true;
-        this.deviceDown = false;
-        this.productDown = true;
+        this.cityDown = false;
+        this.deviceDown = true;
+        this.productDown = false;
         this.city = '西安';
         this.product = '选择商品';
         this.device = '全部售货柜';
       },
       //选择商品
       selectProduct() {
-        this.cityDown = true;
-        this.deviceDown = true;
-        this.productDown = false;
-        this.itemIsSelect = false;
+        this.cityDown = false;
+        this.deviceDown = false;
+        this.productDown = true;
+        this.itemIsSelect = true;
       },
       //点击切换设备列表
       changeDistrict(index) {

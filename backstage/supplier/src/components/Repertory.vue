@@ -681,7 +681,6 @@
             vertical-align: middle;
           }
         }
-
       }
     }
     .repertoryContent{

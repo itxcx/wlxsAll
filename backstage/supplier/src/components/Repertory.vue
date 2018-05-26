@@ -637,6 +637,7 @@
       position: fixed;
       top: 0;
       left: 0;
+      z-index: 99;
       width: 100vw;
       background: #65d172;
       height: 5.997vh;
@@ -685,6 +686,7 @@
     }
     .repertoryContent{
       padding-top: 13.3688vh;
+      background: #f1f1f1;
       .allList{
         .refreshTime{
           position: fixed;
@@ -700,8 +702,8 @@
         }
         .itemList{
           margin-top: 7.2vh;
-          overflow-y: auto;
-          -webkit-overflow-scrolling : touch;
+          /*overflow-y: auto;*/
+          /*-webkit-overflow-scrolling : touch;*/
           li{
             margin: 1.499vh 0;
             background: #fff;

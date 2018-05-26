@@ -24,7 +24,25 @@
     </header>
     <section class="repertoryContent">
       <!-- 所有商品列表 -->
-      <section v-show="allList" class="allList">dddd</section>
+      <section v-show="allList" class="allList">
+        <p class="refreshTime">
+          <span>库存更新时间:</span>
+          <span v-html="refreshTime"></span>
+        </p>
+        <ul class="itemList">
+          <li v-for="item in allProductArray">
+            <span class="itemPic" :style="{backgroundImage: 'url('+ item.picture +')'}" v-show="item.picture"></span>
+            <span class="defaultPic" v-show="!item.picture"></span>
+            <dl>
+              <dt>{{item.goods_name}}</dt>
+              <dd>单价: ￥</dd>
+            </dl>
+            <p>库存<span>{{item.count}}</span>件
+              <span></span>
+            </p>
+          </li>
+        </ul>
+      </section>
       <!-- 城市列表 -->
       <section v-show="cityDown" class="cityList">
         <ul>
@@ -123,6 +141,7 @@
       return {
         tipStatus: false,
         tipText: '正在建设，马上开放...',
+        refreshTime: '', //库存更新时间
         city: '选择城市', //城市
         device: '全部售货柜', //设备
         product: '选择商品', //商品
@@ -274,11 +293,14 @@
               }
             ]
           }
-        ]
+        ],
+        allProductArray: []
       }
     },
     mounted() {
       this.$nextTick( () => {
+        this.formatDate();
+        this.getOrderAllData();
         //初始化方法 显示全部设备
         this.showDeviceList = this.deviceList[0].list;
         //获取定位,显示地图
@@ -286,6 +308,153 @@
       })
     },
     methods: {
+      //设置库存更新时间方法
+      formatDate() {
+        Date.prototype.format = function(timer) {
+          let layoutTime = {
+            "M+": this.getMonth() + 1,
+            "d+": this.getDate(),
+            "h+": this.getHours(),
+            "m+": this.getMinutes(),
+            "s+": this.getSeconds(),
+            "q+": Math.floor((this.getMonth() + 3) / 3),
+            "S": this.getMilliseconds()
+          }
+          if(/(y+)/.test(timer)) {
+            timer = timer.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+          }
+          for (let k in layoutTime) {
+            if (new RegExp("(" + k + ")").test(timer)) {
+              timer = timer.replace(RegExp.$1, (RegExp.$1.length == 1) ?
+                (layoutTime[k]) :
+                (("00" + layoutTime[k]).substr(("" + layoutTime[k]).length)));
+            }
+          }
+          return timer;
+        }
+        let dataTimes = new Date().format("yyyy-MM-dd hh:mm:ss");
+        this.refreshTime = dataTimes;
+      },
+      //初始化数据获取及处理方法
+      getOrderAllData() {
+        this.$ajax({
+          url: 'http://merchant.test.weilaixiansen.com/login/goodsList',
+          method: 'GET'
+        }).then((res) => {
+          if(res.data.code == 0) {
+            let data = res.data.data;
+        //     let data = [{
+        //         "address": "",
+        //         "devicelist": [{
+        //           "device_id": 1000000002,
+        //           "address": "xa",
+        //           "area_name": "",
+        //           "goods_list": [{
+        //             "picture": null,
+        //             "goods_name": "乐虎抗疲劳",
+        //             "count": 4
+        //           },
+        //             {
+        //               "picture": null,
+        //               "goods_name": "乐虎",
+        //               "count": 4
+        //             },
+        //             {
+        //               "picture": null,
+        //               "goods_name": "乐虎111",
+        //               "count": 4
+        //             }
+        //             ]
+        //         }, {
+        //           "device_id": 1000000006,
+        //           "address": "新待遇",
+        //           "area_name": "",
+        //           "goods_list": [{
+        //             "picture": null,
+        //             "goods_name": "虎皮卷",
+        //             "count": 1
+        //           },
+        //             {
+        //               "picture": null,
+        //               "goods_name": "乐虎",
+        //               "count": 4
+        //             },
+        //             {
+        //               "picture": null,
+        //               "goods_name": "乐虎222222",
+        //               "count": 4
+        //             }]
+        //         }]
+        //       },
+        //       {
+        //         "address": "11111",
+        //         "devicelist": [{
+        //           "device_id": 1000000002,
+        //           "address": "xa",
+        //           "area_name": "",
+        //           "goods_list": [{
+        //             "picture": null,
+        //             "goods_name": "乐虎抗疲劳",
+        //             "count": 4
+        //           },
+        //             {
+        //               "picture": null,
+        //               "goods_name": "乐虎",
+        //               "count": 4
+        //             },
+        //             {
+        //               "picture": null,
+        //               "goods_name": "乐虎111",
+        //               "count": 4
+        //             }
+        //           ]
+        //         }, {
+        //           "device_id": 1000000006,
+        //           "address": "新待遇",
+        //           "area_name": "",
+        //           "goods_list": [{
+        //             "picture": null,
+        //             "goods_name": "虎皮卷",
+        //             "count": 1
+        //           },
+        //             {
+        //               "picture": null,
+        //               "goods_name": "乐虎",
+        //               "count": 4
+        //             },
+        //             {
+        //               "picture": null,
+        //               "goods_name": "乐虎222222",
+        //               "count": 4
+        //             }]
+        //         }]
+        //       }]
+            for(let i = 0; i < data.length; i++) {
+              for(let j = 0; j < data[i].devicelist.length; j++) {
+                for(let k = 0; k < data[i].devicelist[j].goods_list.length; k++) {
+                  if(this.allProductArray.length > 0) {
+                    let isPush = true;
+                    for(let m = 0; m < this.allProductArray.length; m++) {
+                      if(data[i].devicelist[j].goods_list[k].goods_name === this.allProductArray[m].goods_name) {
+                        this.allProductArray[m].count += data[i].devicelist[j].goods_list[k].count;
+                        isPush = false;
+                      }
+                    }
+                    if(isPush) {
+                      this.allProductArray.push(data[i].devicelist[j].goods_list[k]);
+                    }
+                  }else{
+                    this.allProductArray.push(data[i].devicelist[j].goods_list[k]);
+                  }
+                }
+              }
+            }
+            console.log(this.allProductArray)
+          }
+        }).catch((error) => {
+          console.log(error);
+        })
+      },
       //暂未开放提示方法
       closeCity() {
         this.tipStatus = true;
@@ -442,11 +611,11 @@
   .Repertory{
     width: 100vw;
     height: 100vh;
+    background: #f1f1f1;
     /* 去除百度地图水印 */
     .anchorBL {
       display: none;
     }
-    background: #ffffff;
     .tipModal{
       background: rgba(0,0,0,.7);
       border-radius: 10px;
@@ -489,6 +658,7 @@
       background: #65d172;
       color: #ffffff;
       height: 7.3718vh;
+      z-index: 99;
       ul{
         list-style: none;
         overflow: hidden;
@@ -514,7 +684,79 @@
       }
     }
     .repertoryContent{
-      padding-top: 14vh;
+      padding-top: 13.3688vh;
+      .allList{
+        .refreshTime{
+          position: fixed;
+          top: 13.3688vh;
+          left: 0;
+          z-index: 99;
+          width: 100%;
+          background: #fff;
+          font-size: 2.098rem;
+          padding: 2.02398vh 0 2.02398vh 4.667vw;
+          color: #9f9f9f;
+          border-bottom: 1px solid #f1f1f1;
+        }
+        .itemList{
+          margin-top: 7.2vh;
+          overflow-y: auto;
+          -webkit-overflow-scrolling : touch;
+          li{
+            margin: 1.499vh 0;
+            background: #fff;
+            padding: 1.874vh 2.667vw;
+            overflow: hidden;
+            .itemPic{
+              display: inline-block;
+              float: left;
+              width: 16.933vw;
+              height: 16.933vw;
+              background-size: cover;
+            }
+            .defaultPic {
+              display: inline-block;
+              float: left;
+              width: 16.933vw;
+              height: 16.933vw;
+              background: url(../../static/images/wlxs_logo.png) no-repeat center center;
+              background-size: cover;
+            }
+            dl{
+              width: 40vw;
+              float: left;
+              margin: 0 4vw;
+              font-size: 2.398rem;
+              color: #373737;
+              dt{
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+              }
+            }
+            p{
+              width: 26.667vw;
+              float: left;
+              font-size: 2.398rem;
+              color: #747475;
+              padding: 2.398vh 0;
+              text-align: right;
+              span{
+                color: #65d172;
+                font-size: 2.6236rem;
+              }
+              span:nth-of-type(2) {
+                display: inline-block;
+                width: 3.066vw;
+                height: 2.3238vh;
+                background: url(../../static/images/next.png) no-repeat center center;
+                background-size: cover;
+                vertical-align: middle;
+              }
+            }
+          }
+        }
+      }
       .cityList{
         margin-top: 2vh;
         ul{

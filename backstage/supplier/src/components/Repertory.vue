@@ -30,7 +30,7 @@
           <span v-html="refreshTime"></span>
         </p>
         <ul class="itemList">
-          <li v-for="item in allProductArray">
+          <li v-for="(item, index) in allProductArray" @click="itemSelect(index)">
             <span class="itemPic" :style="{backgroundImage: 'url('+ item.picture +')'}" v-show="item.picture"></span>
             <span class="defaultPic" v-show="!item.picture"></span>
             <dl>
@@ -65,7 +65,7 @@
       <section v-show="deviceDown" class="deviceList">
         <aside class="left">
           <ul>
-            <li v-for="(item, index) in deviceList" @click="changeDistrict(index)" :class="item.show ? 'special' : 'normal'">
+            <li v-for="(item, index) in allDeviceListArray" @click="changeDistrict(index)" :class="item.show ? 'special' : 'normal'">
               {{item.district}}
             </li>
           </ul>
@@ -73,26 +73,20 @@
         <aside class="right">
           <ul>
             <li v-for="(item, index) in showDeviceList">
-                <p @click="entryDevice">{{item.name}}</p>
+                <p @click="entryDevice(index)">{{item.address}}</p>
                 <p>
                   <span></span>
-                  <span>{{item.addr}}</span>
+                  <span>{{item.area_name}}</span>
                 </p>
                 <p>距当前定位地址5千米</p>
             </li>
           </ul>
         </aside>
       </section>
-      <!-- 商品列表 -->
+       <!--商品列表-->
       <section v-show="productDown" class="productList">
-        <!-- 商品条目 -->
-        <section class="productItem" v-show="!itemIsSelect">
-          <ul>
-            <li v-for="(item, index) in productItem" @click="itemSelect">{{item}}</li>
-          </ul>
-        </section>
         <!-- 显示模式 -->
-        <section class="productContent" v-show="itemIsSelect">
+        <section class="productContent">
           <section class="updateTime">
             <p>
               <span>上次库存更新时间:</span>
@@ -107,16 +101,16 @@
           </section>
           <section class="device" v-show="!mapMode">
             <ul>
-              <li v-for="(item, index) in RepertoryArray" class="device_item" :key="index">
+              <li class="device_item">
                 <dl>
-                  <dt>{{item.address}}</dt>
+                  <dt>{{selectProductArray.address}}</dt>
                   <dd>智能售货柜</dd>
                 </dl>
                 <div class="device_info">
                   <ul>
-                    <li v-for="(items, index1) in item.deviceList" :key="index1">
-                      <span>{{items.name}}</span>
-                      <span>库存<span>{{items.acount}}</span>件</span>
+                    <li v-for="(items, index1) in  selectProductArray.goods_list" :key="index1">
+                      <span>{{items.goods_name}}</span>
+                      <span>库存<span>{{items.count}}</span>件</span>
                     </li>
                   </ul>
                 </div>
@@ -126,6 +120,42 @@
           <section id="allmap" class="map" v-show="mapMode"></section>
         </section>
 
+      </section>
+      <!-- 选择商品不分柜子 -->
+      <section v-show="productItemDown" class="productItem">
+        <!-- 显示模式 -->
+        <section class="productContent">
+          <section class="updateTime">
+            <p>
+              <span>上次库存更新时间:</span>
+              <span>2018-5-1</span>
+            </p>
+            <div v-show="!mapMode" @click="changeMode">
+              <span>地图模式 ></span>
+            </div>
+            <div v-show="mapMode" @click="changeMode">
+              <span>列表模式 ></span>
+            </div>
+          </section>
+          <section class="itemListInfo" v-show="!mapMode">
+            <ul>
+              <li v-for="item in itemListArray" class="itemInfo">
+                <dl>
+                  <dt>{{item.area_name}}</dt>
+                  <dd>智能售货柜</dd>
+                </dl>
+                <ul>
+                  <li v-for="items in item.device_list">
+                    <p>{{items.address}}</p>
+                    <p><span>{{items.goods_name}}</span><span>{{items.count}}</span></p>
+                  </li>
+                </ul>
+
+              </li>
+            </ul>
+          </section>
+
+      </section>
       </section>
     </section>
     <section class="tipModal" v-show="tipStatus">
@@ -152,7 +182,6 @@
         allList: true,
         itemIsSelect: false, //是否选择具体商品
         mapMode: false,
-        productItem: ['乐虎', '农夫山泉', '酸奶', '矿泉水', '蛋糕', '果汁', '啤酒', '鸭脖'],//商品条目
         deviceList: [
           {
           "district": "全部",
@@ -294,7 +323,17 @@
             ]
           }
         ],
-        allProductArray: []
+        allProductArray: [], //全部商品
+        allDeviceListArray: [
+          {
+            "district": "全部",
+            "show": true,
+            "devicelist": []
+          }
+          ],//全部设备
+        selectProductArray: [],
+        productItemDown: false,//选择商品没有选择柜子
+        itemListArray: []
       }
     },
     mounted() {
@@ -302,7 +341,7 @@
         this.formatDate();
         this.getOrderAllData();
         //初始化方法 显示全部设备
-        this.showDeviceList = this.deviceList[0].list;
+        this.showDeviceList = this.allDeviceListArray[0].devicelist;
         //获取定位,显示地图
         this.getNowPosition();
       })
@@ -337,98 +376,99 @@
       },
       //初始化数据获取及处理方法
       getOrderAllData() {
-        this.$ajax({
-          url: 'http://merchant.test.weilaixiansen.com/login/goodsList',
-          method: 'GET'
-        }).then((res) => {
-          if(res.data.code == 0) {
-            let data = res.data.data;
-        //     let data = [{
-        //         "address": "",
-        //         "devicelist": [{
-        //           "device_id": 1000000002,
-        //           "address": "xa",
-        //           "area_name": "",
-        //           "goods_list": [{
-        //             "picture": null,
-        //             "goods_name": "乐虎抗疲劳",
-        //             "count": 4
-        //           },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎",
-        //               "count": 4
-        //             },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎111",
-        //               "count": 4
-        //             }
-        //             ]
-        //         }, {
-        //           "device_id": 1000000006,
-        //           "address": "新待遇",
-        //           "area_name": "",
-        //           "goods_list": [{
-        //             "picture": null,
-        //             "goods_name": "虎皮卷",
-        //             "count": 1
-        //           },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎",
-        //               "count": 4
-        //             },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎222222",
-        //               "count": 4
-        //             }]
-        //         }]
-        //       },
-        //       {
-        //         "address": "11111",
-        //         "devicelist": [{
-        //           "device_id": 1000000002,
-        //           "address": "xa",
-        //           "area_name": "",
-        //           "goods_list": [{
-        //             "picture": null,
-        //             "goods_name": "乐虎抗疲劳",
-        //             "count": 4
-        //           },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎",
-        //               "count": 4
-        //             },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎111",
-        //               "count": 4
-        //             }
-        //           ]
-        //         }, {
-        //           "device_id": 1000000006,
-        //           "address": "新待遇",
-        //           "area_name": "",
-        //           "goods_list": [{
-        //             "picture": null,
-        //             "goods_name": "虎皮卷",
-        //             "count": 1
-        //           },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎",
-        //               "count": 4
-        //             },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎222222",
-        //               "count": 4
-        //             }]
-        //         }]
-        //       }]
+        // this.$ajax({
+        //   url: 'http://merchant.test.weilaixiansen.com/login/goodsList',
+        //   method: 'GET'
+        // }).then((res) => {
+        //   if(res.data.code == 0) {
+        //     let data = res.data.data;
+            let data = [{
+                "address": "招商银行",
+                "devicelist": [{
+                  "device_id": 1000000002,
+                  "address": "xa",
+                  "area_name": "招商银行",
+                  "goods_list": [{
+                    "picture": null,
+                    "goods_name": "乐虎抗疲劳",
+                    "count": 1
+                  },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎",
+                      "count": 1
+                    },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎111",
+                      "count": 1
+                    }
+                    ]
+                }, {
+                  "device_id": 1000000006,
+                  "address": "新待遇",
+                  "area_name": "招商银行",
+                  "goods_list": [{
+                    "picture": null,
+                    "goods_name": "虎皮卷",
+                    "count": 1
+                  },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎",
+                      "count": 1
+                    },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎222222",
+                      "count": 1
+                    }]
+                }]
+              },
+              {
+                "address": "瞪羚谷",
+                "devicelist": [{
+                  "device_id": 1000000003,
+                  "address": "瞪羚谷E座右",
+                  "area_name": "瞪羚谷E座",
+                  "goods_list": [{
+                    "picture": null,
+                    "goods_name": "乐虎抗疲劳",
+                    "count": 1
+                  },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎",
+                      "count": 1
+                    },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎111",
+                      "count": 1
+                    }
+                  ]
+                }, {
+                  "device_id": 1000000004,
+                  "address": "瞪羚谷E座左",
+                  "area_name": "瞪羚谷E座",
+                  "goods_list": [{
+                    "picture": null,
+                    "goods_name": "虎皮卷",
+                    "count": 1
+                  },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎",
+                      "count": 1
+                    },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎222222",
+                      "count": 1
+                    }]
+                }]
+              }]
+        //处理全部商品
             for(let i = 0; i < data.length; i++) {
               for(let j = 0; j < data[i].devicelist.length; j++) {
                 for(let k = 0; k < data[i].devicelist[j].goods_list.length; k++) {
@@ -449,11 +489,113 @@
                 }
               }
             }
-            console.log(this.allProductArray)
+            // console.log(this.allProductArray);
+            // console.log(data);
+        //处理全部设备
+        let data1 = [{
+          "address": "招商银行",
+          "devicelist": [{
+            "device_id": 1000000002,
+            "address": "xa",
+            "area_name": "招商银行",
+            "goods_list": [{
+              "picture": null,
+              "goods_name": "乐虎抗疲劳",
+              "count": 1
+            },
+              {
+                "picture": null,
+                "goods_name": "乐虎",
+                "count": 1
+              },
+              {
+                "picture": null,
+                "goods_name": "乐虎111",
+                "count": 1
+              }
+            ]
+          }, {
+            "device_id": 1000000006,
+            "address": "新待遇",
+            "area_name": "招商银行",
+            "goods_list": [{
+              "picture": null,
+              "goods_name": "虎皮卷",
+              "count": 1
+            },
+              {
+                "picture": null,
+                "goods_name": "乐虎",
+                "count": 1
+              },
+              {
+                "picture": null,
+                "goods_name": "乐虎222222",
+                "count": 1
+              }]
+          }]
+        },
+          {
+            "address": "瞪羚谷",
+            "devicelist": [{
+              "device_id": 1000000003,
+              "address": "瞪羚谷E座右",
+              "area_name": "瞪羚谷E座",
+              "goods_list": [{
+                "picture": null,
+                "goods_name": "乐虎抗疲劳",
+                "count": 1
+              },
+                {
+                  "picture": null,
+                  "goods_name": "乐虎",
+                  "count": 1
+                },
+                {
+                  "picture": null,
+                  "goods_name": "乐虎111",
+                  "count": 1
+                }
+              ]
+            }, {
+              "device_id": 1000000004,
+              "address": "瞪羚谷E座左",
+              "area_name": "瞪羚谷E座",
+              "goods_list": [{
+                "picture": null,
+                "goods_name": "虎皮卷",
+                "count": 1
+              },
+                {
+                  "picture": null,
+                  "goods_name": "乐虎",
+                  "count": 1
+                },
+                {
+                  "picture": null,
+                  "goods_name": "乐虎222222",
+                  "count": 1
+                }]
+            }]
+          }]
+        for(let i = 0; i < data1.length; i++) {
+          for(let j = 0; j < data1[i].devicelist.length; j++) {
+            this.allDeviceListArray[0].devicelist.push(data1[i].devicelist[j]);
           }
-        }).catch((error) => {
-          console.log(error);
-        })
+        }
+        for(let i = 0; i < data1.length; i++) {
+          let obj = {
+            "district": data1[i].address,
+            "show": false,
+            "devicelist": data1[i].devicelist
+          }
+          this.allDeviceListArray.push(obj);
+        }
+        console.log(this.allDeviceListArray);
+        //   }
+        // }).catch((error) => {
+        //   console.log(error);
+        // })
       },
       //暂未开放提示方法
       closeCity() {
@@ -473,53 +615,98 @@
       selectCity() {
         this.cityDown = true;
         this.deviceDown = false;
-        this.productDown = false;
-        this.product = '选择商品';
-      },
-      //选择设备
-      selectDevice() {
-        this.cityDown = false;
-        this.deviceDown = true;
-        this.productDown = false;
-        this.city = '西安';
+        this.allList = false;
         this.product = '选择商品';
         this.device = '全部售货柜';
-      },
-      //选择商品
-      selectProduct() {
-        this.cityDown = false;
-        this.deviceDown = false;
-        this.productDown = true;
-        this.itemIsSelect = true;
-      },
-      //点击切换设备列表
-      changeDistrict(index) {
-        this.showDeviceList = this.deviceList[index].list;
-        for(let i = 0; i < this.deviceList.length; i++) {
-          this.deviceList[i].show = false;
-        }
-        this.deviceList[index].show = true;
-        this.device = '全部售货柜';
+        this.productDown = false;
+        this.productItemDown = false;
       },
       //列表选择城市
       entryCity(e) {
         this.city = e.target.innerHTML;
         this.cityDown = !this.cityDown;
-        this.deviceDown = !this.deviceDown;
+        this.allList = true;
+        // this.deviceDown = !this.deviceDown;
 
       },
-      //列表选择机柜
-      entryDevice(e) {
-        this.device = e.target.innerHTML;
-        this.cityDown = true;
+      //选择设备
+      selectDevice() {
+        this.allList = false;
+        this.cityDown = false;
         this.deviceDown = true;
         this.productDown = false;
-        this.itemIsSelect = false;
+        this.productItemDown = false;
+        this.city = '西安';
+        this.product = '选择商品';
+        this.device = '全部售货柜';
       },
+      //点击切换设备列表
+      changeDistrict(index) {
+        this.showDeviceList = this.allDeviceListArray[index].devicelist;
+        for(let i = 0; i < this.allDeviceListArray.length; i++) {
+          this.allDeviceListArray[i].show = false;
+        }
+        this.allDeviceListArray[index].show = true;
+        this.device = '全部售货柜';
+      },
+      //列表选择机柜
+      entryDevice(index) {
+        //console.log(this.showDeviceList);
+        this.device = this.showDeviceList[index].address;
+        console.log(this.showDeviceList[index]);
+        this.cityDown = false;
+        this.deviceDown = false;
+        this.productDown = true;
+        this.allList = false;
+        this.selectProductArray = [];
+        this.selectProductArray = this.showDeviceList[index];
+
+      },
+      //选择商品
+      selectProduct() {
+        this.cityDown = false;
+        this.deviceDown = false;
+        this.product = '选择商品';
+        this.productItemDown = false;
+        // this.itemIsSelect = true;
+        if(this.device === '全部售货柜') {
+          this.allList = true;
+        }else{
+          this.productDown = true;
+        }
+      },
+
       //列表选择商品
-      itemSelect(e) {
-        this.product = e.target.innerHTML;
-        this.itemIsSelect = true;
+      itemSelect(index) {
+       let goods_name = this.allProductArray[index].goods_name;
+        this.city = '西安';
+        this.allList = false;
+        this.productItemDown = true;
+        this.product = goods_name;
+        this.itemListArray = [];
+        console.log(this.allDeviceListArray[0].devicelist);
+        for(let i = 0; i < this.allDeviceListArray[0].devicelist.length; i++) {
+          let obj = {
+            area_name: this.allDeviceListArray[0].devicelist[i].area_name,
+            device_list: []
+          }
+          for(let j = 0; j < this.allDeviceListArray[0].devicelist[i].goods_list.length; j++) {
+            if(goods_name === this.allDeviceListArray[0].devicelist[i].goods_list[j].goods_name) {
+              let dev = {
+                address:  this.allDeviceListArray[0].devicelist[i].address,
+                goods_name: this.allDeviceListArray[0].devicelist[i].goods_list[j].goods_name,
+                count: this.allDeviceListArray[0].devicelist[i].goods_list[j].count
+              }
+              obj.device_list.push(dev)
+            }
+          }
+          this.itemListArray.push(obj)
+        }
+        let arr = [];
+        for(let i = 0; i < this.itemListArray.length; i++) {
+
+        }
+        console.log(this.itemListArray);
       },
       //切换显示
       changeMode() {
@@ -775,6 +962,8 @@
         }
       }
       .deviceList{
+        background: #fff;
+        overflow: hidden;
         .left{
           width: 27.4466vw;
           float: left;
@@ -871,6 +1060,7 @@
             background: #fff;
             overflow: hidden;
             dl {
+              width: 30%;
               display: inline-block;
               float: left;
               font-size: 2.3988vh;
@@ -917,6 +1107,44 @@
         .map {
           width: 100vw;
           height: 87vh;
+        }
+      }
+      .productItem{
+        .updateTime {
+          border-bottom: 1px solid #e5e5e5;
+          padding: 0.7448vh 5.333vw;
+          overflow: hidden;
+          background: #fff;
+          p {
+            width: 61.334vw;
+            font-size: 1.949vh;
+            color: #9f9f9f;
+            float: left;
+            height: 4.1229vh;
+            line-height: 4.1229vh;
+          }
+          div {
+            width: 28vw;
+            float: right;
+            text-align: center;
+            span {
+              float: right;
+              display: block;
+              width: 20.6667vw;
+              height: 4.1229vh;
+              line-height: 4.1229vh;
+              font-size: 1.724rem;
+              color: #65d172;
+              border: 1px solid #65d172;
+              border-radius: 20px;
+            }
+          }
+        }
+        .itemListInfo{
+          .itemInfo{
+            border: 1px solid pink;
+            background: #fff;
+          }
         }
       }
     }

@@ -9,15 +9,15 @@
     <header>
       <ul>
         <li v-model="city" @click="selectCity">
-          <span v-html="city"></span>
+          <span v-html="city" class="selectInput"></span>
           <span :class="!cityDown ? 'down' : 'up'"></span>
         </li>
         <li v-model="device" @click="selectDevice">
-          <span v-html="device"></span>
+          <span v-html="device" class="selectInput"></span>
           <span :class="!deviceDown ? 'down' : 'up'"></span>
         </li>
         <li v-model="product" @click="selectProduct">
-          <span v-html="product"></span>
+          <span v-html="product" class="selectInput"></span>
           <span :class="!productDown ? 'down' : 'up'"></span>
         </li>
       </ul>
@@ -864,7 +864,14 @@
             display: inline-block;
             width: 5.333vw;
             height: 2.773vh;
-            vertical-align: middle;
+            /*vertical-align: middle;*/
+          }
+          .selectInput{
+            display: inline-block;
+            width: 50%;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
           }
         }
       }

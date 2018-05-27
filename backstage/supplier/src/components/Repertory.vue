@@ -701,8 +701,9 @@
         }
         .itemList{
           margin-top: 7.2vh;
-          /*overflow-y: auto;*/
-          /*-webkit-overflow-scrolling : touch;*/
+          height: 79vh;
+          overflow-y: auto;
+          -webkit-overflow-scrolling : touch;
           li{
             margin: 1.499vh 0;
             background: #fff;
@@ -726,7 +727,7 @@
             dl{
               width: 40vw;
               float: left;
-              margin: 0 4vw;
+              margin: 1vh 4vw;
               font-size: 2.398rem;
               color: #373737;
               dt{
@@ -740,6 +741,7 @@
               float: left;
               font-size: 2.398rem;
               color: #747475;
+              margin-top: 1vh;
               padding: 2.398vh 0;
               text-align: right;
               span{

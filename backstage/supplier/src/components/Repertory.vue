@@ -87,19 +87,19 @@
       <section v-show="productDown" class="productList">
         <!-- 显示模式 -->
         <section class="productContent">
-          <section class="updateTime">
-            <p>
-              <span>上次库存更新时间:</span>
-              <span>2018-5-1</span>
-            </p>
-            <div v-show="!mapMode" @click="changeMode">
-              <span>地图模式 ></span>
-            </div>
-            <div v-show="mapMode" @click="changeMode">
-              <span>列表模式 ></span>
-            </div>
-          </section>
-          <section class="device" v-show="!mapMode">
+          <!--<section class="updateTime">-->
+            <!--<p>-->
+              <!--<span>上次库存更新时间:</span>-->
+              <!--<span>2018-5-1</span>-->
+            <!--</p>-->
+            <!--<div v-show="!mapMode" @click="changeMode">-->
+              <!--<span>地图模式 ></span>-->
+            <!--</div>-->
+            <!--<div v-show="mapMode" @click="changeMode">-->
+              <!--<span>列表模式 ></span>-->
+            <!--</div>-->
+          <!--</section>-->
+          <section class="device">
             <ul>
               <li class="device_item">
                 <dl>
@@ -117,7 +117,7 @@
               </li>
             </ul>
           </section>
-          <section id="allmap" class="map" v-show="mapMode"></section>
+          <!--<section id="allmap" class="map" v-show="mapMode"></section>-->
         </section>
 
       </section>
@@ -153,7 +153,7 @@
               </li>
             </ul>
           </section>
-
+          <section id="allmap" class="map" v-show="mapMode"></section>
       </section>
       </section>
     </section>
@@ -341,8 +341,6 @@
         this.getOrderAllData();
         //初始化方法 显示全部设备
         this.showDeviceList = this.allDeviceListArray[0].devicelist;
-        //获取定位,显示地图
-        this.getNowPosition();
       })
     },
     methods: {
@@ -382,17 +380,19 @@
         //   if(res.data.code == 0) {
         //     let data = res.data.data;
         //     let data1 = res.data.data;
-            let data = [{
+            let data = [
+              {
                 "address": "招商银行",
                 "devicelist": [{
                   "device_id": 1000000002,
                   "address": "xa",
                   "area_name": "招商银行",
-                  "goods_list": [{
+                  "goods_list": [
+                    {
                     "picture": null,
                     "goods_name": "乐虎抗疲劳",
                     "count": 1
-                  },
+                    },
                     {
                       "picture": null,
                       "goods_name": "乐虎",
@@ -402,9 +402,14 @@
                       "picture": null,
                       "goods_name": "乐虎111",
                       "count": 1
+                    },
+                    {"picture": null,
+                      "goods_name": "小蛋糕",
+                      "count": 111
                     }
                     ]
-                }, {
+                },
+                  {
                   "device_id": 1000000006,
                   "address": "新待遇",
                   "area_name": "招商银行",
@@ -422,6 +427,10 @@
                       "picture": null,
                       "goods_name": "乐虎222222",
                       "count": 1
+                    },
+                    {"picture": null,
+                      "goods_name": "小蛋糕",
+                      "count": 111
                     }]
                 }]
               },
@@ -445,6 +454,15 @@
                       "picture": null,
                       "goods_name": "乐虎111",
                       "count": 1
+                    },{
+                      "picture": null,
+                      "goods_name": "乐虎222222",
+                      "count": 2
+                    },
+
+                    {"picture": null,
+                      "goods_name": "小蛋糕",
+                      "count": 111
                     }
                   ]
                 }, {
@@ -464,11 +482,22 @@
                     {
                       "picture": null,
                       "goods_name": "乐虎222222",
-                      "count": 1
+                      "count": 2
+                    },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎222222",
+                      "count": 2
+                    },
+                    {"picture": null,
+                      "goods_name": "小蛋糕",
+                      "count": 111
                     }]
                 }]
               }]
+
         //处理全部商品
+        //所有柜子的同一商品数量相加
             for(let i = 0; i < data.length; i++) {
               for(let j = 0; j < data[i].devicelist.length; j++) {
                 for(let k = 0; k < data[i].devicelist[j].goods_list.length; k++) {
@@ -489,52 +518,63 @@
                 }
               }
             }
-            // console.log(this.allProductArray);
+            console.log(this.allProductArray);
             // console.log(data);
         // 处理全部设备
-        let data1 = [{
-          "address": "招商银行",
-          "devicelist": [{
-            "device_id": 1000000002,
-            "address": "xa",
-            "area_name": "招商银行",
-            "goods_list": [{
-              "picture": null,
-              "goods_name": "乐虎抗疲劳",
-              "count": 1
+        let data1 = [
+          {
+            "address": "招商银行",
+            "devicelist": [{
+              "device_id": 1000000002,
+              "address": "xa",
+              "area_name": "招商银行",
+              "goods_list": [
+                {
+                  "picture": null,
+                  "goods_name": "乐虎抗疲劳",
+                  "count": 1
+                },
+                {
+                  "picture": null,
+                  "goods_name": "乐虎",
+                  "count": 1
+                },
+                {
+                  "picture": null,
+                  "goods_name": "乐虎111",
+                  "count": 1
+                },
+                {"picture": null,
+                  "goods_name": "小蛋糕",
+                  "count": 111
+                }
+              ]
             },
               {
-                "picture": null,
-                "goods_name": "乐虎",
-                "count": 1
-              },
-              {
-                "picture": null,
-                "goods_name": "乐虎111",
-                "count": 1
-              }
-            ]
-          }, {
-            "device_id": 1000000006,
-            "address": "新待遇",
-            "area_name": "招商银行",
-            "goods_list": [{
-              "picture": null,
-              "goods_name": "虎皮卷",
-              "count": 1
-            },
-              {
-                "picture": null,
-                "goods_name": "乐虎",
-                "count": 1
-              },
-              {
-                "picture": null,
-                "goods_name": "乐虎222222",
-                "count": 1
+                "device_id": 1000000006,
+                "address": "新待遇",
+                "area_name": "招商银行",
+                "goods_list": [{
+                  "picture": null,
+                  "goods_name": "虎皮卷",
+                  "count": 1
+                },
+                  {
+                    "picture": null,
+                    "goods_name": "乐虎",
+                    "count": 1
+                  },
+                  {
+                    "picture": null,
+                    "goods_name": "乐虎222222",
+                    "count": 1
+                  },
+                  {"picture": null,
+                    "goods_name": "小蛋糕",
+                    "count": 111
+                  }]
               }]
-          }]
-        },
+          },
           {
             "address": "瞪羚谷",
             "devicelist": [{
@@ -555,6 +595,15 @@
                   "picture": null,
                   "goods_name": "乐虎111",
                   "count": 1
+                },{
+                  "picture": null,
+                  "goods_name": "乐虎222222",
+                  "count": 2
+                },
+
+                {"picture": null,
+                  "goods_name": "小蛋糕",
+                  "count": 111
                 }
               ]
             }, {
@@ -574,10 +623,20 @@
                 {
                   "picture": null,
                   "goods_name": "乐虎222222",
-                  "count": 1
+                  "count": 2
+                },
+                {
+                  "picture": null,
+                  "goods_name": "乐虎222222",
+                  "count": 2
+                },
+                {"picture": null,
+                  "goods_name": "小蛋糕",
+                  "count": 111
                 }]
             }]
           }]
+        //柜子信息中的第一个项目：全部分类
         for(let i = 0; i < data1.length; i++) {
           for(let j = 0; j < data1[i].devicelist.length; j++) {
             this.allDeviceListArray[0].devicelist.push(data1[i].devicelist[j]);
@@ -651,7 +710,6 @@
       },
       //列表选择机柜
       entryDevice(index) {
-        //console.log(this.showDeviceList);
         this.device = this.showDeviceList[index].address;
         console.log(this.showDeviceList[index]);
         this.cityDown = false;
@@ -703,9 +761,19 @@
           if(obj.device_list.length > 0) {
             this.itemListArray.push(obj);
           }
-
+        }
+        //处理商品相同的情况，count相加，删除其他的
+        for(let i = 0; i < this.itemListArray.length; i++) {
+          if(this.itemListArray[i].device_list.length > 1) {
+            for(let j = 1; j < this.itemListArray[i].device_list.length; j++) {
+              this.itemListArray[i].device_list[0].count += this.itemListArray[i].device_list[j].count;
+            }
+            this.itemListArray[i].device_list.splice(1);
+          }
         }
         console.log(this.itemListArray);
+        //获取定位,显示地图
+        this.getNowPosition();
       },
       //切换显示
       changeMode() {
@@ -713,6 +781,7 @@
       },
       // 获取用户当前位置经纬度
       getNowPosition() {
+        console.log('location');
         var that = this;
         var map = new BMap.Map("allmap"); //创建Map实例
         var geolocation = new BMap.Geolocation();
@@ -741,28 +810,32 @@
       },
       //创建地图方法
       mapShow(map, lng, lat) {
+        console.log(`${lng}-----${lat}`);
         lng += 0.0020795652;
         lat -= 0.002026155972;
       // 百度地图API功能
       // var map = new BMap.Map("allmap"); //创建Map实例  h5获取的经纬度 lat:34.2777999 lng:108.95309828
         map.centerAndZoom(new BMap.Point(lng, lat), 15); //初始化地图,设置中心点坐标和地图级别
         map.enableScrollWheelZoom();
-        this.pointShow(map);
+        //this.pointShow(map);
       },
       //创建标注点方法
       pointShow(map) {
-        var data = this.RepertoryArray;
+        console.log('map');
+        var data = this.itemListArray;
+        console.log(data);
         if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
-            for (var j = 0; j < data[i].deviceList.length; j++) {
-              var longitude = data[i].deviceList[j].longitude, latitude = data[i].deviceList[j].latitude;
+            for (var j = 0; j < data[i].device_list.length; j++) {
+              var longitude = data[i].device_list[j].longitude, latitude = data[i].device_list[j].latitude;
               var pt = new BMap.Point(longitude, latitude);
               //定义icon时一定要设置anchor属性,否则显示点位会随着地图的缩放移动,此点是不会变动的,icon设置点是根据此点的位置来设置的
               var myIcon = new BMap.Icon("./static/images/location_normal.png", new BMap.Size(68, 70), {
                 anchor: new BMap.Size(5, 5)
               });
               var marker = new BMap.Marker(pt, {icon: myIcon}); //创建标注
-              var acount = data[i].deviceList[j].acount;
+              var acount = data[i].device_list[j].count;
+              console.log(acount)
               var label = new BMap.Label("库存" + acount + "件", {position: pt, offset: new BMap.Size(-35, -30)});
               label.setStyle({
                 "color": "#ffffff",

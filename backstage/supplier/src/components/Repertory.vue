@@ -181,147 +181,147 @@
         allList: true,
         itemIsSelect: false, //是否选择具体商品
         mapMode: false,
-        deviceList: [
-          {
-          "district": "全部",
-          "show": true,
-          "list": [
-            {
-              "addr": "西安市高新区锦业路69号瞪羚谷E座",
-              "name": "未来鲜森-0001",
-              "longitude": 108.98416,
-              "latitude": 34.28555,
-              "count": 55
-            },
-            {
-              "addr": "西安市高新区锦业路69号瞪羚谷E座",
-              "name": "未来鲜森-0002",
-              "longitude": 108.95416,
-              "latitude": 34.25555,
-              "count": 55
-            },
-            {
-              "addr": "西安市高新区锦业路69号瞪羚谷E座",
-              "name": "未来鲜森-0003",
-              "longitude": 108.96416,
-              "latitude": 34.26555,
-              "count": 55
-            },
-            {
-              "addr": "西安市高新区锦业路69号瞪羚谷E座",
-              "name": "未来鲜森-0004",
-              "longitude": 108.94416,
-              "latitude": 34.24555,
-              "count": 55
-            }
-          ]
-        },
-          {
-            "district": "雁塔区",
-            "show": false,
-            "list": [
-              {
-                "addr": "西安市高新区锦业路69号瞪羚谷E座",
-                "name": "未来鲜森-0003",
-                "longitude": 108.96416,
-                "latitude": 34.26555,
-                "count": 55
-              },
-              {
-                "addr": "西安市高新区锦业路69号瞪羚谷E座",
-                "name": "未来鲜森-0004",
-                "longitude": 108.94416,
-                "latitude": 34.24555,
-                "count": 55
-              }
-            ]
-          }
-        ],
+        // deviceList: [
+        //   {
+        //   "district": "全部",
+        //   "show": true,
+        //   "list": [
+        //     {
+        //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
+        //       "name": "未来鲜森-0001",
+        //       "longitude": 108.98416,
+        //       "latitude": 34.28555,
+        //       "count": 55
+        //     },
+        //     {
+        //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
+        //       "name": "未来鲜森-0002",
+        //       "longitude": 108.95416,
+        //       "latitude": 34.25555,
+        //       "count": 55
+        //     },
+        //     {
+        //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
+        //       "name": "未来鲜森-0003",
+        //       "longitude": 108.96416,
+        //       "latitude": 34.26555,
+        //       "count": 55
+        //     },
+        //     {
+        //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
+        //       "name": "未来鲜森-0004",
+        //       "longitude": 108.94416,
+        //       "latitude": 34.24555,
+        //       "count": 55
+        //     }
+        //   ]
+        // },
+        //   {
+        //     "district": "雁塔区",
+        //     "show": false,
+        //     "list": [
+        //       {
+        //         "addr": "西安市高新区锦业路69号瞪羚谷E座",
+        //         "name": "未来鲜森-0003",
+        //         "longitude": 108.96416,
+        //         "latitude": 34.26555,
+        //         "count": 55
+        //       },
+        //       {
+        //         "addr": "西安市高新区锦业路69号瞪羚谷E座",
+        //         "name": "未来鲜森-0004",
+        //         "longitude": 108.94416,
+        //         "latitude": 34.24555,
+        //         "count": 55
+        //       }
+        //     ]
+        //   }
+        // ],
         showDeviceList: [],
-        RepertoryArray: [
-          {
-            "address": "瞪羚谷",
-            "deviceList": [
-              {
-                "name": "未来鲜森-瞪羚谷1",
-                "acount": "90",
-                "longitude": 108.8662555440,
-                "latitude": 34.2023934917
-              },
-              {
-                "name": "未来鲜森-瞪羚谷2",
-                "acount": "88",
-                "longitude": 108.8662555440,
-                "latitude": 34.2043934917
-              }
-            ]
-          },
-          {
-            "address": "招商银行",
-            "deviceList": [
-              {
-                "name": "未来鲜森-招商银行1",
-                "acount": "20",
-                "longitude": 108.9372220000,
-                "latitude": 34.2328420000
-              },
-              {
-                "name": "未来鲜森-招商银行2",
-                "acount": "20",
-                "longitude": 108.9372220000,
-                "latitude": 34.2348420000
-              },
-              {
-                "name": "未来鲜森-招商银行2",
-                "acount": "20",
-                "longitude": 108.9372220000,
-                "latitude": 34.2348420000
-              },
-              {
-                "name": "未来鲜森-招商银行2",
-                "acount": "20",
-                "longitude": 108.9372220000,
-                "latitude": 34.2348420000
-              },
-              {
-                "name": "未来鲜森-招商银行2",
-                "acount": "20",
-                "longitude": 108.9372220000,
-                "latitude": 34.2348420000
-              },
-              {
-                "name": "未来鲜森-招商银行2",
-                "acount": "20",
-                "longitude": 108.9372220000,
-                "latitude": 34.2348420000
-              },
-              {
-                "name": "未来鲜森-招商银行2",
-                "acount": "20",
-                "longitude": 108.9372220000,
-                "latitude": 34.2348420000
-              },
-              {
-                "name": "未来鲜森-招商银行2",
-                "acount": "20",
-                "longitude": 108.9372220000,
-                "latitude": 34.2348420000
-              },
-              {
-                "name": "未来鲜森-招商银行2",
-                "acount": "20",
-                "longitude": 108.9372220000,
-                "latitude": 34.2348420000
-              },
-              {
-                "name": "未来鲜森-招商银行2",
-                "acount": "20",
-                "longitude": 108.9372220000,
-                "latitude": 34.2348420000
-              }
-            ]
-          }
-        ],
+        // RepertoryArray: [
+        //   {
+        //     "address": "瞪羚谷",
+        //     "deviceList": [
+        //       {
+        //         "name": "未来鲜森-瞪羚谷1",
+        //         "acount": "90",
+        //         "longitude": 108.8662555440,
+        //         "latitude": 34.2023934917
+        //       },
+        //       {
+        //         "name": "未来鲜森-瞪羚谷2",
+        //         "acount": "88",
+        //         "longitude": 108.8662555440,
+        //         "latitude": 34.2043934917
+        //       }
+        //     ]
+        //   },
+        //   {
+        //     "address": "招商银行",
+        //     "deviceList": [
+        //       {
+        //         "name": "未来鲜森-招商银行1",
+        //         "acount": "20",
+        //         "longitude": 108.9372220000,
+        //         "latitude": 34.2328420000
+        //       },
+        //       {
+        //         "name": "未来鲜森-招商银行2",
+        //         "acount": "20",
+        //         "longitude": 108.9372220000,
+        //         "latitude": 34.2348420000
+        //       },
+        //       {
+        //         "name": "未来鲜森-招商银行2",
+        //         "acount": "20",
+        //         "longitude": 108.9372220000,
+        //         "latitude": 34.2348420000
+        //       },
+        //       {
+        //         "name": "未来鲜森-招商银行2",
+        //         "acount": "20",
+        //         "longitude": 108.9372220000,
+        //         "latitude": 34.2348420000
+        //       },
+        //       {
+        //         "name": "未来鲜森-招商银行2",
+        //         "acount": "20",
+        //         "longitude": 108.9372220000,
+        //         "latitude": 34.2348420000
+        //       },
+        //       {
+        //         "name": "未来鲜森-招商银行2",
+        //         "acount": "20",
+        //         "longitude": 108.9372220000,
+        //         "latitude": 34.2348420000
+        //       },
+        //       {
+        //         "name": "未来鲜森-招商银行2",
+        //         "acount": "20",
+        //         "longitude": 108.9372220000,
+        //         "latitude": 34.2348420000
+        //       },
+        //       {
+        //         "name": "未来鲜森-招商银行2",
+        //         "acount": "20",
+        //         "longitude": 108.9372220000,
+        //         "latitude": 34.2348420000
+        //       },
+        //       {
+        //         "name": "未来鲜森-招商银行2",
+        //         "acount": "20",
+        //         "longitude": 108.9372220000,
+        //         "latitude": 34.2348420000
+        //       },
+        //       {
+        //         "name": "未来鲜森-招商银行2",
+        //         "acount": "20",
+        //         "longitude": 108.9372220000,
+        //         "latitude": 34.2348420000
+        //       }
+        //     ]
+        //   }
+        // ],
         allProductArray: [], //全部商品
         allDeviceListArray: [
           {
@@ -736,7 +736,7 @@
 
       //列表选择商品
       itemSelect(index) {
-       let goods_name = this.allProductArray[index].goods_name;
+        let goods_name = this.allProductArray[index].goods_name;
         this.city = '西安';
         this.allList = false;
         this.productItemDown = true;
@@ -781,7 +781,6 @@
       },
       // 获取用户当前位置经纬度
       getNowPosition() {
-        console.log('location');
         var that = this;
         var map = new BMap.Map("allmap"); //创建Map实例
         var geolocation = new BMap.Geolocation();
@@ -813,6 +812,7 @@
         console.log(`${lng}-----${lat}`);
         lng += 0.0020795652;
         lat -= 0.002026155972;
+        console.log(`${lng}-----${lat}`);
       // 百度地图API功能
       // var map = new BMap.Map("allmap"); //创建Map实例  h5获取的经纬度 lat:34.2777999 lng:108.95309828
         map.centerAndZoom(new BMap.Point(lng, lat), 15); //初始化地图,设置中心点坐标和地图级别
@@ -1027,7 +1027,10 @@
         }
       }
       .cityList{
-        margin-top: 2vh;
+        /*margin-top: 2vh;*/
+        width: 100%;
+        height: 86.6312vh;
+        background: #fff;
         ul{
           list-style: none;
           li{
@@ -1042,6 +1045,7 @@
       }
       .deviceList{
         background: #fff;
+        height: 86.6312vh;
         overflow: hidden;
         .left{
           width: 27.4466vw;

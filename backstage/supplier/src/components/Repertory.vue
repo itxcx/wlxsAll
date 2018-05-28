@@ -375,99 +375,99 @@
       },
       //初始化数据获取及处理方法
       getOrderAllData() {
-        this.$ajax({
-          url: 'http://merchant.test.weilaixiansen.com/login/goodsList',
-          method: 'GET'
-        }).then((res) => {
-          if(res.data.code == 0) {
-            let data = res.data.data;
-            let data1 = res.data.data;
-        //     let data = [{
-        //         "address": "招商银行",
-        //         "devicelist": [{
-        //           "device_id": 1000000002,
-        //           "address": "xa",
-        //           "area_name": "招商银行",
-        //           "goods_list": [{
-        //             "picture": null,
-        //             "goods_name": "乐虎抗疲劳",
-        //             "count": 1
-        //           },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎",
-        //               "count": 1
-        //             },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎111",
-        //               "count": 1
-        //             }
-        //             ]
-        //         }, {
-        //           "device_id": 1000000006,
-        //           "address": "新待遇",
-        //           "area_name": "招商银行",
-        //           "goods_list": [{
-        //             "picture": null,
-        //             "goods_name": "虎皮卷",
-        //             "count": 1
-        //           },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎",
-        //               "count": 1
-        //             },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎222222",
-        //               "count": 1
-        //             }]
-        //         }]
-        //       },
-        //       {
-        //         "address": "瞪羚谷",
-        //         "devicelist": [{
-        //           "device_id": 1000000003,
-        //           "address": "瞪羚谷E座右",
-        //           "area_name": "瞪羚谷E座",
-        //           "goods_list": [{
-        //             "picture": null,
-        //             "goods_name": "乐虎抗疲劳",
-        //             "count": 1
-        //           },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎",
-        //               "count": 1
-        //             },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎111",
-        //               "count": 1
-        //             }
-        //           ]
-        //         }, {
-        //           "device_id": 1000000004,
-        //           "address": "瞪羚谷E座左",
-        //           "area_name": "瞪羚谷E座",
-        //           "goods_list": [{
-        //             "picture": null,
-        //             "goods_name": "虎皮卷",
-        //             "count": 1
-        //           },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎",
-        //               "count": 1
-        //             },
-        //             {
-        //               "picture": null,
-        //               "goods_name": "乐虎222222",
-        //               "count": 1
-        //             }]
-        //         }]
-        //       }]
+        // this.$ajax({
+        //   url: 'http://merchant.test.weilaixiansen.com/login/goodsList',
+        //   method: 'GET'
+        // }).then((res) => {
+        //   if(res.data.code == 0) {
+        //     let data = res.data.data;
+        //     let data1 = res.data.data;
+            let data = [{
+                "address": "招商银行",
+                "devicelist": [{
+                  "device_id": 1000000002,
+                  "address": "xa",
+                  "area_name": "招商银行",
+                  "goods_list": [{
+                    "picture": null,
+                    "goods_name": "乐虎抗疲劳",
+                    "count": 1
+                  },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎",
+                      "count": 1
+                    },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎111",
+                      "count": 1
+                    }
+                    ]
+                }, {
+                  "device_id": 1000000006,
+                  "address": "新待遇",
+                  "area_name": "招商银行",
+                  "goods_list": [{
+                    "picture": null,
+                    "goods_name": "虎皮卷",
+                    "count": 1
+                  },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎",
+                      "count": 1
+                    },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎222222",
+                      "count": 1
+                    }]
+                }]
+              },
+              {
+                "address": "瞪羚谷",
+                "devicelist": [{
+                  "device_id": 1000000003,
+                  "address": "瞪羚谷E座右",
+                  "area_name": "瞪羚谷E座",
+                  "goods_list": [{
+                    "picture": null,
+                    "goods_name": "乐虎抗疲劳",
+                    "count": 1
+                  },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎",
+                      "count": 1
+                    },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎111",
+                      "count": 1
+                    }
+                  ]
+                }, {
+                  "device_id": 1000000004,
+                  "address": "瞪羚谷E座左",
+                  "area_name": "瞪羚谷E座",
+                  "goods_list": [{
+                    "picture": null,
+                    "goods_name": "虎皮卷",
+                    "count": 1
+                  },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎",
+                      "count": 1
+                    },
+                    {
+                      "picture": null,
+                      "goods_name": "乐虎222222",
+                      "count": 1
+                    }]
+                }]
+              }]
         //处理全部商品
             for(let i = 0; i < data.length; i++) {
               for(let j = 0; j < data[i].devicelist.length; j++) {
@@ -491,93 +491,93 @@
             }
             // console.log(this.allProductArray);
             // console.log(data);
-        //处理全部设备
-        // let data1 = [{
-        //   "address": "招商银行",
-        //   "devicelist": [{
-        //     "device_id": 1000000002,
-        //     "address": "xa",
-        //     "area_name": "招商银行",
-        //     "goods_list": [{
-        //       "picture": null,
-        //       "goods_name": "乐虎抗疲劳",
-        //       "count": 1
-        //     },
-        //       {
-        //         "picture": null,
-        //         "goods_name": "乐虎",
-        //         "count": 1
-        //       },
-        //       {
-        //         "picture": null,
-        //         "goods_name": "乐虎111",
-        //         "count": 1
-        //       }
-        //     ]
-        //   }, {
-        //     "device_id": 1000000006,
-        //     "address": "新待遇",
-        //     "area_name": "招商银行",
-        //     "goods_list": [{
-        //       "picture": null,
-        //       "goods_name": "虎皮卷",
-        //       "count": 1
-        //     },
-        //       {
-        //         "picture": null,
-        //         "goods_name": "乐虎",
-        //         "count": 1
-        //       },
-        //       {
-        //         "picture": null,
-        //         "goods_name": "乐虎222222",
-        //         "count": 1
-        //       }]
-        //   }]
-        // },
-        //   {
-        //     "address": "瞪羚谷",
-        //     "devicelist": [{
-        //       "device_id": 1000000003,
-        //       "address": "瞪羚谷E座右",
-        //       "area_name": "瞪羚谷E座",
-        //       "goods_list": [{
-        //         "picture": null,
-        //         "goods_name": "乐虎抗疲劳",
-        //         "count": 1
-        //       },
-        //         {
-        //           "picture": null,
-        //           "goods_name": "乐虎",
-        //           "count": 1
-        //         },
-        //         {
-        //           "picture": null,
-        //           "goods_name": "乐虎111",
-        //           "count": 1
-        //         }
-        //       ]
-        //     }, {
-        //       "device_id": 1000000004,
-        //       "address": "瞪羚谷E座左",
-        //       "area_name": "瞪羚谷E座",
-        //       "goods_list": [{
-        //         "picture": null,
-        //         "goods_name": "虎皮卷",
-        //         "count": 1
-        //       },
-        //         {
-        //           "picture": null,
-        //           "goods_name": "乐虎",
-        //           "count": 1
-        //         },
-        //         {
-        //           "picture": null,
-        //           "goods_name": "乐虎222222",
-        //           "count": 1
-        //         }]
-        //     }]
-        //   }]
+        // 处理全部设备
+        let data1 = [{
+          "address": "招商银行",
+          "devicelist": [{
+            "device_id": 1000000002,
+            "address": "xa",
+            "area_name": "招商银行",
+            "goods_list": [{
+              "picture": null,
+              "goods_name": "乐虎抗疲劳",
+              "count": 1
+            },
+              {
+                "picture": null,
+                "goods_name": "乐虎",
+                "count": 1
+              },
+              {
+                "picture": null,
+                "goods_name": "乐虎111",
+                "count": 1
+              }
+            ]
+          }, {
+            "device_id": 1000000006,
+            "address": "新待遇",
+            "area_name": "招商银行",
+            "goods_list": [{
+              "picture": null,
+              "goods_name": "虎皮卷",
+              "count": 1
+            },
+              {
+                "picture": null,
+                "goods_name": "乐虎",
+                "count": 1
+              },
+              {
+                "picture": null,
+                "goods_name": "乐虎222222",
+                "count": 1
+              }]
+          }]
+        },
+          {
+            "address": "瞪羚谷",
+            "devicelist": [{
+              "device_id": 1000000003,
+              "address": "瞪羚谷E座右",
+              "area_name": "瞪羚谷E座",
+              "goods_list": [{
+                "picture": null,
+                "goods_name": "乐虎抗疲劳",
+                "count": 1
+              },
+                {
+                  "picture": null,
+                  "goods_name": "乐虎",
+                  "count": 1
+                },
+                {
+                  "picture": null,
+                  "goods_name": "乐虎111",
+                  "count": 1
+                }
+              ]
+            }, {
+              "device_id": 1000000004,
+              "address": "瞪羚谷E座左",
+              "area_name": "瞪羚谷E座",
+              "goods_list": [{
+                "picture": null,
+                "goods_name": "虎皮卷",
+                "count": 1
+              },
+                {
+                  "picture": null,
+                  "goods_name": "乐虎",
+                  "count": 1
+                },
+                {
+                  "picture": null,
+                  "goods_name": "乐虎222222",
+                  "count": 1
+                }]
+            }]
+          }]
         for(let i = 0; i < data1.length; i++) {
           for(let j = 0; j < data1[i].devicelist.length; j++) {
             this.allDeviceListArray[0].devicelist.push(data1[i].devicelist[j]);
@@ -592,10 +592,10 @@
           this.allDeviceListArray.push(obj);
         }
         console.log(this.allDeviceListArray);
-          }
-        }).catch((error) => {
-          console.log(error);
-        })
+        //   }
+        // }).catch((error) => {
+        //   console.log(error);
+        // })
       },
       //暂未开放提示方法
       closeCity() {

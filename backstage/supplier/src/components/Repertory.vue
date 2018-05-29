@@ -145,9 +145,9 @@
                   <dd>智能售货柜</dd>
                 </dl>
                 <ul>
-                  <li v-for="items in item.device_list">
-                    <p>{{items.address}}</p>
-                    <p>库存<span>{{items.count}}</span>件</p>
+                  <li>
+                    <p>{{item.address}}</p>
+                    <p>库存<span>{{item.count}}</span>件</p>
                   </li>
                 </ul>
               </li>
@@ -332,7 +332,8 @@
           ],//全部设备
         selectProductArray: [],
         productItemDown: false,//选择商品没有选择柜子
-        itemListArray: []
+        itemListArray: [],
+        commonArray: null
       }
     },
     mounted() {
@@ -373,128 +374,426 @@
       },
       //初始化数据获取及处理方法
       getOrderAllData() {
-        // this.$ajax({
-        //   url: 'http://merchant.test.weilaixiansen.com/login/goodsList',
-        //   method: 'GET'
-        // }).then((res) => {
-        //   if(res.data.code == 0) {
-        //     let data = res.data.data;
-        //     let data1 = res.data.data;
-            let data = [
-              {
-                "address": "招商银行",
-                "devicelist": [{
-                  "device_id": 1000000002,
-                  "address": "xa",
-                  "area_name": "招商银行",
-                  "goods_list": [
-                    {
-                    "picture": null,
-                    "goods_name": "乐虎抗疲劳",
-                    "count": 1
-                    },
-                    {
-                      "picture": null,
-                      "goods_name": "乐虎",
-                      "count": 1
-                    },
-                    {
-                      "picture": null,
-                      "goods_name": "乐虎111",
-                      "count": 1
-                    },
-                    {"picture": null,
-                      "goods_name": "小蛋糕",
-                      "count": 111
-                    }
-                    ]
-                },
-                  {
-                  "device_id": 1000000006,
-                  "address": "新待遇",
-                  "area_name": "招商银行",
-                  "goods_list": [{
-                    "picture": null,
-                    "goods_name": "虎皮卷",
-                    "count": 1
-                  },
-                    {
-                      "picture": null,
-                      "goods_name": "乐虎",
-                      "count": 1
-                    },
-                    {
-                      "picture": null,
-                      "goods_name": "乐虎222222",
-                      "count": 1
-                    },
-                    {"picture": null,
-                      "goods_name": "小蛋糕",
-                      "count": 111
-                    }]
-                }]
-              },
-              {
-                "address": "瞪羚谷",
-                "devicelist": [{
-                  "device_id": 1000000003,
-                  "address": "瞪羚谷E座右",
-                  "area_name": "瞪羚谷E座",
-                  "goods_list": [{
-                    "picture": null,
-                    "goods_name": "乐虎抗疲劳",
-                    "count": 1
-                  },
-                    {
-                      "picture": null,
-                      "goods_name": "乐虎",
-                      "count": 1
-                    },
-                    {
-                      "picture": null,
-                      "goods_name": "乐虎111",
-                      "count": 1
-                    },{
-                      "picture": null,
-                      "goods_name": "乐虎222222",
-                      "count": 2
-                    },
+        this.$ajax({
+          url: 'http://merchant.test.weilaixiansen.com/login/goodsList',
+          method: 'GET'
+        }).then((res) => {
+          if(res.data.code == 0) {
+            let Data = res.data.data;
 
-                    {"picture": null,
-                      "goods_name": "小蛋糕",
-                      "count": 111
-                    }
-                  ]
-                }, {
-                  "device_id": 1000000004,
-                  "address": "瞪羚谷E座左",
-                  "area_name": "瞪羚谷E座",
-                  "goods_list": [{
-                    "picture": null,
-                    "goods_name": "虎皮卷",
-                    "count": 1
-                  },
-                    {
-                      "picture": null,
-                      "goods_name": "乐虎",
-                      "count": 1
-                    },
-                    {
-                      "picture": null,
-                      "goods_name": "乐虎222222",
-                      "count": 2
-                    },
-                    {
-                      "picture": null,
-                      "goods_name": "乐虎222222",
-                      "count": 2
-                    },
-                    {"picture": null,
-                      "goods_name": "小蛋糕",
-                      "count": 111
-                    }]
-                }]
-              }]
+  //       let Datas =  [
+  //      {
+  //       "address": "",
+  //         "devicelist": [{
+  //         "device_id": 1000000002,
+  //         "address": "xa",
+  //         "area_name": "",
+  //         "goods_list": [{
+  //           "picture": null,
+  //           "goods_name": "乐虎抗疲劳",
+  //           "count": 4
+  //         }]
+  //       }, {
+  //         "device_id": 1000000006,
+  //         "address": "新待遇",
+  //         "area_name": "",
+  //         "goods_list": [{
+  //           "picture": null,
+  //           "goods_name": "虎皮卷",
+  //           "count": 1
+  //         }]
+  //       }]
+  //     }, {
+  //   "address": "高新一路创新大厦",
+  //     "devicelist": [{
+  //     "device_id": 6101130001,
+  //     "address": "高新一路创新大厦左侧01",
+  //     "area_name": "高新一路创新大厦",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "乐虎",
+  //       "count": 16
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "脉动",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "澳洲混合坚果仁",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "瑞特斯波德巧克力",
+  //       "count": 3
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "伊利每益添原味",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "甜甜圈",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "Q心抹茶",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "诺曼地",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "谷物原香三明治",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "乳酪包",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "牛奶雪花糕",
+  //       "count": 3
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "BK阳光芝士卷",
+  //       "count": 1
+  //     }]
+  //   }, {
+  //     "device_id": 6101130002,
+  //     "address": "高新一路创新大厦右侧02",
+  //     "area_name": "高新一路创新大厦",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "乐虎",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "米旗奶油蛋卷",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "诺曼地",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "牛奶雪花糕",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "Q心抹茶",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "甄选培根火腿寿司",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "奶香蒸蛋糕",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "肉松沙拉",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "彩虹心情",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "蟹小芳",
+  //       "count": 3
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "诺曼地",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "肉松沙拉",
+  //       "count": 2
+  //     },  {
+  //       "picture": null,
+  //       "goods_name": "阿宽四川红油面皮",
+  //       "count": 6
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "每益添原味",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "BK原味木糠盒",
+  //       "count": 3
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "BK奥利奥木糠盒",
+  //       "count": 3
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "BK肉松小贝",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "姚太太精品梅子",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "谷粒多早餐奶",
+  //       "count": 19
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "王老吉黑凉茶",
+  //       "count": 15
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "新希望香蕉芒果牛奶",
+  //       "count": 10
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "悦活U格",
+  //       "count": 1
+  //     }]
+  //   }]
+  // }, {
+  //   "address": "瞪羚谷E座",
+  //     "devicelist": [{
+  //     "device_id": 6101130004,
+  //     "address": "E座左侧04",
+  //     "area_name": "瞪羚谷E座",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "时令农家圣女果350g",
+  //       "count": 18
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "冬季爆款砂糖橘350g",
+  //       "count": 12
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "乐虎(每日两罐3.88)",
+  //       "count": 47
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "阿宽四川红油面皮",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "好吃点臻好曲奇",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "麦吉士蛋糕",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "星巴克咖啡",
+  //       "count": 5
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "天地精华矿泉水",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "阿宽四川红油面皮",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "大龍燚自煮懒人火锅",
+  //       "count": 5
+  //     }]
+  //   }, {
+  //     "device_id": 6101130005,
+  //     "address": "E座右侧05",
+  //     "area_name": "瞪羚谷E座",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "时令农家圣女果350g",
+  //       "count": 18
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "冬季爆款砂糖橘350g",
+  //       "count": 12
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "乐虎(每日两罐3.88)",
+  //       "count": 11
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "果2代",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "麦吉士蛋糕",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "麦吉士榛子味酥塔",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "芙列浓巧克力",
+  //       "count": 8
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "大和味鲜切薯条",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "新加坡进口方便面",
+  //       "count": 4
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "泰国格力高芒果饼干",
+  //       "count": 6
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "似水柔情自煮懒人火锅",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "星巴克咖啡",
+  //       "count": 4
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "天地精华矿泉水",
+  //       "count": 7
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "史上最提神",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "农夫山泉NFC橙汁",
+  //       "count": 8
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "Q心抹茶",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "诺曼地",
+  //       "count": 3
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "乳酪包",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "卢比蛋糕",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "磅蛋糕",
+  //       "count": 1
+  //     }]
+  //   }]
+  // }, {
+  //   "address": "雁塔区招商银行",
+  //     "devicelist": [{
+  //     "device_id": 6101130006,
+  //     "address": "雁塔区招商银行右侧06",
+  //     "area_name": "雁塔区招商银行",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "果2代",
+  //       "count": 13
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "磅蛋糕",
+  //       "count": 1
+  //     }]
+  //   }]
+  // }, {
+  //   "address": "国家数字出版基地A座",
+  //     "devicelist": [{
+  //     "device_id": 6101130009,
+  //     "address": "国家数字出版基地A座右侧09",
+  //     "area_name": "国家数字出版基地A座",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "果2代",
+  //       "count": 11
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "阿宽四川红油面皮",
+  //       "count": 4
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "似水柔情火锅",
+  //       "count": 5
+  //     }]
+  //   }, {
+  //     "device_id": 6101130008,
+  //     "address": "国家数字出版基地A座左侧侧08",
+  //     "area_name": "国家数字出版基地A座",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "洽洽小呆瓜",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "香甜芒果干",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "兵兵有礼公仔",
+  //       "count": 7
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "兵兵有礼玉米杯",
+  //       "count": 3
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "大唐丰韵",
+  //       "count": 4
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "兵兵有礼果冻杯",
+  //       "count": 4
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "兵兵有礼冰箱贴",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "兵兵有礼陕西美食本",
+  //       "count": 8
+  //     }]
+  //   }]
+  // }, {
+  //   "address": "都市之门B座",
+  //     "devicelist": [{
+  //     "device_id": 6101130010,
+  //     "address": "都市之门B座右侧10",
+  //     "area_name": "都市之门B座",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "果2代",
+  //       "count": 4
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "BK原味木糠盒",
+  //       "count": 1
+  //     }]
+  //   }, {
+  //     "device_id": 6101130011,
+  //     "address": "都市之门B座左侧11",
+  //     "area_name": "都市之门B座",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "养生瓜子",
+  //       "count": 2
+  //     }]
+  //   }]
+  // }]
+        let data = Data;
+        let ddd = JSON.stringify(Data);
+        localStorage.setItem('data', ddd);
+        localStorage.setItem('deviceData', ddd);
+        // console.log('storage');
+        // console.log(localStorage.getItem('data'))
+
+        // this.commonArray = Data;
+        // let data = Datas;
+        // let data1 = Data;
 
         //处理全部商品
         //所有柜子的同一商品数量相加
@@ -505,7 +804,8 @@
                     let isPush = true;
                     for(let m = 0; m < this.allProductArray.length; m++) {
                       if(data[i].devicelist[j].goods_list[k].goods_name === this.allProductArray[m].goods_name) {
-                        this.allProductArray[m].count += data[i].devicelist[j].goods_list[k].count;
+                        let countss = data[i].devicelist[j].goods_list[k].count;
+                        this.allProductArray[m].count += countss;
                         isPush = false;
                       }
                     }
@@ -518,143 +818,31 @@
                 }
               }
             }
-            console.log(this.allProductArray);
-            // console.log(data);
-        // 处理全部设备
-        let data1 = [
-          {
-            "address": "招商银行",
-            "devicelist": [{
-              "device_id": 1000000002,
-              "address": "xa",
-              "area_name": "招商银行",
-              "goods_list": [
-                {
-                  "picture": null,
-                  "goods_name": "乐虎抗疲劳",
-                  "count": 1
-                },
-                {
-                  "picture": null,
-                  "goods_name": "乐虎",
-                  "count": 1
-                },
-                {
-                  "picture": null,
-                  "goods_name": "乐虎111",
-                  "count": 1
-                },
-                {"picture": null,
-                  "goods_name": "小蛋糕",
-                  "count": 111
-                }
-              ]
-            },
-              {
-                "device_id": 1000000006,
-                "address": "新待遇",
-                "area_name": "招商银行",
-                "goods_list": [{
-                  "picture": null,
-                  "goods_name": "虎皮卷",
-                  "count": 1
-                },
-                  {
-                    "picture": null,
-                    "goods_name": "乐虎",
-                    "count": 1
-                  },
-                  {
-                    "picture": null,
-                    "goods_name": "乐虎222222",
-                    "count": 1
-                  },
-                  {"picture": null,
-                    "goods_name": "小蛋糕",
-                    "count": 111
-                  }]
-              }]
-          },
-          {
-            "address": "瞪羚谷",
-            "devicelist": [{
-              "device_id": 1000000003,
-              "address": "瞪羚谷E座右",
-              "area_name": "瞪羚谷E座",
-              "goods_list": [{
-                "picture": null,
-                "goods_name": "乐虎抗疲劳",
-                "count": 1
-              },
-                {
-                  "picture": null,
-                  "goods_name": "乐虎",
-                  "count": 1
-                },
-                {
-                  "picture": null,
-                  "goods_name": "乐虎111",
-                  "count": 1
-                },{
-                  "picture": null,
-                  "goods_name": "乐虎222222",
-                  "count": 2
-                },
 
-                {"picture": null,
-                  "goods_name": "小蛋糕",
-                  "count": 111
-                }
-              ]
-            }, {
-              "device_id": 1000000004,
-              "address": "瞪羚谷E座左",
-              "area_name": "瞪羚谷E座",
-              "goods_list": [{
-                "picture": null,
-                "goods_name": "虎皮卷",
-                "count": 1
-              },
-                {
-                  "picture": null,
-                  "goods_name": "乐虎",
-                  "count": 1
-                },
-                {
-                  "picture": null,
-                  "goods_name": "乐虎222222",
-                  "count": 2
-                },
-                {
-                  "picture": null,
-                  "goods_name": "乐虎222222",
-                  "count": 2
-                },
-                {"picture": null,
-                  "goods_name": "小蛋糕",
-                  "count": 111
-                }]
-            }]
-          }]
+            console.log(this.allProductArray);
+            console.log('~~~~~~~~~~~~~~~~~~');
+            console.log(data);
+        //处理全部设备
         //柜子信息中的第一个项目：全部分类
-        for(let i = 0; i < data1.length; i++) {
-          for(let j = 0; j < data1[i].devicelist.length; j++) {
-            this.allDeviceListArray[0].devicelist.push(data1[i].devicelist[j]);
+        let deviceData = JSON.parse(localStorage.getItem('deviceData'))
+        for(let i = 0; i < deviceData.length; i++) {
+          for(let j = 0; j < deviceData[i].devicelist.length; j++) {
+            this.allDeviceListArray[0].devicelist.push(deviceData[i].devicelist[j]);
           }
         }
-        for(let i = 0; i < data1.length; i++) {
+        for(let i = 0; i < deviceData.length; i++) {
           let obj = {
-            "district": data1[i].address,
+            "district": deviceData[i].address,
             "show": false,
-            "devicelist": data1[i].devicelist
+            "devicelist": deviceData[i].devicelist
           }
           this.allDeviceListArray.push(obj);
         }
         console.log(this.allDeviceListArray);
-        //   }
-        // }).catch((error) => {
-        //   console.log(error);
-        // })
+          }
+        }).catch((error) => {
+          console.log(error);
+        })
       },
       //暂未开放提示方法
       closeCity() {
@@ -686,7 +874,6 @@
         this.cityDown = !this.cityDown;
         this.allList = true;
         // this.deviceDown = !this.deviceDown;
-
       },
       //选择设备
       selectDevice() {
@@ -742,38 +929,63 @@
         this.productItemDown = true;
         this.product = goods_name;
         this.itemListArray = [];
-        console.log(this.allDeviceListArray[0].devicelist);
-        for(let i = 0; i < this.allDeviceListArray[0].devicelist.length; i++) {
-          let obj = {
-            area_name: this.allDeviceListArray[0].devicelist[i].area_name,
-            device_list: []
-          }
-          for(let j = 0; j < this.allDeviceListArray[0].devicelist[i].goods_list.length; j++) {
-            if(goods_name === this.allDeviceListArray[0].devicelist[i].goods_list[j].goods_name) {
-              let dev = {
-                address:  this.allDeviceListArray[0].devicelist[i].address,
-                goods_name: this.allDeviceListArray[0].devicelist[i].goods_list[j].goods_name,
-                count: this.allDeviceListArray[0].devicelist[i].goods_list[j].count
+        // console.log('---------------');
+        // console.log(this.allDeviceListArray);
+        // console.log(this.allDeviceListArray[0].devicelist);
+        // console.log('---------------');
+        let data = JSON.parse(localStorage.getItem('data'));
+        console.log('getstorage');
+        console.log(data);
+        // for(let i = 0; i < this.allDeviceListArray[0].devicelist.length; i++) {
+        //   let obj = {
+        //     area_name: this.allDeviceListArray[0].devicelist[i].area_name,
+        //     device_list: []
+        //   }
+        //   for(let j = 0; j < this.allDeviceListArray[0].devicelist[i].goods_list.length; j++) {
+        //     if(goods_name === this.allDeviceListArray[0].devicelist[i].goods_list[j].goods_name) {
+        //       let dev = {
+        //         address:  this.allDeviceListArray[0].devicelist[i].address,
+        //         goods_name: this.allDeviceListArray[0].devicelist[i].goods_list[j].goods_name,
+        //         count: this.allDeviceListArray[0].devicelist[i].goods_list[j].count
+        //       }
+        //       console.log(dev);
+        //       obj.device_list.push(dev);
+        //     }
+        //   }
+        //   if(obj.device_list.length > 0) {
+        //     this.itemListArray.push(obj);
+        //   }
+        // }
+        // let data = this.commonArray;
+
+        for(let i = 0; i < data.length; i++) {
+          for(let j = 0; j < data[i].devicelist.length; j++) {
+            for(let k = 0; k < data[i].devicelist[j].goods_list.length; k++) {
+                if(goods_name === data[i].devicelist[j].goods_list[k].goods_name) {
+                  let obj = {
+                    area_name: data[i].devicelist[j].area_name,
+                    address: data[i].devicelist[j].address,
+                    count: data[i].devicelist[j].goods_list[k].count
+                  }
+                  console.log('sss');
+                  console.log(obj);
+                  this.itemListArray.push(obj)
               }
-              obj.device_list.push(dev);
             }
           }
-          if(obj.device_list.length > 0) {
-            this.itemListArray.push(obj);
-          }
         }
-        //处理商品相同的情况，count相加，删除其他的
-        for(let i = 0; i < this.itemListArray.length; i++) {
-          if(this.itemListArray[i].device_list.length > 1) {
-            for(let j = 1; j < this.itemListArray[i].device_list.length; j++) {
-              this.itemListArray[i].device_list[0].count += this.itemListArray[i].device_list[j].count;
-            }
-            this.itemListArray[i].device_list.splice(1);
-          }
-        }
+        // //处理商品相同的情况，count相加，删除其他的
+        // for(let i = 0; i < this.itemListArray.length; i++) {
+        //   if(this.itemListArray[i].device_list.length > 1) {
+        //     for(let j = 1; j < this.itemListArray[i].device_list.length; j++) {
+        //       this.itemListArray[i].device_list[0].count += this.itemListArray[i].device_list[j].count;
+        //     }
+        //     this.itemListArray[i].device_list.splice(1);
+        //   }
+        // }
         console.log(this.itemListArray);
         //获取定位,显示地图
-        this.getNowPosition();
+        // this.getNowPosition();
       },
       //切换显示
       changeMode() {
@@ -817,7 +1029,7 @@
       // var map = new BMap.Map("allmap"); //创建Map实例  h5获取的经纬度 lat:34.2777999 lng:108.95309828
         map.centerAndZoom(new BMap.Point(lng, lat), 15); //初始化地图,设置中心点坐标和地图级别
         map.enableScrollWheelZoom();
-        //this.pointShow(map);
+        this.pointShow(map);
       },
       //创建标注点方法
       pointShow(map) {

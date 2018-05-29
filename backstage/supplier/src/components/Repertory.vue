@@ -782,15 +782,9 @@
         this.productItemDown = true;
         this.product = goods_name;
         this.itemListArray = [];
-        // console.log('---------------');
-        // console.log(this.allDeviceListArray);
-        // console.log(this.allDeviceListArray[0].devicelist);
-        // console.log('---------------');
         let data = JSON.parse(localStorage.getItem('data'));
-        console.log('getstorage');
-        console.log(data);
-
-
+        // console.log('getstorage');
+        // console.log(data);
         for(let i = 0; i < data.length; i++) {
           for(let j = 0; j < data[i].devicelist.length; j++) {
             for(let k = 0; k < data[i].devicelist[j].goods_list.length; k++) {
@@ -809,7 +803,7 @@
         }
         console.log(this.itemListArray);
         //获取定位,显示地图
-        // this.getNowPosition();
+        this.getNowPosition();
       },
       //切换显示
       changeMode() {
@@ -836,7 +830,6 @@
               }
               that.mapShow(map, lng, lat);
             }
-
           }
           else {
             alert('failed' + this.getStatus());
@@ -848,12 +841,12 @@
         console.log(`${lng}-----${lat}`);
         lng += 0.0020795652;
         lat -= 0.002026155972;
-        console.log(`${lng}-----${lat}`);
+        alert(`${lng}-----${lat}`);
       // 百度地图API功能
       // var map = new BMap.Map("allmap"); //创建Map实例  h5获取的经纬度 lat:34.2777999 lng:108.95309828
         map.centerAndZoom(new BMap.Point(lng, lat), 15); //初始化地图,设置中心点坐标和地图级别
         map.enableScrollWheelZoom();
-        this.pointShow(map);
+        //this.pointShow(map);
       },
       //创建标注点方法
       pointShow(map) {

@@ -144,7 +144,7 @@
       .userInfo{
         width: 100%;
         position: absolute;
-        top: 13.868vh;
+        top: 14.868vh;
         left: 0;
         text-align: center;
         p:nth-of-type(1){

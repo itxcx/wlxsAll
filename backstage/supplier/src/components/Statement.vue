@@ -1,8 +1,8 @@
 <template>
     <div class="statement">
-      <section class="headerTitle">
-        <p>智能报表</p>
-      </section>
+      <!--<section class="headerTitle">-->
+        <!--<p>智能报表</p>-->
+      <!--</section>-->
       <header>
         <p>今日销售额 (元)</p>
         <p class="saleroom">{{saleroom}}</p>

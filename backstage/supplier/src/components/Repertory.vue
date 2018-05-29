@@ -35,7 +35,7 @@
             <span class="defaultPic" v-show="!item.picture"></span>
             <dl>
               <dt>{{item.goods_name}}</dt>
-              <dd>单价: ￥</dd>
+              <dd>单价: ￥ {{item.price}}</dd>
             </dl>
             <p>库存<span>{{item.count}}</span>件
               <span></span>
@@ -181,147 +181,7 @@
         allList: true,
         itemIsSelect: false, //是否选择具体商品
         mapMode: false,
-        // deviceList: [
-        //   {
-        //   "district": "全部",
-        //   "show": true,
-        //   "list": [
-        //     {
-        //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
-        //       "name": "未来鲜森-0001",
-        //       "longitude": 108.98416,
-        //       "latitude": 34.28555,
-        //       "count": 55
-        //     },
-        //     {
-        //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
-        //       "name": "未来鲜森-0002",
-        //       "longitude": 108.95416,
-        //       "latitude": 34.25555,
-        //       "count": 55
-        //     },
-        //     {
-        //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
-        //       "name": "未来鲜森-0003",
-        //       "longitude": 108.96416,
-        //       "latitude": 34.26555,
-        //       "count": 55
-        //     },
-        //     {
-        //       "addr": "西安市高新区锦业路69号瞪羚谷E座",
-        //       "name": "未来鲜森-0004",
-        //       "longitude": 108.94416,
-        //       "latitude": 34.24555,
-        //       "count": 55
-        //     }
-        //   ]
-        // },
-        //   {
-        //     "district": "雁塔区",
-        //     "show": false,
-        //     "list": [
-        //       {
-        //         "addr": "西安市高新区锦业路69号瞪羚谷E座",
-        //         "name": "未来鲜森-0003",
-        //         "longitude": 108.96416,
-        //         "latitude": 34.26555,
-        //         "count": 55
-        //       },
-        //       {
-        //         "addr": "西安市高新区锦业路69号瞪羚谷E座",
-        //         "name": "未来鲜森-0004",
-        //         "longitude": 108.94416,
-        //         "latitude": 34.24555,
-        //         "count": 55
-        //       }
-        //     ]
-        //   }
-        // ],
         showDeviceList: [],
-        // RepertoryArray: [
-        //   {
-        //     "address": "瞪羚谷",
-        //     "deviceList": [
-        //       {
-        //         "name": "未来鲜森-瞪羚谷1",
-        //         "acount": "90",
-        //         "longitude": 108.8662555440,
-        //         "latitude": 34.2023934917
-        //       },
-        //       {
-        //         "name": "未来鲜森-瞪羚谷2",
-        //         "acount": "88",
-        //         "longitude": 108.8662555440,
-        //         "latitude": 34.2043934917
-        //       }
-        //     ]
-        //   },
-        //   {
-        //     "address": "招商银行",
-        //     "deviceList": [
-        //       {
-        //         "name": "未来鲜森-招商银行1",
-        //         "acount": "20",
-        //         "longitude": 108.9372220000,
-        //         "latitude": 34.2328420000
-        //       },
-        //       {
-        //         "name": "未来鲜森-招商银行2",
-        //         "acount": "20",
-        //         "longitude": 108.9372220000,
-        //         "latitude": 34.2348420000
-        //       },
-        //       {
-        //         "name": "未来鲜森-招商银行2",
-        //         "acount": "20",
-        //         "longitude": 108.9372220000,
-        //         "latitude": 34.2348420000
-        //       },
-        //       {
-        //         "name": "未来鲜森-招商银行2",
-        //         "acount": "20",
-        //         "longitude": 108.9372220000,
-        //         "latitude": 34.2348420000
-        //       },
-        //       {
-        //         "name": "未来鲜森-招商银行2",
-        //         "acount": "20",
-        //         "longitude": 108.9372220000,
-        //         "latitude": 34.2348420000
-        //       },
-        //       {
-        //         "name": "未来鲜森-招商银行2",
-        //         "acount": "20",
-        //         "longitude": 108.9372220000,
-        //         "latitude": 34.2348420000
-        //       },
-        //       {
-        //         "name": "未来鲜森-招商银行2",
-        //         "acount": "20",
-        //         "longitude": 108.9372220000,
-        //         "latitude": 34.2348420000
-        //       },
-        //       {
-        //         "name": "未来鲜森-招商银行2",
-        //         "acount": "20",
-        //         "longitude": 108.9372220000,
-        //         "latitude": 34.2348420000
-        //       },
-        //       {
-        //         "name": "未来鲜森-招商银行2",
-        //         "acount": "20",
-        //         "longitude": 108.9372220000,
-        //         "latitude": 34.2348420000
-        //       },
-        //       {
-        //         "name": "未来鲜森-招商银行2",
-        //         "acount": "20",
-        //         "longitude": 108.9372220000,
-        //         "latitude": 34.2348420000
-        //       }
-        //     ]
-        //   }
-        // ],
         allProductArray: [], //全部商品
         allDeviceListArray: [
           {
@@ -788,13 +648,6 @@
         let ddd = JSON.stringify(Data);
         localStorage.setItem('data', ddd);
         localStorage.setItem('deviceData', ddd);
-        // console.log('storage');
-        // console.log(localStorage.getItem('data'))
-
-        // this.commonArray = Data;
-        // let data = Datas;
-        // let data1 = Data;
-
         //处理全部商品
         //所有柜子的同一商品数量相加
             for(let i = 0; i < data.length; i++) {
@@ -936,27 +789,7 @@
         let data = JSON.parse(localStorage.getItem('data'));
         console.log('getstorage');
         console.log(data);
-        // for(let i = 0; i < this.allDeviceListArray[0].devicelist.length; i++) {
-        //   let obj = {
-        //     area_name: this.allDeviceListArray[0].devicelist[i].area_name,
-        //     device_list: []
-        //   }
-        //   for(let j = 0; j < this.allDeviceListArray[0].devicelist[i].goods_list.length; j++) {
-        //     if(goods_name === this.allDeviceListArray[0].devicelist[i].goods_list[j].goods_name) {
-        //       let dev = {
-        //         address:  this.allDeviceListArray[0].devicelist[i].address,
-        //         goods_name: this.allDeviceListArray[0].devicelist[i].goods_list[j].goods_name,
-        //         count: this.allDeviceListArray[0].devicelist[i].goods_list[j].count
-        //       }
-        //       console.log(dev);
-        //       obj.device_list.push(dev);
-        //     }
-        //   }
-        //   if(obj.device_list.length > 0) {
-        //     this.itemListArray.push(obj);
-        //   }
-        // }
-        // let data = this.commonArray;
+
 
         for(let i = 0; i < data.length; i++) {
           for(let j = 0; j < data[i].devicelist.length; j++) {
@@ -974,15 +807,6 @@
             }
           }
         }
-        // //处理商品相同的情况，count相加，删除其他的
-        // for(let i = 0; i < this.itemListArray.length; i++) {
-        //   if(this.itemListArray[i].device_list.length > 1) {
-        //     for(let j = 1; j < this.itemListArray[i].device_list.length; j++) {
-        //       this.itemListArray[i].device_list[0].count += this.itemListArray[i].device_list[j].count;
-        //     }
-        //     this.itemListArray[i].device_list.splice(1);
-        //   }
-        // }
         console.log(this.itemListArray);
         //获取定位,显示地图
         // this.getNowPosition();
@@ -1263,15 +1087,24 @@
           width: 27.4466vw;
           float: left;
           font-size: 2.2488rem;
-          li{
-            padding: 2.2398vh 0;
-            text-align: center;
+          ul{
+            height: 79vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling : touch;
+            li{
+              padding: 2.2398vh 0;
+              text-align: center;
+            }
           }
+
         }
         .right{
           width: 72.5534vw;
           float: right;
           ul{
+            height: 79vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling : touch;
             li{
               font-size: 2.2488rem;
               color: #373737;

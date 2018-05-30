@@ -858,46 +858,125 @@
           {
             address: "xa",
             device_id: 1000000002,
+            area_name:"",
             longitude: '',
             latitude: '',
           },
           {
-            address: "xa",
-            device_id: 1000000002,
+            address:"新待遇",
+            area_name:"",
+            device_id:1000000006,
             longitude: '',
             latitude: '',
+          },
+          {
+            address:"高新一路创新大厦左侧01",
+            area_name:"高新一路创新大厦",
+            device_id:6101130001,
+            longitude: 108.910119,
+            latitude: 34.239376,
+          },
+          {
+            address:"高新一路创新大厦右侧02",
+            area_name:"高新一路创新大厦",
+            device_id:6101130002,
+            longitude: 108.910097,
+            latitude: 34.239249,
+          },
+          {
+            address:"E座左侧04",
+            area_name:"瞪羚谷E座",
+            device_id:6101130004,
+            longitude: 108.8662555440,
+            latitude: 34.2023934917,
+          },
+          {
+            address:"E座右侧05",
+            area_name:"瞪羚谷E座",
+            device_id:6101130005,
+            longitude: 108.8662555440,
+            latitude: 34.2043934917,
+          },
+          {
+            address:"雁塔区招商银行右侧06",
+            area_name:"雁塔区招商银行",
+            device_id:6101130006,
+            longitude: 108.911359,
+            latitude: 34.24584,
+          },
+          {
+            address:"雁塔区招商银行左侧07",
+            area_name:"雁塔区招商银行",
+            device_id:6101130007,
+            longitude: 108.911368,
+            latitude: 34.245836,
+          },
+          {
+            address:"国家数字出版基地A座右侧09",
+            area_name:"国家数字出版基地A座",
+            device_id:6101130009,
+            longitude: 108.840424,
+            latitude: 34.216147,
+          },
+          {
+            address:"国家数字出版基地A座左侧侧08",
+            area_name:"国家数字出版基地A座",
+            device_id:6101130008,
+            longitude: 108.840649,
+            latitude: 34.216408,
+          },
+          {
+            address:"都市之门B座右侧10",
+            area_name:"都市之门B座",
+            device_id:6101130010,
+            longitude: 108.893936,
+            latitude: 34.201111,
+          },
+          {
+            address:"都市之门B座左侧11",
+            area_name:"都市之门B座",
+            device_id:6101130011,
+            longitude: 108.893896,
+            latitude: 34.201052,
           }
+
         ]
         var data = this.itemListArray;
         console.log(data);
+        for(let i = 0; i < data.length; i++) {
+          for(let j = 0; j < PositonArray.length; j++) {
+            if(data[i].address === PositonArray[j].address) {
+              data[i].longitude = PositonArray[j].longitude;
+              data[i].latitude = PositonArray[j].latitude;
+            }
+          }
+        }
         if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
-            for (var j = 0; j < data[i].device_list.length; j++) {
-              var longitude = data[i].device_list[j].longitude, latitude = data[i].device_list[j].latitude;
-              var pt = new BMap.Point(longitude, latitude);
-              //定义icon时一定要设置anchor属性,否则显示点位会随着地图的缩放移动,此点是不会变动的,icon设置点是根据此点的位置来设置的
-              var myIcon = new BMap.Icon("./static/images/location_normal.png", new BMap.Size(68, 70), {
-                anchor: new BMap.Size(5, 5)
-              });
-              var marker = new BMap.Marker(pt, {icon: myIcon}); //创建标注
-              var acount = data[i].device_list[j].count;
-              console.log(acount)
-              var label = new BMap.Label("库存" + acount + "件", {position: pt, offset: new BMap.Size(-35, -30)});
-              label.setStyle({
-                "color": "#ffffff",
-                "fontSize": "12px",
-                "height": "25px",
-                "width": "90px",
-                "borderRadius": "10px",
-                "textAlign": "center",
-                "lineHeight": "20px",
-                "background": "#ff8827",
-                "fontFamily": "微软雅黑",
-                "border": "none"
-              });
-              marker.setLabel(label);
-              map.addOverlay(marker);
-            }
+            var longitude = data[i].longitude, latitude = data[i].latitude;
+            var pt = new BMap.Point(longitude, latitude);
+            //定义icon时一定要设置anchor属性,否则显示点位会随着地图的缩放移动,此点是不会变动的,icon设置点是根据此点的位置来设置的
+            var myIcon = new BMap.Icon("./static/images/location_normal.png", new BMap.Size(68, 70), {
+              anchor: new BMap.Size(5, 5)
+            });
+            var marker = new BMap.Marker(pt, {icon: myIcon}); //创建标注
+            var acount = data[i].count;
+            console.log(acount)
+            var label = new BMap.Label("库存" + acount + "件", {position: pt, offset: new BMap.Size(-35, -30)});
+            label.setStyle({
+              "color": "#ffffff",
+              "fontSize": "12px",
+              "height": "25px",
+              "width": "90px",
+              "borderRadius": "10px",
+              "textAlign": "center",
+              "lineHeight": "20px",
+              "background": "#ff8827",
+              "fontFamily": "微软雅黑",
+              "border": "none"
+            });
+            marker.setLabel(label);
+            map.addOverlay(marker);
           }
         }
       },

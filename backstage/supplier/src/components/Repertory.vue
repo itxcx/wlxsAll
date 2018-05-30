@@ -234,416 +234,416 @@
       },
       //初始化数据获取及处理方法
       getOrderAllData() {
-        // this.$ajax({
-        //   url: 'http://merchant.test.weilaixiansen.com/login/goodsList',
-        //   method: 'GET'
-        // }).then((res) => {
-        //   if(res.data.code == 0) {
-        //     let Data = res.data.data;
+        this.$ajax({
+          url: 'http://merchant.test.weilaixiansen.com/login/goodsList',
+          method: 'GET'
+        }).then((res) => {
+          if(res.data.code == 0) {
+            let Data = res.data.data;
 
-        let Data =  [
-       {
-        "address": "",
-          "devicelist": [{
-          "device_id": 1000000002,
-          "address": "xa",
-          "area_name": "",
-          "goods_list": [{
-            "picture": null,
-            "goods_name": "乐虎抗疲劳",
-            "count": 4
-          }]
-        }, {
-          "device_id": 1000000006,
-          "address": "新待遇",
-          "area_name": "",
-          "goods_list": [{
-            "picture": null,
-            "goods_name": "虎皮卷",
-            "count": 1
-          }]
-        }]
-      }, {
-    "address": "高新一路创新大厦",
-      "devicelist": [{
-      "device_id": 6101130001,
-      "address": "高新一路创新大厦左侧01",
-      "area_name": "高新一路创新大厦",
-      "goods_list": [{
-        "picture": null,
-        "goods_name": "乐虎",
-        "count": 16
-      }, {
-        "picture": null,
-        "goods_name": "脉动",
-        "count": 2
-      }, {
-        "picture": null,
-        "goods_name": "澳洲混合坚果仁",
-        "count": 2
-      }, {
-        "picture": null,
-        "goods_name": "瑞特斯波德巧克力",
-        "count": 3
-      }, {
-        "picture": null,
-        "goods_name": "伊利每益添原味",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "甜甜圈",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "Q心抹茶",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "诺曼地",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "谷物原香三明治",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "乳酪包",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "牛奶雪花糕",
-        "count": 3
-      }, {
-        "picture": null,
-        "goods_name": "BK阳光芝士卷",
-        "count": 1
-      }]
-    }, {
-      "device_id": 6101130002,
-      "address": "高新一路创新大厦右侧02",
-      "area_name": "高新一路创新大厦",
-      "goods_list": [{
-        "picture": null,
-        "goods_name": "乐虎",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "米旗奶油蛋卷",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "诺曼地",
-        "count": 2
-      }, {
-        "picture": null,
-        "goods_name": "牛奶雪花糕",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "Q心抹茶",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "甄选培根火腿寿司",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "奶香蒸蛋糕",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "肉松沙拉",
-        "count": 2
-      }, {
-        "picture": null,
-        "goods_name": "彩虹心情",
-        "count": 2
-      }, {
-        "picture": null,
-        "goods_name": "蟹小芳",
-        "count": 3
-      }, {
-        "picture": null,
-        "goods_name": "诺曼地",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "肉松沙拉",
-        "count": 2
-      },  {
-        "picture": null,
-        "goods_name": "阿宽四川红油面皮",
-        "count": 6
-      }, {
-        "picture": null,
-        "goods_name": "每益添原味",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "BK原味木糠盒",
-        "count": 3
-      }, {
-        "picture": null,
-        "goods_name": "BK奥利奥木糠盒",
-        "count": 3
-      }, {
-        "picture": null,
-        "goods_name": "BK肉松小贝",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "姚太太精品梅子",
-        "count": 2
-      }, {
-        "picture": null,
-        "goods_name": "谷粒多早餐奶",
-        "count": 19
-      }, {
-        "picture": null,
-        "goods_name": "王老吉黑凉茶",
-        "count": 15
-      }, {
-        "picture": null,
-        "goods_name": "新希望香蕉芒果牛奶",
-        "count": 10
-      }, {
-        "picture": null,
-        "goods_name": "悦活U格",
-        "count": 1
-      }]
-    }]
-  }, {
-    "address": "瞪羚谷E座",
-      "devicelist": [{
-      "device_id": 6101130004,
-      "address": "E座左侧04",
-      "area_name": "瞪羚谷E座",
-      "goods_list": [{
-        "picture": null,
-        "goods_name": "时令农家圣女果350g",
-        "count": 18
-      }, {
-        "picture": null,
-        "goods_name": "冬季爆款砂糖橘350g",
-        "count": 12
-      }, {
-        "picture": null,
-        "goods_name": "乐虎(每日两罐3.88)",
-        "count": 47
-      }, {
-        "picture": null,
-        "goods_name": "阿宽四川红油面皮",
-        "count": 2
-      }, {
-        "picture": null,
-        "goods_name": "好吃点臻好曲奇",
-        "count": 2
-      }, {
-        "picture": null,
-        "goods_name": "麦吉士蛋糕",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "星巴克咖啡",
-        "count": 5
-      }, {
-        "picture": null,
-        "goods_name": "天地精华矿泉水",
-        "count": 2
-      }, {
-        "picture": null,
-        "goods_name": "阿宽四川红油面皮",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "大龍燚自煮懒人火锅",
-        "count": 5
-      }]
-    }, {
-      "device_id": 6101130005,
-      "address": "E座右侧05",
-      "area_name": "瞪羚谷E座",
-      "goods_list": [{
-        "picture": null,
-        "goods_name": "时令农家圣女果350g",
-        "count": 18
-      }, {
-        "picture": null,
-        "goods_name": "冬季爆款砂糖橘350g",
-        "count": 12
-      }, {
-        "picture": null,
-        "goods_name": "乐虎(每日两罐3.88)",
-        "count": 11
-      }, {
-        "picture": null,
-        "goods_name": "果2代",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "麦吉士蛋糕",
-        "count": 2
-      }, {
-        "picture": null,
-        "goods_name": "麦吉士榛子味酥塔",
-        "count": 2
-      }, {
-        "picture": null,
-        "goods_name": "芙列浓巧克力",
-        "count": 8
-      }, {
-        "picture": null,
-        "goods_name": "大和味鲜切薯条",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "新加坡进口方便面",
-        "count": 4
-      }, {
-        "picture": null,
-        "goods_name": "泰国格力高芒果饼干",
-        "count": 6
-      }, {
-        "picture": null,
-        "goods_name": "似水柔情自煮懒人火锅",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "星巴克咖啡",
-        "count": 4
-      }, {
-        "picture": null,
-        "goods_name": "天地精华矿泉水",
-        "count": 7
-      }, {
-        "picture": null,
-        "goods_name": "史上最提神",
-        "count": 2
-      }, {
-        "picture": null,
-        "goods_name": "农夫山泉NFC橙汁",
-        "count": 8
-      }, {
-        "picture": null,
-        "goods_name": "Q心抹茶",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "诺曼地",
-        "count": 3
-      }, {
-        "picture": null,
-        "goods_name": "乳酪包",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "卢比蛋糕",
-        "count": 1
-      }, {
-        "picture": null,
-        "goods_name": "磅蛋糕",
-        "count": 1
-      }]
-    }]
-  }, {
-    "address": "雁塔区招商银行",
-      "devicelist": [{
-      "device_id": 6101130006,
-      "address": "雁塔区招商银行右侧06",
-      "area_name": "雁塔区招商银行",
-      "goods_list": [{
-        "picture": null,
-        "goods_name": "果2代",
-        "count": 13
-      }, {
-        "picture": null,
-        "goods_name": "磅蛋糕",
-        "count": 1
-      }]
-    }]
-  }, {
-    "address": "国家数字出版基地A座",
-      "devicelist": [{
-      "device_id": 6101130009,
-      "address": "国家数字出版基地A座右侧09",
-      "area_name": "国家数字出版基地A座",
-      "goods_list": [{
-        "picture": null,
-        "goods_name": "果2代",
-        "count": 11
-      }, {
-        "picture": null,
-        "goods_name": "阿宽四川红油面皮",
-        "count": 4
-      }, {
-        "picture": null,
-        "goods_name": "似水柔情火锅",
-        "count": 5
-      }]
-    }, {
-      "device_id": 6101130008,
-      "address": "国家数字出版基地A座左侧侧08",
-      "area_name": "国家数字出版基地A座",
-      "goods_list": [{
-        "picture": null,
-        "goods_name": "洽洽小呆瓜",
-        "count": 2
-      }, {
-        "picture": null,
-        "goods_name": "香甜芒果干",
-        "count": 2
-      }, {
-        "picture": null,
-        "goods_name": "兵兵有礼公仔",
-        "count": 7
-      }, {
-        "picture": null,
-        "goods_name": "兵兵有礼玉米杯",
-        "count": 3
-      }, {
-        "picture": null,
-        "goods_name": "大唐丰韵",
-        "count": 4
-      }, {
-        "picture": null,
-        "goods_name": "兵兵有礼果冻杯",
-        "count": 4
-      }, {
-        "picture": null,
-        "goods_name": "兵兵有礼冰箱贴",
-        "count": 2
-      }, {
-        "picture": null,
-        "goods_name": "兵兵有礼陕西美食本",
-        "count": 8
-      }]
-    }]
-  }, {
-    "address": "都市之门B座",
-      "devicelist": [{
-      "device_id": 6101130010,
-      "address": "都市之门B座右侧10",
-      "area_name": "都市之门B座",
-      "goods_list": [{
-        "picture": null,
-        "goods_name": "果2代",
-        "count": 4
-      }, {
-        "picture": null,
-        "goods_name": "BK原味木糠盒",
-        "count": 1
-      }]
-    }, {
-      "device_id": 6101130011,
-      "address": "都市之门B座左侧11",
-      "area_name": "都市之门B座",
-      "goods_list": [{
-        "picture": null,
-        "goods_name": "养生瓜子",
-        "count": 2
-      }]
-    }]
-  }]
+  //       let Data =  [
+  //      {
+  //       "address": "",
+  //         "devicelist": [{
+  //         "device_id": 1000000002,
+  //         "address": "xa",
+  //         "area_name": "",
+  //         "goods_list": [{
+  //           "picture": null,
+  //           "goods_name": "乐虎抗疲劳",
+  //           "count": 4
+  //         }]
+  //       }, {
+  //         "device_id": 1000000006,
+  //         "address": "新待遇",
+  //         "area_name": "",
+  //         "goods_list": [{
+  //           "picture": null,
+  //           "goods_name": "虎皮卷",
+  //           "count": 1
+  //         }]
+  //       }]
+  //     }, {
+  //   "address": "高新一路创新大厦",
+  //     "devicelist": [{
+  //     "device_id": 6101130001,
+  //     "address": "高新一路创新大厦左侧01",
+  //     "area_name": "高新一路创新大厦",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "乐虎",
+  //       "count": 16
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "脉动",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "澳洲混合坚果仁",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "瑞特斯波德巧克力",
+  //       "count": 3
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "伊利每益添原味",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "甜甜圈",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "Q心抹茶",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "诺曼地",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "谷物原香三明治",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "乳酪包",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "牛奶雪花糕",
+  //       "count": 3
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "BK阳光芝士卷",
+  //       "count": 1
+  //     }]
+  //   }, {
+  //     "device_id": 6101130002,
+  //     "address": "高新一路创新大厦右侧02",
+  //     "area_name": "高新一路创新大厦",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "乐虎",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "米旗奶油蛋卷",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "诺曼地",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "牛奶雪花糕",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "Q心抹茶",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "甄选培根火腿寿司",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "奶香蒸蛋糕",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "肉松沙拉",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "彩虹心情",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "蟹小芳",
+  //       "count": 3
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "诺曼地",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "肉松沙拉",
+  //       "count": 2
+  //     },  {
+  //       "picture": null,
+  //       "goods_name": "阿宽四川红油面皮",
+  //       "count": 6
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "每益添原味",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "BK原味木糠盒",
+  //       "count": 3
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "BK奥利奥木糠盒",
+  //       "count": 3
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "BK肉松小贝",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "姚太太精品梅子",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "谷粒多早餐奶",
+  //       "count": 19
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "王老吉黑凉茶",
+  //       "count": 15
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "新希望香蕉芒果牛奶",
+  //       "count": 10
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "悦活U格",
+  //       "count": 1
+  //     }]
+  //   }]
+  // }, {
+  //   "address": "瞪羚谷E座",
+  //     "devicelist": [{
+  //     "device_id": 6101130004,
+  //     "address": "E座左侧04",
+  //     "area_name": "瞪羚谷E座",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "时令农家圣女果350g",
+  //       "count": 18
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "冬季爆款砂糖橘350g",
+  //       "count": 12
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "乐虎(每日两罐3.88)",
+  //       "count": 47
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "阿宽四川红油面皮",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "好吃点臻好曲奇",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "麦吉士蛋糕",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "星巴克咖啡",
+  //       "count": 5
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "天地精华矿泉水",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "阿宽四川红油面皮",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "大龍燚自煮懒人火锅",
+  //       "count": 5
+  //     }]
+  //   }, {
+  //     "device_id": 6101130005,
+  //     "address": "E座右侧05",
+  //     "area_name": "瞪羚谷E座",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "时令农家圣女果350g",
+  //       "count": 18
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "冬季爆款砂糖橘350g",
+  //       "count": 12
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "乐虎(每日两罐3.88)",
+  //       "count": 11
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "果2代",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "麦吉士蛋糕",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "麦吉士榛子味酥塔",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "芙列浓巧克力",
+  //       "count": 8
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "大和味鲜切薯条",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "新加坡进口方便面",
+  //       "count": 4
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "泰国格力高芒果饼干",
+  //       "count": 6
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "似水柔情自煮懒人火锅",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "星巴克咖啡",
+  //       "count": 4
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "天地精华矿泉水",
+  //       "count": 7
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "史上最提神",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "农夫山泉NFC橙汁",
+  //       "count": 8
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "Q心抹茶",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "诺曼地",
+  //       "count": 3
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "乳酪包",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "卢比蛋糕",
+  //       "count": 1
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "磅蛋糕",
+  //       "count": 1
+  //     }]
+  //   }]
+  // }, {
+  //   "address": "雁塔区招商银行",
+  //     "devicelist": [{
+  //     "device_id": 6101130006,
+  //     "address": "雁塔区招商银行右侧06",
+  //     "area_name": "雁塔区招商银行",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "果2代",
+  //       "count": 13
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "磅蛋糕",
+  //       "count": 1
+  //     }]
+  //   }]
+  // }, {
+  //   "address": "国家数字出版基地A座",
+  //     "devicelist": [{
+  //     "device_id": 6101130009,
+  //     "address": "国家数字出版基地A座右侧09",
+  //     "area_name": "国家数字出版基地A座",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "果2代",
+  //       "count": 11
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "阿宽四川红油面皮",
+  //       "count": 4
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "似水柔情火锅",
+  //       "count": 5
+  //     }]
+  //   }, {
+  //     "device_id": 6101130008,
+  //     "address": "国家数字出版基地A座左侧侧08",
+  //     "area_name": "国家数字出版基地A座",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "洽洽小呆瓜",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "香甜芒果干",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "兵兵有礼公仔",
+  //       "count": 7
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "兵兵有礼玉米杯",
+  //       "count": 3
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "大唐丰韵",
+  //       "count": 4
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "兵兵有礼果冻杯",
+  //       "count": 4
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "兵兵有礼冰箱贴",
+  //       "count": 2
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "兵兵有礼陕西美食本",
+  //       "count": 8
+  //     }]
+  //   }]
+  // }, {
+  //   "address": "都市之门B座",
+  //     "devicelist": [{
+  //     "device_id": 6101130010,
+  //     "address": "都市之门B座右侧10",
+  //     "area_name": "都市之门B座",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "果2代",
+  //       "count": 4
+  //     }, {
+  //       "picture": null,
+  //       "goods_name": "BK原味木糠盒",
+  //       "count": 1
+  //     }]
+  //   }, {
+  //     "device_id": 6101130011,
+  //     "address": "都市之门B座左侧11",
+  //     "area_name": "都市之门B座",
+  //     "goods_list": [{
+  //       "picture": null,
+  //       "goods_name": "养生瓜子",
+  //       "count": 2
+  //     }]
+  //   }]
+  // }]
         let data = Data;
         let ddd = JSON.stringify(Data);
         localStorage.setItem('data', ddd);
@@ -692,10 +692,10 @@
           this.allDeviceListArray.push(obj);
         }
         console.log(this.allDeviceListArray);
-        //   }
-        // }).catch((error) => {
-        //   console.log(error);
-        // })
+          }
+        }).catch((error) => {
+          console.log(error);
+        })
       },
       //暂未开放提示方法
       closeCity() {
@@ -957,17 +957,18 @@
             var pt = new BMap.Point(longitude, latitude);
             //定义icon时一定要设置anchor属性,否则显示点位会随着地图的缩放移动,此点是不会变动的,icon设置点是根据此点的位置来设置的
             var myIcon = new BMap.Icon("./static/images/location_normal.png", new BMap.Size(38, 39), {
-              anchor: new BMap.Size(5, 5)
+              anchor: new BMap.Size(5, 5),
+              imageSize: new BMap.Size(25,26),
             });
             var marker = new BMap.Marker(pt, {icon: myIcon}); //创建标注
             var acount = data[i].count;
             console.log(acount)
-            var label = new BMap.Label("库存" + acount + "件", {position: pt, offset: new BMap.Size(-35, -30)});
+            var label = new BMap.Label("库存" + acount + "件", {position: pt, offset: new BMap.Size(-25, -30)});
             label.setStyle({
               "color": "#ffffff",
-              "fontSize": "12px",
-              "height": "25px",
-              "width": "90px",
+              "fontSize": "10px",
+              "height": "20px",
+              "width": "70px",
               "borderRadius": "10px",
               "textAlign": "center",
               "lineHeight": "20px",

@@ -78,7 +78,7 @@
                   <span></span>
                   <span>{{item.area_name}}</span>
                 </p>
-                <p>距当前定位地址5千米</p>
+                <!--<p>距当前定位地址5千米</p>-->
             </li>
           </ul>
         </aside>
@@ -128,7 +128,7 @@
           <section class="updateTime">
             <p>
               <span>上次库存更新时间:</span>
-              <span>2018-5-1</span>
+              <span>{{refreshTime}}</span>
             </p>
             <div v-show="!mapMode" @click="changeMode">
               <span>地图模式 ></span>
@@ -171,7 +171,7 @@
         tipStatus: false,
         tipText: '正在建设，马上开放...',
         refreshTime: '', //库存更新时间
-        city: '选择城市', //城市
+        city: '西安', //城市
         device: '全部售货柜', //设备
         product: '选择商品', //商品
         cityDown: false, //控制城市选择显示
@@ -873,71 +873,71 @@
             address:"高新一路创新大厦左侧01",
             area_name:"高新一路创新大厦",
             device_id:6101130001,
-            longitude: 108.910119,
-            latitude: 34.239376,
+            longitude: 108.909917,
+            latitude: 34.239044,
           },
           {
             address:"高新一路创新大厦右侧02",
             area_name:"高新一路创新大厦",
             device_id:6101130002,
-            longitude: 108.910097,
-            latitude: 34.239249,
+            longitude: 108.910276,
+            latitude: 34.23954,
           },
           {
-            address:"E座左侧04",
-            area_name:"瞪羚谷E座",
-            device_id:6101130004,
-            longitude: 108.8662555440,
-            latitude: 34.2023934917,
+            address: "E座左侧04",
+            area_name: "瞪羚谷E座",
+            device_id: 6101130004,
+            longitude: 108.86603,
+            latitude: 34.202373,
           },
           {
-            address:"E座右侧05",
-            area_name:"瞪羚谷E座",
-            device_id:6101130005,
-            longitude: 108.8662555440,
-            latitude: 34.2043934917,
+            address: "E座右侧05",
+            area_name: "瞪羚谷E座",
+            device_id: 6101130005,
+            longitude: 108.866484,
+            latitude: 34.20238,
           },
           {
             address:"雁塔区招商银行右侧06",
             area_name:"雁塔区招商银行",
             device_id:6101130006,
-            longitude: 108.911359,
-            latitude: 34.24584,
+            longitude: 108.91161,
+            latitude: 34.245725,
           },
           {
             address:"雁塔区招商银行左侧07",
             area_name:"雁塔区招商银行",
             device_id:6101130007,
-            longitude: 108.911368,
-            latitude: 34.245836,
+            longitude: 108.911098,
+            latitude: 34.245661,
           },
           {
             address:"国家数字出版基地A座右侧09",
             area_name:"国家数字出版基地A座",
             device_id:6101130009,
-            longitude: 108.840424,
-            latitude: 34.216147,
+            longitude: 108.84103,
+            latitude: 34.217516,
           },
           {
             address:"国家数字出版基地A座左侧侧08",
             area_name:"国家数字出版基地A座",
             device_id:6101130008,
-            longitude: 108.840649,
-            latitude: 34.216408,
+            longitude: 108.83997,
+            latitude: 34.214553,
           },
           {
             address:"都市之门B座右侧10",
             area_name:"都市之门B座",
             device_id:6101130010,
-            longitude: 108.893936,
-            latitude: 34.201111,
+            longitude: 108.894219,
+            latitude: 34.201182,
           },
           {
             address:"都市之门B座左侧11",
             area_name:"都市之门B座",
             device_id:6101130011,
-            longitude: 108.893896,
-            latitude: 34.201052,
+            longitude: 108.893595,
+            latitude: 34.200955,
           }
 
         ]

@@ -88,10 +88,10 @@
       width: 33.3333%;
       float: left;
       text-align: center;
-      padding-top: 0.5496vh;
+      padding-top: 0.4496vh;
       dt{
         width: 6.4vw;
-        height: 3.9233vh;
+        height: 4.2233vh;
         margin: 0 auto;
       }
       dd{

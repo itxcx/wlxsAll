@@ -1054,10 +1054,10 @@
           padding: 2.098vh 0 1.874vh 0;
           text-align: center;
           &:nth-of-type(1) {
-            width: 27.2vw;
+            width: 23.2vw;
           }
           &:nth-of-type(2), &:nth-of-type(3){
-            width: 36.4vw;
+            width: 38.4vw;
           }
           span:nth-of-type(2){
             display: inline-block;

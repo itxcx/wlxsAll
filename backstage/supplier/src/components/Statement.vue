@@ -81,8 +81,26 @@
       components: {
         FooterBar
       },
+      mounted() {
+        this.$nextTick(() => {
+          this.getSaleroomData()
+        })
+      },
       methods: {
-
+        //当前时间销售额
+        getSaleroomData() {
+          let date = new Date();
+          let startTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' 00:00:00';
+          let endTime = this.Common.formatDate(date, "yyyy-MM-dd hh:mm:ss");
+          this.$ajax({
+            url: `http://merchant.test.weilaixiansen.com/Merstats/m1?stime=${startTime}&etime=${endTime}`,
+            method: 'GET'
+          }).then((res) => {
+             console.log(res);
+          }).catch((error) => {
+            console.log(error);
+          })
+        }
       }
     }
 </script>

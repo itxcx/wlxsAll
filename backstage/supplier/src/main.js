@@ -34,6 +34,9 @@ import RecordMsg from './components/RecordMsg'; //上下架记录
 Vue.use(iView);
 Vue.config.productionTip = false;
 
+//公共方法
+import Common from './common/tools';
+Vue.prototype.Common = Common;
 
 new Vue({
   el: '#app',

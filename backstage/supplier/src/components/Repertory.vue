@@ -198,40 +198,15 @@
     },
     mounted() {
       this.$nextTick( () => {
-        this.formatDate();
+        let date = new Date();
+        let dataTimes = this.Common.formatDate(date, "yyyy-MM-dd hh:mm:ss");
+        this.refreshTime = dataTimes;
         this.getOrderAllData();
         //初始化方法 显示全部设备
         this.showDeviceList = this.allDeviceListArray[0].devicelist;
       })
     },
     methods: {
-      //设置库存更新时间方法
-      formatDate() {
-        Date.prototype.format = function(timer) {
-          let layoutTime = {
-            "M+": this.getMonth() + 1,
-            "d+": this.getDate(),
-            "h+": this.getHours(),
-            "m+": this.getMinutes(),
-            "s+": this.getSeconds(),
-            "q+": Math.floor((this.getMonth() + 3) / 3),
-            "S": this.getMilliseconds()
-          }
-          if(/(y+)/.test(timer)) {
-            timer = timer.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-          }
-          for (let k in layoutTime) {
-            if (new RegExp("(" + k + ")").test(timer)) {
-              timer = timer.replace(RegExp.$1, (RegExp.$1.length == 1) ?
-                (layoutTime[k]) :
-                (("00" + layoutTime[k]).substr(("" + layoutTime[k]).length)));
-            }
-          }
-          return timer;
-        }
-        let dataTimes = new Date().format("yyyy-MM-dd hh:mm:ss");
-        this.refreshTime = dataTimes;
-      },
       //初始化数据获取及处理方法
       getOrderAllData() {
         this.$ajax({
@@ -1206,6 +1181,7 @@
               p:nth-of-type(2) {
                 font-size: 1.949rem;
                 color: #999898;
+                padding-bottom: 2vh;
                 span:nth-of-type(1){
                   display: inline-block;
                   width: 3.733vw;
@@ -1215,11 +1191,11 @@
                   vertical-align: bottom;
                 }
               }
-              p:nth-of-type(3) {
-                font-size: 1.799rem;
-                color: #939393;
-                padding: 2.6236vh 0;
-              }
+              /*p:nth-of-type(3) {*/
+                /*font-size: 1.799rem;*/
+                /*color: #939393;*/
+                /*padding: 2.6236vh 0;*/
+              /*}*/
             }
           }
         }

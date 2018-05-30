@@ -91,7 +91,7 @@
       padding-top: 0.5496vh;
       dt{
         width: 6.4vw;
-        height: 4.0233vh;
+        height: 3.9233vh;
         margin: 0 auto;
       }
       dd{

@@ -956,7 +956,7 @@
             var longitude = data[i].longitude, latitude = data[i].latitude;
             var pt = new BMap.Point(longitude, latitude);
             //定义icon时一定要设置anchor属性,否则显示点位会随着地图的缩放移动,此点是不会变动的,icon设置点是根据此点的位置来设置的
-            var myIcon = new BMap.Icon("./static/images/location_normal.png", new BMap.Size(68, 70), {
+            var myIcon = new BMap.Icon("./static/images/location_normal.png", new BMap.Size(38, 39), {
               anchor: new BMap.Size(5, 5)
             });
             var marker = new BMap.Marker(pt, {icon: myIcon}); //创建标注

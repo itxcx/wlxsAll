@@ -17,14 +17,14 @@
           <section class="datePickerContent" v-show="datePickerShow">
             <section class="contentModal">
               <p>
-                <span @click="computeDate">今日</span>
-                <span @click="computeDate">本周</span>
-                <span @click="computeDate">本月</span>
+                <span @click="computeDate" :class="{'special': today , '': !today}">今日</span>
+                <span @click="computeDate" :class="{'special': weekday , '': !weekday}">本周</span>
+                <span @click="computeDate" :class="{'special': month , '': !month}">本月</span>
               </p>
               <p>
-                <span @click="computeDate">昨日</span>
-                <span @click="computeDate">上周</span>
-                <span @click="computeDate">上月</span>
+                <span @click="computeDate" :class="{'special': yestoday , '': !yestoday}">昨日</span>
+                <span @click="computeDate" :class="{'special': lastWeek , '': !lastWeek}">上周</span>
+                <span @click="computeDate" :class="{'special': lastyMonth , '': !lastyMonth}">上月</span>
               </p>
             </section>
             <section class="handleSelectDate">
@@ -73,6 +73,12 @@
               saleroom: '', //销售额
               volume: '', //交易笔数
               numberCount: '', //售卖商品个数
+              today: true,
+              weekday: false,
+              month: false,
+              yestoday: false,
+              lastWeek: false,
+              lastMonth: false
             }
         },
         mounted() {
@@ -80,6 +86,7 @@
             let date = new Date();
             this.startDate = this.Common.formatDate(date, "yyyy-MM-dd");
             this.endDate = this.Common.formatDate(date, "yyyy-MM-dd");
+            this.getSaleroomData(this.startDate, this.endDate);
           })
         },
         methods: {
@@ -118,34 +125,70 @@
               case '今日':
                 this.startDate = this.Common.formatDate(date, "yyyy-MM-dd");
                 this.endDate = this.Common.formatDate(date, "yyyy-MM-dd");
+                this.today = true;
+                this.weekday = false;
+                this.month = false;
+                this.yestoday = false;
+                this.lastWeek = false;
+                this.lastMonth = false;
                 break;
               case '昨日':
                 let day = new Date();
                 day.setTime(day.getTime() - 24 * 60 * 60 * 1000);
                 this.startDate = this.Common.formatDate(day, "yyyy-MM-dd");
                 this.endDate = this.Common.formatDate(day, "yyyy-MM-dd");
+                this.today = false;
+                this.weekday = false;
+                this.month = false;
+                this.yestoday = true;
+                this.lastWeek = false;
+                this.lastMonth = false;
                 break;
               case '本周':
                 let weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek);
                 this.startDate = this.Common.formatDate(weekStartDate, "yyyy-MM-dd");
                 this.endDate = this.Common.formatDate(date, "yyyy-MM-dd");
+                this.today = false;
+                this.weekday = true;
+                this.month = false;
+                this.yestoday = false;
+                this.lastWeek = false;
+                this.lastMonth = false;
                 break;
               case '上周':
                 let lastWeekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek - 7);
                 let lastWeekEndDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek - 1);
                 this.startDate = this.Common.formatDate(lastWeekStartDate, "yyyy-MM-dd");
                 this.endDate = this.Common.formatDate(lastWeekEndDate, "yyyy-MM-dd");
+                this.today = false;
+                this.weekday = false;
+                this.month = false;
+                this.yestoday = false;
+                this.lastWeek = true;
+                this.lastMonth = false;
                 break;
               case '本月':
                 let monthStartDate = new Date(nowYear, nowMonth, 1);
                 this.startDate = this.Common.formatDate(monthStartDate, "yyyy-MM-dd");
                 this.endDate = this.Common.formatDate(date, "yyyy-MM-dd");
+                this.today = false;
+                this.weekday = false;
+                this.month = true;
+                this.yestoday = false;
+                this.lastWeek = false;
+                this.lastMonth = false;
                 break;
               case '上月':
                 let lastMonthStartDate = new Date(nowYear, lastMonth, 1);
                 let lastMonthEndDate = new Date(nowYear, lastMonth, this.getMonthDays(nowYear,lastMonth));
                 this.startDate = this.Common.formatDate(lastMonthStartDate, "yyyy-MM-dd");
                 this.endDate = this.Common.formatDate(lastMonthEndDate, "yyyy-MM-dd");
+                this.today = false;
+                this.weekday = false;
+                this.month = false;
+                this.yestoday = false;
+                this.lastWeek = false;
+                this.lastMonth = true;
                 break;
             }
             this.datePickerShow = false;
@@ -259,6 +302,10 @@
                 background: #F2F2F2;
                 border-radius: 2px;
                 font-size: 2.2488rem;
+              }
+              .special{
+                background: #65d172;
+                color: #fff;
               }
               &:nth-of-type(1) {
                 border-top: 1px solid #e5e5e5;

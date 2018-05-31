@@ -31,6 +31,7 @@ import ShipDone from './components/ShipDone'; //下货完成
 import Record from './components/Record'; //上下架记录
 import RecordMsg from './components/RecordMsg'; //上下架记录
 import SaleRoom from './components/SaleRoom'; //销售报表
+import DeviceRank from './components/DeviceRank' //售货柜排行
 
 Vue.use(iView);
 Vue.config.productionTip = false;
@@ -46,7 +47,7 @@ new Vue({
   components: {
     App, Login, Main, FooterBar, Repertory, Exhibing, DoorClose,
     InStoreDone, Scan, Addition, AddItem, CheckExhibing, ExhibingDone,
-    Ship, ShipDone, Record, RecordMsg, SaleRoom
+    Ship, ShipDone, Record, RecordMsg, SaleRoom, DeviceRank
   },
   template: '<App/>'
 })

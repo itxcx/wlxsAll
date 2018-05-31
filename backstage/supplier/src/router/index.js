@@ -19,6 +19,7 @@ import ShipDone from '../components/ShipDone' //下货完成
 import Record from '../components/Record' //上下架记录
 import RecordMsg from '../components/RecordMsg' //上下架记录详情
 import SaleRoom from '../components/SaleRoom' //销售报表
+import DeviceRank from '../components/DeviceRank' //售货柜排行
 //引入主要的数据模块
 
 Vue.use(Router);
@@ -115,5 +116,10 @@ export default new Router({
       name: 'saleRoom',
       component: SaleRoom
     },
+    {
+      path: '/deviceRank',
+      name: 'deviceRank',
+      component: DeviceRank
+    }
   ]
 })

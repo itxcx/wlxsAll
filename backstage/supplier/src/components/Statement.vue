@@ -19,7 +19,7 @@
       </header>
       <section class="statement_content">
         <!--今日货柜排行-->
-        <div class="counter">
+        <div class="counter" @click="goDeviceRank">
           <h3>今日货柜排行</h3>
           <dl>
             <dt>{{counterAddr}}</dt>
@@ -188,6 +188,12 @@
         goSaleRoom() {
           this.$router.push({
             path: '/saleRoom'
+          })
+        },
+        //售货柜排行
+        goDeviceRank() {
+          this.$router.push({
+            path: '/deviceRank'
           })
         }
 

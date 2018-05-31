@@ -24,7 +24,7 @@
               <p>
                 <span @click="computeDate" :class="{'special': yestoday , '': !yestoday}">昨日</span>
                 <span @click="computeDate" :class="{'special': lastWeek , '': !lastWeek}">上周</span>
-                <span @click="computeDate" :class="{'special': lastyMonth , '': !lastyMonth}">上月</span>
+                <span @click="computeDate" :class="{'special': lastMonth , '': !lastMonth}">上月</span>
               </p>
             </section>
             <section class="handleSelectDate">

@@ -51,10 +51,6 @@
           </dl>
         </div>
       </section>
-      <!--<section class="buildingComponent">-->
-        <!--<div></div>-->
-        <!--<p>正在建设，马上开放...</p>-->
-      <!--</section>-->
       <Footer-bar></Footer-bar>
     </div>
 </template>
@@ -65,17 +61,17 @@
       name: "statement",
       data() {
           return {
-            saleroom: '888.98', //销售额
-            volume: '200', //交易笔数
-            numberCount: '50', //售卖商品个数
-            counterAddr: '瞪羚谷创业园',//柜子地址
-            countAmount: '500',//柜子销售额
-            goodsTop: '乐虎',//排行商品名称
-            goodsNum: '50',//商品销售数量
-            exhibitNum: '100',//上货数量统计
-            exhibitDevice: '10',//上货设备数量统计
-            shipNum: '100',//下货数量统计
-            shipDevice: '10',//下货设备数量统计
+            saleroom: '', //销售额
+            volume: '', //交易笔数
+            numberCount: '', //售卖商品个数
+            counterAddr: '',//柜子地址
+            countAmount: '',//柜子销售额
+            goodsTop: '',//排行商品名称
+            goodsNum: '',//商品销售数量
+            exhibitNum: '',//上货数量统计
+            exhibitDevice: '',//上货设备数量统计
+            shipNum: '',//下货数量统计
+            shipDevice: '',//下货设备数量统计
           }
       },
       components: {
@@ -83,24 +79,112 @@
       },
       mounted() {
         this.$nextTick(() => {
-          this.getSaleroomData()
+          //获取时间
+          let date = new Date();
+          let startTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' 00:00:00';
+          let endTime = this.Common.formatDate(date, "yyyy-MM-dd hh:mm:ss");
+
+          this.getSaleroomData(startTime, endTime);
+          this.getDeviceBest(startTime, endTime);
+          this.getProductBest(startTime, endTime);
+          this.getExhibingData(startTime, endTime);
+          this.getShipData(startTime, endTime);
         })
       },
       methods: {
         //当前时间销售额
-        getSaleroomData() {
-          let date = new Date();
-          let startTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' 00:00:00';
-          let endTime = this.Common.formatDate(date, "yyyy-MM-dd hh:mm:ss");
+        getSaleroomData(startTime, endTime) {
           this.$ajax({
             url: `http://merchant.test.weilaixiansen.com/Merstats/m1?stime=${startTime}&etime=${endTime}`,
             method: 'GET'
           }).then((res) => {
-             console.log(res);
+             if(res.data.code == 0) {//返回数据成功
+               let saleData = res.data.data;
+                this.saleroom = saleData.total_money;
+                this.volume = saleData.order_num;
+                this.numberCount = saleData.goods_total;
+             }else if(res.data.code == -1) {//没有数据
+               this.saleroom = 0;
+               this.volume = 0;
+               this.numberCount = 0;
+             }else if(res.data.code == 1) {//未登录
+                this.$router.push({
+                  path: '/'
+                })
+             }
+          }).catch((error) => {
+            console.log(error);
+          })
+        },
+        //今日货柜排行
+        getDeviceBest(startTime, endTime) {
+          this.$ajax({
+            url: `http://merchant.test.weilaixiansen.com/Merstats/m2?stime=${startTime}&etime=${endTime}`,
+            method: 'GET'
+          }).then((res) => {
+            if(res.data.code == 0) {
+              this.counterAddr = res.data.data.device_address;
+              this.countAmount = res.data.data.total_money;
+            }else{
+              this.counterAddr = '未来鲜森智能售货柜';
+              this.countAmount = 0;
+            }
+          }).catch((error) => {
+            console.log(error);
+          })
+        },
+        //今日商品排行
+        getProductBest(startTime, endTime) {
+          this.$ajax({
+            url: `http://merchant.test.weilaixiansen.com/Merstats/m3?stime=${startTime}&etime=${endTime}&device_id=6101130010`,
+            method: 'GET'
+          }).then((res) => {
+            if(res.data.code == 0) {
+              this.goodsTop = res.data.data.goods_name;
+              this.goodsNum  = res.data.data.goods_num;
+            }else{
+              this.goodsTop = '未来鲜森';
+              this.goodsNum  = 0;
+            }
+          }).catch((error) => {
+              console.log(error);
+          })
+        },
+        //今日上货数量
+        getExhibingData(startTime, endTime) {
+          this.$ajax({
+            url: `http://merchant.test.weilaixiansen.com/Merstats/m3and4?stime=${startTime}&etime=${endTime}&is_unload=0`,
+            method: 'GET'
+          }).then((res) => {
+             if(res.data.code == 0) {
+               this.exhibitNum = res.data.data.goods_count;
+               this.exhibitDevice = res.data.data.device_num;
+             }else{
+               this.exhibitNum = 0;
+               this.exhibitDevice = 0;
+             }
+          }).catch((error) => {
+            console.log(error);
+          })
+        },
+        //今日下货数量
+        getShipData(startTime, endTime) {
+          this.$ajax({
+            url: `http://merchant.test.weilaixiansen.com/Merstats/m3and4?stime=${startTime}&etime=${endTime}&is_unload=1`,
+            method: 'GET'
+          }).then((res) => {
+            if(res.data.code == 0) {
+              this.shipNum = res.data.data.goods_count;
+              this.shipDevice = res.data.data.device_num;
+            }else{
+              this.shipNum = 0;
+              this.shipDevice = 0;
+            }
           }).catch((error) => {
             console.log(error);
           })
         }
+
       }
     }
 </script>
@@ -118,19 +202,6 @@
       text-align: center;
       color: #fff;
       font-weight: 500;
-    }
-    .buildingComponent{
-      div{
-        width: 11.2934rem;
-        height: 13.9427rem;
-        background: url("../../static/images/logo.png") no-repeat center center;
-        background-size: cover;
-        margin: 8.395vh auto;
-      }
-      p{
-        text-align: center;
-        font-size: 2.2488rem;
-      }
     }
     header{
       font-family: "PingFang SC";
@@ -173,7 +244,6 @@
     .statement_content{
       width: 88vw;
       margin: 4.6476vh 11vw;
-      overflow: hidden;
       div{
         width: 39vw;
         height: 19.34vh;

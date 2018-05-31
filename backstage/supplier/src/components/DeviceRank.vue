@@ -234,55 +234,55 @@
       },
       //当前时间销售额
       getDeviceRankData(startTime, endTime) {
-        // this.deviceRank = [];
-        // this.$ajax({
-        //   url: `http://merchant.test.weilaixiansen.com/Merstats/m2_1?stime=${startTime}&etime=${endTime}`,
-        //   method: 'GET'
-        // }).then((res) => {
-        //   if(res.data.code == 0) {//返回数据成功
-        //     this.deviceRank = res.data.data;
-        this.deviceRank = [
-          {
-          "sellmoney": "360.00",
-          "device_address": "瞪羚谷A座",
-          "order_id": "A2DASDASDD",
-          "device_id": 1001001,
-          "order_num": 1
-        }, {
-          "sellmoney": "235.00",
-          "device_address": "中国银行E",
-          "order_id": "65165454",
-          "device_id": 6101131125,
-          "order_num": 1
-        }, {
-          "sellmoney": "180.00",
-          "device_address": "瞪羚谷E座sfdsafdsafsaf",
-          "order_id": "A00124525362",
-          "device_id": 1001002,
-          "order_num": 1
-        }, {
-          "sellmoney": 110,
-          "device_address": "都市之门",
-          "order_id": "51564",
-          "device_id": 6101130010,
-          "order_num": 3
-        }, {
-          "sellmoney": "20.00",
-          "device_address": "招商银行E",
-          "order_id": "201255",
-          "device_id": 6101130013,
-          "order_num": 1
-        }]
-        //   }else if(res.data.code == -1) {//没有数据
-        //
-        //   }else if(res.data.code == 1) {//未登录
-        //     this.$router.push({
-        //       path: '/'
-        //     })
-        //   }
-        // }).catch((error) => {
-        //   console.log(error);
-        // })
+        this.deviceRank = [];
+        this.$ajax({
+          url: `http://merchant.test.weilaixiansen.com/Merstats/m2_1?stime=${startTime}&etime=${endTime}`,
+          method: 'GET'
+        }).then((res) => {
+          if(res.data.code == 0) {//返回数据成功
+            this.deviceRank = res.data.data;
+        // this.deviceRank = [
+        //   {
+        //   "sellmoney": "360.00",
+        //   "device_address": "瞪羚谷A座",
+        //   "order_id": "A2DASDASDD",
+        //   "device_id": 1001001,
+        //   "order_num": 1
+        // }, {
+        //   "sellmoney": "235.00",
+        //   "device_address": "中国银行E",
+        //   "order_id": "65165454",
+        //   "device_id": 6101131125,
+        //   "order_num": 1
+        // }, {
+        //   "sellmoney": "180.00",
+        //   "device_address": "瞪羚谷E座sfdsafdsafsaf",
+        //   "order_id": "A00124525362",
+        //   "device_id": 1001002,
+        //   "order_num": 1
+        // }, {
+        //   "sellmoney": 110,
+        //   "device_address": "都市之门",
+        //   "order_id": "51564",
+        //   "device_id": 6101130010,
+        //   "order_num": 3
+        // }, {
+        //   "sellmoney": "20.00",
+        //   "device_address": "招商银行E",
+        //   "order_id": "201255",
+        //   "device_id": 6101130013,
+        //   "order_num": 1
+        // }]
+          }else if(res.data.code == -1) {//没有数据
+
+          }else if(res.data.code == 1) {//未登录
+            this.$router.push({
+              path: '/'
+            })
+          }
+        }).catch((error) => {
+          console.log(error);
+        })
       },
       //查看详情
       rankList(index) {
@@ -292,31 +292,35 @@
       //详情数据
       getRankListData(startDate, endDate, device_id) {
         this.rankListData = [];
-        // this.$ajax({
-        //   url: `http://merchant.test.weilaixiansen.com/Merstats/m2_1_1?stime=${startDate}&etime=${endDate}&device_id=${device_id}`,
-        //   method: 'GET'
-        // }).then((res) => {
-        //   if(res.data.code == 0) {
+        this.$ajax({
+          url: `http://merchant.test.weilaixiansen.com/Merstats/m2_1_1?stime=${startDate}&etime=${endDate}&device_id=${device_id}`,
+          method: 'GET'
+        }).then((res) => {
+          if(res.data.code == 0) {
             this.rankItemMsg = true;
-            // this.rankListData = res.data.data;
-            this.rankListData =  [
-              {
-              "goods_name": "果3代",
-              "goods_num": 1,
-              "sellmoney": "100.00"
-            }, {
-              "goods_name": "果2代",
-              "goods_num": 2,
-              "sellmoney": "10.00"
-            }, {
-              "goods_name": "合计",
-              "goods_num": 3,
-              "sellmoney": 110
-            }]
-        //   }
-        // }).catch((error) => {
-        //   console.log(error);
-        // })
+            this.rankListData = res.data.data;
+            // this.rankListData =  [
+            //   {
+            //   "goods_name": "果3代",
+            //   "goods_num": 1,
+            //   "sellmoney": "100.00"
+            // }, {
+            //   "goods_name": "果2代",
+            //   "goods_num": 2,
+            //   "sellmoney": "10.00"
+            // }, {
+            //   "goods_name": "合计",
+            //   "goods_num": 3,
+            //   "sellmoney": 110
+            // }]
+          }else if(res.data.code == 1) {//未登录
+            this.$router.push({
+              path: '/'
+            })
+          }
+        }).catch((error) => {
+          console.log(error);
+        })
       },
       //关闭
       closeRankList() {

@@ -3,7 +3,7 @@
       <!--<section class="headerTitle">-->
         <!--<p>智能报表</p>-->
       <!--</section>-->
-      <header>
+      <header @click="goSaleRoom">
         <p>今日销售额 (元)</p>
         <p class="saleroom">{{saleroom}}</p>
         <div class="totalCount">
@@ -61,17 +61,17 @@
       name: "statement",
       data() {
           return {
-            saleroom: '', //销售额
-            volume: '', //交易笔数
-            numberCount: '', //售卖商品个数
-            counterAddr: '',//柜子地址
-            countAmount: '',//柜子销售额
-            goodsTop: '',//排行商品名称
-            goodsNum: '',//商品销售数量
-            exhibitNum: '',//上货数量统计
-            exhibitDevice: '',//上货设备数量统计
-            shipNum: '',//下货数量统计
-            shipDevice: '',//下货设备数量统计
+            saleroom: '8888', //销售额
+            volume: '123', //交易笔数
+            numberCount: '321', //售卖商品个数
+            counterAddr: '瞪羚谷E座',//柜子地址
+            countAmount: '222',//柜子销售额
+            goodsTop: '333',//排行商品名称
+            goodsNum: '111',//商品销售数量
+            exhibitNum: '222',//上货数量统计
+            exhibitDevice: '222',//上货设备数量统计
+            shipNum: '111',//下货数量统计
+            shipDevice: '22',//下货设备数量统计
           }
       },
       components: {
@@ -182,6 +182,12 @@
             }
           }).catch((error) => {
             console.log(error);
+          })
+        },
+        //销售报表
+        goSaleRoom() {
+          this.$router.push({
+            path: '/saleRoom'
           })
         }
 

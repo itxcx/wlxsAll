@@ -30,6 +30,7 @@ import Ship from './components/Ship'; //下货
 import ShipDone from './components/ShipDone'; //下货完成
 import Record from './components/Record'; //上下架记录
 import RecordMsg from './components/RecordMsg'; //上下架记录
+import SaleRoom from './components/SaleRoom'; //销售报表
 
 Vue.use(iView);
 Vue.config.productionTip = false;
@@ -45,7 +46,7 @@ new Vue({
   components: {
     App, Login, Main, FooterBar, Repertory, Exhibing, DoorClose,
     InStoreDone, Scan, Addition, AddItem, CheckExhibing, ExhibingDone,
-    Ship, ShipDone, Record, RecordMsg
+    Ship, ShipDone, Record, RecordMsg, SaleRoom
   },
   template: '<App/>'
 })

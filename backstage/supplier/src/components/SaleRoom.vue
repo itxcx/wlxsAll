@@ -210,6 +210,7 @@
               this.endDate = '';
             }
             this.datePickerShow = false;
+            this.dateRangeText = '';
             this.getSaleroomData(this.startDate, this.endDate);
           },
           //当前时间销售额

@@ -40,20 +40,41 @@
         </section>
       </header>
       <section class="rankMsg">
-        <ul>
+        <ul class="rankMsgHeader">
           <li>序号</li>
           <li>位置/售货柜</li>
           <li>交易金额</li>
           <li>交易笔数</li>
         </ul>
-        <ul>
-          <li v-for="(item, index) in deviceRank">
-            <span>{{index+1}}</span>
+        <ul class="rankItemList">
+          <li v-for="(item, index) in deviceRank" @click="rankList(index)">
+            <span>{{index + 1}}</span>
             <span>{{item.device_address}}</span>
             <span>{{item.sellmoney}}</span>
             <span>{{item.order_num}}</span>
+            <span></span>
           </li>
         </ul>
+      </section>
+      <section class="rankItemMsg" v-show="rankItemMsg">
+        <section>
+          <h3>商品销售明细</h3>
+          <ul class="rankItemMsgHeader">
+            <li>序号</li>
+            <li>名称</li>
+            <li>数量(个)</li>
+            <li>金额(元)</li>
+          </ul>
+          <ul class="rankItemMsgList">
+            <li v-for="(item, index) in rankListData">
+              <span>{{index + 1}}</span>
+              <span>{{item.goods_name}}</span>
+              <span>{{item.goods_num}}</span>
+              <span>{{item.sellmoney}}</span>
+            </li>
+          </ul>
+        </section>
+        <p @click="closeRankList">关闭</p>
       </section>
     </div>
 </template>
@@ -75,7 +96,9 @@
         yestoday: false,
         lastWeek: false,
         lastMonth: false,
-        deviceRank: []
+        deviceRank: [], //设备
+        rankListData: [], //设备详情
+        rankItemMsg: false,//显示详情
       }
     },
     mounted() {
@@ -211,53 +234,94 @@
       },
       //当前时间销售额
       getDeviceRankData(startTime, endTime) {
-        // this.$ajax({
-        //   url: `http://merchant.test.weilaixiansen.com/Merstats/m2_1?stime=${startTime}&etime=${endTime}`,
-        //   method: 'GET'
-        // }).then((res) => {
-        //   if(res.data.code == 0) {//返回数据成功
-        this.deviceRank = [{
-          "sellmoney": "360.00",
-          "device_address": "瞪羚谷A座",
-          "order_id": "A2DASDASDD",
-          "device_id": 1001001,
-          "order_num": 1
-        }, {
-          "sellmoney": "235.00",
-          "device_address": "中国银行E",
-          "order_id": "65165454",
-          "device_id": 6101131125,
-          "order_num": 1
-        }, {
-          "sellmoney": "180.00",
-          "device_address": "瞪羚谷E座",
-          "order_id": "A00124525362",
-          "device_id": 1001002,
-          "order_num": 1
-        }, {
-          "sellmoney": 110,
-          "device_address": "都市之门",
-          "order_id": "51564",
-          "device_id": 6101130010,
-          "order_num": 3
-        }, {
-          "sellmoney": "20.00",
-          "device_address": "招商银行E",
-          "order_id": "201255",
-          "device_id": 6101130013,
-          "order_num": 1
-        }]
-        //   }else if(res.data.code == -1) {//没有数据
-        //
-        //   }else if(res.data.code == 1) {//未登录
-        //     this.$router.push({
-        //       path: '/'
-        //     })
-        //   }
-        // }).catch((error) => {
-        //   console.log(error);
-        // })
+        this.deviceRank = [];
+        this.$ajax({
+          url: `http://merchant.test.weilaixiansen.com/Merstats/m2_1?stime=${startTime}&etime=${endTime}`,
+          method: 'GET'
+        }).then((res) => {
+          if(res.data.code == 0) {//返回数据成功
+            this.deviceRank = res.data.data;
+        // this.deviceRank = [
+        //   {
+        //   "sellmoney": "360.00",
+        //   "device_address": "瞪羚谷A座",
+        //   "order_id": "A2DASDASDD",
+        //   "device_id": 1001001,
+        //   "order_num": 1
+        // }, {
+        //   "sellmoney": "235.00",
+        //   "device_address": "中国银行E",
+        //   "order_id": "65165454",
+        //   "device_id": 6101131125,
+        //   "order_num": 1
+        // }, {
+        //   "sellmoney": "180.00",
+        //   "device_address": "瞪羚谷E座sfdsafdsafsaf",
+        //   "order_id": "A00124525362",
+        //   "device_id": 1001002,
+        //   "order_num": 1
+        // }, {
+        //   "sellmoney": 110,
+        //   "device_address": "都市之门",
+        //   "order_id": "51564",
+        //   "device_id": 6101130010,
+        //   "order_num": 3
+        // }, {
+        //   "sellmoney": "20.00",
+        //   "device_address": "招商银行E",
+        //   "order_id": "201255",
+        //   "device_id": 6101130013,
+        //   "order_num": 1
+        // }]
+          }else if(res.data.code == -1) {//没有数据
+
+          }else if(res.data.code == 1) {//未登录
+            this.$router.push({
+              path: '/'
+            })
+          }
+        }).catch((error) => {
+          console.log(error);
+        })
       },
+      //查看详情
+      rankList(index) {
+        let device_id = this.deviceRank[index].device_id;
+        this.getRankListData(this.startDate, this.endDate, device_id);
+      },
+      //详情数据
+      getRankListData(startDate, endDate, device_id) {
+        this.rankListData = [];
+        this.$ajax({
+          url: `http://merchant.test.weilaixiansen.com/Merstats/m2_1_1?stime=${startDate}&etime=${endDate}&device_id=${device_id}`,
+          method: 'GET'
+        }).then((res) => {
+          if(res.data.code == 0) {
+            this.rankItemMsg = true;
+            this.rankListData = res.data.data;
+            // this.rankListData =  [
+            //   {
+            //   "goods_name": "果3代",
+            //   "goods_num": 1,
+            //   "sellmoney": "100.00"
+            // }, {
+            //   "goods_name": "果2代",
+            //   "goods_num": 2,
+            //   "sellmoney": "10.00"
+            // }, {
+            //   "goods_name": "合计",
+            //   "goods_num": 3,
+            //   "sellmoney": 110
+            // }]
+          }
+        }).catch((error) => {
+          console.log(error);
+        })
+      },
+      //关闭
+      closeRankList() {
+        this.rankItemMsg = false;
+      }
     }
   }
 </script>
@@ -356,7 +420,169 @@
       }
     }
     .rankMsg{
-      margin: 13.5vh 4vw 0 4vw;
+      margin: 13.5vh 0 0 0;
+      box-shadow: 0 -5px 1px 1px #f2f2f2;
+      .rankMsgHeader{
+        overflow: hidden;
+        padding: 1.4992vh 2vw;
+        border-bottom: 1px solid #e5e5e5;
+        li{
+          float: left;
+          color: #7b7b7b;
+          font-size: 2.2488rem;
+          &:nth-of-type(1) {
+            width: 10%;
+          }
+          &:nth-of-type(2) {
+            width: 40%;
+          }
+          &:nth-of-type(3) {
+            width: 25%;
+          }
+          &:nth-of-type(4) {
+            width: 25%;
+          }
+        }
+      }
+      .rankItemList{
+        li{
+          padding: 2.2488vh 0;
+          &:nth-of-type(even) {
+            background: #f7f7f7;
+          }
+          span{
+            display: inline-block;
+            vertical-align: middle;
+            &:nth-of-type(1) {
+              width: 10%;
+              font-size: 1.649rem;
+              font-weight: 600;
+              text-align: center;
+            }
+            &:nth-of-type(2) {
+              width: 39%;
+              font-size: 2.2488rem;
+              color: #373737;
+              font-weight: 600;
+              overflow: hidden;
+              text-overflow:ellipsis;
+              white-space: nowrap;
+              padding: 0 3vw 0 1vw;
+            }
+            &:nth-of-type(3) {
+              width: 22%;
+              font-size: 1.874rem;
+              text-align: left;
+            }
+            &:nth-of-type(4){
+              width: 18%;
+              font-size: 1.874rem;
+              text-align: center;
+            }
+            &:nth-of-type(5) {
+              width: 3.066vw;
+              height: 2.323vh;
+              background: url(../../static/images/next.png) no-repeat center center;
+              background-size: cover;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+    }
+    .rankItemMsg{
+      background: rgba(0,0,0,.7);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999;
+      padding: 9.745vh 3.467vw;
+      section{
+        background: #fff;
+        border-radius: 5px;
+        padding: 3.3733vh 6.667vw;
+        h3{
+          font-size: 2.998rem;
+          text-align: center;
+        }
+        .rankItemMsgHeader{
+          overflow: hidden;
+          padding: 1.4992vh 2vw;
+          border-bottom: 1px solid #e5e5e5;
+          li{
+            float: left;
+            color: #7b7b7b;
+            font-size: 2.2488rem;
+            &:nth-of-type(1) {
+              width: 15%;
+            }
+            &:nth-of-type(2) {
+              width: 40%;
+            }
+            &:nth-of-type(3), &:nth-of-type(4) {
+              width: 22.5%;
+            }
+          }
+        }
+        .rankItemMsgList{
+          height: 48vh;
+          overflow-y: auto;
+          -webkit-overflow-scrolling : touch;
+          li{
+            padding: 2.2488vh 0;
+            span{
+              display: inline-block;
+              vertical-align: middle;
+              &:nth-of-type(1) {
+                width: 10%;
+                font-size: 1.649rem;
+                font-weight: 600;
+                text-align: center;
+              }
+              &:nth-of-type(2) {
+                width: 39%;
+                font-size: 2.2488rem;
+                color: #373737;
+                font-weight: 600;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+                padding: 0 3vw 0 3vw;
+              }
+              &:nth-of-type(3) {
+                width: 22%;
+                font-size: 1.874rem;
+                text-align: center;
+              }
+              &:nth-of-type(4){
+                width: 18%;
+                font-size: 1.874rem;
+                text-align: center;
+              }
+              &:nth-of-type(5) {
+                width: 3.066vw;
+                height: 2.323vh;
+                background: url(../../static/images/next.png) no-repeat center center;
+                background-size: cover;
+                vertical-align: middle;
+              }
+            }
+          }
+        }
+      }
+      p{
+        width: 79.2vw;
+        height: 10.419vh;
+        background: url("../../static/images/button_bg.png") no-repeat center center;
+        background-size: cover;
+        color: #fff;
+        font-size: 2.3988rem;
+        margin: 6.371vh auto;
+        text-align: center;
+        line-height: 7.419vh;
+      }
     }
     .ivu-input-icon{
       display: none;

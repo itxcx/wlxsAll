@@ -27,7 +27,7 @@
           </dl>
         </div>
         <!--今日商品排行-->
-        <div class="goods">
+        <div class="goods" @click="goProductRank">
           <h3>今日商品排行</h3>
           <dl>
             <dt>{{goodsTop}}</dt>
@@ -195,8 +195,13 @@
           this.$router.push({
             path: '/deviceRank'
           })
+        },
+        //商品排行
+        goProductRank() {
+          this.$router.push({
+            path: '/productRank'
+          })
         }
-
       }
     }
 </script>

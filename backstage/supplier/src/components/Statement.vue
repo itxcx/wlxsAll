@@ -273,9 +273,14 @@
         dl{
           margin-top: 3.33vw;
           dt{
-            font-size: 3.5982rem;
+            /*font-size: 3.9982rem;*/
+            font-size: 2.9982rem;
             color: #353a3e;
             font-weight: bold;
+            padding-right: 2vw;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
           }
           dd{
             margin-top: 3.33vw;

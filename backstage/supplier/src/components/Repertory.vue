@@ -4,10 +4,10 @@
         <span @click="goMain">
           <Icon type="chevron-left"></Icon>
         </span>
-      <p>售货柜库存</p>
+      <p>{{pageTitle}}库存</p>
     </section>
     <header>
-      <ul>
+      <ul v-show="headerShow">
         <li v-model="city" @click="selectCity">
           <span v-html="city" class="selectInput"></span>
           <span :class="!cityDown ? 'down' : 'up'"></span>
@@ -16,10 +16,10 @@
           <span v-html="device" class="selectInput"></span>
           <span :class="!deviceDown ? 'down' : 'up'"></span>
         </li>
-        <li v-model="product" @click="selectProduct">
-          <span v-html="product" class="selectInput"></span>
-          <span :class="!productDown ? 'down' : 'up'"></span>
-        </li>
+        <!--<li v-model="product" @click="selectProduct">-->
+          <!--<span v-html="product" class="selectInput"></span>-->
+          <!--<span :class="!productDown ? 'down' : 'up'"></span>-->
+        <!--</li>-->
       </ul>
     </header>
     <section class="repertoryContent">
@@ -125,18 +125,18 @@
       <section v-show="productItemDown" class="productItem">
         <!-- 显示模式 -->
         <section class="productContent">
-          <section class="updateTime">
-            <p>
-              <span>上次库存更新时间:</span>
-              <span>{{refreshTime}}</span>
-            </p>
-            <div v-show="!mapMode" @click="changeMode">
-              <span>地图模式 ></span>
-            </div>
-            <div v-show="mapMode" @click="changeMode">
-              <span>列表模式 ></span>
-            </div>
-          </section>
+          <!--<section class="updateTime">-->
+            <!--<p>-->
+              <!--<span>上次库存更新时间:</span>-->
+              <!--<span>{{refreshTime}}</span>-->
+            <!--</p>-->
+            <!--<div v-show="!mapMode" @click="changeMode">-->
+              <!--<span>地图模式 ></span>-->
+            <!--</div>-->
+            <!--<div v-show="mapMode" @click="changeMode">-->
+              <!--<span>列表模式 ></span>-->
+            <!--</div>-->
+          <!--</section>-->
           <section class="itemListInfo" v-show="!mapMode">
             <ul>
               <li v-for="item in itemListArray" class="itemInfo">
@@ -169,6 +169,8 @@
     data () {
       return {
         tipStatus: false,
+        headerShow: true,
+        pageTitle: '售货柜',
         tipText: '正在建设，马上开放...',
         refreshTime: '', //库存更新时间
         city: '西安', //城市
@@ -187,7 +189,14 @@
           {
             "district": "全部",
             "show": true,
-            "devicelist": []
+            "devicelist": [
+              {
+                address: "全部售货柜",
+                area_name: "未来鲜森",
+                device_id: '000000000',
+                goods_list: []
+              }
+              ]
           }
           ],//全部设备
         selectProductArray: [],
@@ -620,9 +629,9 @@
   //   }]
   // }]
         let data = Data;
-        let ddd = JSON.stringify(Data);
-        localStorage.setItem('data', ddd);
-        localStorage.setItem('deviceData', ddd);
+        let defaultData = JSON.stringify(Data);
+        localStorage.setItem('data', defaultData);
+        localStorage.setItem('deviceData', defaultData);
         //处理全部商品
         //所有柜子的同一商品数量相加
             for(let i = 0; i < data.length; i++) {
@@ -680,11 +689,19 @@
           clearTimeout(timer);
         }, 1000)
       },
-      //返回主页
+      //返回方法
       goMain() {
-        this.$router.push({
-          path: '/main'
-        })
+        console.log(this.productItemDown);
+        if(this.productItemDown) {
+          this.productItemDown = false;
+          this.headerShow = true;
+          this.allList = true;
+          this.pageTitle = '售货柜';
+        }else{
+          this.$router.push({
+            path: '/main'
+          })
+        }
       },
       //选择城市
       selectCity() {
@@ -725,15 +742,23 @@
       },
       //列表选择机柜
       entryDevice(index) {
-        this.device = this.showDeviceList[index].address;
-        console.log(this.showDeviceList[index]);
-        this.cityDown = false;
-        this.deviceDown = false;
-        this.productDown = true;
-        this.allList = false;
-        this.selectProductArray = [];
-        this.selectProductArray = this.showDeviceList[index];
-
+        if(this.showDeviceList[index].address == '全部售货柜') {
+          this.device = this.showDeviceList[index].address;
+          console.log(this.showDeviceList[index]);
+          this.cityDown = false;
+          this.deviceDown = false;
+          this.productDown = false;
+          this.allList = true;
+        }else{
+          this.device = this.showDeviceList[index].address;
+          console.log(this.showDeviceList[index]);
+          this.cityDown = false;
+          this.deviceDown = false;
+          this.productDown = true;
+          this.allList = false;
+          this.selectProductArray = [];
+          this.selectProductArray = this.showDeviceList[index];
+        }
       },
       //选择商品
       selectProduct() {
@@ -751,11 +776,13 @@
 
       //列表选择商品
       itemSelect(index) {
+        this.headerShow = false;// 选择框消失
         let goods_name = this.allProductArray[index].goods_name;
         this.city = '西安';
         this.allList = false;
         this.productItemDown = true;
         this.product = goods_name;
+        this.pageTitle = goods_name;
         this.itemListArray = [];
         let data = JSON.parse(localStorage.getItem('data'));
         // console.log('getstorage');
@@ -769,17 +796,15 @@
                     address: data[i].devicelist[j].address,
                     count: data[i].devicelist[j].goods_list[k].count
                   }
-                  this.itemListArray.push(obj)
+                  this.itemListArray.push(obj);
               }
             }
           }
         }
         console.log(this.itemListArray);
         //获取定位,显示地图
-        this.getNowPosition();
-        // let lng = 108.8514655870;
-        // let lat = 34.2207597143;
-        // this.mapShow(lng, lat);
+        //this.getNowPosition();
+
       },
       //切换显示
       changeMode() {
@@ -1031,8 +1056,11 @@
           &:nth-of-type(1) {
             width: 23.2vw;
           }
-          &:nth-of-type(2), &:nth-of-type(3){
-            width: 38.4vw;
+          /*&:nth-of-type(2), &:nth-of-type(3){*/
+            /*width: 38.4vw;*/
+          /*}*/
+          &:nth-of-type(2){
+            width: 76.8vw;
           }
           span:nth-of-type(2){
             display: inline-block;
@@ -1301,6 +1329,7 @@
 
       }
       .productItem{
+        margin-top: -6.5vh;
         .map {
           width: 100vw;
           height: 87vh;

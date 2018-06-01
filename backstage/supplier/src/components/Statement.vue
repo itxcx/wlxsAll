@@ -136,7 +136,7 @@
         //今日商品排行
         getProductBest(startTime, endTime) {
           this.$ajax({
-            url: `http://merchant.test.weilaixiansen.com/Merstats/m3?stime=${startTime}&etime=${endTime}&device_id=6101130010`,
+            url: `http://merchant.test.weilaixiansen.com/Merstats/m3?stime=${startTime}&etime=${endTime}`,
             method: 'GET'
           }).then((res) => {
             if(res.data.code == 0) {

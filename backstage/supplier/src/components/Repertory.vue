@@ -104,7 +104,7 @@
               <li class="device_item">
                 <dl>
                   <dt>{{selectProductArray.address}}</dt>
-                  <dd>智能售货柜</dd>
+                  <!--<dd>智能售货柜</dd>-->
                 </dl>
                 <div class="device_info">
                   <ul>
@@ -1070,7 +1070,9 @@
             /*width: 38.4vw;*/
           /*}*/
           &:nth-of-type(2){
-            width: 76.8vw;
+            width: 71.8vw;
+            margin-left: 5vw;
+            text-align: center;
           }
           span:nth-of-type(2){
             display: inline-block;
@@ -1307,7 +1309,7 @@
               ul {
                 list-style: none;
                 li {
-                  width: 65.333vw;
+                  width: 60.333vw;
                   &:nth-last-of-type(1) {
                     border: none;
                   }
@@ -1315,10 +1317,11 @@
                   font-size: 2.2488rem;
                   color: #373737;
                   overflow: hidden;
+                  margin-left: 5vw;
                   padding: 1.874vh 0 2.2488vh 0;
                   > span:nth-of-type(1) {
                     display: inline-block;
-                    width: 43.55vw;
+                    width: 38.55vw;
                   }
                   span:nth-of-type(2) {
                     display: inline-block;
@@ -1382,7 +1385,7 @@
             overflow: hidden;
             vertical-align: middle;
             dl{
-              width: 25.333%;
+              width: 29.333%;
               float: left;
               dt{
                 font-size: 2.3988rem;
@@ -1394,20 +1397,21 @@
               }
             }
             ul{
-              width: 74%;
+              width: 70%;
               float: left;
               p{
                 float: left;
                 font-size: 2.2488rem;
-                width: 50%;
               }
               p:nth-of-type(1) {
                 color: #373737;
-                padding-left: 2vw;
+                padding-left: 5vw;
+                width: 50%;
               }
               p:nth-of-type(2) {
-                text-align: right;
                 color: #999898;
+                width: 50%;
+                text-align: right;
                 span{
                   font-size: 2.8485rem;
                   color: #65d172;

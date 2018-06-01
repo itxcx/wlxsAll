@@ -235,13 +235,13 @@
         },
         //当前时间销售额
         getProductRankData(startTime, endTime) {
-          this.deviceRank = [];
+          this.productRank = [];
           this.$ajax({
             url: `http://merchant.test.weilaixiansen.com/Merstats/m3_1?stime=${startTime}&etime=${endTime}`,
             method: 'GET'
           }).then((res) => {
             if(res.data.code == 0) {//返回数据成功
-              this.deviceRank = res.data.data;
+              this.productRank = res.data.data;
               // this.deviceRank = [
               //   {
               //   "sellmoney": "360.00",
@@ -287,7 +287,7 @@
         },
         //查看详情
         rankList(index) {
-          let goods_id = this.deviceRank[index].device_id;
+          let goods_id = this.productRank[index].goods_id;
           this.getRankListData(this.startDate, this.endDate, goods_id);
         },
         //详情数据

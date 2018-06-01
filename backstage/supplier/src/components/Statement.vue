@@ -84,11 +84,11 @@
           let startTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' 00:00:00';
           let endTime = this.Common.formatDate(date, "yyyy-MM-dd hh:mm:ss");
 
-          this.getSaleroomData(startTime, endTime);
-          this.getDeviceBest(startTime, endTime);
-          this.getProductBest(startTime, endTime);
-          this.getExhibingData(startTime, endTime);
-          this.getShipData(startTime, endTime);
+          // this.getSaleroomData(startTime, endTime);
+          // this.getDeviceBest(startTime, endTime);
+          // this.getProductBest(startTime, endTime);
+          // this.getExhibingData(startTime, endTime);
+          // this.getShipData(startTime, endTime);
         })
       },
       methods: {

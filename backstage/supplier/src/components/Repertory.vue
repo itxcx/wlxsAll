@@ -142,7 +142,7 @@
               <li v-for="item in itemListArray" class="itemInfo">
                 <dl>
                   <dt>{{item.area_name}}</dt>
-                  <dd>智能售货柜</dd>
+                  <!--<dd>智能售货柜</dd>-->
                 </dl>
                 <ul>
                   <li>
@@ -705,13 +705,23 @@
       },
       //选择城市
       selectCity() {
-        this.cityDown = true;
-        this.deviceDown = false;
-        this.allList = false;
-        this.product = '选择商品';
-        this.device = '全部售货柜';
-        this.productDown = false;
-        this.productItemDown = false;
+        // this.cityDown = true;
+        // this.deviceDown = false;
+        // this.allList = false;
+        // this.product = '选择商品';
+        // this.device = '全部售货柜';
+        // this.productDown = false;
+        // this.productItemDown = false;
+        //tipText: '正在建设，马上开放...';
+        //6.1
+        this.tipStatus = true;
+        this.tipText = '其他城市马上开放...';
+        let timer = setTimeout(() => {
+          this.tipStatus = false;
+          this.tipText = '正在建设，马上开放...';
+          clearTimeout(timer);
+        }, 1000)
+
       },
       //列表选择城市
       entryCity(e) {

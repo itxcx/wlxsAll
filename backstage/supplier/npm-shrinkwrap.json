@@ -2040,6 +2040,11 @@
         "serialize-javascript": "1.4.0"
       }
     },
+    "cordova-serve": {
+      "dependencies": {
+        "shelljs": {}
+      }
+    },
     "core-js": {
       "version": "2.5.3",
       "resolved": "https://registry.npmjs.org/core-js/-/core-js-2.5.3.tgz",

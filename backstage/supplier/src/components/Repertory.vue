@@ -618,9 +618,9 @@
               }
             }
 
-            console.log(this.allProductArray);
-            console.log('~~~~~~~~~~~~~~~~~~');
-            console.log(data);
+            // console.log(this.allProductArray);
+            // console.log('~~~~~~~~~~~~~~~~~~');
+            // console.log(data);
         //处理全部设备
         //柜子信息中的第一个项目：全部分类
         let deviceData = JSON.parse(localStorage.getItem('deviceData'))
@@ -637,7 +637,7 @@
           }
           this.allDeviceListArray.push(obj);
         }
-        console.log(this.allDeviceListArray);
+        //console.log(this.allDeviceListArray);
           }
         }).catch((error) => {
           console.log(error);
@@ -653,13 +653,6 @@
       },
       //返回方法
       goMain() {
-        // console.log(this.productItemDown);
-        // if(this.productItemDown) {
-        //   this.productItemDown = false;
-        //   this.headerShow = true;
-        //   this.allList = true;
-        //   this.pageTitle = '售货柜';
-        // }else{
           this.$router.push({
             path: '/main'
           })
@@ -697,7 +690,6 @@
         this.cityDown = false;
         this.deviceDown = true;
         this.productDown = false;
-        // this.productItemDown = false;
         this.city = '西安';
         this.product = '选择商品';
         this.device = '全部售货柜';
@@ -736,8 +728,6 @@
         this.cityDown = false;
         this.deviceDown = false;
         this.product = '选择商品';
-        // this.productItemDown = false;
-        // this.itemIsSelect = true;
         if(this.device === '全部售货柜') {
           this.allList = true;
         }else{
@@ -749,13 +739,10 @@
       itemSelect(index) {
         let goods_name = this.allProductArray[index].goods_name;
         this.city = '西安';
-        // this.allList = false;
         this.product = goods_name;
         this.pageTitle = goods_name;
         this.itemListArray = [];
         let data = JSON.parse(localStorage.getItem('data'));
-        // console.log('getstorage');
-        // console.log(data);
         for(let i = 0; i < data.length; i++) {
           for(let j = 0; j < data[i].devicelist.length; j++) {
             for(let k = 0; k < data[i].devicelist[j].goods_list.length; k++) {
@@ -770,7 +757,7 @@
             }
           }
         }
-        console.log(this.itemListArray);
+        //0.console.log(this.itemListArray);
         localStorage.setItem('itemListArray',JSON.stringify(this.itemListArray));
         this.$router.push({
           path: '/repertoryList',

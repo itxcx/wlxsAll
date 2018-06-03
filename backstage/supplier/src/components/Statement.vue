@@ -83,12 +83,7 @@
           let date = new Date();
           let startTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' 00:00:00';
           let endTime = this.Common.formatDate(date, "yyyy-MM-dd hh:mm:ss");
-
-          // this.getSaleroomData(startTime, endTime);
-          // this.getDeviceBest(startTime, endTime);
-          // this.getProductBest(startTime, endTime);
-          // this.getExhibingData(startTime, endTime);
-          // this.getShipData(startTime, endTime);
+          this.getSaleroomData(startTime, endTime);
         })
       },
       methods: {
@@ -98,6 +93,7 @@
             url: `http://merchant.test.weilaixiansen.com/Merstats/m1?stime=${startTime}&etime=${endTime}`,
             method: 'GET'
           }).then((res) => {
+            this.getDeviceBest(startTime, endTime);
              if(res.data.code == 0) {//返回数据成功
                let saleData = res.data.data;
                 this.saleroom = saleData.total_money;
@@ -122,6 +118,7 @@
             url: `http://merchant.test.weilaixiansen.com/Merstats/m2?stime=${startTime}&etime=${endTime}`,
             method: 'GET'
           }).then((res) => {
+            this.getProductBest(startTime, endTime);
             if(res.data.code == 0) {
               this.counterAddr = res.data.data.device_address;
               this.countAmount = res.data.data.total_money;
@@ -139,6 +136,7 @@
             url: `http://merchant.test.weilaixiansen.com/Merstats/m3?stime=${startTime}&etime=${endTime}`,
             method: 'GET'
           }).then((res) => {
+            this.getExhibingData(startTime, endTime);
             if(res.data.code == 0) {
               this.goodsTop = res.data.data.goods_name;
               this.goodsNum  = res.data.data.goods_num;
@@ -156,6 +154,7 @@
             url: `http://merchant.test.weilaixiansen.com/Merstats/m3and4?stime=${startTime}&etime=${endTime}&is_unload=0`,
             method: 'GET'
           }).then((res) => {
+            this.getShipData(startTime, endTime);
              if(res.data.code == 0) {
                this.exhibitNum = res.data.data.goods_count;
                this.exhibitDevice = res.data.data.device_num;

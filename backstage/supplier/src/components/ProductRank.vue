@@ -294,7 +294,7 @@
         getRankListData(startDate, endDate, goods_id) {
           this.rankListData = [];
           this.$ajax({
-            url: `http://merchant.test.weilaixiansen.com/Merstats/m3_1_1?stime=${startDate}&etime=${endDate}&device_id=${goods_id}`,
+            url: `http://merchant.test.weilaixiansen.com/Merstats/m3_1_1?stime=${startDate}&etime=${endDate}&goods_id=${goods_id}`,
             method: 'GET'
           }).then((res) => {
             if(res.data.code == 0) {

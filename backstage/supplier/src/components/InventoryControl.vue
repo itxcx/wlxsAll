@@ -219,6 +219,8 @@
       },
       //当前时间销售额
       getInventoryControlData(startTime, endTime, type) {
+        startTime = startTime + ' 00:00:00';
+        endTime = endTime + ' 23:59:59';
         this.$ajax({
           url: `http://merchant.test.weilaixiansen.com/Merstats/m3and4?stime=${startTime}&etime=${endTime}&is_unload=${type}`,
           method: 'GET'

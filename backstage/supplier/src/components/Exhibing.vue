@@ -45,8 +45,8 @@
       methods: {
         //websocket
         openDoorWs(sid) {
-          const socketPath = `ws://wss.weilaixiansen.com:37023?${sid}`;
-          const ws = new WebSocket(socketPath);
+          let socketPath = `ws://wss.weilaixiansen.com:37023?${sid}`;
+          let ws = new WebSocket(socketPath);
           ws.onopen = function() {
             ws.send('back');
           }

@@ -73,9 +73,9 @@
               <span>{{item.sellmoney}}</span>
             </li>
           </ul>
-          <ul class="rankItemMsgList">
+          <ul class="rankItemTotal">
             <li>
-              <span>/</span>
+              <span>总计</span>
               <span>/</span>
               <span>{{goods_number}}</span>
               <span>{{sellmoney}}</span>
@@ -548,12 +548,54 @@
           }
         }
         .rankItemMsgList{
-          height: 48vh;
+          height: 42vh;
           overflow-y: auto;
           -webkit-overflow-scrolling : touch;
           li{
             padding: 2.2488vh 0;
             border-bottom: 1px solid #e5e5e5;
+            span{
+              display: inline-block;
+              vertical-align: middle;
+              &:nth-of-type(1) {
+                width: 10%;
+                font-size: 1.649rem;
+                font-weight: 600;
+                text-align: center;
+              }
+              &:nth-of-type(2) {
+                width: 39%;
+                font-size: 2.2488rem;
+                color: #373737;
+                font-weight: 600;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+                padding: 0 3vw 0 3vw;
+              }
+              &:nth-of-type(3) {
+                width: 22%;
+                font-size: 1.874rem;
+                text-align: center;
+              }
+              &:nth-of-type(4){
+                width: 18%;
+                font-size: 1.874rem;
+                text-align: center;
+              }
+              &:nth-of-type(5) {
+                width: 3.066vw;
+                height: 2.323vh;
+                background: url(../../static/images/next.png) no-repeat center center;
+                background-size: cover;
+                vertical-align: middle;
+              }
+            }
+          }
+        }
+        .rankItemTotal{
+          li{
+            padding: 2.2488vh 0;
             span{
               display: inline-block;
               vertical-align: middle;

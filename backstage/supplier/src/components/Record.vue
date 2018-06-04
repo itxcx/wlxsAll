@@ -608,7 +608,7 @@
     cursor: pointer;
   }
   .ivu-date-picker-cells {
-    width: 100%;
+    width: 100%!important;
     margin: 0;
     white-space: normal;
   }
@@ -621,11 +621,11 @@
     padding: 0;
   }
   .ivu-date-picker-with-range .ivu-picker-panel-content{
-    width: 50vw;
+    width: 100%;
   }
   .ivu-date-picker-cells-header span {
     display: inline-block;
-    width: 12.87vw;
+    width: 11.87vw!important;
     height: 4.098vh;
   }
   .ivu-date-picker-cells-cell{

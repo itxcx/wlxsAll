@@ -603,12 +603,12 @@
     color: #fff;
   }
   span.ivu-date-picker-cells-cell {
-    width: 5.412vw;
-    height: 2.098vh;
+    width: 12.412vw!important;
+    height: 2.098vh!important;
     cursor: pointer;
   }
   .ivu-date-picker-cells {
-    width: 50vw;
+    width: 100%;
     margin: 0;
     white-space: normal;
   }
@@ -625,7 +625,7 @@
   }
   .ivu-date-picker-cells-header span {
     display: inline-block;
-    width: 4.87vw;
+    width: 12.87vw;
     height: 4.098vh;
   }
   .ivu-date-picker-cells-cell{

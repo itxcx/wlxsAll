@@ -215,6 +215,8 @@
           },
           //当前时间销售额
           getSaleroomData(startTime, endTime) {
+            startTime = startTime + ' 00:00:00';
+            endTime = endTime + ' 23:59:59';
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/Merstats/m1?stime=${startTime}&etime=${endTime}`,
               method: 'GET'

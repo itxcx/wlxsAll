@@ -235,6 +235,8 @@
         },
         //当前时间销售额
         getProductRankData(startTime, endTime) {
+          startTime = startTime + ' 00:00:00';
+          endTime = endTime + ' 23:59:59';
           this.productRank = [];
           this.$ajax({
             url: `http://merchant.test.weilaixiansen.com/Merstats/m3_1?stime=${startTime}&etime=${endTime}`,

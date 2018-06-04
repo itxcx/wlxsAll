@@ -35,7 +35,7 @@
           </dl>
         </div>
         <!--今日上货数量-->
-        <div class="exhibit">
+        <div class="exhibit" @click="invenCtrl(0)">
           <h3>今日上货数量(个)</h3>
           <dl>
             <dt>{{exhibitNum}}</dt>
@@ -43,7 +43,7 @@
           </dl>
         </div>
         <!--今日下货数量-->
-        <div class="ship">
+        <div class="ship" @click="invenCtrl(1)">
           <h3>今日下货数量(个)</h3>
           <dl>
             <dt>{{shipNum}}</dt>
@@ -199,6 +199,15 @@
         goProductRank() {
           this.$router.push({
             path: '/productRank'
+          })
+        },
+        //上下货记录
+        invenCtrl(type) {
+          this.$router.push({
+            path: '/inventoryControl',
+            query: {
+              type: type
+            }
           })
         }
       }

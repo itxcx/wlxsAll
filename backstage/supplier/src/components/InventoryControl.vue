@@ -1,11 +1,11 @@
 <template>
-    <div class="deviceRank">
+    <div class="InventoryControl">
       <header>
         <section class="login_top">
           <span @click="goBack">
             <Icon type="chevron-left"></Icon>
           </span>
-          <p>售货柜排行</p>
+          <p>{{pageTitle}}数量</p>
         </section>
         <section class="datePickSelect">
           <span class="dateRange" v-model="dateRangeText">{{dateRangeText}}</span>
@@ -39,49 +39,26 @@
           </section>
         </section>
       </header>
-      <section class="rankMsg">
-        <ul class="rankMsgHeader">
-          <li>序号</li>
-          <li>位置/售货柜</li>
-          <li>交易金额</li>
-          <li>交易笔数</li>
-        </ul>
-        <ul class="rankItemList">
-          <li v-for="(item, index) in deviceRank" @click="rankList(index)">
-            <span>{{index + 1}}</span>
-            <span>{{item.device_address}}</span>
-            <span>{{item.sellmoney}}</span>
-            <span>{{item.order_num}}</span>
-            <span></span>
-          </li>
-        </ul>
-      </section>
-      <section class="rankItemMsg" v-show="rankItemMsg">
-        <section>
-          <h3>商品销售明细</h3>
-          <ul class="rankItemMsgHeader">
-            <li>序号</li>
-            <li>名称</li>
-            <li>数量(个)</li>
-            <li>金额(元)</li>
-          </ul>
-          <ul class="rankItemMsgList">
-            <li v-for="(item, index) in rankListData">
-              <span>{{index + 1}}</span>
-              <span>{{item.goods_name}}</span>
-              <span>{{item.goods_num}}</span>
-              <span>{{item.sellmoney}}</span>
-            </li>
-          </ul>
-        </section>
-        <p @click="closeRankList">关闭</p>
+      <section class="InventoryControlMsg">
+        <p>{{pageTitle}}数量</p>
+        <p class="inventoryControl">{{inventoryControl}}</p>
+        <div class="totalCount">
+          <dl>
+            <dt>智能售货柜</dt>
+            <dd>{{volume}}</dd>
+          </dl>
+          <dl>
+            <dt>商品品类</dt>
+            <dd>{{numberCount}}</dd>
+          </dl>
+        </div>
       </section>
     </div>
 </template>
 
 <script>
   export default {
-    name: "deviceRank",
+    name: "SaleRoom",
     data() {
       return {
         dateRangeText: '今日', //选择的时间阶段
@@ -90,23 +67,30 @@
         datePickerShow: false,
         start: '',
         end: '',
+        inventoryControl: '', //上下货数量
+        volume: '', //售货柜数量
+        numberCount: '', //商品种类
         today: true,
         weekday: false,
         month: false,
         yestoday: false,
         lastWeek: false,
         lastMonth: false,
-        deviceRank: [], //设备
-        rankListData: [], //设备详情
-        rankItemMsg: false,//显示详情
+        pageTitle: ''
       }
     },
     mounted() {
       this.$nextTick(() => {
+        let type = this.$route.query.type;
+        if(type == 0) {
+          this.pageTitle = '上货';
+        }else{
+          this.pageTitle = '下货';
+        }
         let date = new Date();
         this.startDate = this.Common.formatDate(date, "yyyy-MM-dd");
         this.endDate = this.Common.formatDate(date, "yyyy-MM-dd");
-        this.getDeviceRankData(this.startDate, this.endDate);
+        this.getInventoryControlData(this.startDate, this.endDate, type);
       })
     },
     methods: {
@@ -212,7 +196,7 @@
             break;
         }
         this.datePickerShow = false;
-        this.getDeviceRankData(this.startDate, this.endDate);
+        this.getSaleroomData(this.startDate, this.endDate);
       },
       //选择后的日期
       dateSelectSubmit() {
@@ -231,53 +215,23 @@
         }
         this.datePickerShow = false;
         this.dateRangeText = '';
-        this.getDeviceRankData(this.startDate, this.endDate);
+        this.getSaleroomData(this.startDate, this.endDate);
       },
       //当前时间销售额
-      getDeviceRankData(startTime, endTime) {
-        startTime = startTime + ' 00:00:00';
-        endTime = endTime + ' 23:59:59';
-        this.deviceRank = [];
+      getInventoryControlData(startTime, endTime, type) {
         this.$ajax({
-          url: `http://merchant.test.weilaixiansen.com/Merstats/m2_1?stime=${startTime}&etime=${endTime}`,
+          url: `http://merchant.test.weilaixiansen.com/Merstats/m3and4?stime=${startTime}&etime=${endTime}&is_unload=${type}`,
           method: 'GET'
         }).then((res) => {
           if(res.data.code == 0) {//返回数据成功
-            this.deviceRank = res.data.data;
-        // this.deviceRank = [
-        //   {
-        //   "sellmoney": "360.00",
-        //   "device_address": "瞪羚谷A座",
-        //   "order_id": "A2DASDASDD",
-        //   "device_id": 1001001,
-        //   "order_num": 1
-        // }, {
-        //   "sellmoney": "235.00",
-        //   "device_address": "中国银行E",
-        //   "order_id": "65165454",
-        //   "device_id": 6101131125,
-        //   "order_num": 1
-        // }, {
-        //   "sellmoney": "180.00",
-        //   "device_address": "瞪羚谷E座sfdsafdsafsaf",
-        //   "order_id": "A00124525362",
-        //   "device_id": 1001002,
-        //   "order_num": 1
-        // }, {
-        //   "sellmoney": 110,
-        //   "device_address": "都市之门",
-        //   "order_id": "51564",
-        //   "device_id": 6101130010,
-        //   "order_num": 3
-        // }, {
-        //   "sellmoney": "20.00",
-        //   "device_address": "招商银行E",
-        //   "order_id": "201255",
-        //   "device_id": 6101130013,
-        //   "order_num": 1
-        // }]
+            let inventoryControlData = res.data.data;
+            this.inventoryControl = inventoryControlData.total_money;
+            this.volume = saleData.order_num;
+            this.numberCount = saleData.goods_total;
           }else if(res.data.code == -1) {//没有数据
-
+            this.inventoryControl = 0;
+            this.volume = 0;
+            this.numberCount = 0;
           }else if(res.data.code == 1) {//未登录
             this.$router.push({
               path: '/'
@@ -287,55 +241,13 @@
           console.log(error);
         })
       },
-      //查看详情
-      rankList(index) {
-        let device_id = this.deviceRank[index].device_id;
-        this.getRankListData(this.startDate, this.endDate, device_id);
-      },
-      //详情数据
-      getRankListData(startDate, endDate, device_id) {
-        this.rankListData = [];
-        this.$ajax({
-          url: `http://merchant.test.weilaixiansen.com/Merstats/m2_1_1?stime=${startDate}&etime=${endDate}&device_id=${device_id}`,
-          method: 'GET'
-        }).then((res) => {
-          if(res.data.code == 0) {
-            this.rankItemMsg = true;
-            this.rankListData = res.data.data;
-            // this.rankListData =  [
-            //   {
-            //   "goods_name": "果3代",
-            //   "goods_num": 1,
-            //   "sellmoney": "100.00"
-            // }, {
-            //   "goods_name": "果2代",
-            //   "goods_num": 2,
-            //   "sellmoney": "10.00"
-            // }, {
-            //   "goods_name": "合计",
-            //   "goods_num": 3,
-            //   "sellmoney": 110
-            // }]
-          }else if(res.data.code == 1) {//未登录
-            this.$router.push({
-              path: '/'
-            })
-          }
-        }).catch((error) => {
-          console.log(error);
-        })
-      },
-      //关闭
-      closeRankList() {
-        this.rankItemMsg = false;
-      }
     }
   }
 </script>
 
 <style lang="less">
   @header_background: #66D172;
-  .deviceRank{
+  .InventoryControl{
     header{
       position: fixed;
       top: 0;
@@ -426,170 +338,40 @@
         }
       }
     }
-    .rankMsg{
-      margin: 13.5vh 0 0 0;
-      box-shadow: 0 -5px 1px 1px #f2f2f2;
-      .rankMsgHeader{
-        overflow: hidden;
-        padding: 1.4992vh 2vw;
-        border-bottom: 1px solid #e5e5e5;
-        li{
-          float: left;
-          color: #7b7b7b;
-          font-size: 2.2488rem;
-          &:nth-of-type(1) {
-            width: 10%;
-          }
-          &:nth-of-type(2) {
-            width: 40%;
-          }
-          &:nth-of-type(3) {
-            width: 25%;
-          }
-          &:nth-of-type(4) {
-            width: 25%;
-          }
-        }
-      }
-      .rankItemList{
-        li{
-          padding: 2.2488vh 0;
-          &:nth-of-type(even) {
-            background: #f7f7f7;
-          }
-          span{
-            display: inline-block;
-            vertical-align: middle;
-            &:nth-of-type(1) {
-              width: 10%;
-              font-size: 1.649rem;
-              font-weight: 600;
-              text-align: center;
-            }
-            &:nth-of-type(2) {
-              width: 39%;
-              font-size: 2.2488rem;
-              color: #373737;
-              font-weight: 600;
-              overflow: hidden;
-              text-overflow:ellipsis;
-              white-space: nowrap;
-              padding: 0 3vw 0 1vw;
-            }
-            &:nth-of-type(3) {
-              width: 22%;
-              font-size: 1.874rem;
-              text-align: left;
-            }
-            &:nth-of-type(4){
-              width: 18%;
-              font-size: 1.874rem;
-              text-align: left;
-            }
-            &:nth-of-type(5) {
-              width: 3.066vw;
-              height: 2.323vh;
-              background: url(../../static/images/next.png) no-repeat center center;
-              background-size: cover;
-              vertical-align: middle;
-            }
-          }
-        }
-      }
-    }
-    .rankItemMsg{
-      background: rgba(0,0,0,.7);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 999;
-      padding: 9.745vh 3.467vw;
-      section{
-        background: #fff;
-        border-radius: 5px;
-        padding: 3.3733vh 6.667vw;
-        h3{
-          font-size: 2.998rem;
-          text-align: center;
-        }
-        .rankItemMsgHeader{
-          overflow: hidden;
-          padding: 1.4992vh 2vw;
-          border-bottom: 1px solid #e5e5e5;
-          li{
-            float: left;
-            color: #7b7b7b;
-            font-size: 2.2488rem;
-            &:nth-of-type(1) {
-              width: 15%;
-            }
-            &:nth-of-type(2) {
-              width: 40%;
-            }
-            &:nth-of-type(3), &:nth-of-type(4) {
-              width: 22.5%;
-            }
-          }
-        }
-        .rankItemMsgList{
-          height: 48vh;
-          overflow-y: auto;
-          -webkit-overflow-scrolling : touch;
-          li{
-            padding: 2.2488vh 0;
-            border-bottom: 1px solid #e5e5e5;
-            span{
-              display: inline-block;
-              vertical-align: middle;
-              &:nth-of-type(1) {
-                width: 10%;
-                font-size: 1.649rem;
-                font-weight: 600;
-                text-align: center;
-              }
-              &:nth-of-type(2) {
-                width: 39%;
-                font-size: 2.2488rem;
-                color: #373737;
-                font-weight: 600;
-                overflow: hidden;
-                text-overflow:ellipsis;
-                white-space: nowrap;
-                padding: 0 3vw 0 3vw;
-              }
-              &:nth-of-type(3) {
-                width: 22%;
-                font-size: 1.874rem;
-                text-align: center;
-              }
-              &:nth-of-type(4){
-                width: 18%;
-                font-size: 1.874rem;
-                text-align: center;
-              }
-              &:nth-of-type(5) {
-                width: 3.066vw;
-                height: 2.323vh;
-                background: url(../../static/images/next.png) no-repeat center center;
-                background-size: cover;
-                vertical-align: middle;
-              }
-            }
-          }
-        }
-      }
-      p{
-        width: 79.2vw;
-        height: 10.419vh;
-        background: url("../../static/images/button_bg.png") no-repeat center center;
-        background-size: cover;
-        color: #fff;
-        font-size: 2.3988rem;
-        margin: 6.371vh auto;
+    .InventoryControlMsg{
+      font-family: "PingFang SC";
+      width: 92vw;
+      height: 29.985vh;
+      margin: 13.5vh 4vw 0 4vw;
+      box-shadow: -1px 1px 15px 5px #e1e1e1;
+      border-radius: 4px;
+      p:nth-of-type(1) {
+        padding-top: 5.0975vh;
+        font-size: 2.248rem;
         text-align: center;
-        line-height: 7.419vh;
+      }
+      p:nth-of-type(2) {
+        font-size: 6.2218vh;
+        text-align: center;
+      }
+      .totalCount{
+        margin-top: 2.6235vh;
+        height: 5.397vh;
+        dl{
+          width: 44.333vw;
+          float: left;
+          text-align: center;
+          &:nth-last-of-type(1) {
+            border-left: 2px solid #e5e5e5;
+          }
+          dt{
+            font-size: 2.098rem;
+          }
+          dd{
+            font-size: 3.1484rem;
+            font-weight: bold;
+          }
+        }
       }
     }
     .ivu-input-icon{

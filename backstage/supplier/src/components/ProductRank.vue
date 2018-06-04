@@ -58,7 +58,7 @@
       </section>
       <section class="rankItemMsg" v-show="rankItemMsg">
         <section>
-          <h3>售货柜销售明细</h3>
+          <h3>{{goods_name}}销售明细</h3>
           <ul class="rankItemMsgHeader">
             <li>序号</li>
             <li>名称</li>
@@ -68,9 +68,17 @@
           <ul class="rankItemMsgList">
             <li v-for="(item, index) in rankListData">
               <span>{{index + 1}}</span>
-              <span>{{item.goods_name}}</span>
+              <span>{{item.device_address}}</span>
               <span>{{item.goods_num}}</span>
               <span>{{item.sellmoney}}</span>
+            </li>
+          </ul>
+          <ul class="rankItemMsgList">
+            <li>
+              <span>/</span>
+              <span>/</span>
+              <span>{{goods_number}}</span>
+              <span>{{sellmoney}}</span>
             </li>
           </ul>
         </section>
@@ -99,6 +107,10 @@
           productRank: [], //商品
           rankListData: [], //商品详情
           rankItemMsg: false,//显示详情
+          goods_name: '',//查看商品名称
+          goods_number: '',
+          sellmoney: ''
+
         }
       },
       mounted() {
@@ -290,16 +302,21 @@
         //查看详情
         rankList(index) {
           let goods_id = this.productRank[index].goods_id;
+          this.goods_name = this.productRank[index].goods_name;
           this.getRankListData(this.startDate, this.endDate, goods_id);
         },
         //详情数据
         getRankListData(startDate, endDate, goods_id) {
+          startDate = startDate + ' 00:00:00';
+          endDate = endDate + ' 23:59:59';
           this.rankListData = [];
           this.$ajax({
             url: `http://merchant.test.weilaixiansen.com/Merstats/m3_1_1?stime=${startDate}&etime=${endDate}&goods_id=${goods_id}`,
             method: 'GET'
           }).then((res) => {
             if(res.data.code == 0) {
+              this.goods_number = res.data.total.goods_num;
+              this.sellmoney = res.data.total.sellmoney;
               this.rankItemMsg = true;
               this.rankListData = res.data.data;
               // this.rankListData =  [

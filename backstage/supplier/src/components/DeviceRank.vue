@@ -73,6 +73,14 @@
               <span>{{item.sellmoney}}</span>
             </li>
           </ul>
+          <ul class="rankItemMsgList">
+            <li>
+              <span>/</span>
+              <span>/</span>
+              <span>{{goods_number}}</span>
+              <span>{{sellmoney}}</span>
+            </li>
+          </ul>
         </section>
         <p @click="closeRankList">关闭</p>
       </section>
@@ -99,6 +107,8 @@
         deviceRank: [], //设备
         rankListData: [], //设备详情
         rankItemMsg: false,//显示详情
+        goods_number: '',
+        sellmoney: ''
       }
     },
     mounted() {
@@ -294,12 +304,16 @@
       },
       //详情数据
       getRankListData(startDate, endDate, device_id) {
+        startDate = startDate + ' 00:00:00';
+        endDate = endDate + ' 23:59:59';
         this.rankListData = [];
         this.$ajax({
           url: `http://merchant.test.weilaixiansen.com/Merstats/m2_1_1?stime=${startDate}&etime=${endDate}&device_id=${device_id}`,
           method: 'GET'
         }).then((res) => {
           if(res.data.code == 0) {
+            this.goods_number = res.data.total.goods_num;//商品总数
+            this.sellmoney = res.data.total.sellmoney;//金额总数
             this.rankItemMsg = true;
             this.rankListData = res.data.data;
             // this.rankListData =  [

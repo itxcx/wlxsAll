@@ -73,11 +73,11 @@
                 <span>{{item.address}}</span>
               </p>
               <p class="recordTime">
-                <span>上货时间:</span>
+                <span>{{item.is_unload ? '下货' : '上货'}}时间:</span>
                 <span>{{item.created_time}}</span>
               </p>
               <p class="recordMsg">
-                <span>上货商品:</span>
+                <span>{{item.is_unload ? '下货' : '上货'}}商品:</span>
                 <span>见详情</span>
               </p>
               <p class="showOrderInfo">

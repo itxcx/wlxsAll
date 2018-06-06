@@ -118,6 +118,8 @@
             }).then((res) => {
               if(res.data.code == 0) {
                 this.modalFun('发送成功', 1000);
+              }else{
+                this.modalFun('发送失败', 1000);
               }
             }).catch((error) => {
               this.modalFun('发送失败', 1000);
@@ -165,15 +167,19 @@
                 url: `http://merchant.test.weilaixiansen.com/merchant/changepwd?phone=${phone}&code=${code}&oldpwd=${oldPwd}&newpwd=${newPwd}`,
                 method: 'GET'
               }).then((res) => {
+                this.sendAjax = false;
                 if(res.data.code == 0) {
-                  this.modalFun('修改成功,即将返回登录', 2000);
+                  this.modalFun('修改成功,返回登录', 2000);
                   let times = setTimeout(() => {
                     this.$router.push({
                       path: '/'
                     })
                   }, 2000)
+                }else{
+                  this.modalFun(res.data.message, 2000);
                 }
               }).catch((error) => {
+                this.sendAjax = false;
                 console.log(error);
               })
             }
@@ -300,14 +306,14 @@
     .close {
       display: inline-block;
       width: 5.333vw;
-      height: 2.024vh;
+      height: 2.224vh;
       background: url('../../static/images/pwd_close.png') no-repeat center center;
       background-size: cover;
     }
     .open{
       display: inline-block;
       width: 5.333vw;
-      height: 2.024vh;
+      height: 2.224vh;
       background: url('../../static/images/pwd_open.png') no-repeat center center;
       background-size: cover;
     }

@@ -7,7 +7,33 @@
           </span>
         </div>
       </header>
-      <section class="ModifyContent"></section>
+      <section class="userInfo">
+        <section class="phone">
+          <span>手机号</span>
+          <input type="number" pattern="[0-9]*" v-model="phone" aria-describedby="basic-addon1" name="phone" placeholder="请输入手机号" @blur="phoneBlur"/>
+        </section>
+        <section class="code">
+          <span>验证码</span>
+          <input type="number" pattern="[0-9]*" name="code" aria-describedby="basic-addon1" v-model="code" placeholder="请输入验证码"/>
+          <span @click="getPhoneCode" :class="{'codeCanSend': codeCanSend, 'codeSendDefault': !codeCanSend}">{{codeText}}</span>
+        </section>
+        <section class="oldPwd">
+          <span>原密码</span>
+          <!--<input :type="{'password': changeOldModal, 'text': !changeOldModal}" v-model="oldPsw" placeholder="请输入原密码"/>-->
+          <input :type="OldModal" v-model="oldPsw" placeholder="请输入原密码"/>
+          <span @click="changeOldModalType" :class="{'close': !oldType, 'open': oldType}"></span>
+        </section>
+        <section class="newPwd">
+          <span>新密码</span>
+          <input :type="NewModal" v-model="newPsw" placeholder="请输入新密码"/>
+          <span @click="changeNewModalType" :class="{'close': !newType, 'open': newType}"></span>
+        </section>
+        <section class="pwdTipText">* 6-12个字符组成,区分大小写,建议使用英文字母和数字的混合密码。</section>
+      </section>
+      <section class="userInfo_submit">确认修改</section>
+      <section class="tipModal" v-show="tipStatus">
+        <p>{{tipText}}</p>
+      </section>
     </div>
 </template>
 
@@ -15,7 +41,21 @@
     export default {
         name: "ModifyPassword",
         data() {
-            return {}
+            return {
+              phone: '',
+              code: '',
+              oldPsw: '',
+              newPsw: '',
+              codeText: '获取验证码',
+              tipStatus: false,//错误提示框显示控制
+              tipText: '',//提示框内容
+              phoneLegal: false, //手机号验证正确
+              codeCanSend: false,
+              OldModal: 'password',
+              oldType: false,
+              NewModal: 'password',
+              newType: false
+            }
         },
         mounted() {
           this.$nextTick(() => {
@@ -28,6 +68,73 @@
             this.$router.push({
               path: '/'
             })
+          },
+          //手机号输入失焦
+          phoneBlur(){
+            let phoneCheck = /^1[345789]\d{9}$/;
+            if(!phoneCheck.test(this.phone)){
+              this.modalFun('手机号输入错误', 2000);
+            } else {
+              this.phoneLegal = true;
+            }
+          },
+          //错误提示框显示控制
+          modalFun(text, timer) {
+            this.tipStatus = true;
+            this.tipText = text;
+            setTimeout(() => {
+              this.tipStatus = false;
+            },timer)
+          },
+          //获取验证码
+          getPhoneCode() {
+            if(this.codeText == '获取验证码' && this.phoneLegal) {
+              this.phoneCode(this.phone);
+              this.codeCanSend = true;
+              let n = 60;
+              let timer = setInterval(() => {
+                n--;
+                this.codeText = `${n}秒后再试`;
+                if(n < 1) {
+                  this.codeText = '获取验证码';
+                  clearInterval(timer);
+                  this.codeCanSend = false;
+                }
+              }, 1000)
+            }
+          },
+          //获取验证码接口数据
+          phoneCode(phone) {
+            this.$ajax({
+              url: `http://merchant.local.com/merchant/sendcode?phone=${phone}`,
+              method: 'GET'
+            }).then((res) => {
+              if(res.data.code == 0) {
+                this.modalFun('发送成功', 1000);
+              }
+            }).catch((error) => {
+              this.modalFun('发送失败', 1000);
+            })
+          },
+          //改变模式
+          changeOldModalType() {
+            if(this.OldModal == 'password') {
+              this.OldModal = 'text';
+              this.oldType = true;
+            }else{
+              this.OldModal = 'password';
+              this.oldType = false;
+            }
+          },
+          //改变模式
+          changeNewModalType() {
+            if(this.NewModal == 'password') {
+              this.NewModal = 'text';
+              this.newType = true;
+            }else{
+              this.NewModal = 'password';
+              this.newType = false;
+            }
           }
         }
     }
@@ -56,9 +163,111 @@
         top: 0;
       }
     }
-
-    .ModifyContent{
-
+    .tipModal{
+      background: rgba(0,0,0,.7);
+      border-radius: 10px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: auto;
+      width: 29.2998rem;
+      height: 10rem;
+      z-index: 99;
+      color: #fff;
+      text-align: center;
+      font-size: 2.6677rem;
+      padding: 3vh 0;
+    }
+    .userInfo{
+      padding: 3.748vh 6vw;
+      .phone{
+        border-bottom: 1px solid #e7e7e7;
+        padding: 3.148vh 0;
+        font-size: 2.098rem;
+        span{
+          display: inline-block;
+          width: 21.3vw;
+        }
+        input{
+          border: none;
+          width: 64vw;
+        }
+      }
+      .code{
+        border-bottom: 1px solid #e7e7e7;
+        padding: 2.148vh 0;
+        font-size: 2.098rem;
+        span:nth-of-type(1){
+          display: inline-block;
+          width: 21.3vw;
+        }
+        input{
+          border: none;
+          width: 35.33vw;
+        }
+        .codeSendDefault {
+          display: inline-block;
+          width: 27.333vw;
+          text-align: center;
+          border: 1px solid #65d172;
+          border-radius: 20px;
+          color: #65d172;
+          padding: 0.5vh 0;
+        }
+        .codeCanSend{
+          display: inline-block;
+          width: 27.333vw;
+          text-align: center;
+          border-radius: 20px;
+          padding: 0.5vh 0;
+          color: #d0d0d0;
+          border: 1px solid #d0d0d0;
+        }
+      }
+      .oldPwd, .newPwd{
+        border-bottom: 1px solid #e7e7e7;
+        padding: 3.148vh 0;
+        font-size: 2.098rem;
+        span:nth-of-type(1){
+          display: inline-block;
+          width: 21.3vw;
+        }
+        input{
+          border: none;
+          width: 55.33vw;
+        }
+      }
+      .pwdTipText{
+        font-size: 2.0989rem;
+        padding: 2.998vh 0;
+      }
+    }
+    .userInfo_submit{
+      margin: 4.496rem auto 2.496rem auto;
+      width: 39.6rem;
+      height: 8.8198rem;
+      background: url("../../static/images/button_bg.png") no-repeat center center;
+      background-size: cover;
+      text-align: center;
+      font-size: 2.5488rem;
+      color: #fff;
+      line-height: 6.2198rem;
+    }
+    .close {
+      display: inline-block;
+      width: 5.333vw;
+      height: 1.724vh;
+      background: url('../../static/images/pwd_close.png') no-repeat center center;
+      background-size: cover;
+    }
+    .open{
+      display: inline-block;
+      width: 5.333vw;
+      height: 1.724vh;
+      background: url('../../static/images/pwd_open.png') no-repeat center center;
+      background-size: cover;
     }
   }
 </style>

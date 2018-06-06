@@ -141,8 +141,8 @@ export default new Router({
       component: InventoryControl
     },
     {
-      path: '/mondifyPassword',
-      name: 'mondifyPassword',
+      path: '/modifyPassword',
+      name: 'modifyPassword',
       component: ModifyPassword
     }
 

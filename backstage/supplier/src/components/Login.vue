@@ -13,6 +13,7 @@
           <span></span>
           <input type="password" name="password" v-model="password" placeholder="请输入登录密码"/>
         </div>
+        <p class="modify" @click="modifyPsw">修改密码</p>
       </section>
       <section class="userInfo_submit" @click="submitUserinfo">登录</section>
       <section class="tipModal" v-show="tipStatus">
@@ -90,6 +91,12 @@
           }else{
             this.modalFun('稍后重试', 1000);
           }
+        },
+        //修改密码
+        modifyPsw() {
+          this.$router.push({
+            path: '/modifyPassword'
+          })
         }
       }
     }
@@ -135,7 +142,7 @@
       height: 13.9427rem;
       background: url("../../static/images/logo.png") no-repeat center center;
       background-size: cover;
-      margin: 8.395rem auto;
+      margin: 6.395rem auto;
     }
     .userInfo{
       margin-top: 5.87rem;
@@ -167,7 +174,6 @@
         background: url("../../static/images/account.png") no-repeat center center;
         background-size: cover;
       }
-
       .password{
         margin-top: 3.748vh;
         span{
@@ -179,9 +185,15 @@
           background-size: cover;
         }
       }
+      .modify{
+        margin: 2vh 5vw;
+        text-align: right;
+        font-size: 2.2488rem;
+        color: #65d172;
+      }
     }
     .userInfo_submit{
-      margin: 7.496rem auto;
+      margin: 4.496rem auto 2.496rem auto;
       width: 39.6rem;
       height: 8.8198rem;
       background: url("../../static/images/button_bg.png") no-repeat center center;

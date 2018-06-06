@@ -113,7 +113,7 @@
           //获取验证码接口数据
           phoneCode(phone) {
             this.$ajax({
-              url: `http://merchant.local.com/merchant/sendcode?phone=${phone}`,
+              url: `http://merchant.test.weilaixiansen.com/merchant/sendcode?phone=${phone}`,
               method: 'GET'
             }).then((res) => {
               if(res.data.code == 0) {
@@ -162,11 +162,11 @@
             if(this.phoneLegal && codeLength === 4 && newPwdLength > 5 && oldPwdLength > 0 && !this.sendAjax) {
               this.sendAjax = true;//已经发送过数据请求
               this.$ajax({
-                url: `http://merchant.local.com/merchant/changepwd?phone=${phone}&code=${code}&oldpwd=${oldPwd}&newpwd=${newPwd}`,
+                url: `http://merchant.test.weilaixiansen.com/merchant/changepwd?phone=${phone}&code=${code}&oldpwd=${oldPwd}&newpwd=${newPwd}`,
                 method: 'GET'
               }).then((res) => {
                 if(res.data.code == 0) {
-                  this.modalFun('修改成功,即将返回登录');
+                  this.modalFun('修改成功,即将返回登录', 2000);
                   let times = setTimeout(() => {
                     this.$router.push({
                       path: '/'
@@ -300,14 +300,14 @@
     .close {
       display: inline-block;
       width: 5.333vw;
-      height: 1.724vh;
+      height: 2.024vh;
       background: url('../../static/images/pwd_close.png') no-repeat center center;
       background-size: cover;
     }
     .open{
       display: inline-block;
       width: 5.333vw;
-      height: 1.724vh;
+      height: 2.024vh;
       background: url('../../static/images/pwd_open.png') no-repeat center center;
       background-size: cover;
     }

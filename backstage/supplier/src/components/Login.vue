@@ -186,7 +186,8 @@
         }
       }
       .modify{
-        margin: 2vh 5vw;
+        margin: 2vh auto;
+        width: 39.666rem;
         text-align: right;
         font-size: 2.2488rem;
         color: #65d172;

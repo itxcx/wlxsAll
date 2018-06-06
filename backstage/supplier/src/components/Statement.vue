@@ -3,6 +3,9 @@
       <!--<section class="headerTitle">-->
         <!--<p>智能报表</p>-->
       <!--</section>-->
+      <section class="getPageTime">
+        数据更新时间: {{getPageTime}}
+      </section>
       <header @click="goSaleRoom">
         <p>今日销售额 (元)</p>
         <p class="saleroom">{{saleroom}}</p>
@@ -72,6 +75,7 @@
             exhibitDevice: '',//上货设备数量统计
             shipNum: '',//下货数量统计
             shipDevice: '',//下货设备数量统计
+            getPageTime: ''
           }
       },
       components: {
@@ -83,6 +87,8 @@
           let date = new Date();
           let startTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' 00:00:00';
           let endTime = this.Common.formatDate(date, "yyyy-MM-dd hh:mm:ss");
+          let pageTime = new Date().getHours();
+          this.getPageTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' ' + pageTime + ':00:00';
           this.getSaleroomData(startTime, endTime);
         })
       },
@@ -228,6 +234,16 @@
       color: #fff;
       font-weight: 500;
     }
+    .getPageTime{
+      width: 100vw;
+      background: #65d172;
+      height: 5.997vh;
+      font-size: 2.098rem;
+      line-height: 5.997vh;
+      padding-left: 5vw;
+      color: #fff;
+      font-weight: 500;
+    }
     header{
       font-family: "PingFang SC";
       width: 100%;
@@ -268,10 +284,10 @@
     }
     .statement_content{
       width: 88vw;
-      margin: 4.6476vh 11vw;
+      margin: 4.6476vh 6vw;
       div{
-        width: 39vw;
-        height: 19.34vh;
+        width: 44vw;
+        height: 22.34vh;
         float: left;
         &:nth-of-type(1){
           border-right: 1px solid #ebebeb;
@@ -298,14 +314,16 @@
         dl{
           margin-top: 3.33vw;
           dt{
-            /*font-size: 3.9982rem;*/
+            display: table-cell;
+            height: 8.5vh;
+            vertical-align: middle;
             font-size: 2.9982rem;
             color: #353a3e;
             font-weight: bold;
             padding-right: 2vw;
-            overflow: hidden;
-            text-overflow:ellipsis;
-            white-space: nowrap;
+            /*overflow: hidden;*/
+            /*text-overflow:ellipsis;*/
+            /*white-space: nowrap;*/
           }
           dd{
             margin-top: 3.33vw;

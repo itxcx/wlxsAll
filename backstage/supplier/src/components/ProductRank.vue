@@ -61,9 +61,9 @@
           <h3>{{goods_name}}销售明细</h3>
           <ul class="rankItemMsgHeader">
             <li>序号</li>
-            <li>名称</li>
             <li>售货柜</li>
             <li>数量</li>
+            <li>金额</li>
           </ul>
           <ul class="rankItemMsgList">
             <li v-for="(item, index) in rankListData">

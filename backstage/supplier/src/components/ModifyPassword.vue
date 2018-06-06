@@ -14,23 +14,23 @@
         </section>
         <section class="code">
           <span>验证码</span>
-          <input type="number" pattern="[0-9]*" name="code" aria-describedby="basic-addon1" v-model="code" placeholder="请输入验证码"/>
+          <input type="number" pattern="[0-9]*" name="code" aria-describedby="basic-addon1" v-model="code" placeholder="请输入验证码" @blur="codeBlur"/>
           <span @click="getPhoneCode" :class="{'codeCanSend': codeCanSend, 'codeSendDefault': !codeCanSend}">{{codeText}}</span>
         </section>
         <section class="oldPwd">
           <span>原密码</span>
           <!--<input :type="{'password': changeOldModal, 'text': !changeOldModal}" v-model="oldPsw" placeholder="请输入原密码"/>-->
-          <input :type="OldModal" v-model="oldPsw" placeholder="请输入原密码"/>
+          <input :type="OldModal" v-model="oldPsw" maxlength="12" placeholder="请输入原密码"/>
           <span @click="changeOldModalType" :class="{'close': !oldType, 'open': oldType}"></span>
         </section>
         <section class="newPwd">
           <span>新密码</span>
-          <input :type="NewModal" v-model="newPsw" placeholder="请输入新密码"/>
+          <input :type="NewModal" v-model="newPsw" maxlength="12" placeholder="请输入新密码" @blur="newPwdBlur"/>
           <span @click="changeNewModalType" :class="{'close': !newType, 'open': newType}"></span>
         </section>
         <section class="pwdTipText">* 6-12个字符组成,区分大小写,建议使用英文字母和数字的混合密码。</section>
       </section>
-      <section class="userInfo_submit">确认修改</section>
+      <section class="userInfo_submit" @click="submitModifyInfo">确认修改</section>
       <section class="tipModal" v-show="tipStatus">
         <p>{{tipText}}</p>
       </section>
@@ -54,7 +54,8 @@
               OldModal: 'password',
               oldType: false,
               NewModal: 'password',
-              newType: false
+              newType: false,
+              sendAjax: false, //防止多次请求
             }
         },
         mounted() {
@@ -76,6 +77,12 @@
               this.modalFun('手机号输入错误', 2000);
             } else {
               this.phoneLegal = true;
+            }
+          },
+          //验证码
+          codeBlur() {
+            if(this.code.length !== 4) {
+              this.modalFun('验证码输入错误', 2000)
             }
           },
           //错误提示框显示控制
@@ -116,9 +123,9 @@
               this.modalFun('发送失败', 1000);
             })
           },
-          //改变模式
+          //改变old模式
           changeOldModalType() {
-            if(this.OldModal == 'password') {
+            if(this.OldModal === 'password') {
               this.OldModal = 'text';
               this.oldType = true;
             }else{
@@ -126,14 +133,49 @@
               this.oldType = false;
             }
           },
-          //改变模式
+          //改变new模式
           changeNewModalType() {
-            if(this.NewModal == 'password') {
+            if(this.NewModal === 'password') {
               this.NewModal = 'text';
               this.newType = true;
             }else{
               this.NewModal = 'password';
               this.newType = false;
+            }
+          },
+          //new
+          newPwdBlur() {
+            let length = this.newPsw.length;
+            if(length < 6) {
+              this.modalFun('密码太短', 2000)
+            }
+          },
+          //提交方法
+          submitModifyInfo() {
+            let codeLength = this.code.length;
+            let newPwdLength = this.newPsw.length;
+            let oldPwdLength = this.oldPsw.length;
+            let phone = this.phone;
+            let code = this.code;
+            let oldPwd = this.oldPsw;
+            let newPwd = this.newPsw;
+            if(this.phoneLegal && codeLength === 4 && newPwdLength > 5 && oldPwdLength > 0 && !this.sendAjax) {
+              this.sendAjax = true;//已经发送过数据请求
+              this.$ajax({
+                url: `http://merchant.local.com/merchant/changepwd?phone=${phone}&code=${code}&oldpwd=${oldPwd}&newpwd=${newPwd}`,
+                method: 'GET'
+              }).then((res) => {
+                if(res.data.code == 0) {
+                  this.modalFun('修改成功,即将返回登录');
+                  let times = setTimeout(() => {
+                    this.$router.push({
+                      path: '/'
+                    })
+                  }, 2000)
+                }
+              }).catch((error) => {
+                console.log(error);
+              })
             }
           }
         }

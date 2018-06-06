@@ -149,7 +149,7 @@
           newPwdBlur() {
             let length = this.newPsw.length;
             if(length < 6) {
-              this.modalFun('密码太短', 2000)
+              this.modalFun('密码太短', 2000);
             }
           },
           //提交方法

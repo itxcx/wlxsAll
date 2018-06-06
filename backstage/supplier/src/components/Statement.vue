@@ -265,6 +265,7 @@
     }
     .main{
       overflow: auto;
+      height: 85vh;
       .getMore{
         text-align: center;
         padding: 1vh 0;

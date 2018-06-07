@@ -3,12 +3,14 @@
       <!--<section class="headerTitle">-->
         <!--<p>智能报表</p>-->
       <!--</section>-->
+
       <section class="getPageTime">
         数据更新时间: {{getPageTime}}
       </section>
       <section class="main">
         <!--<v-scroll  :on-infinite="onInfinite">-->
         <!--<loadmore :topMethod="getDataRefresh">-->
+        <scroller :on-refresh="infinite" ref="myscroller">
           <p class="getMore" v-show="isPull">{{ctrlTipTitle}}</p>
           <header @click="goSaleRoom">
             <p>今日销售额 (元)</p>
@@ -60,9 +62,11 @@
               </dl>
             </div>
           </section>
+        </scroller>
         <!--</v-scroll>-->
         <!--</loadmore>-->
       </section>
+
       <Footer-bar></Footer-bar>
     </div>
 </template>
@@ -105,22 +109,31 @@
         })
       },
       methods: {
-        onInfinite() {
-          alert(2);
+        infinite() {
+          console.log(1);
+          setTimeout(() => {
+            this.$refs.myscroller.resize();
+            let date = new Date();
+            let startTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' 00:00:00';
+            let endTime = this.Common.formatDate(date, "yyyy-MM-dd hh:mm:ss");
+            let pageTime = new Date().getHours();
+            this.getPageTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' ' + pageTime + ':00:00';
+            this.getSaleroomData(startTime, endTime);
+          }, 1000)
         },
-        //下拉加载更多
-        getDataRefresh() {
-          this.ctrlTipTitle = '加载中...';
-          this.isPull = true;
-          // let date = new Date();
-          // let startTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' 00:00:00';
-          // let endTime = this.Common.formatDate(date, "yyyy-MM-dd hh:mm:ss");
-          // let pageTime = new Date().getHours();
-          // this.getPageTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' ' + pageTime + ':00:00';
-          // setTimeout(() => {
-          //   this.getSaleroomData(startTime, endTime);
-          // }, 1000)
-        },
+        // //下拉加载更多
+        // getDataRefresh() {
+        //   this.ctrlTipTitle = '加载中...';
+        //   this.isPull = true;
+        //   // let date = new Date();
+        //   // let startTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' 00:00:00';
+        //   // let endTime = this.Common.formatDate(date, "yyyy-MM-dd hh:mm:ss");
+        //   // let pageTime = new Date().getHours();
+        //   // this.getPageTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' ' + pageTime + ':00:00';
+        //   // setTimeout(() => {
+        //   //   this.getSaleroomData(startTime, endTime);
+        //   // }, 1000)
+        // },
         //当前时间销售额
         getSaleroomData(startTime, endTime) {
           this.$ajax({
@@ -272,6 +285,10 @@
       padding-left: 5vw;
       color: #fff;
       font-weight: 500;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99;
     }
     .main{
       overflow: auto;
@@ -381,5 +398,9 @@
         }
       }
     }
+
+  }
+  ._v-container[data-v-ecaca2b0] {
+    padding-top: 4vh;
   }
 </style>

@@ -10,6 +10,9 @@ import 'iview/dist/styles/iview.css';
 // import echarts from 'echarts';
 import highcharts from 'highcharts';
 
+import scroller from 'vue-scroller';
+Vue.use(scroller);
+
 import Impression from 'vue-impression'
 Vue.use(Impression)
 

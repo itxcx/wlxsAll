@@ -1,16 +1,19 @@
 <template>
   <div class="Ship">
     <section class="login_top">
-        <span>
-          <Icon type="chevron-left" @click="goMain"></Icon>
+        <span @click="goMain">
+          <Icon type="chevron-left"></Icon>
         </span>
       <p>商品下架操作</p>
     </section>
     <section class="ship_img"></section>
+    <article v-show="openning">
+      <p>开门中,请稍等...</p>
+    </article>
     <article v-show="openSuccess">
       <p>门已开,请取出商品</p>
     </article>
-    <article v-show="!openSuccess">
+    <article v-show="openError">
       <p>开门超时,请重试</p>
     </article>
     <section class="ship_tips">
@@ -31,7 +34,9 @@
     name: "ship",
     data() {
       return {
-        openSuccess: true,
+        openSuccess: false,
+        openError: false,
+        openning: true,
       }
     },
     mounted() {
@@ -77,6 +82,7 @@
           url: `http://merchant.test.weilaixiansen.com/login/shopflow?device_number=${device_number}`,
           method: 'GET'
         }).then((res) => {
+          this.openning = false;
           if(res.data.code == 0) { //开门成功
             this.openSuccess = true;
             let sid = res.data.sid;
@@ -88,7 +94,7 @@
               path: '/'
             })
           }else{ //开门超时
-            this.openSuccess = false;
+            this.openError = true;
           }
         }).catch((error) => {
           console.log(error);
@@ -115,7 +121,7 @@
       margin-bottom: 9.67vh;
       span{
         position: absolute;
-        left: 4vw;
+        left: 2vw;
         top: 0;
       }
     }

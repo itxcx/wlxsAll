@@ -170,7 +170,7 @@
                 for(let i = 0; i < this.recordList.length; i++) {
                   if(this.recordList[i].address.search('E座') !== -1) {
                     this.recordList[i].callName = '瞪羚谷E座';
-                  }else if(this.recordList[i].address.search('招招商银行') !== -1) {
+                  }else if(this.recordList[i].address.search('招商银行') !== -1) {
                     this.recordList[i].callName = '雁塔区招商银行';
                   }else if(this.recordList[i].address.search('都市') !== -1) {
                     this.recordList[i].callName = '都市之门B座';
@@ -194,6 +194,7 @@
           //请求上下架列表方法
           getOrderListData(date1 = '', date2 = '', action = '', device_id = '', page = 0) {
             // alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
+            this.recordList = [];
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}`,
               method: 'GET'
@@ -220,6 +221,10 @@
                   }else if(this.recordList.length < 5) {
                     this.ctrlTipTitle = '没有更多数据...';
                   }
+                }else if(res.data.code == 3) {
+                  this.$router.push({
+                    path: '/'
+                  })
                 }
             }).catch((error) => {
               console.log(error);
@@ -248,6 +253,10 @@
                 this.deviceList.unshift({"device_id": '', "address": "所有售货柜"});
                 this.addressList.unshift('所有地址');
                 this.canGetDevice = true;
+              }else if(res.data.code == 3) {
+                this.$router.push({
+                  path: '/'
+                })
               }
             }).catch((error) => {
               console.log(error);

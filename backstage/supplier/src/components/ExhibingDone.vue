@@ -2,7 +2,9 @@
   <div class="ExhibingDone">
     <header>
       <div class="pageTitle">
-        <span @click="goBack"><Icon type="chevron-left"></Icon></span>
+        <span @click="goBack">
+          <Icon type="chevron-left"></Icon>
+        </span>
         <span>上货完成</span>
       </div>
       <div class="location">
@@ -20,6 +22,7 @@
       </p>
     </section>
     <section class="checkContent">
+      <p>上货商品</p>
       <ul class="headerList">
         <li>序号</li>
         <li>商品名称</li>
@@ -31,7 +34,24 @@
           <span>{{index + 1}}</span>
           <span>{{item.goods_name}}</span>
           <span>{{item.goods_count}}</span>
-          <span @click="showLabel(index)">查看</span>
+          <span @click="showLabel(index, 'own')">查看</span>
+        </li>
+      </ul>
+    </section>
+    <section class="checkContent">
+      <p>错拿商品</p>
+      <ul class="headerList">
+        <li>序号</li>
+        <li>商品名称</li>
+        <li>数量</li>
+        <li>编号</li>
+      </ul>
+      <ul class="checkItemList">
+        <li v-for="(item, index) in itemList.sale_goods">
+          <span>{{index + 1}}</span>
+          <span>{{item.goods_name}}</span>
+          <span>{{item.goods_count}}</span>
+          <span @click="showLabel(index, 'other')">查看</span>
         </li>
       </ul>
     </section>
@@ -66,6 +86,67 @@
     mounted() {
       this.$nextTick(() => {
         this.itemList = JSON.parse(localStorage.getItem('exhibData'));
+        // this.itemList = {
+        //   "goods": [{
+        //                           "goods_name": "摆渡乐源壹品(芒果)",
+        //                           "goods_count": 1,
+        //                           "tags": ["AAAB9176"]
+        //                         }, {
+        //                           "goods_name": "清谷田园",
+        //                           "goods_count": 1,
+        //                           "tags": ["AAAC8741"]
+        //                         },
+        //     {
+        //       "goods_name": "清谷田园",
+        //       "goods_count": 1,
+        //       "tags": ["AAAC8741"]
+        //     },
+        //     {
+        //       "goods_name": "清谷田园",
+        //       "goods_count": 1,
+        //       "tags": ["AAAC8741"]
+        //     },
+        //     {
+        //       "goods_name": "清谷田园",
+        //       "goods_count": 1,
+        //       "tags": ["AAAC8741"]
+        //     },
+        //     {
+        //       "goods_name": "清谷田园",
+        //       "goods_count": 1,
+        //       "tags": ["AAAC8741"]
+        //     }],
+        //                   "sale_goods": [{
+        //                     "goods_name": "摆渡乐源壹品(芒果)",
+        //                     "goods_count": 1,
+        //                     "tags": ["AAAB9176"]
+        //                   }, {
+        //                     "goods_name": "清谷田园",
+        //                     "goods_count": 1,
+        //                     "tags": ["AAAC8741"]
+        //                   },
+        //                     {
+        //                       "goods_name": "清谷田园",
+        //                       "goods_count": 1,
+        //                       "tags": ["AAAC8741"]
+        //                     },
+        //                     {
+        //                       "goods_name": "清谷田园",
+        //                       "goods_count": 1,
+        //                       "tags": ["AAAC8741"]
+        //                     },
+        //                     {
+        //                       "goods_name": "清谷田园",
+        //                       "goods_count": 1,
+        //                       "tags": ["AAAC8741"]
+        //                     },
+        //                     {
+        //                       "goods_name": "清谷田园",
+        //                       "goods_count": 1,
+        //                       "tags": ["AAAC8741"]
+        //                     }],
+        //                   "total_count": 2
+        //                  }
         this.location = localStorage.getItem('device_address');
       })
     },
@@ -96,16 +177,21 @@
 
 <style lang="less">
   .ExhibingDone{
+    padding-top: 15vh;
     padding-bottom: 12vh;
     width: 100vw;
     header{
+      position: fixed;
+      top: 0;
+      left: 0;
       background: #65d172;
       color: #fff;
       padding-bottom: 2.248vh;
       .pageTitle{
-        width: 100%;
+        width: 100vw;
         height: 4.497vh;
-        position: relative;
+        z-index: 9;
+        /*position: relative;*/
         font-size: 2.698rem;
         span:nth-of-type(1) {
           position: absolute;
@@ -156,7 +242,7 @@
         span:nth-of-type(1) {
           display: inline-block;
           width: 3.8666vw;
-          height: 2.923vh;
+          height: 3.123vh;
           background: url("../../static/images/image_tips.png") no-repeat center center;
           background-size: cover;
           vertical-align: bottom;
@@ -171,6 +257,12 @@
       }
     }
     .checkContent{
+      p{
+        font-size: 2.3988rem;
+        padding: 2.2488vh 0;
+        font-weight: bold;
+        padding-left: 1.6667vw;
+      }
       .headerList{
         border-bottom: 1px solid #e5e5e5;
         overflow: hidden;
@@ -192,6 +284,9 @@
         }
       }
       .checkItemList{
+        height: 20vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling : touch;
         li{
           span{
             text-align: center;

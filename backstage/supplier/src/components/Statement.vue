@@ -43,6 +43,7 @@
             </div>
             <!--今日上货数量-->
             <div class="exhibit" @click="invenCtrl(0)">
+            <!--<div class="exhibit">-->
               <h3>今日上货数量(个)</h3>
               <dl>
                 <dt>{{exhibitNum}}</dt>
@@ -51,6 +52,7 @@
             </div>
             <!--今日下货数量-->
             <div class="ship" @click="invenCtrl(1)">
+            <!--<div class="ship">-->
               <h3>今日下货数量(个)</h3>
               <dl>
                 <dt>{{shipNum}}</dt>

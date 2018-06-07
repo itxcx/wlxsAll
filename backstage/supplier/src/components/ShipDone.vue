@@ -84,6 +84,68 @@
     mounted() {
       this.$nextTick(() => {
         this.itemList = JSON.parse(localStorage.getItem('exhibData'));
+        // this.itemList = {
+        //   "goods": [
+        //   {
+        //     "goods_name": "摆渡乐源壹品(芒果)",
+        //     "goods_count": 1,
+        //     "tags": ["AAAB9176"]
+        //   }, {
+        //     "goods_name": "清谷田园",
+        //     "goods_count": 1,
+        //     "tags": ["AAAC8741"]
+        //   },
+        //     {
+        //       "goods_name": "清谷田园",
+        //       "goods_count": 1,
+        //       "tags": ["AAAC8741"]
+        //     },
+        //     {
+        //       "goods_name": "清谷田园",
+        //       "goods_count": 1,
+        //       "tags": ["AAAC8741"]
+        //     },
+        //     {
+        //       "goods_name": "清谷田园",
+        //       "goods_count": 1,
+        //       "tags": ["AAAC8741"]
+        //     },
+        //     {
+        //       "goods_name": "清谷田园",
+        //       "goods_count": 1,
+        //       "tags": ["AAAC8741"]
+        //     }],
+        //   "sale_goods": [{
+        //     "goods_name": "摆渡乐源壹品(芒果)",
+        //     "goods_count": 1,
+        //     "tags": ["AAAB9176"]
+        //   }, {
+        //     "goods_name": "清谷田园",
+        //     "goods_count": 1,
+        //     "tags": ["AAAC8741"]
+        //   },
+        //     {
+        //       "goods_name": "清谷田园",
+        //       "goods_count": 1,
+        //       "tags": ["AAAC8741"]
+        //     },
+        //     {
+        //       "goods_name": "清谷田园",
+        //       "goods_count": 1,
+        //       "tags": ["AAAC8741"]
+        //     },
+        //     {
+        //       "goods_name": "清谷田园",
+        //       "goods_count": 1,
+        //       "tags": ["AAAC8741"]
+        //     },
+        //     {
+        //       "goods_name": "清谷田园",
+        //       "goods_count": 1,
+        //       "tags": ["AAAC8741"]
+        //     }],
+        //   "total_count": 2
+        // }
         if(this.itemList.sale_goods.length > 0) {
           for(let i = 0; i < this.itemList.sale_goods.length; i++) {
             this.price += this.itemList.sale_goods[i].goods_count;
@@ -124,9 +186,14 @@
 
 <style lang="less">
   .ShipDone{
+    padding-top: 15vh;
     padding-bottom: 12vh;
     width: 100vw;
     header{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
       background: #65d172;
       color: #fff;
       padding-bottom: 2.248vh;
@@ -194,7 +261,6 @@
     .checkContent{
       p{
         font-size: 2.3988rem;
-        padding: 2.2488vh 0;
         font-weight: bold;
         padding-left: 1.6667vw;
       }
@@ -219,6 +285,9 @@
         }
       }
       .checkItemList{
+        height: 20vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling : touch;
         li{
           span{
             text-align: center;

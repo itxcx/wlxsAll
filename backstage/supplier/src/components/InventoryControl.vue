@@ -227,9 +227,9 @@
         }).then((res) => {
           if(res.data.code == 0) {//返回数据成功
             let inventoryControlData = res.data.data;
-            this.inventoryControl = inventoryControlData.total_money;
-            this.volume = saleData.order_num;
-            this.numberCount = saleData.goods_total;
+            this.inventoryControl = inventoryControlData.goods_count;
+            this.volume = inventoryControlData.device_num;
+            this.numberCount = inventoryControlData.goods_class_num;
           }else if(res.data.code == -1) {//没有数据
             this.inventoryControl = 0;
             this.volume = 0;

@@ -16,7 +16,7 @@
       </h3>
       <p>
         <span></span>
-        <span>已实际上货数量为标准，问题商品请开柜带走</span>
+        <span>以实际上货数量为标准，问题商品请开柜带走</span>
       </p>
     </section>
     <section class="checkContent">

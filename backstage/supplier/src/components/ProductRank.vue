@@ -458,10 +458,10 @@
             width: 10%;
           }
           &:nth-of-type(2) {
-            width: 40%;
+            width: 45%;
           }
           &:nth-of-type(3) {
-            width: 25%;
+            width: 20%;
           }
           &:nth-of-type(4) {
             width: 25%;
@@ -484,7 +484,7 @@
               text-align: center;
             }
             &:nth-of-type(2) {
-              width: 39%;
+              width: 45%;
               font-size: 2.2488rem;
               color: #373737;
               font-weight: 600;
@@ -494,7 +494,7 @@
               padding: 0 3vw 0 1vw;
             }
             &:nth-of-type(3) {
-              width: 22%;
+              width: 16%;
               font-size: 1.874rem;
               text-align: left;
             }
@@ -543,11 +543,14 @@
               width: 15%;
             }
             &:nth-of-type(2) {
-              width: 40%;
+              width: 47%;
             }
-            &:nth-of-type(3), &:nth-of-type(4) {
-              width: 22.5%;
+            &:nth-of-type(3){
+              width: 18%;
             }
+          &:nth-of-type(4) {
+            width: 20%;
+          }
           }
         }
         .rankItemMsgList{
@@ -567,7 +570,7 @@
                 text-align: center;
               }
               &:nth-of-type(2) {
-                width: 39%;
+                width: 45%;
                 font-size: 2.2488rem;
                 color: #373737;
                 font-weight: 600;
@@ -577,7 +580,7 @@
                 padding: 0 3vw 0 3vw;
               }
               &:nth-of-type(3) {
-                width: 22%;
+                width: 16%;
                 font-size: 1.874rem;
                 text-align: center;
               }
@@ -609,7 +612,7 @@
                 text-align: center;
               }
               &:nth-of-type(2) {
-                width: 39%;
+                width: 45%;
                 font-size: 2.2488rem;
                 color: #373737;
                 font-weight: 600;
@@ -619,7 +622,7 @@
                 padding: 0 3vw 0 3vw;
               }
               &:nth-of-type(3) {
-                width: 22%;
+                width: 16%;
                 font-size: 1.874rem;
                 text-align: center;
               }

@@ -2,7 +2,7 @@
     <div class="Exhibing">
       <section class="login_top">
         <span>
-          <Icon type="chevron-left"></Icon>
+          <Icon type="chevron-left" @click="goMain"></Icon>
         </span>
         <p>商品上架操作</p>
       </section>
@@ -43,6 +43,11 @@
         })
       },
       methods: {
+        goMain() {
+          this.$router.push({
+            path: '/main'
+          })
+        },
         //websocket
         openDoorWs(sid) {
           let socketPath = `ws://wss.weilaixiansen.com:37023?${sid}`;

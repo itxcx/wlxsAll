@@ -7,7 +7,8 @@
         数据更新时间: {{getPageTime}}
       </section>
       <section class="main">
-        <loadmore :topMethod="getDataRefresh">
+        <!--<v-scroll  :on-infinite="onInfinite">-->
+        <!--<loadmore :topMethod="getDataRefresh">-->
           <p class="getMore" v-show="isPull">{{ctrlTipTitle}}</p>
           <header @click="goSaleRoom">
             <p>今日销售额 (元)</p>
@@ -36,7 +37,7 @@
             <div class="goods" @click="goProductRank">
               <h3>今日商品排行</h3>
               <dl>
-                <dt>{{goodsTop}}</dt>
+                <dt style="display: table-cell;">{{goodsTop}}</dt>
                 <dd>售卖数量<span>{{goodsNum}}</span>个</dd>
               </dl>
             </div>
@@ -57,7 +58,8 @@
               </dl>
             </div>
           </section>
-        </loadmore>
+        <!--</v-scroll>-->
+        <!--</loadmore>-->
       </section>
       <Footer-bar></Footer-bar>
     </div>
@@ -65,6 +67,7 @@
 
 <script>
   import FooterBar from './FooterBar';
+  import vScroll from './Refresh'
     export default {
       name: "statement",
       data() {
@@ -86,7 +89,7 @@
           }
       },
       components: {
-        FooterBar
+        FooterBar, vScroll
       },
       mounted() {
         this.$nextTick(() => {
@@ -100,16 +103,21 @@
         })
       },
       methods: {
+        onInfinite() {
+          alert(2);
+        },
         //下拉加载更多
         getDataRefresh() {
           this.ctrlTipTitle = '加载中...';
           this.isPull = true;
-          let date = new Date();
-          let startTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' 00:00:00';
-          let endTime = this.Common.formatDate(date, "yyyy-MM-dd hh:mm:ss");
-          let pageTime = new Date().getHours();
-          this.getPageTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' ' + pageTime + ':00:00';
-          this.getSaleroomData(startTime, endTime);
+          // let date = new Date();
+          // let startTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' 00:00:00';
+          // let endTime = this.Common.formatDate(date, "yyyy-MM-dd hh:mm:ss");
+          // let pageTime = new Date().getHours();
+          // this.getPageTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' ' + pageTime + ':00:00';
+          // setTimeout(() => {
+          //   this.getSaleroomData(startTime, endTime);
+          // }, 1000)
         },
         //当前时间销售额
         getSaleroomData(startTime, endTime) {
@@ -351,6 +359,7 @@
               height: 8.5vh;
               vertical-align: middle;
               font-size: 2.9982rem;
+              line-height: 2.9982rem;
               color: #353a3e;
               font-weight: bold;
               padding-right: 2vw;

@@ -38,19 +38,19 @@
         </li>
       </ul>
     </section>
-    <section class="checkContent">
+    <section class="checkOtherContent">
       <p>错拿商品</p>
       <ul class="headerList">
-        <li>序号</li>
         <li>商品名称</li>
         <li>数量</li>
+        <li>单价</li>
         <li>编号</li>
       </ul>
       <ul class="checkItemList">
         <li v-for="(item, index) in itemList.sale_goods">
-          <span>{{index + 1}}</span>
           <span>{{item.goods_name}}</span>
           <span>{{item.goods_count}}</span>
+          <span>{{item.goods_price}}</span>
           <span @click="showLabel(index, 'other')">查看</span>
         </li>
       </ul>
@@ -304,6 +304,71 @@
             }
             &:nth-of-type(2) {
               width: 50%;
+              font-weight: bold;
+            }
+            &:nth-of-type(4) {
+              width: 16%;
+              border: 1px solid #65d172;
+              color: #65d172;
+              border-radius: 20px;
+              padding: 0;
+              margin-left: 5%;
+            }
+          }
+          &:nth-of-type(even) {
+            background: #f7f7f7;
+          }
+        }
+      }
+    }
+    .checkOtherContent{
+      p{
+        font-size: 2.3988rem;
+        padding: 2.2488vh 0;
+        font-weight: bold;
+        padding-left: 1.6667vw;
+      }
+      .headerList{
+        border-bottom: 1px solid #e5e5e5;
+        overflow: hidden;
+        li{
+          float: left;
+          text-align: center;
+          font-size: 2.2488rem;
+          color: #7b7b7b;
+          padding: 1.499vh 0;
+          &:nth-of-type(2), &:nth-of-type(3) {
+            width: 14%;
+          }
+          &:nth-of-type(1) {
+            width: 46%;
+          }
+          &:nth-of-type(4) {
+            width: 26%;
+          }
+        }
+      }
+      .checkItemList{
+        height: 20vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling : touch;
+        li{
+          span{
+            text-align: center;
+            font-size: 2.2488rem;
+            display: inline-block;
+            width: 21%;
+            color: #373737;
+            padding: 1.874vh 0;
+            &:nth-of-type(1){
+              width: 46%;
+              font-weight: bold;
+            }
+            &:nth-of-type(3) {
+              width: 12%;
+            }
+            &:nth-of-type(2) {
+              width: 12%;
               font-weight: bold;
             }
             &:nth-of-type(4) {

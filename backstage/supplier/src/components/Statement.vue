@@ -110,7 +110,6 @@
       },
       methods: {
         infinite() {
-          console.log(1);
           setTimeout(() => {
             this.$refs.myscroller.resize();
             let date = new Date();
@@ -171,7 +170,7 @@
               this.counterAddr = res.data.data.device_address;
               this.countAmount = res.data.data.total_money;
             }else{
-              this.counterAddr = '未来鲜森智能售货柜';
+              this.counterAddr = '无';
               this.countAmount = 0;
             }
           }).catch((error) => {
@@ -189,7 +188,7 @@
               this.goodsTop = res.data.data.goods_name;
               this.goodsNum  = res.data.data.goods_num;
             }else{
-              this.goodsTop = '未来鲜森';
+              this.goodsTop = '无';
               this.goodsNum  = 0;
             }
           }).catch((error) => {

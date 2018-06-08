@@ -8,8 +8,6 @@
         数据更新时间: {{getPageTime}}
       </section>
       <section class="main">
-        <!--<v-scroll  :on-infinite="onInfinite">-->
-        <!--<loadmore :topMethod="getDataRefresh">-->
         <scroller :on-refresh="infinite" ref="myscroller">
           <p class="getMore" v-show="isPull">{{ctrlTipTitle}}</p>
           <header @click="goSaleRoom">
@@ -45,7 +43,6 @@
             </div>
             <!--今日上货数量-->
             <div class="exhibit" @click="invenCtrl(0)">
-            <!--<div class="exhibit">-->
               <h3>今日上货数量(个)</h3>
               <dl>
                 <dt>{{exhibitNum}}</dt>
@@ -54,7 +51,6 @@
             </div>
             <!--今日下货数量-->
             <div class="ship" @click="invenCtrl(1)">
-            <!--<div class="ship">-->
               <h3>今日下货数量(个)</h3>
               <dl>
                 <dt>{{shipNum}}</dt>
@@ -63,10 +59,7 @@
             </div>
           </section>
         </scroller>
-        <!--</v-scroll>-->
-        <!--</loadmore>-->
       </section>
-
       <Footer-bar></Footer-bar>
     </div>
 </template>
@@ -120,19 +113,6 @@
             this.getSaleroomData(startTime, endTime);
           }, 1000)
         },
-        // //下拉加载更多
-        // getDataRefresh() {
-        //   this.ctrlTipTitle = '加载中...';
-        //   this.isPull = true;
-        //   // let date = new Date();
-        //   // let startTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' 00:00:00';
-        //   // let endTime = this.Common.formatDate(date, "yyyy-MM-dd hh:mm:ss");
-        //   // let pageTime = new Date().getHours();
-        //   // this.getPageTime = this.Common.formatDate(date, "yyyy-MM-dd") + ' ' + pageTime + ':00:00';
-        //   // setTimeout(() => {
-        //   //   this.getSaleroomData(startTime, endTime);
-        //   // }, 1000)
-        // },
         //当前时间销售额
         getSaleroomData(startTime, endTime) {
           this.$ajax({

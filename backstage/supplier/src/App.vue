@@ -1,12 +1,23 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view class="Router"/>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'app'
+    name: 'app',
+    watch: {
+      '$router' (to, from) {
+        let isBack = this.$router.isBack;  //  监听路由变化时的状态为前进还是后退
+        if(isBack) {
+          this.transitionName = 'slide-right'
+        } else {
+          this.transitionName = 'slide-left'
+        }
+        this.$router.isBack = false
+      }
+    }
   }
 
 </script>
@@ -51,5 +62,42 @@
   }
   ul{
     list-style: none;
+  }
+  .bounce-enter-active {
+    animation: bounce-in .5s;
+  }
+  .bounce-leave-active {
+    animation: bounce-in .5s reverse;
+  }
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .Router {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all 1.8s ease;
+  }
+  .slide-left-enter,
+  .slide-right-leave-active {
+    opacity: 0;
+    -webkit-transform: translate(100%, 0);
+    transform: translate(100%, 0);
+  }
+
+  .slide-left-leave-active,
+  .slide-right-enter {
+    opacity: 0;
+    -webkit-transform: translate(-100%, 0);
+    transform: translate(-100% 0);
   }
 </style>

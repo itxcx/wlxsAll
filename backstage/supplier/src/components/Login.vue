@@ -13,12 +13,16 @@
           <span></span>
           <input type="password" name="password" v-model="password" placeholder="请输入登录密码"/>
         </div>
-        <p class="modify" @click="modifyPsw">修改密码</p>
+        <p class="modify">
+          <span @click="modifyPsw">修改密码</span>
+        </p>
       </section>
       <section class="userInfo_submit" @click="submitUserinfo">登录</section>
-      <section class="tipModal" v-show="tipStatus">
-        <p>{{tipText}}</p>
-      </section>
+      <transition name="bounce" appear>
+        <section class="tipModal" v-if="tipStatus">
+          <p>{{tipText}}</p>
+        </section>
+      </transition>
     </div>
 </template>
 
@@ -47,7 +51,7 @@
         phoneBlur(){
           let phoneCheck = /^1[345789]\d{9}$/;
           if(!phoneCheck.test(this.phone)){
-            this.modalFun('手机号输入错误', 2000);
+            this.modalFun('手机号输入错误', 1500);
           } else {
             this.phoneLegal = true;
           }
@@ -81,11 +85,11 @@
                   }, 1000)
                 }else{
                   this.submitAlready = false;
-                  this.modalFun('用户信息错误', 2000);
+                  this.modalFun('用户信息错误', 1500);
                 }
               }).catch((error) => {
                 this.submitAlready = false;
-                this.modalFun('操作错误,请重试', 2000);
+                this.modalFun('操作错误,请重试', 1500);
               })
             }
           }else{

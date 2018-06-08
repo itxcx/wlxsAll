@@ -2,6 +2,25 @@
   <div class="Test">
     <aside>{{Time}}</aside>
     <aside>{{changeData}}</aside>
+    <section>
+      <button @click="show = !show">toggle</button>
+      <section>
+        <transition name="slide-fade">
+          <span v-if="show">content</span>
+        </transition>
+      </section>
+    </section>
+    <section>
+      <button @click="animationShow = !animationShow">animation toggle</button>
+      <section>
+        <transition name="bounce" appear>
+          <div v-if="animationShow">Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Aliquid assumenda consectetur eligendi officia quasi tempora unde voluptates.
+            Alias iure labore minus odio officiis rem, soluta vel? Alias consequatur deserunt hic.
+          </div>
+        </transition>
+      </section>
+    </section>
   </div>
 </template>
 
@@ -10,7 +29,9 @@
     name: 'Test',
     data() {
       return {
-        Time: '1970-01-01 00:00:00'
+        Time: '1970-01-01 00:00:00',
+        show: true,
+        animationShow: true,
       }
     },
     mounted() {
@@ -35,7 +56,7 @@
     },
     //侦听器
     watch: {
-      isChange() {
+      Time() {
 
       }
     }
@@ -43,5 +64,36 @@
 </script>
 
 <style lang="less">
+  .Test{
+    .slide-fade-enter-active {
+      transition: all .3s ease;
+    }
+    .slide-fade-leave-active {
+      transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    /* .slide-fade-leave-active for below version 2.1.8 */
+    .slide-fade-enter, .slide-fade-leave-to {
+      transform: translateX(140px);
+      opacity: 0;
+    }
 
+    /**********************************************************************/
+    .bounce-enter-active {
+      animation: bounce-in .5s;
+    }
+    .bounce-leave-active {
+      animation: bounce-in .5s reverse;
+    }
+    @keyframes bounce-in {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.5);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  }
 </style>

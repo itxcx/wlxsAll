@@ -83,13 +83,6 @@
             this.tipStatus = false;
           }, 2000)
         },
-        // showPersonalPhone() {
-        //   this.tipStatus = true;
-        //   this.tipText = '联系电话: 182-9186-2150';
-        //   setTimeout(() => {
-        //     this.tipStatus = false;
-        //   }, 4000)
-        // }
       }
     }
 </script>

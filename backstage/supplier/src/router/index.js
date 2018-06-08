@@ -25,11 +25,18 @@ import RepertoryList from '../components/RepertoryList' //库存不分柜子
 import InventoryControl from '../components/InventoryControl' //上下货报表查看
 import ModifyPassword from '../components/ModifyPassword' //修改密码
 //引入主要的数据模块
+//测试模块
+import Test from '../components/Test'
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
+    {
+      path: '/test',
+      name: 'test',
+      component: Test
+    },
     {
       path: '/',
       name: 'login',

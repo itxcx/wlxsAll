@@ -31,9 +31,11 @@
         <section class="pwdTipText">* 6-12个字符组成,区分大小写,建议使用英文字母和数字的混合密码。</section>
       </section>
       <section class="userInfo_submit" @click="submitModifyInfo">确认修改</section>
-      <section class="tipModal" v-show="tipStatus">
-        <p>{{tipText}}</p>
-      </section>
+      <transition name="bounce" appear>
+        <section class="tipModal" v-if="tipStatus">
+          <p>{{tipText}}</p>
+        </section>
+      </transition>
     </div>
 </template>
 
@@ -74,7 +76,7 @@
           phoneBlur(){
             let phoneCheck = /^1[345789]\d{9}$/;
             if(!phoneCheck.test(this.phone)){
-              this.modalFun('手机号输入错误', 2000);
+              this.modalFun('手机号输入错误', 1500);
             } else {
               this.phoneLegal = true;
             }
@@ -82,7 +84,7 @@
           //验证码
           codeBlur() {
             if(this.code.length !== 4) {
-              this.modalFun('验证码输入错误', 2000)
+              this.modalFun('验证码输入错误', 1500)
             }
           },
           //错误提示框显示控制
@@ -149,7 +151,7 @@
           newPwdBlur() {
             let length = this.newPsw.length;
             if(length < 6) {
-              this.modalFun('密码太短', 2000);
+              this.modalFun('密码太短', 1500);
             }
           },
           //提交方法
@@ -169,7 +171,7 @@
               }).then((res) => {
                 this.sendAjax = false;
                 if(res.data.code == 0) {
-                  this.modalFun('修改成功,返回登录', 2000);
+                  this.modalFun('修改成功,返回登录', 1500);
                   let times = setTimeout(() => {
                     this.$router.push({
                       path: '/'

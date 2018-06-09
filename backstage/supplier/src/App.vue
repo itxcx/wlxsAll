@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view class="Router"/>
+    <router-view/>
   </div>
 </template>
 
@@ -79,25 +79,5 @@
     100% {
       transform: scale(1);
     }
-  }
-
-  .Router {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transition: all 1.8s ease;
-  }
-  .slide-left-enter,
-  .slide-right-leave-active {
-    opacity: 0;
-    -webkit-transform: translate(100%, 0);
-    transform: translate(100%, 0);
-  }
-
-  .slide-left-leave-active,
-  .slide-right-enter {
-    opacity: 0;
-    -webkit-transform: translate(-100%, 0);
-    transform: translate(-100% 0);
   }
 </style>

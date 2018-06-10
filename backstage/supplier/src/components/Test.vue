@@ -64,6 +64,7 @@
 </script>
 
 <style lang="less">
+  <!--可以定义为全局的css样式-->
   .Test{
     .slide-fade-enter-active {
       transition: all .3s ease;

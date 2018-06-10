@@ -7,17 +7,6 @@
 <script>
   export default {
     name: 'app',
-    watch: {
-      '$router' (to, from) {
-        let isBack = this.$router.isBack;  //  监听路由变化时的状态为前进还是后退
-        if(isBack) {
-          this.transitionName = 'slide-right'
-        } else {
-          this.transitionName = 'slide-left'
-        }
-        this.$router.isBack = false
-      }
-    }
   }
 
 </script>

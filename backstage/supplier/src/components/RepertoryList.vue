@@ -23,7 +23,7 @@
           <!--</div>-->
           <!--</section>-->
           <section class="itemListInfo" v-show="!mapMode">
-            <ul>
+            <ul class="level1">
               <li v-for="item in itemListArray" class="itemInfo">
                 <dl>
                   <dt>{{item.area_name}}</dt>
@@ -318,47 +318,54 @@
         }
       }
       .itemListInfo{
-        .itemInfo{
-          background: #fff;
-          margin-bottom: 20px;
-          padding: 3.748vh 5.333vw;
-          overflow: hidden;
-          vertical-align: middle;
-          dl{
-            width: 29.333%;
-            float: left;
-            dt{
-              font-size: 2.3988rem;
-              color: #373737;
-            }
+        .level1{
+          width: 100%;
+          height: 90vh;
+          overflow-y: auto;
+          -webkit-overflow-scrolling : touch;
+          .itemInfo{
+            background: #fff;
+            margin-bottom: 20px;
+            padding: 3.748vh 5.333vw;
+            overflow: hidden;
+            vertical-align: middle;
             dl{
-              font-size: 1.874rem;
-              color: #9f9f9f;
-            }
-          }
-          ul{
-            width: 70%;
-            float: left;
-            p{
+              width: 29.333%;
               float: left;
-              font-size: 2.2488rem;
+              dt{
+                font-size: 2.3988rem;
+                color: #373737;
+              }
+              dl{
+                font-size: 1.874rem;
+                color: #9f9f9f;
+              }
             }
-            p:nth-of-type(1) {
-              color: #373737;
-              padding-left: 5vw;
-              width: 50%;
-            }
-            p:nth-of-type(2) {
-              color: #999898;
-              width: 50%;
-              text-align: right;
-              span{
-                font-size: 2.8485rem;
-                color: #65d172;
+            ul{
+              width: 70%;
+              float: left;
+              p{
+                float: left;
+                font-size: 2.2488rem;
+              }
+              p:nth-of-type(1) {
+                color: #373737;
+                padding-left: 5vw;
+                width: 50%;
+              }
+              p:nth-of-type(2) {
+                color: #999898;
+                width: 50%;
+                text-align: right;
+                span{
+                  font-size: 2.8485rem;
+                  color: #65d172;
+                }
               }
             }
           }
         }
+
       }
     }
   }

@@ -1075,8 +1075,11 @@
               display: inline-block;
               ul {
                 list-style: none;
+                height: 88vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling : touch;
                 li {
-                  width: 60.333vw;
+                  width: 64.333vw;
                   &:nth-last-of-type(1) {
                     border: none;
                   }

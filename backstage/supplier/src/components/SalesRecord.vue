@@ -270,55 +270,57 @@
             this.allSale = [];
             //参数 ： page 页数     date1     date2  起止时间
             //device_id  设备编号    area_name 分区名称
-            // this.$ajax({
-            //   url: `http://merchant.test.weilaixiansen.com/login/selllist?
-            //   date1=${date1}&date2=${date2}&device_id=${device_id}&area_name=${area_name}&page=${page}`,
-            //   method: 'GET'
-            // }).then((res) => {
-            //   if(res.data.code == 0) {
-            //     let data = res.data.data;
-                let data = [
-                  {
-                  "address": "新增魔盒柜子",
-                  "order_time": "2018-06-11 16:09:49",
-                  "goods": [{
-                    "goods_name": "摆渡经口葡萄糖水",
-                    "goods_count": 1
-                  }]
-                }, {
-                  "address": "新增魔盒柜子",
-                  "order_time": "2018-06-11 15:03:38",
-                  "goods": [{
-                    "goods_name": "摆渡经口葡萄糖水",
-                    "goods_count": 4
-                  }]
-                }, {
-                  "address": "中投国际B座9楼银联商务左柜（XALG0007）",
-                  "order_time": "2018-06-11 13:36:19",
-                  "goods": [{
-                    "goods_name": "兵兵有礼冰箱贴",
-                    "goods_count": 1
-                  }]
-                }, {
-                  "address": "瞪羚谷E座1层右柜（XALG0004）",
-                  "order_time": "2018-06-11 12:35:53",
-                  "goods": [{
-                    "goods_name": "似水柔情自煮懒人火锅",
-                    "goods_count": 1
-                  }]
-                }, {
-                  "address": "瞪羚谷E座1层右柜（XALG0004）",
-                  "order_time": "2018-06-11 12:13:42",
-                  "goods": [{
-                    "goods_name": "果2代",
-                    "goods_count": 1
-                  }]
-                }]
-            this.allSale = data;
-            //   }
-            // }).catch((error) => {
-            //   console.log(error);
-            // })
+            if(area_name == '场地') {
+              area_name = '';
+            }
+            this.$ajax({
+              url: `http://merchant.test.weilaixiansen.com/login/selllist?date1=${date1}&date2=${date2}&device_id=${device_id}&area_name=${area_name}&page=${page}`,
+              method: 'GET'
+            }).then((res) => {
+              if(res.data.code == 0) {
+                let data = res.data.data;
+            //     let data = [
+            //       {
+            //       "address": "新增魔盒柜子",
+            //       "order_time": "2018-06-11 16:09:49",
+            //       "goods": [{
+            //         "goods_name": "摆渡经口葡萄糖水",
+            //         "goods_count": 1
+            //       }]
+            //     }, {
+            //       "address": "新增魔盒柜子",
+            //       "order_time": "2018-06-11 15:03:38",
+            //       "goods": [{
+            //         "goods_name": "摆渡经口葡萄糖水",
+            //         "goods_count": 4
+            //       }]
+            //     }, {
+            //       "address": "中投国际B座9楼银联商务左柜（XALG0007）",
+            //       "order_time": "2018-06-11 13:36:19",
+            //       "goods": [{
+            //         "goods_name": "兵兵有礼冰箱贴",
+            //         "goods_count": 1
+            //       }]
+            //     }, {
+            //       "address": "瞪羚谷E座1层右柜（XALG0004）",
+            //       "order_time": "2018-06-11 12:35:53",
+            //       "goods": [{
+            //         "goods_name": "似水柔情自煮懒人火锅",
+            //         "goods_count": 1
+            //       }]
+            //     }, {
+            //       "address": "瞪羚谷E座1层右柜（XALG0004）",
+            //       "order_time": "2018-06-11 12:13:42",
+            //       "goods": [{
+            //         "goods_name": "果2代",
+            //         "goods_count": 1
+            //       }]
+            //     }]
+                this.allSale = data;
+              }
+            }).catch((error) => {
+              console.log(error);
+            })
           },
           //点击选择城市
           citySelect() {
@@ -381,37 +383,37 @@
           },
           //请求地址
           getDeviceListData() {
-            // this.$ajax({
-            //   url: `http://merchant.test.weilaixiansen.com/login/deviceList`,
-            //   method: 'GET'
-            // }).then((res) => {
-            //   if(res.data.code == 0) {
-            //let data = res.data.data;
-            let data = {
-              "": [{
-                "device_id": 6101130013,
-                "address": "新增魔盒柜子"
-              }],
-              "锦业路1号都市之门B座": [{
-                "device_id": 6101130010,
-                "address": "都市之门B座1层"
-              }, {
-                "device_id": 6101130011,
-                "address": "都市之门B座1层"
-              }],
-              "锦业路69号瞪羚谷E座1层": [{
-                "device_id": 6101130004,
-                "address": "瞪羚谷E座1层"
-              }, {
-                "device_id": 6101130005,
-                "address": "瞪羚谷E座1层"
-              }],
-              "高新一路创新大厦": [{
-                "device_id": 6101130002,
-                "address": "创新大厦1层"
-              }],
-              "arealist": ["", "锦业路1号都市之门B座", "锦业路69号瞪羚谷E座1层", "高新一路创新大厦"]
-            }
+            this.$ajax({
+              url: `http://merchant.test.weilaixiansen.com/login/deviceList`,
+              method: 'GET'
+            }).then((res) => {
+              if(res.data.code == 0) {
+            let data = res.data.data;
+            // let data = {
+            //   "": [{
+            //     "device_id": 6101130013,
+            //     "address": "新增魔盒柜子"
+            //   }],
+            //   "锦业路1号都市之门B座": [{
+            //     "device_id": 6101130010,
+            //     "address": "都市之门B座1层"
+            //   }, {
+            //     "device_id": 6101130011,
+            //     "address": "都市之门B座1层"
+            //   }],
+            //   "锦业路69号瞪羚谷E座1层": [{
+            //     "device_id": 6101130004,
+            //     "address": "瞪羚谷E座1层"
+            //   }, {
+            //     "device_id": 6101130005,
+            //     "address": "瞪羚谷E座1层"
+            //   }],
+            //   "高新一路创新大厦": [{
+            //     "device_id": 6101130002,
+            //     "address": "创新大厦1层"
+            //   }],
+            //   "arealist": ["", "锦业路1号都市之门B座", "锦业路69号瞪羚谷E座1层", "高新一路创新大厦"]
+            // }
             localStorage.setItem('addressInfo', JSON.stringify(data));
             //let addArray = ["锦业路1号都市之门B座", "锦业路69号瞪羚谷E座1层", "高新一路创新大厦"];
             this.addressList = this.addressList.concat(data.arealist);
@@ -420,14 +422,14 @@
               this.deviceList = this.deviceList.concat(data[data.arealist[i]]);
             }
             console.log(this.deviceList);
-            //   }else if(res.data.code == 3) {
-            //     this.$router.push({
-            //       path: '/'
-            //     })
-            //   }
-            // }).catch((error) => {
-            //   console.log(error);
-            // })
+              }else if(res.data.code == 3) {
+                this.$router.push({
+                  path: '/'
+                })
+              }
+            }).catch((error) => {
+              console.log(error);
+            })
           },
         }
     }
@@ -558,10 +560,10 @@
           padding: 2.098vh 0 1.874vh 0;
           text-align: center;
           &:nth-of-type(1) {
-            width: 33.2vw;
+            width: 22vw;
           }
           &:nth-of-type(2), &:nth-of-type(3) {
-            width: 33.3vw;
+            width: 39vw;
             /*margin-left: 5vw;*/
             text-align: center;
           }
@@ -573,7 +575,7 @@
           }
           .selectInput{
             display: inline-block;
-            width: 50%;
+            width: 70%;
             overflow: hidden;
             text-overflow:ellipsis;
             white-space: nowrap;

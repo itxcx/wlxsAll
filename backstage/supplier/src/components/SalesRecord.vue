@@ -224,7 +224,14 @@
           },
           //销售记录数据获取
           getSalesData() {
+            this.$ajax({
+              url: ``,
+              method: 'GET'
+            }).then((res) => {
 
+            }).catch((error) => {
+              console.log(error);
+            })
           },
           //点击选择城市
           citySelect() {

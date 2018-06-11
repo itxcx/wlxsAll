@@ -26,6 +26,11 @@
             <span class="itemTitle">销售记录</span>
             <span class="next"></span>
           </li>
+          <li @click="goMistake">
+            <span></span>
+            <span class="itemTitle">错拿记录</span>
+            <span class="next"></span>
+          </li>
           <li @click="goRecord">
             <span></span>
             <span class="itemTitle">上下货记录</span>
@@ -40,9 +45,9 @@
           </li>
         </ul>
       </section>
-      <section class="tipModal" v-show="tipStatus">
-        <p>{{tipText}}</p>
-      </section>
+      <!--<section class="tipModal" v-show="tipStatus">-->
+        <!--<p>{{tipText}}</p>-->
+      <!--</section>-->
       <Footer-bar></Footer-bar>
     </div>
 </template>
@@ -76,13 +81,19 @@
             path: '/record'
           })
         },
-        showModal() {
-          this.tipStatus = true;
-          this.tipText = '正在建设，马上开放...';
-          setTimeout(() => {
-            this.tipStatus = false;
-          }, 2000)
+        //错拿记录
+        goMistake() {
+          this.$router.push({
+            path: '/mistake'
+          })
         },
+        // showModal() {
+        //   this.tipStatus = true;
+        //   this.tipText = '正在建设，马上开放...';
+        //   setTimeout(() => {
+        //     this.tipStatus = false;
+        //   }, 2000)
+        // },
         //销售记录
         goSalesRecord() {
           this.$router.push({
@@ -199,7 +210,7 @@
             background-size: cover;
             margin-top: 3vh;
           }
-          &:nth-of-type(2) span:nth-of-type(1) {
+          &:nth-of-type(3) span:nth-of-type(1) {
             display: inline-block;
             width: 6.666vw;
             height: 3.448vh;
@@ -207,7 +218,7 @@
             background-size: cover;
             margin-top: 3vh;
           }
-          &:nth-of-type(3) span:nth-of-type(1) {
+          &:nth-of-type(4) span:nth-of-type(1),  &:nth-of-type(2) span:nth-of-type(1) {
             display: inline-block;
             width: 6.666vw;
             height: 3.448vh;

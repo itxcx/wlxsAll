@@ -57,6 +57,7 @@
       </section>
       <!-- 销售记录列表 -->
       <section class="allSale" v-show="allSaleDown">
+        <scroller :on-refresh="refresh" :on-infinite="infinite" ref="myscroller">
         <ul>
           <li v-for="(item, index) in allSale">
             <section class="saleListAddr">
@@ -73,6 +74,9 @@
             </section>
           </li>
         </ul>
+          <p class="ctrlTipTxt">{{ctrlTipTxt}}</p>
+        </scroller>
+
       </section>
       <!-- 地址列表 -->
       <section class="addressList" v-show="addressDown">
@@ -129,6 +133,7 @@
               allSale: [],
               allSaleDown: true,
               device_id: '',
+              ctrlTipTxt: '上划加载更多...'
             }
         },
         mounted() {
@@ -136,11 +141,66 @@
             let date = new Date();
             this.startDate = this.Common.formatDate(date, "yyyy-MM-dd");
             this.endDate = this.Common.formatDate(date, "yyyy-MM-dd");
-            this.getSalesData(this.startDate, this.endDate, '', '', 0);
+            //this.getSalesData(this.startDate, this.endDate, '', '', 0);
             this.getDeviceListData();
           })
         },
         methods: {
+          refresh() {
+            setTimeout(() => {
+              this.$refs.myscroller.resize();
+              this.getSalesData(this.startDate, this.endDate, this.device_id, this.address, 0);
+            }, 1000)
+          },
+          infinite(done) {
+            let page = 0;
+
+              if(this. ctrlTipTxt == '上划加载更多...') {
+                page++;
+                // let data = [
+                //   {
+                //     "address": "新增魔盒柜子",
+                //     "order_time": "2018-06-11 16:09:49",
+                //     "goods": [{
+                //       "goods_name": "摆渡经口葡萄糖水",
+                //       "goods_count": 1
+                //     }]
+                //   }, {
+                //     "address": "新增魔盒柜子",
+                //     "order_time": "2018-06-11 15:03:38",
+                //     "goods": [{
+                //       "goods_name": "摆渡经口葡萄糖水",
+                //       "goods_count": 4
+                //     }]
+                //   }, {
+                //     "address": "中投国际B座9楼银联商务左柜（XALG0007）",
+                //     "order_time": "2018-06-11 13:36:19",
+                //     "goods": [{
+                //       "goods_name": "兵兵有礼冰箱贴",
+                //       "goods_count": 1
+                //     }]
+                //   }, {
+                //     "address": "瞪羚谷E座1层右柜（XALG0004）",
+                //     "order_time": "2018-06-11 12:35:53",
+                //     "goods": [{
+                //       "goods_name": "似水柔情自煮懒人火锅",
+                //       "goods_count": 1
+                //     }]
+                //   }, {
+                //     "address": "瞪羚谷E座1层右柜（XALG0004）",
+                //     "order_time": "2018-06-11 12:13:42",
+                //     "goods": [{
+                //       "goods_name": "果2代",
+                //       "goods_count": 1
+                //     }]
+                //   }]
+                // this.allSale = this.allSale.concat(data);
+                this.getMoreSalesData(this.startDate, this.endDate, this.device_id, this.address, page);
+               // done()
+              }
+
+
+          },
           //返回
           goPersonal() {
             this.$router.push({
@@ -265,6 +325,67 @@
             this.dateRangeText = '';
             this.getSalesData(this.startDate, this.endDate, this.device_id, this.address, 0);
           },
+          //获取更多数据方法
+          getMoreSalesData(date1 = '', date2 = '', device_id = '', area_name = '', page = 0) {
+            //参数 ： page 页数     date1     date2  起止时间
+            //device_id  设备编号    area_name 分区名称
+            if(area_name == '场地') {
+              area_name = '';
+            }
+            this.$ajax({
+              url: `http://merchant.test.weilaixiansen.com/login/selllist?date1=${date1}&date2=${date2}&device_id=${device_id}&area_name=${area_name}&page=${page}`,
+              method: 'GET'
+            }).then((res) => {
+              if(res.data.code == 0) {
+                let data = res.data.data;
+            // let data = [
+            //   {
+            //     "address": "新增魔盒柜子",
+            //     "order_time": "2018-06-11 16:09:49",
+            //     "goods": [{
+            //       "goods_name": "摆渡经口葡萄糖水",
+            //       "goods_count": 1
+            //     }]
+            //   }, {
+            //     "address": "新增魔盒柜子",
+            //     "order_time": "2018-06-11 15:03:38",
+            //     "goods": [{
+            //       "goods_name": "摆渡经口葡萄糖水",
+            //       "goods_count": 4
+            //     }]
+            //   }, {
+            //     "address": "中投国际B座9楼银联商务左柜（XALG0007）",
+            //     "order_time": "2018-06-11 13:36:19",
+            //     "goods": [{
+            //       "goods_name": "兵兵有礼冰箱贴",
+            //       "goods_count": 1
+            //     }]
+            //   }, {
+            //     "address": "瞪羚谷E座1层右柜（XALG0004）",
+            //     "order_time": "2018-06-11 12:35:53",
+            //     "goods": [{
+            //       "goods_name": "似水柔情自煮懒人火锅",
+            //       "goods_count": 1
+            //     }]
+            //   }, {
+            //     "address": "瞪羚谷E座1层右柜（XALG0004）",
+            //     "order_time": "2018-06-11 12:13:42",
+            //     "goods": [{
+            //       "goods_name": "果2代",
+            //       "goods_count": 1
+            //     }]
+            //   }]
+                if(data.length == 0) {
+                  this.ctrlTipTxt = '暂时没有数据';
+                }else if(data.length < 5) {
+                  this.ctrlTipTxt = '没有更多数据';
+                }
+                this.allSale = this.allSale.concat(data);
+              }
+            }).catch((error) => {
+              console.log(error);
+            })
+          },
           //销售记录数据获取
           getSalesData(date1 = '', date2 = '', device_id = '', area_name = '', page = 0) {
             this.allSale = [];
@@ -279,44 +400,49 @@
             }).then((res) => {
               if(res.data.code == 0) {
                 let data = res.data.data;
-            //     let data = [
-            //       {
-            //       "address": "新增魔盒柜子",
-            //       "order_time": "2018-06-11 16:09:49",
-            //       "goods": [{
-            //         "goods_name": "摆渡经口葡萄糖水",
-            //         "goods_count": 1
-            //       }]
-            //     }, {
-            //       "address": "新增魔盒柜子",
-            //       "order_time": "2018-06-11 15:03:38",
-            //       "goods": [{
-            //         "goods_name": "摆渡经口葡萄糖水",
-            //         "goods_count": 4
-            //       }]
-            //     }, {
-            //       "address": "中投国际B座9楼银联商务左柜（XALG0007）",
-            //       "order_time": "2018-06-11 13:36:19",
-            //       "goods": [{
-            //         "goods_name": "兵兵有礼冰箱贴",
-            //         "goods_count": 1
-            //       }]
-            //     }, {
-            //       "address": "瞪羚谷E座1层右柜（XALG0004）",
-            //       "order_time": "2018-06-11 12:35:53",
-            //       "goods": [{
-            //         "goods_name": "似水柔情自煮懒人火锅",
-            //         "goods_count": 1
-            //       }]
-            //     }, {
-            //       "address": "瞪羚谷E座1层右柜（XALG0004）",
-            //       "order_time": "2018-06-11 12:13:42",
-            //       "goods": [{
-            //         "goods_name": "果2代",
-            //         "goods_count": 1
-            //       }]
-            //     }]
+                // let data = [
+                //   {
+                //   "address": "新增魔盒柜子",
+                //   "order_time": "2018-06-11 16:09:49",
+                //   "goods": [{
+                //     "goods_name": "摆渡经口葡萄糖水",
+                //     "goods_count": 1
+                //   }]
+                // }, {
+                //   "address": "新增魔盒柜子",
+                //   "order_time": "2018-06-11 15:03:38",
+                //   "goods": [{
+                //     "goods_name": "摆渡经口葡萄糖水",
+                //     "goods_count": 4
+                //   }]
+                // }, {
+                //   "address": "中投国际B座9楼银联商务左柜（XALG0007）",
+                //   "order_time": "2018-06-11 13:36:19",
+                //   "goods": [{
+                //     "goods_name": "兵兵有礼冰箱贴",
+                //     "goods_count": 1
+                //   }]
+                // }, {
+                //   "address": "瞪羚谷E座1层右柜（XALG0004）",
+                //   "order_time": "2018-06-11 12:35:53",
+                //   "goods": [{
+                //     "goods_name": "似水柔情自煮懒人火锅",
+                //     "goods_count": 1
+                //   }]
+                // }, {
+                //   "address": "瞪羚谷E座1层右柜（XALG0004）",
+                //   "order_time": "2018-06-11 12:13:42",
+                //   "goods": [{
+                //     "goods_name": "果2代",
+                //     "goods_count": 1
+                //   }]
+                // }]
                 this.allSale = data;
+                if(this.allSale.length == 0) {
+                  this.ctrlTipTxt = '暂时没有数据';
+                }else if(this.allSale.length < 5) {
+                  this.ctrlTipTxt = '没有更多数据';
+                }
               }
             }).catch((error) => {
               console.log(error);
@@ -437,6 +563,8 @@
 
 <style lang="less">
   .SalesRecord{
+    width: 100vw;
+    height: 100vh;
     .tipModal{
       background: rgba(0,0,0,.7);
       border-radius: 10px;
@@ -550,6 +678,10 @@
       background: #65d172;
       color: #fff;
       margin-top: 12vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
       ul{
         list-style: none;
         overflow: hidden;
@@ -584,8 +716,12 @@
       }
     }
     .allSale{
+      height: 79vh;
+      .ctrlTipTxt{
+        text-align: center;
+      }
       ul{
-        height: 79vh;
+        /*height: 79vh;*/
         overflow-y: auto;
         -webkit-overflow-scrolling : touch;
         background: #f1f1f1;
@@ -682,6 +818,13 @@
       background: url("../../static/images/up.png") no-repeat center center;
       background-size: cover;
       transition: all 0.1s ease-out;
+    }
+    ._v-container[data-v-ecaca2b0]{
+      margin-top: 17vh;
+      height: 80% !important;
+    }
+    .loading-layer{
+      display: none;
     }
   }
 

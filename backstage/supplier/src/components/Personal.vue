@@ -21,7 +21,7 @@
       </header>
       <section class="userInfoList">
         <ul>
-          <li @click="showModal">
+          <li @click="goSalesRecord">
             <span></span>
             <span class="itemTitle">销售记录</span>
             <span class="next"></span>
@@ -83,6 +83,12 @@
             this.tipStatus = false;
           }, 2000)
         },
+        //销售记录
+        goSalesRecord() {
+          this.$router.push({
+            path: '/salesRecord'
+          })
+        }
       }
     }
 </script>

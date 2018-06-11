@@ -39,6 +39,7 @@ import ProductRank from './components/ProductRank' //商品排行
 import RepertoryList from './components/RepertoryList' //库存不分柜子
 import InventoryControl from './components/InventoryControl' //上下货报表信息
 import ModifyPassword from './components/ModifyPassword' //修改密码
+import SalesRecord from './components/SalesRecord' //销售记录
 
 Vue.use(iView);
 Vue.config.productionTip = false;
@@ -55,7 +56,7 @@ new Vue({
     App, Login, Main, FooterBar, Repertory, Exhibing, DoorClose,
     InStoreDone, Scan, Addition, AddItem, CheckExhibing, ExhibingDone,
     Ship, ShipDone, Record, RecordMsg, SaleRoom, DeviceRank, ProductRank,
-    RepertoryList, InventoryControl, ModifyPassword
+    RepertoryList, InventoryControl, ModifyPassword, SalesRecord
   },
   template: '<App/>'
 })

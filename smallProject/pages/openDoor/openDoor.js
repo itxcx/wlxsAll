@@ -418,6 +418,9 @@ Page({
                 })
                
               } else { //没签约
+                that.setData({
+                  indexModal: true
+                })
                 wx.navigateToMiniProgram({
                   appId: 'wxbd687630cd02ce1d',
                   path: 'pages/index/index',

@@ -43,16 +43,40 @@
         <ul>
           <li v-model="city" @click="citySelect">
             <span v-html="city" class="selectInput"></span>
-            <span :class="!cityDown ? 'down' : 'up'"></span>
+            <span :class="cityDown ? 'up' : 'down'"></span>
           </li>
-          <li v-model="address">
+          <li v-model="address" @click="addressSelect">
             <span v-html="address" class="selectInput"></span>
-            <span :class="!addressDown ? 'down' : 'up'"></span>
+            <span :class="addressDown ? 'up' : 'down'"></span>
           </li>
           <li v-model="device">
             <span v-html="device" class="selectInput"></span>
-            <span :class="!deviceDown ? 'down' : 'up'"></span>
+            <span :class="deviceDown ? 'up' : 'down'"></span>
           </li>
+        </ul>
+      </section>
+      <section class="allSale" v-show="allSaleDown">
+        <ul>
+          <li v-for="(item, index) in allSale">
+            <section class="saleListAddr">
+              <span></span>
+              <span>{{item.address}}</span>
+            </section>
+            <section class="saleGoods">
+              <span>销售商品:</span>
+              <span v-for="items in item.goods">{{items.goods_name}}x{{items.goods_count}}</span>
+            </section>
+            <section class="saleTime">
+              <span>销售时间:</span>
+              <span>{{item.order_time}}</span>
+            </section>
+          </li>
+        </ul>
+      </section>
+      <!-- 地址列表 -->
+      <section class="addressList" v-show="addressDown">
+        <ul>
+          <li v-for="item in addressList" @click="addressEntry">{{item}}</li>
         </ul>
       </section>
       <transition name="bounce" appear>
@@ -87,7 +111,12 @@
               addressDown: false, //地址列表显示
               deviceDown: false, //设备列表显示
               tipStatus: false, //提示框
-              tipText: '其他城市暂未开放'
+              tipText: '其他城市暂未开放',
+              addressList: ["全部地址"],
+              deviceList: [], //设备列表
+              selectDeviceArray: [],//选定地址后的设备列表
+              allSale: [],
+              allSaleDown: true
             }
         },
         mounted() {
@@ -95,6 +124,7 @@
             let date = new Date();
             this.startDate = this.Common.formatDate(date, "yyyy-MM-dd");
             this.endDate = this.Common.formatDate(date, "yyyy-MM-dd");
+            this.getSalesData( this.startDate, this.endDate);
           })
         },
         methods: {
@@ -223,15 +253,58 @@
             //this.getSalesData(this.startDate, this.endDate);
           },
           //销售记录数据获取
-          getSalesData() {
-            this.$ajax({
-              url: ``,
-              method: 'GET'
-            }).then((res) => {
-
-            }).catch((error) => {
-              console.log(error);
-            })
+          getSalesData(date1 = '', date2 = '', device_id = '', area_name = '', page = 0) {
+              this.allSale = [];
+            //参数 ： page 页数     date1     date2  起止时间
+            //device_id  设备编号    area_name 分区名称
+            // this.$ajax({
+            //   url: `http://merchant.test.weilaixiansen.com/login/selllist?
+            //   date1=${date1}&date2=${date2}&device_id=${device_id}&area_name=${area_name}&page=${page}`,
+            //   method: 'GET'
+            // }).then((res) => {
+            //   if(res.data.code == 0) {
+            //     let data = res.data.data;
+                let data = [{
+                  "address": "新增魔盒柜子",
+                  "order_time": "2018-06-11 16:09:49",
+                  "goods": [{
+                    "goods_name": "摆渡经口葡萄糖水",
+                    "goods_count": 1
+                  }]
+                }, {
+                  "address": "新增魔盒柜子",
+                  "order_time": "2018-06-11 15:03:38",
+                  "goods": [{
+                    "goods_name": "摆渡经口葡萄糖水",
+                    "goods_count": 4
+                  }]
+                }, {
+                  "address": "中投国际B座9楼银联商务左柜（XALG0007）",
+                  "order_time": "2018-06-11 13:36:19",
+                  "goods": [{
+                    "goods_name": "兵兵有礼冰箱贴",
+                    "goods_count": 1
+                  }]
+                }, {
+                  "address": "瞪羚谷E座1层右柜（XALG0004）",
+                  "order_time": "2018-06-11 12:35:53",
+                  "goods": [{
+                    "goods_name": "似水柔情自煮懒人火锅",
+                    "goods_count": 1
+                  }]
+                }, {
+                  "address": "瞪羚谷E座1层右柜（XALG0004）",
+                  "order_time": "2018-06-11 12:13:42",
+                  "goods": [{
+                    "goods_name": "果2代",
+                    "goods_count": 1
+                  }]
+                }]
+            this.allSale = data;
+            //   }
+            // }).catch((error) => {
+            //   console.log(error);
+            // })
           },
           //点击选择城市
           citySelect() {
@@ -240,7 +313,75 @@
               this.tipStatus = false;
               clearTimeout(timer);
             }, 1000)
-          }
+          },
+          //选择地址
+          addressSelect() {
+            this.addressDown = true;
+            this.addressList = ["全部地址"];
+            this.allSaleDown = false;
+            this.getDeviceListData();
+          },
+          //选定地址
+          addressEntry(e) {
+            let address = e.target.innerHTML;
+            this.address = address;
+            this.addressDown = false;
+            if(address === '全部地址') {
+              //获取全部地址的数据
+              this.address = '场地';
+              this.allSaleDown = true;
+            }else{
+              //获取选定地址数据
+              this.selectDeviceArray = JSON.parse(localStorage.getItem('addressInfo'))[address];
+              console.log(this.selectDeviceArray);
+              // let list =
+            }
+          },
+          //请求地址
+          getDeviceListData() {
+            // this.$ajax({
+            //   url: `http://merchant.test.weilaixiansen.com/login/deviceList`,
+            //   method: 'GET'
+            // }).then((res) => {
+            //   if(res.data.code == 0) {
+            //let data = res.data.data;
+            let data = {
+              "": [{
+                "device_id": 6101130013,
+                "address": "新增魔盒柜子"
+              }],
+              "锦业路1号都市之门B座": [{
+                "device_id": 6101130010,
+                "address": "都市之门B座1层"
+              }, {
+                "device_id": 6101130011,
+                "address": "都市之门B座1层"
+              }],
+              "锦业路69号瞪羚谷E座1层": [{
+                "device_id": 6101130004,
+                "address": "瞪羚谷E座1层"
+              }, {
+                "device_id": 6101130005,
+                "address": "瞪羚谷E座1层"
+              }],
+              "高新一路创新大厦": [{
+                "device_id": 6101130002,
+                "address": "创新大厦1层"
+              }],
+              "arealist": ["", "锦业路1号都市之门B座", "锦业路69号瞪羚谷E座1层", "高新一路创新大厦"]
+            }
+            localStorage.setItem('addressInfo', JSON.stringify(data));
+            //let addArray = ["锦业路1号都市之门B座", "锦业路69号瞪羚谷E座1层", "高新一路创新大厦"];
+            this.addressList = this.addressList.concat(data.arealist);
+            //   }else if(res.data.code == 3) {
+            //     this.$router.push({
+            //       path: '/'
+            //     })
+            //   }
+            // }).catch((error) => {
+            //   console.log(error);
+            // })
+          },
         }
     }
 </script>
@@ -392,6 +533,58 @@
           }
         }
       }
+    }
+    .allSale{
+      ul{
+        height: 79vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling : touch;
+        background: #f1f1f1;
+        li{
+          background: #fff;
+          margin-bottom: 1.499vh;
+          padding: 0 5.33vw;
+          .saleListAddr{
+            padding: 2.2488vh 0;
+            font-size: 2.098rem;
+            color: #6e6e6e;
+            border-bottom: 1px solid #e5e5e5;
+            span:nth-of-type(1) {
+              display: inline-block;
+              width: 3.333vw;
+              height: 2.323vh;
+              background: url(../../static/images/xiaoshoujilu.png) no-repeat center center;
+              background-size: cover;
+              vertical-align: middle;
+              margin-right: 10px;
+            }
+          }
+          .saleGoods, .saleTime{
+            padding-top: 2.2488vh;
+            span:nth-of-type(1) {
+              color: #999898;
+              font-size: 2.2488rem;
+            }
+            span:nth-of-type(2) {
+              color: #373737;
+              font-size: 2.2488rem;
+              display: inline-block;
+              margin-left: 2.933vw;
+              width: 75%;
+              overflow: hidden;
+              text-overflow:ellipsis;
+              white-space: nowrap;
+              vertical-align: top;
+            }
+          }
+          .saleTime{
+            padding-bottom: 2.2488vh;
+          }
+        }
+      }
+    }
+    .addressList{
+
     }
   }
   .down{

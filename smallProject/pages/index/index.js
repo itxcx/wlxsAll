@@ -48,10 +48,13 @@ Page({
                }
              })
            } else if (options.q != undefined) {
+             console.log('用户类型：'+wx.getStorageSync('userType'));
              //首页模态框显示
-              global_this.setData({
-                indexModal: true
-              })
+             if (wx.getStorageSync('userType') == 'old' ) {
+               global_this.setData({
+                 indexModal: true
+               })
+             }
               var path = decodeURIComponent(options.q);
               var device_number = path.split('?')[1].split('=')[1];
               wx.setStorageSync('device_number', device_number);//设备id
@@ -379,6 +382,9 @@ Page({
                      * 有用户信息，没有签约信息
                      * */
                     //存储接口返回的用户手机号
+                    global_this.setData({
+                      indexModal: false
+                    })
                     var userPhone = resSession.data.data.phone;
                     wx.setStorageSync('userPhone', userPhone);//存储用户手机号
                     wx.getSetting({    //检查授权，获取用户信息
@@ -545,7 +551,7 @@ Page({
                   }
                 }
               })
-           }
+           } 
           
          }else {
            console.log('登录失败！' + resLogin.errMsg);
@@ -632,6 +638,10 @@ Page({
                             }
                           })
                       }else{ //没签约
+                        //隐藏模态框
+                          that.setData({
+                            indexModal: false
+                          })
                           wx.navigateToMiniProgram({
                             appId: 'wxbd687630cd02ce1d',
                             path: 'pages/index/index',

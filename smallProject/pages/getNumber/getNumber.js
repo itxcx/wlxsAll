@@ -4,10 +4,17 @@ Page({
     avatarUrl: ''
   },
   onLoad: function() {
+    wx.setStorageSync('userType', 'new');
     var userInfo = wx.getStorageSync('userInfo').userInfo;
     this.setData({
       nickName: userInfo.nickName,
       avatarUrl: userInfo.avatarUrl
+    })
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];   //当前页面
+    var prevPage = pages[pages.length - 2];  //上一个页面
+    prevPage.setData({
+      indexModal: false
     })
   },
   getPhoneNumber: function (e) {
@@ -41,7 +48,8 @@ Page({
              var currPage = pages[pages.length - 1];   //当前页面
              var prevPage = pages[pages.length - 2];  //上一个页面
              prevPage.setData({
-               fail: true
+               fail: true,
+               indexModal: false
              })
              console.log('end');
              var session_key = wx.getStorageSync('session_key');
@@ -66,6 +74,7 @@ Page({
                        console.log(' return miniprogram')
                        //检查签约状态，获取签约号，直接开门
                        //签约成功获取签约号
+                       wx.setStorageSync('userType', 'old');
                        wx.navigateBack({
                          delta: 5
                        })
@@ -76,6 +85,7 @@ Page({
                      }
                    })
                  } else {
+                   wx.setStorageSync('userType', 'old');
                    wx.navigateBack({
                      delta: 5
                    })

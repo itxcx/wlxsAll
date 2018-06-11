@@ -49,12 +49,13 @@
             <span v-html="address" class="selectInput"></span>
             <span :class="addressDown ? 'up' : 'down'"></span>
           </li>
-          <li v-model="device">
+          <li v-model="device" @click="deviceSelect">
             <span v-html="device" class="selectInput"></span>
             <span :class="deviceDown ? 'up' : 'down'"></span>
           </li>
         </ul>
       </section>
+      <!-- 销售记录列表 -->
       <section class="allSale" v-show="allSaleDown">
         <ul>
           <li v-for="(item, index) in allSale">
@@ -77,6 +78,12 @@
       <section class="addressList" v-show="addressDown">
         <ul>
           <li v-for="item in addressList" @click="addressEntry">{{item}}</li>
+        </ul>
+      </section>
+      <!-- 设备列表 -->
+      <section class="deviceList" v-show="deviceDown">
+        <ul>
+          <li v-for="(item, index) in selectDeviceArray" @click="deviceEntry(index)">{{item.address}}</li>
         </ul>
       </section>
       <transition name="bounce" appear>
@@ -113,10 +120,15 @@
               tipStatus: false, //提示框
               tipText: '其他城市暂未开放',
               addressList: ["全部地址"],
-              deviceList: [], //设备列表
-              selectDeviceArray: [],//选定地址后的设备列表
+              deviceList: [{"device_id": '',
+                "address": "全部设备"
+              }], //设备列表
+              selectDeviceArray: [{"device_id": '',
+                "address": "全部设备"
+              }],//选定地址后的设备列表
               allSale: [],
-              allSaleDown: true
+              allSaleDown: true,
+              device_id: '',
             }
         },
         mounted() {
@@ -124,7 +136,8 @@
             let date = new Date();
             this.startDate = this.Common.formatDate(date, "yyyy-MM-dd");
             this.endDate = this.Common.formatDate(date, "yyyy-MM-dd");
-            this.getSalesData( this.startDate, this.endDate);
+            this.getSalesData(this.startDate, this.endDate, '', '', 0);
+            this.getDeviceListData();
           })
         },
         methods: {
@@ -231,7 +244,7 @@
                 break;
             }
             this.datePickerShow = false;
-            //this.getSalesData(this.startDate, this.endDate);
+            this.getSalesData(this.startDate, this.endDate, this.device_id, this.address, 0);
           },
           //选择后的日期
           dateSelectSubmit() {
@@ -250,11 +263,11 @@
             }
             this.datePickerShow = false;
             this.dateRangeText = '';
-            //this.getSalesData(this.startDate, this.endDate);
+            this.getSalesData(this.startDate, this.endDate, this.device_id, this.address, 0);
           },
           //销售记录数据获取
           getSalesData(date1 = '', date2 = '', device_id = '', area_name = '', page = 0) {
-              this.allSale = [];
+            this.allSale = [];
             //参数 ： page 页数     date1     date2  起止时间
             //device_id  设备编号    area_name 分区名称
             // this.$ajax({
@@ -264,7 +277,8 @@
             // }).then((res) => {
             //   if(res.data.code == 0) {
             //     let data = res.data.data;
-                let data = [{
+                let data = [
+                  {
                   "address": "新增魔盒柜子",
                   "order_time": "2018-06-11 16:09:49",
                   "goods": [{
@@ -317,25 +331,53 @@
           //选择地址
           addressSelect() {
             this.addressDown = true;
-            this.addressList = ["全部地址"];
             this.allSaleDown = false;
-            this.getDeviceListData();
+            this.deviceDown = false;
+            this.device = '设备';
           },
           //选定地址
           addressEntry(e) {
             let address = e.target.innerHTML;
             this.address = address;
             this.addressDown = false;
+            this.selectDeviceArray = [{"device_id": '',
+              "address": "全部设备"
+            }];
             if(address === '全部地址') {
               //获取全部地址的数据
               this.address = '场地';
               this.allSaleDown = true;
+              this.getSalesData(this.startDate, this.endDate, '', '', 0);
             }else{
               //获取选定地址数据
-              this.selectDeviceArray = JSON.parse(localStorage.getItem('addressInfo'))[address];
+              this.selectDeviceArray = this.selectDeviceArray.concat(JSON.parse(localStorage.getItem('addressInfo'))[address]);
               console.log(this.selectDeviceArray);
-              // let list =
+              this.allSaleDown = true;
+              this.getSalesData(this.startDate, this.endDate, '', this.address, 0);
             }
+          },
+          //选择设备
+          deviceSelect() {
+            this.allSaleDown = false;
+            this.deviceDown = true;
+            this.addressDown = false;
+            this.device = '设备';
+            if(this.address == '场地') {
+              this.selectDeviceArray = this.deviceList;
+            }
+          },
+          //选定设备
+          deviceEntry(index) {
+            this.device_id = this.selectDeviceArray[index].device_id;
+            this.deviceDown = false;
+            this.addressDown = false;
+            this.allSaleDown = true;
+            this.device = this.selectDeviceArray[index].address;
+            if(this.device === '全部设备') {
+              this.device = '设备';
+            }
+            this.getSalesData(this.startDate, this.endDate, this.device_id, this.address, 0);
+
           },
           //请求地址
           getDeviceListData() {
@@ -373,6 +415,11 @@
             localStorage.setItem('addressInfo', JSON.stringify(data));
             //let addArray = ["锦业路1号都市之门B座", "锦业路69号瞪羚谷E座1层", "高新一路创新大厦"];
             this.addressList = this.addressList.concat(data.arealist);
+            console.log(this.addressList)
+            for(let i = 0; i < data.arealist.length; i++) {
+              this.deviceList = this.deviceList.concat(data[data.arealist[i]]);
+            }
+            console.log(this.deviceList);
             //   }else if(res.data.code == 3) {
             //     this.$router.push({
             //       path: '/'
@@ -500,7 +547,7 @@
     .saleSelectList{
       background: #65d172;
       color: #fff;
-      margin-top: 12.1vh;
+      margin-top: 12vh;
       ul{
         list-style: none;
         overflow: hidden;
@@ -552,7 +599,7 @@
             span:nth-of-type(1) {
               display: inline-block;
               width: 3.333vw;
-              height: 2.323vh;
+              height: 2.823vh;
               background: url(../../static/images/xiaoshoujilu.png) no-repeat center center;
               background-size: cover;
               vertical-align: middle;
@@ -583,45 +630,58 @@
         }
       }
     }
-    .addressList{
-
+    .addressList, .deviceList{
+      ul{
+        height: 79vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling : touch;
+        margin: 0 5.333vw;
+        li{
+          padding: 2.2488vh 0;
+          border-bottom: 1px solid #e5e5e5;
+          font-size: 2.2488rem;
+          color: #373737;
+        }
+      }
     }
-  }
-  .down{
-    background: url('../../static/images/down.png') no-repeat center center;
-    background-size: cover;
-    transition: all 0.1s ease-out;
-  }
-  .up{
-    background: url("../../static/images/up.png") no-repeat center center;
-    background-size: cover;
-    transition: all 0.1s ease-out;
-  }
-  .ivu-input-icon{
-    display: none;
-  }
-  .ivu-date-picker{
-    width: 20vw;
-  }
-  .ivu-input{
-    display: inline-block;
-    width: 25.334vw;
-    height: 4.5725vh;
-    line-height: 4.5725vh;
-    padding: 4px 7px;
-    font-size: 10px;
-    border-radius: 4px;
-    background-color: #F2F2F2;
-    background-image: none;
-    position: relative;
-    color: #0e0e0e;
-    cursor: text;
-    &::placeholder{
+    .ivu-input-icon{
+      display: none;
+    }
+    .ivu-date-picker{
+      width: 20vw;
+    }
+    .ivu-input{
+      display: inline-block;
+      width: 25.334vw;
+      height: 4.5725vh;
+      line-height: 4.5725vh;
+      padding: 4px 7px;
+      font-size: 10px;
+      border-radius: 4px;
+      background-color: #F2F2F2;
+      background-image: none;
+      position: relative;
       color: #0e0e0e;
-      text-align: center;
+      cursor: text;
+      &::placeholder{
+        color: #0e0e0e;
+        text-align: center;
+      }
+    }
+    .ivu-date-picker-cells-cell{
+      color: #65d172;
+    }
+    .down{
+      background: url('../../static/images/down.png') no-repeat center center;
+      background-size: cover;
+      transition: all 0.1s ease-out;
+    }
+    .up{
+      background: url("../../static/images/up.png") no-repeat center center;
+      background-size: cover;
+      transition: all 0.1s ease-out;
     }
   }
-  .ivu-date-picker-cells-cell{
-    color: #65d172;
-  }
+
+
 </style>

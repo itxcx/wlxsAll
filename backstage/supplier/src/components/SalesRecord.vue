@@ -39,9 +39,27 @@
           </section>
         </section>
       </header>
-      <section class="saleContent">
-
+      <section class="saleSelectList">
+        <ul>
+          <li v-model="city" @click="citySelect">
+            <span v-html="city" class="selectInput"></span>
+            <span :class="!cityDown ? 'down' : 'up'"></span>
+          </li>
+          <li v-model="address">
+            <span v-html="address" class="selectInput"></span>
+            <span :class="!addressDown ? 'down' : 'up'"></span>
+          </li>
+          <li v-model="device">
+            <span v-html="device" class="selectInput"></span>
+            <span :class="!deviceDown ? 'down' : 'up'"></span>
+          </li>
+        </ul>
       </section>
+      <transition name="bounce" appear>
+        <section class="tipModal" v-if="tipStatus">
+          <p>{{tipText}}</p>
+        </section>
+      </transition>
     </div>
 </template>
 
@@ -61,7 +79,15 @@
               month: false,
               yestoday: false,
               lastWeek: false,
-              lastMonth: false
+              lastMonth: false,
+              city: '西安',
+              address: '场地',
+              device: '售货柜',
+              cityDown: false, //城市列表显示
+              addressDown: false, //地址列表显示
+              deviceDown: false, //设备列表显示
+              tipStatus: false, //提示框
+              tipText: '其他城市暂未开放'
             }
         },
         mounted() {
@@ -196,9 +222,17 @@
             this.dateRangeText = '';
             //this.getSalesData(this.startDate, this.endDate);
           },
-          //销售记录
+          //销售记录数据获取
           getSalesData() {
 
+          },
+          //点击选择城市
+          citySelect() {
+            this.tipStatus = true;
+            let timer = setTimeout(() => {
+              this.tipStatus = false;
+              clearTimeout(timer);
+            }, 1000)
           }
         }
     }
@@ -206,6 +240,23 @@
 
 <style lang="less">
   .SalesRecord{
+    .tipModal{
+      background: rgba(0,0,0,.7);
+      border-radius: 10px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: auto;
+      width: 29.2998rem;
+      height: 10rem;
+      z-index: 99;
+      color: #fff;
+      text-align: center;
+      font-size: 2.6677rem;
+      padding: 3vh 0;
+    }
     header{
       position: fixed;
       top: 0;
@@ -298,6 +349,53 @@
         }
       }
     }
+    .saleSelectList{
+      background: #65d172;
+      color: #fff;
+      margin-top: 12.1vh;
+      ul{
+        list-style: none;
+        overflow: hidden;
+        border-top: 1px solid #46bb54;
+        li{
+          float: left;
+          font-size: 2.3988rem;
+          padding: 2.098vh 0 1.874vh 0;
+          text-align: center;
+          &:nth-of-type(1) {
+            width: 33.2vw;
+          }
+          &:nth-of-type(2), &:nth-of-type(3) {
+            width: 33.3vw;
+            /*margin-left: 5vw;*/
+            text-align: center;
+          }
+          span:nth-of-type(2){
+            display: inline-block;
+            width: 5.333vw;
+            height: 2.773vh;
+            /*vertical-align: middle;*/
+          }
+          .selectInput{
+            display: inline-block;
+            width: 50%;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+  .down{
+    background: url('../../static/images/down.png') no-repeat center center;
+    background-size: cover;
+    transition: all 0.1s ease-out;
+  }
+  .up{
+    background: url("../../static/images/up.png") no-repeat center center;
+    background-size: cover;
+    transition: all 0.1s ease-out;
   }
   .ivu-input-icon{
     display: none;

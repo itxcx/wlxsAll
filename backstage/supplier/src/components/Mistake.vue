@@ -8,6 +8,13 @@
           <p>错拿记录</p>
         </section>
       </header>
+      <section class="mistakeList">
+        <ul>
+          <li v-for="(item, index) in mistakeArray">
+
+          </li>
+        </ul>
+      </section>
     </div>
 </template>
 
@@ -16,12 +23,12 @@
         name: "Mistake",
         data() {
             return {
-
+              mistakeArray: []
             }
         },
         mounted() {
           this.$nextTick(() => {
-
+            this.getMistakeData();
           })
         },
         methods: {
@@ -31,6 +38,23 @@
               path: '/personal'
             })
           },
+          //获取数据方法
+          getMistakeData() {
+            this.$ajax({
+              url: `http://merchant.test.weilaixiansen.com/login/chagrelist`,
+              method: 'GET'
+            }).then((res) => {
+                if(res.data.code == 0) {
+                  this.mistakeArray = res.data.data;
+                }else if(res.data.code == 3) {
+                  this.$router.push({
+                    path: '/'
+                  })
+                }
+            }).catch((error) => {
+              console.log(error);
+            })
+          }
         }
     }
 </script>

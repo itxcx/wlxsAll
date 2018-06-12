@@ -27,6 +27,7 @@ import ModifyPassword from '../components/ModifyPassword' //修改密码
 import SalesRecord from '../components/SalesRecord' //销售记录
 import Mistake from '../components/Mistake' //错拿记录
 import MistakeInfo from '../components/MistakeInfo' //错拿详情信息
+import Settlement from '../components/Settlement' //销售结算
 //引入主要的数据模块
 //测试模块
 import Test from '../components/Test'
@@ -169,6 +170,11 @@ export default new Router({
       path: '/mistakeInfo',
       name: 'mistakeInfo',
       component: MistakeInfo
+    },
+    {
+      path: '/settlement',
+      name: 'settlement',
+      component: Settlement
     }
   ]
 })

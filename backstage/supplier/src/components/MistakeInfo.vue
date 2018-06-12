@@ -15,11 +15,14 @@
     export default {
         name: "MistakeInfo",
         data() {
-            return {}
+            return {
+              mistakeInfo: {}
+            }
         },
         mounted() {
           this.$nextTick(() => {
-
+            let order_id = this.$route.query.order_id;
+            this.mistakeInfoDetail(order_id);
           })
         },
         methods: {
@@ -29,6 +32,23 @@
               path: '/mistake'
             })
           },
+          //获取数据
+          mistakeInfoDetail(order_id) {
+            this.$ajax({
+              url: `http://merchant.test.weilaixiansen.com/login/sellorderdetail?order_id=${order_id}`,
+              method: 'GET'
+            }).then((res) => {
+              if(res.data.code == 0) {
+                this.mistakeInfo = res.data.data;
+              }else if(res.data.code == 3) {
+                this.$router.push({
+                  path: '/'
+                })
+              }
+            }).catch((error) => {
+              console.log(error);
+            })
+          }
         }
     }
 </script>

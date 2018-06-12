@@ -148,20 +148,28 @@
         },
         methods: {
           refresh(done) {
+            this.page = 0;
             setTimeout(() => {
-              //this.$refs.myscroller.resize();
               this.getSalesData(this.startDate, this.endDate, this.device_id, this.address, 0);
               done();
             }, 1000)
+            setTimeout(() => {
+              console.log('refresh sesize')
+              this.$refs.my_scroller.resize();
+            },3000)
           },
           infinite(done) {
             console.log(this.page);
             setTimeout(() => {
-              if(this. ctrlTipTxt == '上划加载更多...') {
+              if(this.ctrlTipTxt == '上划加载更多...') {
                 this.getMoreSalesData(this.startDate, this.endDate, this.device_id, this.address, this.page);
                 done()
               }
             }, 2000)
+            setTimeout(() => {
+              console.log('infinite sesize')
+              this.$refs.my_scroller.resize();
+            },3000)
           },
           //返回
           goPersonal() {
@@ -301,47 +309,14 @@
               if(res.data.code == 0) {
                 this.page++;
                 let data = res.data.data;
-            // let data = [
-            //   {
-            //     "address": "新增魔盒柜子",
-            //     "order_time": "2018-06-11 16:09:49",
-            //     "goods": [{
-            //       "goods_name": "摆渡经口葡萄糖水",
-            //       "goods_count": 1
-            //     }]
-            //   }, {
-            //     "address": "新增魔盒柜子",
-            //     "order_time": "2018-06-11 15:03:38",
-            //     "goods": [{
-            //       "goods_name": "摆渡经口葡萄糖水",
-            //       "goods_count": 4
-            //     }]
-            //   }, {
-            //     "address": "中投国际B座9楼银联商务左柜（XALG0007）",
-            //     "order_time": "2018-06-11 13:36:19",
-            //     "goods": [{
-            //       "goods_name": "兵兵有礼冰箱贴",
-            //       "goods_count": 1
-            //     }]
-            //   }, {
-            //     "address": "瞪羚谷E座1层右柜（XALG0004）",
-            //     "order_time": "2018-06-11 12:35:53",
-            //     "goods": [{
-            //       "goods_name": "似水柔情自煮懒人火锅",
-            //       "goods_count": 1
-            //     }]
-            //   }, {
-            //     "address": "瞪羚谷E座1层右柜（XALG0004）",
-            //     "order_time": "2018-06-11 12:13:42",
-            //     "goods": [{
-            //       "goods_name": "果2代",
-            //       "goods_count": 1
-            //     }]
-            //   }]
                 if(data.length == 0 || data.length < 5) {
                   this.ctrlTipTxt = '没有更多数据';
                 }
                 this.allSale = this.allSale.concat(data);
+              }else if(res.data.code == 3) {
+                this.$router.push({
+                  path: '/'
+                })
               }
             }).catch((error) => {
               console.log(error);
@@ -362,49 +337,16 @@
               if(res.data.code == 0) {
                 this.allSale = [];
                 let data = res.data.data;
-                // let data = [
-                //   {
-                //   "address": "新增魔盒柜子",
-                //   "order_time": "2018-06-11 16:09:49",
-                //   "goods": [{
-                //     "goods_name": "摆渡经口葡萄糖水",
-                //     "goods_count": 1
-                //   }]
-                // }, {
-                //   "address": "新增魔盒柜子",
-                //   "order_time": "2018-06-11 15:03:38",
-                //   "goods": [{
-                //     "goods_name": "摆渡经口葡萄糖水",
-                //     "goods_count": 4
-                //   }]
-                // }, {
-                //   "address": "中投国际B座9楼银联商务左柜（XALG0007）",
-                //   "order_time": "2018-06-11 13:36:19",
-                //   "goods": [{
-                //     "goods_name": "兵兵有礼冰箱贴",
-                //     "goods_count": 1
-                //   }]
-                // }, {
-                //   "address": "瞪羚谷E座1层右柜（XALG0004）",
-                //   "order_time": "2018-06-11 12:35:53",
-                //   "goods": [{
-                //     "goods_name": "似水柔情自煮懒人火锅",
-                //     "goods_count": 1
-                //   }]
-                // }, {
-                //   "address": "瞪羚谷E座1层右柜（XALG0004）",
-                //   "order_time": "2018-06-11 12:13:42",
-                //   "goods": [{
-                //     "goods_name": "果2代",
-                //     "goods_count": 1
-                //   }]
-                // }]
                 this.allSale = data;
                 if(this.allSale.length == 0) {
                   this.ctrlTipTxt = '暂时没有数据';
                 }else if(this.allSale.length < 5) {
                   this.ctrlTipTxt = '没有更多数据';
                 }
+              }else if(res.data.code == 3) {
+                this.$router.push({
+                  path: '/'
+                })
               }
             }).catch((error) => {
               console.log(error);
@@ -476,39 +418,39 @@
               method: 'GET'
             }).then((res) => {
               if(res.data.code == 0) {
-            let data = res.data.data;
-            // let data = {
-            //   "": [{
-            //     "device_id": 6101130013,
-            //     "address": "新增魔盒柜子"
-            //   }],
-            //   "锦业路1号都市之门B座": [{
-            //     "device_id": 6101130010,
-            //     "address": "都市之门B座1层"
-            //   }, {
-            //     "device_id": 6101130011,
-            //     "address": "都市之门B座1层"
-            //   }],
-            //   "锦业路69号瞪羚谷E座1层": [{
-            //     "device_id": 6101130004,
-            //     "address": "瞪羚谷E座1层"
-            //   }, {
-            //     "device_id": 6101130005,
-            //     "address": "瞪羚谷E座1层"
-            //   }],
-            //   "高新一路创新大厦": [{
-            //     "device_id": 6101130002,
-            //     "address": "创新大厦1层"
-            //   }],
-            //   "arealist": ["", "锦业路1号都市之门B座", "锦业路69号瞪羚谷E座1层", "高新一路创新大厦"]
-            // }
-            localStorage.setItem('addressInfo', JSON.stringify(data));
-            this.addressList = this.addressList.concat(data.arealist);
-            console.log(this.addressList)
-            for(let i = 0; i < data.arealist.length; i++) {
-              this.deviceList = this.deviceList.concat(data[data.arealist[i]]);
-            }
-            console.log(this.deviceList);
+                let data = res.data.data;
+                // let data = {
+                //   "": [{
+                //     "device_id": 6101130013,
+                //     "address": "新增魔盒柜子"
+                //   }],
+                //   "锦业路1号都市之门B座": [{
+                //     "device_id": 6101130010,
+                //     "address": "都市之门B座1层"
+                //   }, {
+                //     "device_id": 6101130011,
+                //     "address": "都市之门B座1层"
+                //   }],
+                //   "锦业路69号瞪羚谷E座1层": [{
+                //     "device_id": 6101130004,
+                //     "address": "瞪羚谷E座1层"
+                //   }, {
+                //     "device_id": 6101130005,
+                //     "address": "瞪羚谷E座1层"
+                //   }],
+                //   "高新一路创新大厦": [{
+                //     "device_id": 6101130002,
+                //     "address": "创新大厦1层"
+                //   }],
+                //   "arealist": ["", "锦业路1号都市之门B座", "锦业路69号瞪羚谷E座1层", "高新一路创新大厦"]
+                // }
+                localStorage.setItem('addressInfo', JSON.stringify(data));
+                this.addressList = this.addressList.concat(data.arealist);
+                console.log(this.addressList)
+                for(let i = 0; i < data.arealist.length; i++) {
+                  this.deviceList = this.deviceList.concat(data[data.arealist[i]]);
+                }
+                console.log(this.deviceList);
               }else if(res.data.code == 3) {
                 this.$router.push({
                   path: '/'

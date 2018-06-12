@@ -662,10 +662,16 @@ Page({
        }
      })
    },
-   //联系客服
+   //用户服务
    callService: function() {
      wx.navigateTo({
      url: '../customer/customer'
+     })
+   },
+   //客服电话
+   callServicePhone: function() {
+     wx.makePhoneCall({
+       phoneNumber: '4007707768'
      })
    },
    //个人中心

@@ -57,7 +57,7 @@
       </section>
       <!-- 销售记录列表 -->
       <section class="allSale" v-show="allSaleDown">
-        <scroller :on-refresh="refresh" :on-infinite="infinite" ref="myscroller">
+        <scroller class="scroller" :on-refresh="refresh" :on-infinite="infinite" ref="my_scroller">
         <ul>
           <li v-for="(item, index) in allSale">
             <section class="saleListAddr">
@@ -133,7 +133,8 @@
               allSale: [],
               allSaleDown: true,
               device_id: '',
-              ctrlTipTxt: '上划加载更多...'
+              ctrlTipTxt: '上划加载更多...',
+              page: 0
             }
         },
         mounted() {
@@ -146,60 +147,22 @@
           })
         },
         methods: {
-          refresh() {
+          refresh(done) {
             setTimeout(() => {
-              this.$refs.myscroller.resize();
+              //this.$refs.myscroller.resize();
               this.getSalesData(this.startDate, this.endDate, this.device_id, this.address, 0);
+              done();
             }, 1000)
           },
           infinite(done) {
-            let page = 0;
-
+            console.log(this.page);
+            setTimeout(() => {
               if(this. ctrlTipTxt == '上划加载更多...') {
-                page++;
-                // let data = [
-                //   {
-                //     "address": "新增魔盒柜子",
-                //     "order_time": "2018-06-11 16:09:49",
-                //     "goods": [{
-                //       "goods_name": "摆渡经口葡萄糖水",
-                //       "goods_count": 1
-                //     }]
-                //   }, {
-                //     "address": "新增魔盒柜子",
-                //     "order_time": "2018-06-11 15:03:38",
-                //     "goods": [{
-                //       "goods_name": "摆渡经口葡萄糖水",
-                //       "goods_count": 4
-                //     }]
-                //   }, {
-                //     "address": "中投国际B座9楼银联商务左柜（XALG0007）",
-                //     "order_time": "2018-06-11 13:36:19",
-                //     "goods": [{
-                //       "goods_name": "兵兵有礼冰箱贴",
-                //       "goods_count": 1
-                //     }]
-                //   }, {
-                //     "address": "瞪羚谷E座1层右柜（XALG0004）",
-                //     "order_time": "2018-06-11 12:35:53",
-                //     "goods": [{
-                //       "goods_name": "似水柔情自煮懒人火锅",
-                //       "goods_count": 1
-                //     }]
-                //   }, {
-                //     "address": "瞪羚谷E座1层右柜（XALG0004）",
-                //     "order_time": "2018-06-11 12:13:42",
-                //     "goods": [{
-                //       "goods_name": "果2代",
-                //       "goods_count": 1
-                //     }]
-                //   }]
-                // this.allSale = this.allSale.concat(data);
-                this.getMoreSalesData(this.startDate, this.endDate, this.device_id, this.address, page);
-               // done()
+                this.page++;
+                this.getMoreSalesData(this.startDate, this.endDate, this.device_id, this.address, this.page);
+                done()
               }
-
-
+            }, 2000)
           },
           //返回
           goPersonal() {
@@ -375,9 +338,7 @@
             //       "goods_count": 1
             //     }]
             //   }]
-                if(data.length == 0) {
-                  this.ctrlTipTxt = '暂时没有数据';
-                }else if(data.length < 5) {
+                if(data.length == 0 || data.length < 5) {
                   this.ctrlTipTxt = '没有更多数据';
                 }
                 this.allSale = this.allSale.concat(data);
@@ -388,17 +349,18 @@
           },
           //销售记录数据获取
           getSalesData(date1 = '', date2 = '', device_id = '', area_name = '', page = 0) {
-            this.allSale = [];
             //参数 ： page 页数     date1     date2  起止时间
             //device_id  设备编号    area_name 分区名称
             if(area_name == '场地') {
               area_name = '';
             }
+            this.ctrlTipTxt = '上划加载更多...';
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/selllist?date1=${date1}&date2=${date2}&device_id=${device_id}&area_name=${area_name}&page=${page}`,
               method: 'GET'
             }).then((res) => {
               if(res.data.code == 0) {
+                this.allSale = [];
                 let data = res.data.data;
                 // let data = [
                 //   {
@@ -541,7 +503,6 @@
             //   "arealist": ["", "锦业路1号都市之门B座", "锦业路69号瞪羚谷E座1层", "高新一路创新大厦"]
             // }
             localStorage.setItem('addressInfo', JSON.stringify(data));
-            //let addArray = ["锦业路1号都市之门B座", "锦业路69号瞪羚谷E座1层", "高新一路创新大厦"];
             this.addressList = this.addressList.concat(data.arealist);
             console.log(this.addressList)
             for(let i = 0; i < data.arealist.length; i++) {
@@ -625,6 +586,7 @@
           width: 100vw;
           background: rgba(0,0,0,.6);
           height: 90vh;
+          z-index: 100;
           .contentModal{
             background: #fff;
             p{
@@ -681,7 +643,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 100;
+      z-index: 80;
       ul{
         list-style: none;
         overflow: hidden;
@@ -720,55 +682,60 @@
       .ctrlTipTxt{
         text-align: center;
       }
-      ul{
-        /*height: 79vh;*/
-        overflow-y: auto;
-        -webkit-overflow-scrolling : touch;
-        background: #f1f1f1;
-        li{
-          background: #fff;
-          margin-bottom: 1.499vh;
-          padding: 0 5.33vw;
-          .saleListAddr{
-            padding: 2.2488vh 0;
-            font-size: 2.098rem;
-            color: #6e6e6e;
-            border-bottom: 1px solid #e5e5e5;
-            span:nth-of-type(1) {
-              display: inline-block;
-              width: 3.333vw;
-              height: 2.823vh;
-              background: url(../../static/images/xiaoshoujilu.png) no-repeat center center;
-              background-size: cover;
-              vertical-align: middle;
-              margin-right: 10px;
+      .scroller{
+        position: relative;
+        ul{
+          /*height: 79vh;*/
+          overflow-y: auto;
+          -webkit-overflow-scrolling : touch;
+          background: #f1f1f1;
+          li{
+            background: #fff;
+            margin-bottom: 1.499vh;
+            padding: 0 5.33vw;
+            .saleListAddr{
+              padding: 2.2488vh 0;
+              font-size: 2.098rem;
+              color: #6e6e6e;
+              border-bottom: 1px solid #e5e5e5;
+              span:nth-of-type(1) {
+                display: inline-block;
+                width: 3.333vw;
+                height: 2.823vh;
+                background: url(../../static/images/xiaoshoujilu.png) no-repeat center center;
+                background-size: cover;
+                vertical-align: middle;
+                margin-right: 10px;
+              }
             }
-          }
-          .saleGoods, .saleTime{
-            padding-top: 2.2488vh;
-            span:nth-of-type(1) {
-              color: #999898;
-              font-size: 2.2488rem;
+            .saleGoods, .saleTime{
+              padding-top: 2.2488vh;
+              span:nth-of-type(1) {
+                color: #999898;
+                font-size: 2.2488rem;
+              }
+              span:nth-of-type(2) {
+                color: #373737;
+                font-size: 2.2488rem;
+                display: inline-block;
+                margin-left: 2.933vw;
+                width: 75%;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+                vertical-align: top;
+              }
             }
-            span:nth-of-type(2) {
-              color: #373737;
-              font-size: 2.2488rem;
-              display: inline-block;
-              margin-left: 2.933vw;
-              width: 75%;
-              overflow: hidden;
-              text-overflow:ellipsis;
-              white-space: nowrap;
-              vertical-align: top;
+            .saleTime{
+              padding-bottom: 2.2488vh;
             }
-          }
-          .saleTime{
-            padding-bottom: 2.2488vh;
           }
         }
       }
+
     }
     .addressList, .deviceList{
+      padding-top: 17vh;
       ul{
         height: 79vh;
         overflow-y: auto;
@@ -821,7 +788,7 @@
     }
     ._v-container[data-v-ecaca2b0]{
       margin-top: 17vh;
-      height: 80% !important;
+      /*height: 83% !important;*/
     }
     .loading-layer{
       display: none;

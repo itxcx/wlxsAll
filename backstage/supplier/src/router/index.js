@@ -26,6 +26,7 @@ import InventoryControl from '../components/InventoryControl' //上下货报表�
 import ModifyPassword from '../components/ModifyPassword' //修改密码
 import SalesRecord from '../components/SalesRecord' //销售记录
 import Mistake from '../components/Mistake' //错拿记录
+import MistakeInfo from '../components/MistakeInfo' //错拿详情信息
 //引入主要的数据模块
 //测试模块
 import Test from '../components/Test'
@@ -163,6 +164,11 @@ export default new Router({
       path: '/mistake',
       name: 'mistake',
       component: Mistake
+    },
+    {
+      path: '/mistakeInfo',
+      name: 'mistakeInfo',
+      component: MistakeInfo
     }
   ]
 })

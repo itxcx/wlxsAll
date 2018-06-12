@@ -41,6 +41,7 @@ import InventoryControl from './components/InventoryControl' //上下货报表�
 import ModifyPassword from './components/ModifyPassword' //修改密码
 import SalesRecord from './components/SalesRecord' //销售记录
 import Mistake from './components/Mistake' //错拿记录
+import MistakeInfo from './components/MistakeInfo' //错拿记录
 
 Vue.use(iView);
 Vue.config.productionTip = false;
@@ -57,7 +58,8 @@ new Vue({
     App, Login, Main, FooterBar, Repertory, Exhibing, DoorClose,
     InStoreDone, Scan, Addition, AddItem, CheckExhibing, ExhibingDone,
     Ship, ShipDone, Record, RecordMsg, SaleRoom, DeviceRank, ProductRank,
-    RepertoryList, InventoryControl, ModifyPassword, SalesRecord, Mistake
+    RepertoryList, InventoryControl, ModifyPassword, SalesRecord, Mistake,
+    MistakeInfo
   },
   template: '<App/>'
 })

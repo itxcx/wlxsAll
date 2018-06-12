@@ -26,6 +26,11 @@
             <span class="itemTitle">销售记录</span>
             <span class="next"></span>
           </li>
+          <li @click="goSettlement">
+            <span></span>
+            <span class="itemTitle">销售结算</span>
+            <span class="next"></span>
+          </li>
           <li @click="goMistake">
             <span></span>
             <span class="itemTitle">错拿记录</span>
@@ -85,6 +90,12 @@
         goMistake() {
           this.$router.push({
             path: '/mistake'
+          })
+        },
+        //销售结算
+        goSettlement() {
+          this.$router.push({
+            path: '/settlement'
           })
         },
         // showModal() {
@@ -210,19 +221,35 @@
             background-size: cover;
             margin-top: 3vh;
           }
+          &:nth-of-type(2) span:nth-of-type(1){
+            display: inline-block;
+            width: 6.666vw;
+            height: 3.448vh;
+            background: url(../../static/images/image_xiaoshoujiesuan.png) no-repeat center center;
+            background-size: cover;
+            margin-top: 3vh;
+          }
           &:nth-of-type(3) span:nth-of-type(1) {
             display: inline-block;
             width: 6.666vw;
             height: 3.448vh;
-            background: url(../../static/images/image_distribution.png) no-repeat center center;
+            background: url(../../static/images/image_contact.png) no-repeat center center;
             background-size: cover;
             margin-top: 3vh;
           }
-          &:nth-of-type(4) span:nth-of-type(1),  &:nth-of-type(2) span:nth-of-type(1) {
+          &:nth-of-type(4) span:nth-of-type(1) {
             display: inline-block;
             width: 6.666vw;
             height: 3.448vh;
-            background: url(../../static/images/image_contact.png) no-repeat center center;
+            background: url(../../static/images/image_shangxiahuo.png) no-repeat center center;
+            background-size: cover;
+            margin-top: 3vh;
+          }
+          &:nth-of-type(5) span:nth-of-type(1) {
+            display: inline-block;
+            width: 6.666vw;
+            height: 3.448vh;
+            background: url(../../static/images/image_lianxi.png) no-repeat center center;
             background-size: cover;
             margin-top: 3vh;
           }

@@ -158,7 +158,6 @@
             console.log(this.page);
             setTimeout(() => {
               if(this. ctrlTipTxt == '上划加载更多...') {
-                this.page++;
                 this.getMoreSalesData(this.startDate, this.endDate, this.device_id, this.address, this.page);
                 done()
               }
@@ -300,6 +299,7 @@
               method: 'GET'
             }).then((res) => {
               if(res.data.code == 0) {
+                this.page++;
                 let data = res.data.data;
             // let data = [
             //   {
@@ -678,7 +678,7 @@
       }
     }
     .allSale{
-      height: 79vh;
+      height: 100vh;
       .ctrlTipTxt{
         text-align: center;
       }
@@ -719,11 +719,26 @@
                 font-size: 2.2488rem;
                 display: inline-block;
                 margin-left: 2.933vw;
-                width: 75%;
                 overflow: hidden;
                 text-overflow:ellipsis;
                 white-space: nowrap;
                 vertical-align: top;
+              }
+            }
+            .saleGoods {
+              span {
+                color: #373737;
+                font-size: 2.2488rem;
+                margin-left: 2.933vw;
+                /*overflow: hidden;*/
+                /*text-overflow:ellipsis;*/
+                /*white-space: nowrap;*/
+                vertical-align: top;
+              }
+              span:nth-of-type(1) {
+                color: #999898;
+                font-size: 2.2488rem;
+                margin: 0;
               }
             }
             .saleTime{
@@ -735,7 +750,7 @@
 
     }
     .addressList, .deviceList{
-      padding-top: 17vh;
+      padding-top: 20vh;
       ul{
         height: 79vh;
         overflow-y: auto;

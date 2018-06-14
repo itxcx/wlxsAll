@@ -112,10 +112,12 @@
           //点击详情
           goMistakeInfo(index) {
             let order_id = this.mistakeArray[index].order_id;
+            let created_time = this.mistakeArray[index].created_time;
             this.$router.push({
               path: '/mistakeInfo',
               query: {
-                order_id: order_id
+                order_id: order_id,
+                time: created_time
               }
             })
           },

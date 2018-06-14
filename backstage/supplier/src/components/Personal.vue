@@ -247,8 +247,9 @@
           }
           &:nth-of-type(5) span:nth-of-type(1) {
             display: inline-block;
-            width: 6.666vw;
-            height: 3.448vh;
+            margin-left: 0.6vw;
+            width: 6.066vw;
+            height: 3.548vh;
             background: url(../../static/images/image_lianxi.png) no-repeat center center;
             background-size: cover;
             margin-top: 3vh;

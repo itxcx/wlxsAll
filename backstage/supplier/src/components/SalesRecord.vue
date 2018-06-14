@@ -57,7 +57,8 @@
       </section>
       <!-- 销售记录列表 -->
       <section class="allSale" v-show="allSaleDown">
-        <scroller class="scroller" :on-refresh="refresh" :on-infinite="infinite" ref="my_scroller">
+        <!--<scroller class="scroller" :on-refresh="refresh" :on-infinite="infinite" ref="my_scroller">-->
+        <scroller class="scroller"  :on-infinite="infinite" ref="my_scroller">
         <ul>
           <li v-for="(item, index) in allSale">
             <section class="saleListAddr">
@@ -147,17 +148,17 @@
           })
         },
         methods: {
-          refresh(done) {
-            this.page = 0;
-            setTimeout(() => {
-              this.getSalesData(this.startDate, this.endDate, this.device_id, this.address, 0);
-              done();
-            }, 1000)
-            setTimeout(() => {
-              console.log('refresh sesize')
-              this.$refs.my_scroller.resize();
-            },3000)
-          },
+          // refresh(done) {
+          //   this.page = 0;
+          //   setTimeout(() => {
+          //     this.getSalesData(this.startDate, this.endDate, this.device_id, this.address, 0);
+          //     done();
+          //   }, 1000)
+          //   setTimeout(() => {
+          //     console.log('refresh sesize')
+          //     this.$refs.my_scroller.resize();
+          //   },3000)
+          // },
           infinite(done) {
             console.log(this.page);
             setTimeout(() => {

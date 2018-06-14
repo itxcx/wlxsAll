@@ -29,6 +29,12 @@
           })
         },
         methods: {
+          //返回
+          goBack() {
+            this.$router.push({
+              path: '/settlement'
+            })
+          },
           //获取数据
           getSettleInfoData(date1, date2) {
             this.$ajax({

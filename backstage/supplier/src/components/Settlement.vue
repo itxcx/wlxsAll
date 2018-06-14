@@ -8,9 +8,9 @@
           <p>销售结算</p>
         </section>
       </header>
-      <section class="settleContent">
+      <section class="settleContent" ref="test">
         <ul class="settleItem">
-          <li v-for="(item, index) in settlementData">
+          <li v-for="(item, index) in settlementData" ref="" class="test">
             <p>{{Year}}.{{item.month}}</p>
             <ul class="settleHeader">
               <li>商品名称</li>
@@ -55,13 +55,35 @@
             }
         },
         mounted() {
+          document.body.addEventListener('scroll', this.handleScroll);
           this.$nextTick(() => {
-            document.title = 'ceshi';
             this.getSettlementData(0);
             this.Year = new Date().getFullYear();
           })
         },
         methods: {
+          handleScroll() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+            let test = document.getElementsByClassName('test');
+
+            for(let i = 0; i < test.length; i++) {
+              let p = test[i].getElementsByTagName('p')[0];
+              let header = test[i].getElementsByClassName('settleHeader')[0];
+              if(scrollTop > test[i].offsetTop) {
+                test[i].style.paddingTop = '11vh';
+                p.style.position = 'fixed';
+                p.style.top = '5vh';
+                p.style.left = '0';
+                header.style.position = 'fixed';
+                header.style.top = '10vh';
+                header.style.left = '0';
+              }else{
+                test[i].style.paddingTop = '0';
+                p.style.position = '';
+                header.style.position = '';
+              }
+            }
+          },
           //返回按钮
           goBack() {
             this.$router.push({
@@ -537,12 +559,15 @@
           p{
             font-size: 1.949rem;
             color: #7b7b7b;
+            width: 100vw;
             padding: 1.649vh 4vw;
             border-bottom: 1px solid #e5e5e5;
+            background: #fff;
           }
           .settleHeader{
             border-bottom: 1px solid #e5e5e5;
             overflow: hidden;
+            background: #fff;
             li{
               float: left;
               width: 16.666vw;

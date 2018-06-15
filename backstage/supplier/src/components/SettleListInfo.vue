@@ -92,7 +92,7 @@
 <style lang="less">
   .SettleListInfo{
     background: #f1f1f1;
-    padding-top: 20vh;
+    padding: 20vh 0 2vh 0;
     header{
       position: fixed;
       top: 0;

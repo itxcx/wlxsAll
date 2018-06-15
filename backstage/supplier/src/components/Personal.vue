@@ -8,15 +8,18 @@
           <p>{{nickName}}</p>
           <p>{{phone}}</p>
         </section>
-        <section class="saleData">
-          <dl>
-            <dt>{{saleCount}}</dt>
-            <dd>总销售额(元)</dd>
-          </dl>
-          <dl>
-            <dt>{{saleNum}}</dt>
-            <dd>售卖数量(个)</dd>
-          </dl>
+        <!--<section class="saleData">-->
+          <!--<dl>-->
+            <!--<dt>{{saleCount}}</dt>-->
+            <!--<dd>总销售额(元)</dd>-->
+          <!--</dl>-->
+          <!--<dl>-->
+            <!--<dt>{{saleNum}}</dt>-->
+            <!--<dd>售卖数量(个)</dd>-->
+          <!--</dl>-->
+        <!--</section>-->
+        <section class="changeUser">
+          <span @click="changeUser">切换账号</span>
         </section>
       </header>
       <section class="userInfoList">
@@ -80,6 +83,14 @@
         FooterBar
       },
       methods: {
+        //切换账号
+        changeUser() {
+          localStorage.setItem('phone', '');
+          localStorage.setItem('password', '');
+          this.$router.push({
+            path: '/'
+          })
+        },
         //上下架记录
         goRecord() {
           this.$router.push({
@@ -178,27 +189,43 @@
           color: #717171;
         }
       }
-      .saleData{
+      /*.saleData{*/
+        /*position: absolute;*/
+        /*top: 21.7391vh;*/
+        /*left: 0;*/
+        /*height: 6.74vh;*/
+        /*dl{*/
+          /*width: 49.333vw;*/
+          /*float: left;*/
+          /*text-align: center;*/
+          /*&:nth-of-type(1) {*/
+            /*border-right: 1px solid #e6e6e6;*/
+          /*}*/
+          /*dt{*/
+            /*font-size: 3vh;*/
+            /*color: #7f7f7f;*/
+            /*font-weight: bold;*/
+          /*}*/
+          /*dd{*/
+            /*font-size: 1.949vh;*/
+            /*color: #989898;*/
+          /*}*/
+        /*}*/
+      /*}*/
+      .changeUser{
         position: absolute;
-        top: 21.7391vh;
+        top: 23.7391vh;
         left: 0;
         height: 6.74vh;
-        dl{
-          width: 49.333vw;
-          float: left;
-          text-align: center;
-          &:nth-of-type(1) {
-            border-right: 1px solid #e6e6e6;
-          }
-          dt{
-            font-size: 3vh;
-            color: #7f7f7f;
-            font-weight: bold;
-          }
-          dd{
-            font-size: 1.949vh;
-            color: #989898;
-          }
+        text-align: center;
+        width: 100%;
+        font-size: 1.649rem;
+        color: #65d172;
+        span{
+          display: inline-block;
+          padding: 0.7496vh 4vw;
+          border: 1px solid #65d172;
+          border-radius: 20px;
         }
       }
     }

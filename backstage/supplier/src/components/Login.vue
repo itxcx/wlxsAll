@@ -39,6 +39,38 @@
           phoneLegal: false
         }
       },
+      mounted() {
+        this.$nextTick(() => {
+          let phone = localStorage.getItem('phone');
+          let password = localStorage.getItem('password');
+          if(phone && password) {
+            this.phone = phone;
+            this.password = password;
+            this.modalFun('登录中, 请稍后', 1000);
+            setTimeout(() => {
+              this.$ajax({
+                url: `http://merchant.test.weilaixiansen.com/merchant/login?phone=${phone}&password=${password}`,
+                method: 'GET'
+              }).then((res) => {
+                if(res.data.code == 0) {
+                  this.modalFun('登录成功,即将跳转', 1000);
+                  setTimeout(() => {
+                    this.$router.push({
+                      path: '/main'
+                    })
+                  }, 1000)
+                }else{
+                  this.submitAlready = false;
+                  this.modalFun('用户信息错误', 1500);
+                }
+              }).catch((error) => {
+                this.submitAlready = false;
+                this.modalFun('网络错误,请重试', 1500);
+              })
+            }, 1000)
+          }
+        })
+      },
       methods: {
         transformRequest(data) {
           let resData = '';
@@ -77,6 +109,7 @@
               }).then((res) => {
                 if(res.data.code == 0) {
                   localStorage.setItem('phone', phone);//用户手机号
+                  localStorage.setItem('password', password);
                   this.modalFun('登录成功,即将跳转', 1000);
                   setTimeout(() => {
                     this.$router.push({

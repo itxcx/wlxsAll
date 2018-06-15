@@ -165,9 +165,9 @@
       }
       dl{
         float: left;
-        padding-top: 0.6vh;
+        padding-top: 0.5vh;
         dt{
-          font-size: 2.248rem;
+          font-size: 2.3988rem;
           color: #373737;
         }
         dd{
@@ -193,7 +193,7 @@
         dl{
           padding-top: 0.6vh;
           dt{
-            font-size: 2.248rem;
+            font-size: 2.3988rem;
             color: #373737;
           }
           dd{

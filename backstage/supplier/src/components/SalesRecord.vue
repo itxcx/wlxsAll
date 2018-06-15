@@ -624,6 +624,10 @@
       height: 100vh;
       .ctrlTipTxt{
         text-align: center;
+        padding: 1vh 0;
+        font-weight: bold;
+        font-size: 1.924rem;
+        width: 100vw;
       }
       .scroller{
         position: relative;

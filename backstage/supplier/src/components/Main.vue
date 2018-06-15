@@ -191,7 +191,7 @@
           margin-right: 3.333vw;
         }
         dl{
-          padding-top: 0.6vh;
+          padding-top: 0.5vh;
           dt{
             font-size: 2.3988rem;
             color: #373737;

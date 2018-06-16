@@ -96,6 +96,14 @@
           <p>{{tipText}}</p>
         </section>
       </transition>
+      <section class="loadingModal" v-show="loadingModal">
+        <Col class="demo-spin-col" span="8">
+        <Spin fix>
+          <Icon type="load-c" class="demo-spin-icon-load"></Icon>
+          <div class="loadText">数据加载中</div>
+        </Spin>
+        </Col>
+      </section>
     </div>
 </template>
 
@@ -135,7 +143,8 @@
               allSaleDown: true,
               device_id: '',
               ctrlTipTxt: '上划加载更多...',
-              page: 0
+              page: 0,
+              loadingModal: true,
             }
         },
         mounted() {
@@ -163,7 +172,7 @@
             console.log(this.page);
             setTimeout(() => {
               if(this.ctrlTipTxt == '上划加载更多...') {
-                this.getMoreSalesData(this.startDate, this.endDate, this.device_id, this.address, this.page);
+                //this.getMoreSalesData(this.startDate, this.endDate, this.device_id, this.address, this.page);
                 done()
               }
             }, 2000)
@@ -298,6 +307,7 @@
           },
           //获取更多数据方法
           getMoreSalesData(date1 = '', date2 = '', device_id = '', area_name = '', page = 0) {
+            this.loadingModal = true;
             //参数 ： page 页数     date1     date2  起止时间
             //device_id  设备编号    area_name 分区名称
             if(area_name == '场地') {
@@ -307,6 +317,7 @@
               url: `http://merchant.test.weilaixiansen.com/login/selllist?date1=${date1}&date2=${date2}&device_id=${device_id}&area_name=${area_name}&page=${page}`,
               method: 'GET'
             }).then((res) => {
+              this.loadingModal = false;
               if(res.data.code == 0) {
                 this.page++;
                 let data = res.data.data;
@@ -335,6 +346,7 @@
               url: `http://merchant.test.weilaixiansen.com/login/selllist?date1=${date1}&date2=${date2}&device_id=${device_id}&area_name=${area_name}&page=${page}`,
               method: 'GET'
             }).then((res) => {
+              this.loadingModal = false;
               if(res.data.code == 0) {
                 this.allSale = [];
                 let data = res.data.data;
@@ -485,6 +497,38 @@
       text-align: center;
       font-size: 2.6677rem;
       padding: 3vh 0;
+    }
+    .loadingModal{
+      width: 0;
+      height: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      .demo-spin-icon-load{
+        animation: ani-demo-spin 1s linear infinite;
+        font-size: 5rem;
+        font-weight: bold;
+        color: #65d172;
+      }
+      @keyframes ani-demo-spin {
+        from { transform: rotate(0deg);}
+        50%  { transform: rotate(180deg);}
+        to   { transform: rotate(360deg);}
+      }
+      .demo-spin-col{
+        height: 100px;
+        position: relative;
+        margin: 0 auto;
+      }
+      .loadText{
+        font-size: 2.2488rem;
+        color: #65d172;
+        width: 100vw;
+      }
     }
     header{
       position: fixed;

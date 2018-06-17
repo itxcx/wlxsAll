@@ -58,25 +58,27 @@
       <!-- 销售记录列表 -->
       <section class="allSale" v-show="allSaleDown">
         <!--<scroller class="scroller" :on-refresh="refresh" :on-infinite="infinite" ref="my_scroller">-->
-        <scroller class="scroller"  :on-infinite="infinite" ref="my_scroller">
-        <ul>
-          <li v-for="(item, index) in allSale">
-            <section class="saleListAddr">
-              <span></span>
-              <span>{{item.address}}</span>
-            </section>
-            <section class="saleGoods">
-              <span>销售商品:</span>
-              <span v-for="items in item.goods">{{items.goods_name}}x{{items.goods_count}}</span>
-            </section>
-            <section class="saleTime">
-              <span>销售时间:</span>
-              <span>{{item.order_time}}</span>
-            </section>
-          </li>
-        </ul>
+        <!--<scroller class="scroller" :on-infinite="infinite" ref="my_scroller">-->
+        <loadmore :bottomMethod="getMoreSalesData" class="scroller">
+          <ul>
+            <li v-for="(item, index) in allSale">
+              <section class="saleListAddr">
+                <span></span>
+                <span>{{item.address}}</span>
+              </section>
+              <section class="saleGoods">
+                <span>销售商品:</span>
+                <span v-for="items in item.goods">{{items.goods_name}}x{{items.goods_count}}</span>
+              </section>
+              <section class="saleTime">
+                <span>销售时间:</span>
+                <span>{{item.order_time}}</span>
+              </section>
+            </li>
+          </ul>
           <p class="ctrlTipTxt">{{ctrlTipTxt}}</p>
-        </scroller>
+        </loadmore>
+        <!--</scroller>-->
 
       </section>
       <!-- 地址列表 -->
@@ -96,14 +98,6 @@
           <p>{{tipText}}</p>
         </section>
       </transition>
-      <section class="loadingModal" v-show="loadingModal">
-        <Col class="demo-spin-col" span="8">
-        <Spin fix>
-          <Icon type="load-c" class="demo-spin-icon-load"></Icon>
-          <div class="loadText">数据加载中</div>
-        </Spin>
-        </Col>
-      </section>
     </div>
 </template>
 
@@ -142,8 +136,8 @@
               allSale: [],
               allSaleDown: true,
               device_id: '',
-              ctrlTipTxt: '上划加载更多...',
-              page: 0,
+              ctrlTipTxt: '上滑加载更多...',
+              page: 1,
               loadingModal: true,
             }
         },
@@ -152,7 +146,7 @@
             let date = new Date();
             this.startDate = this.Common.formatDate(date, "yyyy-MM-dd");
             this.endDate = this.Common.formatDate(date, "yyyy-MM-dd");
-            //this.getSalesData(this.startDate, this.endDate, '', '', 0);
+            this.getSalesData(this.startDate, this.endDate, '', '', 0);
             this.getDeviceListData();
           })
         },
@@ -168,19 +162,19 @@
           //     this.$refs.my_scroller.resize();
           //   },3000)
           // },
-          infinite(done) {
-            console.log(this.page);
-            setTimeout(() => {
-              if(this.ctrlTipTxt == '上划加载更多...') {
-                //this.getMoreSalesData(this.startDate, this.endDate, this.device_id, this.address, this.page);
-                done()
-              }
-            }, 2000)
-            setTimeout(() => {
-              console.log('infinite sesize')
-              this.$refs.my_scroller.resize();
-            },3000)
-          },
+          // infinite(done) {
+          //   console.log(this.page);
+          //   setTimeout(() => {
+          //     if(this.ctrlTipTxt == '上滑加载更多...') {
+          //       this.getMoreSalesData(this.startDate, this.endDate, this.device_id, this.address, this.page);
+          //       done()
+          //     }
+          //   }, 2000)
+          //   setTimeout(() => {
+          //     console.log('infinite sesize')
+          //     this.$refs.my_scroller.resize();
+          //   },3000)
+          // },
           //返回
           goPersonal() {
             this.$router.push({
@@ -306,8 +300,7 @@
             this.getSalesData(this.startDate, this.endDate, this.device_id, this.address, 0);
           },
           //获取更多数据方法
-          getMoreSalesData(date1 = '', date2 = '', device_id = '', area_name = '', page = 0) {
-            this.loadingModal = true;
+          getMoreSalesData(date1 = '', date2 = '', device_id = '', area_name = '', page = 1) {
             //参数 ： page 页数     date1     date2  起止时间
             //device_id  设备编号    area_name 分区名称
             if(area_name == '场地') {
@@ -317,10 +310,10 @@
               url: `http://merchant.test.weilaixiansen.com/login/selllist?date1=${date1}&date2=${date2}&device_id=${device_id}&area_name=${area_name}&page=${page}`,
               method: 'GET'
             }).then((res) => {
-              this.loadingModal = false;
               if(res.data.code == 0) {
                 this.page++;
                 let data = res.data.data;
+                this.ctrlTipTxt = '上划加载更多...';
                 if(data.length == 0 || data.length < 5) {
                   this.ctrlTipTxt = '没有更多数据';
                 }
@@ -341,16 +334,15 @@
             if(area_name == '场地') {
               area_name = '';
             }
-            this.ctrlTipTxt = '上划加载更多...';
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/selllist?date1=${date1}&date2=${date2}&device_id=${device_id}&area_name=${area_name}&page=${page}`,
               method: 'GET'
             }).then((res) => {
-              this.loadingModal = false;
               if(res.data.code == 0) {
                 this.allSale = [];
                 let data = res.data.data;
                 this.allSale = data;
+                this.ctrlTipTxt = '上划加载更多...';
                 if(this.allSale.length == 0) {
                   this.ctrlTipTxt = '暂时没有数据';
                 }else if(this.allSale.length < 5) {
@@ -479,8 +471,9 @@
 
 <style lang="less">
   .SalesRecord{
-    width: 100vw;
-    height: 100vh;
+    /*width: 100vw;*/
+    /*height: 100vh;*/
+    padding-top: 20vh;
     .tipModal{
       background: rgba(0,0,0,.7);
       border-radius: 10px;
@@ -497,38 +490,6 @@
       text-align: center;
       font-size: 2.6677rem;
       padding: 3vh 0;
-    }
-    .loadingModal{
-      width: 0;
-      height: 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 999;
-      bottom: 0;
-      right: 0;
-      margin: auto;
-      .demo-spin-icon-load{
-        animation: ani-demo-spin 1s linear infinite;
-        font-size: 5rem;
-        font-weight: bold;
-        color: #65d172;
-      }
-      @keyframes ani-demo-spin {
-        from { transform: rotate(0deg);}
-        50%  { transform: rotate(180deg);}
-        to   { transform: rotate(360deg);}
-      }
-      .demo-spin-col{
-        height: 100px;
-        position: relative;
-        margin: 0 auto;
-      }
-      .loadText{
-        font-size: 2.2488rem;
-        color: #65d172;
-        width: 100vw;
-      }
     }
     header{
       position: fixed;
@@ -665,7 +626,9 @@
       }
     }
     .allSale{
-      height: 100vh;
+      height: 80vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling : touch;
       .ctrlTipTxt{
         text-align: center;
         padding: 1vh 0;
@@ -677,8 +640,6 @@
         position: relative;
         ul{
           /*height: 79vh;*/
-          overflow-y: auto;
-          -webkit-overflow-scrolling : touch;
           background: #f1f1f1;
           li{
             background: #fff;

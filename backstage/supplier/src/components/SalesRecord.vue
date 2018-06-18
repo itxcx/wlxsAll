@@ -301,8 +301,6 @@
           },
           //获取更多数据方法
           getMoreSalesData(date1 = '', date2 = '', device_id = '', area_name = '', page = 1) {
-            //参数 ： page 页数     date1     date2  起止时间
-            //device_id  设备编号    area_name 分区名称
             if(area_name == '场地') {
               area_name = '';
             }

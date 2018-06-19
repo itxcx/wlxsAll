@@ -312,32 +312,36 @@
             if(this.address == '场地') {
               area_name = '';
             }
-            this.$ajax({
-              url: `http://merchant.test.weilaixiansen.com/login/selllist?date1=${this.startDate}&date2=${this.endDate}&device_id=${this.device_id}&area_name=${area_name}&page=${this.page}`,
-              method: 'GET'
-            }).then((res) => {
-              if(res.data.code == 0) {
-                this.page++;
-                let data = res.data.data;
-                this.ctrlTipTxt = '上划加载更多...';
-                if(data.length == 0) {
-                  this.ctrlTipTxt = '没有更多数据';
+            if(this.ctrlTipTxt == '上划加载更多...') {
+              this.$ajax({
+                url: `http://merchant.test.weilaixiansen.com/login/selllist?date1=${this.startDate}&date2=${this.endDate}&device_id=${this.device_id}&area_name=${area_name}&page=${this.page}`,
+                method: 'GET'
+              }).then((res) => {
+                if(res.data.code == 0) {
+                  this.page++;
+                  let data = res.data.data;
+                  this.ctrlTipTxt = '上划加载更多...';
+                  if(data.length == 0) {
+                    this.ctrlTipTxt = '没有更多数据';
+                  }
+                  this.allSale = this.allSale.concat(data);
+                }else if(res.data.code == 3) {
+                  this.$router.push({
+                    path: '/'
+                  })
                 }
-                this.allSale = this.allSale.concat(data);
-              }else if(res.data.code == 3) {
-                this.$router.push({
-                  path: '/'
-                })
-              }
-            }).catch((error) => {
-              console.log(error);
-            })
+              }).catch((error) => {
+                console.log(error);
+              })
+            }
+
           },
           //销售记录数据获取
           getSalesData(date1 = '', date2 = '', device_id = '', area_name = '', page = 0) {
             //参数 ： page 页数     date1     date2  起止时间
             //device_id  设备编号    area_name 分区名称
             this.allSale = [];
+            this.ctrlTipTxt = '';
             this.loadingModal = true;
             if(area_name == '场地') {
               area_name = '';
@@ -352,7 +356,7 @@
                 this.allSale = data;
                 this.ctrlTipTxt = '上划加载更多...';
                 if(this.allSale.length == 0) {
-                  this.ctrlTipTxt = '暂时没有更多数据';
+                  this.ctrlTipTxt = '没有更多数据';
                 }
               }else if(res.data.code == 3) {
                 this.$router.push({

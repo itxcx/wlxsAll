@@ -212,7 +212,7 @@
                 this.lastMonth = false;
                 break;
               case '本周':
-                let weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek);
+                let weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1);
                 this.startDate = this.Common.formatDate(weekStartDate, "yyyy-MM-dd");
                 this.endDate = this.Common.formatDate(date, "yyyy-MM-dd");
                 this.today = false;
@@ -223,8 +223,8 @@
                 this.lastMonth = false;
                 break;
               case '上周':
-                let lastWeekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek - 7);
-                let lastWeekEndDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek - 1);
+                let lastWeekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek - 7 + 1);
+                let lastWeekEndDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek);
                 this.startDate = this.Common.formatDate(lastWeekStartDate, "yyyy-MM-dd");
                 this.endDate = this.Common.formatDate(lastWeekEndDate, "yyyy-MM-dd");
                 this.today = false;

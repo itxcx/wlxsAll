@@ -41,6 +41,11 @@
           </li>
         </ul>
       </section>
+      <!-- 加载中提示框 -->
+      <section class="loading" v-show="loadingModal">
+        <Spin size="large"></Spin>
+        <p>数据获取中...</p>
+      </section>
     </div>
 </template>
 
@@ -50,7 +55,8 @@
         data() {
             return {
               settleListArray: [],
-              count: {}
+              count: {},
+              loadingModal: false,
             }
         },
         mounted() {
@@ -70,10 +76,12 @@
           },
           //获取数据
           getSettleInfoData(date1, date2) {
+            this.loadingModal = true;
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/checkoutbyday?date1=${date1}&date2=${date2}`,
               method: 'GET'
             }).then((res) => {
+              this.loadingModal = false;
               if(res.data.code == 0) {
                 this.settleListArray = res.data.data;
               }else if(res.data.code == 3) {
@@ -93,6 +101,28 @@
   .SettleListInfo{
     background: #f1f1f1;
     padding: 20vh 0 2vh 0;
+    .loading{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width: 20vh;
+      text-align: center;
+      height: 10vh;
+      color: #65d172;
+      border-radius: 10px;
+      font-size: 2.388rem;
+      .ivu-spin{
+        width: 10vw;
+        height: 10vw;
+        margin: 0 auto;
+      }
+      .ivu-spin-dot{
+        background: #65d172;
+      }
+    }
     header{
       position: fixed;
       top: 0;

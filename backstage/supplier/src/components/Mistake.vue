@@ -28,6 +28,11 @@
           <p class="getMore">{{ctrlTipTitle}}</p>
         </loadmore>
       </section>
+      <!-- 加载中提示框 -->
+      <section class="loading" v-show="loadingModal">
+        <Spin size="large"></Spin>
+        <p>数据获取中...</p>
+      </section>
     </div>
 </template>
 
@@ -37,9 +42,10 @@
         data() {
             return {
               mistakeArray: [],
-              ctrlTipTitle: '上滑加载更多...',
+              ctrlTipTitle: '',
               isRequest: true,
-              page: 1
+              page: 1,
+              loadingModal: false,
             }
         },
         mounted() {
@@ -56,50 +62,19 @@
           },
           //获取数据方法
           getMistakeData(page) {
+            this.loadingModal = true;
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/chagrelist?page=${page}`,
               method: 'GET'
             }).then((res) => {
                 if(res.data.code == 0) {
-                    if(res.data.data == 0 || res.data.data < 5) {
-                      this.ctrlTipTitle = '暂时没有更多数据';
-                      this.isRequest = false;
-                    }
+                  this.loadingModal = false;
+                  this.ctrlTipTitle = '上划加载更多...';
+                  if(res.data.data == 0 || res.data.data < 5) {
+                    this.ctrlTipTitle = '暂时没有更多数据';
+                    this.isRequest = false;
+                  }
                   this.mistakeArray = res.data.data;
-
-                  // this.mistakeArray =  [
-                  //   {
-                  //   "goods_name": "伊利夏进酸牛奶",
-                  //   "goods_count": 2,
-                  //   "device_address": "瞪羚谷E座1层",
-                  //   "order_id": "20180612172347646501",
-                  //   "created_time": "2018-06-12 17:24:29"
-                  // }, {
-                  //   "goods_name": "伊利畅轻",
-                  //   "goods_count": 2,
-                  //   "device_address": "瞪羚谷E座1层",
-                  //   "order_id": "2018061216521391101",
-                  //   "created_time": "2018-06-12 16:52:32"
-                  // }, {
-                  //   "goods_name": "古都华天农家小炒肉盖饭",
-                  //   "goods_count": 2,
-                  //   "device_address": "瞪羚谷E座1层",
-                  //   "order_id": "20180611085101560201",
-                  //   "created_time": "2018-06-11 08:51:26"
-                  // }, {
-                  //   "goods_name": "伊利每益添原味",
-                  //   "goods_count": 1,
-                  //   "device_address": "瞪羚谷E座1层",
-                  //   "order_id": "20180607135435938901",
-                  //   "created_time": "2018-06-07 13:54:52"
-                  // }, {
-                  //   "goods_name": "伊利每益添原味",
-                  //   "goods_count": 1,
-                  //   "device_address": "瞪羚谷E座1层",
-                  //   "order_id": "20180607134404204401",
-                  //   "created_time": "2018-06-07 13:44:21"
-                  // }]
-
                 }else if(res.data.code == 3) {
                   this.$router.push({
                     path: '/'
@@ -154,6 +129,28 @@
 <style lang="less">
   .Mistake{
     padding-top: 6vh;
+    .loading{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width: 20vh;
+      text-align: center;
+      height: 10vh;
+      color: #65d172;
+      border-radius: 10px;
+      font-size: 2.388rem;
+      .ivu-spin{
+        width: 10vw;
+        height: 10vw;
+        margin: 0 auto;
+      }
+      .ivu-spin-dot{
+        background: #65d172;
+      }
+    }
     header{
       position: fixed;
       top: 0;

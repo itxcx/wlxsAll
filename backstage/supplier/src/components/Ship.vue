@@ -147,7 +147,7 @@
         height: 2.923vh;
         span:nth-of-type(1) {
           display: inline-block;
-          width: 3.8666vw;
+          width: 3.5666vw;
           height: 2.923vh;
           background: url("../../static/images/image_tips.png") no-repeat center center;
           background-size: cover;

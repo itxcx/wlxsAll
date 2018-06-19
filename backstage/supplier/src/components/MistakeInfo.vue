@@ -67,7 +67,8 @@
         data() {
             return {
               mistakeInfo: {},
-              time: ''
+              time: '',
+              loadingModal: false,
             }
         },
         mounted() {
@@ -92,7 +93,6 @@
             }).then((res) => {
               if(res.data.code == 0) {
                 this.mistakeInfo = res.data.data;
-
                 // this.mistakeInfo = {
                 //   "order_id": "20180605162235044401",
                 //   "address": "瞪羚谷E座1层左柜（XALG0003）",
@@ -122,6 +122,28 @@
 
 <style lang="less">
   .MistakeInfo{
+    .loading{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width: 20vh;
+      text-align: center;
+      height: 10vh;
+      color: #65d172;
+      border-radius: 10px;
+      font-size: 2.388rem;
+      .ivu-spin{
+        width: 10vw;
+        height: 10vw;
+        margin: 0 auto;
+      }
+      .ivu-spin-dot{
+        background: #65d172;
+      }
+    }
     header{
       position: fixed;
       top: 0;

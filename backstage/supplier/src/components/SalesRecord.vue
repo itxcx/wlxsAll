@@ -156,30 +156,6 @@
           })
         },
         methods: {
-          // refresh(done) {
-          //   this.page = 0;
-          //   setTimeout(() => {
-          //     this.getSalesData(this.startDate, this.endDate, this.device_id, this.address, 0);
-          //     done();
-          //   }, 1000)
-          //   setTimeout(() => {
-          //     console.log('refresh sesize')
-          //     this.$refs.my_scroller.resize();
-          //   },3000)
-          // },
-          // infinite(done) {
-          //   console.log(this.page);
-          //   setTimeout(() => {
-          //     if(this.ctrlTipTxt == '上滑加载更多...') {
-          //       this.getMoreSalesData(this.startDate, this.endDate, this.device_id, this.address, this.page);
-          //       done()
-          //     }
-          //   }, 2000)
-          //   setTimeout(() => {
-          //     console.log('infinite sesize')
-          //     this.$refs.my_scroller.resize();
-          //   },3000)
-          // },
           //返回
           goPersonal() {
             this.$router.push({
@@ -334,7 +310,6 @@
                 console.log(error);
               })
             }
-
           },
           //销售记录数据获取
           getSalesData(date1 = '', date2 = '', device_id = '', area_name = '', page = 0) {
@@ -434,31 +409,6 @@
             }).then((res) => {
               if(res.data.code == 0) {
                 let data = res.data.data;
-                // let data = {
-                //   "": [{
-                //     "device_id": 6101130013,
-                //     "address": "新增魔盒柜子"
-                //   }],
-                //   "锦业路1号都市之门B座": [{
-                //     "device_id": 6101130010,
-                //     "address": "都市之门B座1层"
-                //   }, {
-                //     "device_id": 6101130011,
-                //     "address": "都市之门B座1层"
-                //   }],
-                //   "锦业路69号瞪羚谷E座1层": [{
-                //     "device_id": 6101130004,
-                //     "address": "瞪羚谷E座1层"
-                //   }, {
-                //     "device_id": 6101130005,
-                //     "address": "瞪羚谷E座1层"
-                //   }],
-                //   "高新一路创新大厦": [{
-                //     "device_id": 6101130002,
-                //     "address": "创新大厦1层"
-                //   }],
-                //   "arealist": ["", "锦业路1号都市之门B座", "锦业路69号瞪羚谷E座1层", "高新一路创新大厦"]
-                // }
                 localStorage.setItem('addressInfo', JSON.stringify(data));
                 this.addressList = this.addressList.concat(data.arealist);
                 console.log(this.addressList)
@@ -481,8 +431,6 @@
 
 <style lang="less">
   .SalesRecord{
-    /*width: 100vw;*/
-    /*height: 100vh;*/
     .tipModal{
       background: rgba(0,0,0,.7);
       border-radius: 10px;
@@ -671,7 +619,6 @@
       .scroller{
         position: relative;
         ul{
-          /*height: 79vh;*/
           background: #f1f1f1;
           li{
             background: #fff;
@@ -793,6 +740,4 @@
       display: none;
     }
   }
-
-
 </style>

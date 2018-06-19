@@ -73,10 +73,10 @@
             path: '/repertory'
           })
         },
-        //保质期
+        //查看保质期
         goExpiration() {
           this.$router.push({
-            path: ''
+            path: '/expiration'
           })
         },
         //获取config

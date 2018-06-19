@@ -98,6 +98,11 @@
           <p>{{tipText}}</p>
         </section>
       </transition>
+      <!-- 加载中提示框 -->
+      <section class="loading" v-show="loadingModal">
+        <Spin size="large"></Spin>
+        <p>数据获取中...</p>
+      </section>
     </div>
 </template>
 
@@ -136,9 +141,9 @@
               allSale: [],
               allSaleDown: true,
               device_id: '',
-              ctrlTipTxt: '上滑加载更多...',
+              ctrlTipTxt: '',
               page: 1,
-              loadingModal: true,
+              loadingModal: false,
             }
         },
         mounted() {
@@ -332,6 +337,8 @@
           getSalesData(date1 = '', date2 = '', device_id = '', area_name = '', page = 0) {
             //参数 ： page 页数     date1     date2  起止时间
             //device_id  设备编号    area_name 分区名称
+            this.allSale = [];
+            this.loadingModal = true;
             if(area_name == '场地') {
               area_name = '';
             }
@@ -340,14 +347,12 @@
               method: 'GET'
             }).then((res) => {
               if(res.data.code == 0) {
-                this.allSale = [];
+                this.loadingModal = false;
                 let data = res.data.data;
                 this.allSale = data;
                 this.ctrlTipTxt = '上划加载更多...';
                 if(this.allSale.length == 0) {
-                  this.ctrlTipTxt = '暂时没有数据';
-                }else if(this.allSale.length < 5) {
-                  this.ctrlTipTxt = '没有更多数据';
+                  this.ctrlTipTxt = '暂时没有更多数据';
                 }
               }else if(res.data.code == 3) {
                 this.$router.push({
@@ -490,6 +495,28 @@
       text-align: center;
       font-size: 2.6677rem;
       padding: 3vh 0;
+    }
+    .loading{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width: 20vh;
+      text-align: center;
+      height: 10vh;
+      color: #65d172;
+      border-radius: 10px;
+      font-size: 2.388rem;
+      .ivu-spin{
+        width: 10vw;
+        height: 10vw;
+        margin: 0 auto;
+      }
+      .ivu-spin-dot{
+        background: #65d172;
+      }
     }
     header{
       position: fixed;

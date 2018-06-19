@@ -315,7 +315,7 @@
                 this.page++;
                 let data = res.data.data;
                 this.ctrlTipTxt = '上划加载更多...';
-                if(data.length == 0 || data.length < 5) {
+                if(data.length == 0) {
                   this.ctrlTipTxt = '没有更多数据';
                 }
                 this.allSale = this.allSale.concat(data);
@@ -474,7 +474,6 @@
   .SalesRecord{
     /*width: 100vw;*/
     /*height: 100vh;*/
-    padding-top: 20vh;
     .tipModal{
       background: rgba(0,0,0,.7);
       border-radius: 10px;
@@ -627,7 +626,8 @@
       }
     }
     .allSale{
-      height: 80vh;
+      height: 100vh;
+      padding-top: 20vh;
       overflow-y: auto;
       -webkit-overflow-scrolling : touch;
       .ctrlTipTxt{

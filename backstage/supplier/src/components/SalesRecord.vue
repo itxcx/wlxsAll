@@ -278,6 +278,7 @@
                 break;
             }
             this.datePickerShow = false;
+            this.page = 1;
             this.getSalesData(this.startDate, this.endDate, this.device_id, this.address, 0);
           },
           //选择后的日期
@@ -297,15 +298,17 @@
             }
             this.datePickerShow = false;
             this.dateRangeText = '';
+            this.page = 1;
             this.getSalesData(this.startDate, this.endDate, this.device_id, this.address, 0);
           },
           //获取更多数据方法
-          getMoreSalesData(date1 = '', date2 = '', device_id = '', area_name = '', page = 1) {
-            if(area_name == '场地') {
+          getMoreSalesData() {
+            let area_name = '';
+            if(this.address == '场地') {
               area_name = '';
             }
             this.$ajax({
-              url: `http://merchant.test.weilaixiansen.com/login/selllist?date1=${date1}&date2=${date2}&device_id=${device_id}&area_name=${area_name}&page=${page}`,
+              url: `http://merchant.test.weilaixiansen.com/login/selllist?date1=${this.startDate}&date2=${this.endDate}&device_id=${this.device_id}&area_name=${area_name}&page=${this.page}`,
               method: 'GET'
             }).then((res) => {
               if(res.data.code == 0) {

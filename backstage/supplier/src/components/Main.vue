@@ -8,6 +8,13 @@
           <dd>查询售货柜库存，进行实时补货</dd>
         </dl>
       </section>
+      <section class="expiration" @click="goExpiration">
+        <div></div>
+        <dl>
+          <dt>商品保质期</dt>
+          <dd>实时监控商品保质期,进行促销或下货</dd>
+        </dl>
+      </section>
       <section class="handle">
         <aside class="exhibit" @click="exhibitScan">
           <div></div>
@@ -64,6 +71,12 @@
         goRepertory() {
           this.$router.push({
             path: '/repertory'
+          })
+        },
+        //保质期
+        goExpiration() {
+          this.$router.push({
+            path: ''
           })
         },
         //获取config
@@ -149,7 +162,7 @@
       background: url("../../static/images/banner.jpg") no-repeat center center;
       background-size: cover;
     }
-    .repertory{
+    .repertory, .expiration{
       background: #ffffff;
       margin: 2.667vw;
       padding: 2.6236vh 4vw;
@@ -174,6 +187,16 @@
           font-size: 1.949rem;
           color: #9f9f9f;
         }
+      }
+    }
+    .expiration{
+      div{
+        background: url("../../static/images/expiration.png") no-repeat center center;
+        background-size: cover;
+        width: 12vw;
+        height: 12.1vw;
+        float: left;
+        margin-right: 3.333vw;
       }
     }
     .handle{

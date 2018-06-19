@@ -44,6 +44,7 @@ import Mistake from './components/Mistake' //错拿记录
 import MistakeInfo from './components/MistakeInfo' //错拿记录
 import Settlement from './components/Settlement' //销售结算
 import SettleListInfo from './components/SettleListInfo' //销售结算详情
+import Expiration from './components/Expiration' //保质期
 
 Vue.use(iView);
 Vue.config.productionTip = false;
@@ -61,7 +62,7 @@ new Vue({
     InStoreDone, Scan, Addition, AddItem, CheckExhibing, ExhibingDone,
     Ship, ShipDone, Record, RecordMsg, SaleRoom, DeviceRank, ProductRank,
     RepertoryList, InventoryControl, ModifyPassword, SalesRecord, Mistake,
-    MistakeInfo, Settlement, SettleListInfo
+    MistakeInfo, Settlement, SettleListInfo, Expiration
   },
   template: '<App/>'
 })

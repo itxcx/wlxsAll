@@ -125,6 +125,11 @@
     <section class="tipModal" v-show="tipStatus">
       <p>{{tipText}}</p>
     </section>
+    <!-- 加载中提示框 -->
+    <section class="loading" v-show="loadingModal">
+      <Spin size="large"></Spin>
+      <p>数据获取中...</p>
+    </section>
   </div>
 </template>
 
@@ -164,7 +169,8 @@
         selectProductArray: [],
         // productItemDown: false,//选择商品没有选择柜子
         itemListArray: [],
-        commonArray: null
+        commonArray: null,
+        loadingModal: false,
       }
     },
     mounted() {
@@ -180,11 +186,13 @@
     methods: {
       //初始化数据获取及处理方法
       getOrderAllData() {
+        this.loadingModal = true;
         this.$ajax({
           url: 'http://merchant.test.weilaixiansen.com/login/goodsList',
           method: 'GET'
         }).then((res) => {
           if(res.data.code == 0) {
+            this.loadingModal = false;
             let Data = res.data.data;
 
   //       let Data =  [
@@ -777,7 +785,28 @@
     width: 100vw;
     height: 100vh;
     background: #f1f1f1;
-
+    .loading{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width: 20vh;
+      text-align: center;
+      height: 10vh;
+      color: #65d172;
+      border-radius: 10px;
+      font-size: 2.388rem;
+      .ivu-spin{
+        width: 10vw;
+        height: 10vw;
+        margin: 0 auto;
+      }
+      .ivu-spin-dot{
+        background: #65d172;
+      }
+    }
     .tipModal{
       background: rgba(0,0,0,.7);
       border-radius: 10px;

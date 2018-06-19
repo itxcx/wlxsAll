@@ -100,7 +100,7 @@
 <style lang="less">
   .SettleListInfo{
     background: #f1f1f1;
-    padding: 20vh 0 2vh 0;
+    padding: 20vh 0 8vh 0;
     .loading{
       position: fixed;
       top: 0;
@@ -185,10 +185,9 @@
       }
     }
     .settleContent{
-      height: 93vh;
+      height: 83vh;
       overflow-y: auto;
       -webkit-overflow-scrolling : touch;
-
       .settleItem{
         >li{
           margin-bottom: 20px;
@@ -223,7 +222,6 @@
                   text-align: right;
                 }
               }
-
             }
           }
         }

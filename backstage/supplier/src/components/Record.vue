@@ -92,6 +92,11 @@
       <section class="tipModal" v-show="tipStatus">
         <p>{{tipText}}</p>
       </section>
+      <!-- 加载中提示框 -->
+      <section class="loading" v-show="loadingModal">
+        <Spin size="large"></Spin>
+        <p>数据获取中...</p>
+      </section>
     </div>
 </template>
 
@@ -118,13 +123,14 @@
               device_id: '',
               canGetData: true,
               page: 0,
-              ctrlTipTitle: '上滑加载更多...',
+              ctrlTipTitle: '',
               addressList: [], //地址列表
               deviceList: [],//选择了地址后的设备列表
               allDeviceList: [], //没有选择地址
               recordList: [],
               actionList: false,
               canGetDevice: true,
+              loadingModal: false,
             }
         },
         mounted() {
@@ -194,13 +200,17 @@
           //请求上下架列表方法
           getOrderListData(date1 = '', date2 = '', action = '', device_id = '', page = 0) {
             // alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
+            this.loadingModal = true;
             this.recordList = [];
+            this.ctrlTipTitle = '';
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}`,
               method: 'GET'
             }).then((res) => {
                 if(res.data.code == 0) {
+                  this.loadingModal = false;
                   this.recordList = res.data.data;
+                  this.ctrlTipTitle = '上划加载更多...';
                   for(let i = 0; i < this.recordList.length; i++) {
                     if(this.recordList[i].address.search('E座') !== -1) {
                       this.recordList[i].callName = '瞪羚谷E座';
@@ -402,6 +412,28 @@
         text-align: center;
         font-size: 2.0677rem;
         padding: 3vh 0;
+      }
+      .loading{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 20vh;
+        text-align: center;
+        height: 10vh;
+        color: #65d172;
+        border-radius: 10px;
+        font-size: 2.388rem;
+        .ivu-spin{
+          width: 10vw;
+          height: 10vw;
+          margin: 0 auto;
+        }
+        .ivu-spin-dot{
+          background: #65d172;
+        }
       }
       header{
         position: fixed;

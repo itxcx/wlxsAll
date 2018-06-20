@@ -12,15 +12,17 @@
         <loadmore :bottomMethod="getMore">
           <ul class="settleItem">
             <li v-for="(item, index) in settlementData" class="test">
-              <p>{{item.month}}</p>
-              <ul class="settleHeader">
-                <li>商品名称</li>
-                <li>商品标价</li>
-                <li>交易数量</li>
-                <li>交易金额</li>
-                <li>抽成金额</li>
-                <li>结算金额</li>
-              </ul>
+              <div class="stickyBox">
+                <p>{{item.month}}</p>
+                <ul class="settleHeader">
+                  <li>商品名称</li>
+                  <li>商品标价</li>
+                  <li>交易数量</li>
+                  <li>交易金额</li>
+                  <li>抽成金额</li>
+                  <li>结算金额</li>
+                </ul>
+              </div>
               <ul class="settleList">
                 <li v-for="(items, ids) in item.goods">
                   <span>{{items.goods_name}}</span>
@@ -69,7 +71,37 @@
         mounted() {
           this.$nextTick(() => {
             this.getSettlementData(0);
+
           })
+          ///////////////////////////////////////////////////
+          let settleContent = document.getElementsByClassName('settleContent')[0];
+          function navChangeArea(message, height) {
+            console.log(height);
+            console.log(message);
+            var liveDiv = $("#" + message).length ? $("#" + message) : $("." + message);
+            // let liveDiv = document.getElementsByClassName('stickyBox');
+            if(/android/i.test(navigator.userAgent)){
+              let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+              console.log(scrollTop);
+              if (scrollTop < height) {
+                liveDiv.css("position", "relative");
+                // liveDiv.style.position = "relative";
+              } else {
+                liveDiv.css("position", "fixed");
+                // liveDiv.style.position = "fixed";
+              }
+            }
+            if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
+              liveDiv.addClass("sticky");
+            }
+          }
+          settleContent.addEventListener("scroll", function() {
+            navChangeArea("stickyBox", 100);
+          });
+          settleContent.addEventListener("touchmove", function() {
+            navChangeArea("stickyBox", 100);
+          });
+///////////////////////////////////////////////////
         },
         methods: {
           //返回按钮
@@ -180,6 +212,10 @@
 </script>
 
 <style lang="less">
+  .sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
   .Settlement{
     background: #f1f1f1;
     padding-top: 7vh;
@@ -236,31 +272,35 @@
         >li{
           margin-bottom: 20px;
           background: #fff;
-          p{
-            font-size: 1.949rem;
-            color: #7b7b7b;
-            width: 100vw;
-            padding: 1.649vh 4vw;
-            border-bottom: 1px solid #e5e5e5;
-            background: #fff;
-            position: -webkit-sticky;
-            position: sticky;
+          .stickyBox{
+            width: 100%;
             top: 0;
-          }
-          .settleHeader{
-            border-bottom: 1px solid #e5e5e5;
-            overflow: hidden;
-            background: #fff;
-            position: -webkit-sticky;
-            position: sticky;
-            top: 6.3vh;
-            li{
-              float: left;
-              width: 16.666vw;
-              text-align: center;
+            p{
               font-size: 1.949rem;
               color: #7b7b7b;
-              padding: 1.499vh 4vw;
+              width: 100vw;
+              padding: 1.649vh 4vw;
+              border-bottom: 1px solid #e5e5e5;
+              background: #fff;
+              /*position: -webkit-sticky;*/
+              /*position: sticky;*/
+              /*top: 0;*/
+            }
+            .settleHeader{
+              border-bottom: 1px solid #e5e5e5;
+              overflow: hidden;
+              background: #fff;
+              /*position: -webkit-sticky;*/
+              /*position: sticky;*/
+              /*top: 6.3vh;*/
+              li{
+                float: left;
+                width: 16.666vw;
+                text-align: center;
+                font-size: 1.949rem;
+                color: #7b7b7b;
+                padding: 1.499vh 4vw;
+              }
             }
           }
           .settleList{

@@ -16,6 +16,8 @@ Vue.use(scroller);
 import Impression from 'vue-impression'
 Vue.use(Impression)
 
+import $ from 'jquery'
+
 // 业务模块
 import Login from './components/Login'; //登录模块
 import Main from './components/Main'; //首页模块

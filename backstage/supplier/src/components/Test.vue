@@ -97,85 +97,169 @@
     <!--}-->
   <!--}-->
 <!--</style>-->
+<!--<template>-->
+  <!--<div class="container">-->
+
+    <!--&lt;!&ndash;对于scroller默认高度总是占满父容器，虽然可以使用属性设置高度&ndash;&gt;-->
+    <!--&lt;!&ndash;但在用一个div包住4会更简单点&ndash;&gt;-->
+    <!--<div style="height: 600px">-->
+
+      <!--&lt;!&ndash;scroller组件定位方式用relative 否则会溢出父容器&ndash;&gt;-->
+      <!--<scroller-->
+        <!--class="scroller"-->
+        <!--:on-refresh="refresh"-->
+        <!--:on-infinite="infinite"-->
+        <!--ref="my_scroller">-->
+        <!--<div v-for="(item, index) in items" @click="onItemClick(index, item)"-->
+             <!--class="row">-->
+          <!--{{ item }}-->
+        <!--</div>-->
+      <!--</scroller>-->
+    <!--</div>-->
+
+
+  <!--</div>-->
+
+<!--</template>-->
+
+<!--<script>-->
+  <!--export default {-->
+
+    <!--data() {-->
+      <!--return {-->
+        <!--items: [],-->
+        <!--i: 0-->
+      <!--}-->
+    <!--},-->
+    <!--mounted() {-->
+      <!--for (let i = 1; i <= 20; i++) {-->
+        <!--this.items.push(i)-->
+      <!--}-->
+    <!--},-->
+    <!--methods: {-->
+      <!--refresh(done) {-->
+        <!--console.log('down');-->
+        <!--this.items = [1, 2, 3, 4, 5, 6].map(() => parseInt(Math.random() * 10))-->
+        <!--done()-->
+      <!--},-->
+      <!--infinite(done) {-->
+        <!--console.log('test');-->
+        <!--if(this.i < 10) {-->
+          <!--this.i++;-->
+          <!--console.log(this.i);-->
+          <!--this.items = this.items.concat([12, 3, 4, 42,])-->
+          <!--done()-->
+        <!--}else{-->
+          <!--console.log('end');-->
+        <!--}-->
+
+      <!--},-->
+      <!--onItemClick(index, item) {-->
+        <!--console.log(index)-->
+      <!--}-->
+    <!--}-->
+  <!--}-->
+<!--</script>-->
+
+
+<!--<style scoped>-->
+  <!--.container {-->
+    <!--height: 100vh;-->
+    <!--overflow-y: scroll;-->
+  <!--}-->
+
+  <!--.row {-->
+    <!--height: 100px;-->
+    <!--width: 100px;-->
+    <!--background: deepskyblue;-->
+    <!--margin: 10px;-->
+  <!--}-->
+
+  <!--.scroller {-->
+    <!--position: relative;-->
+  <!--}-->
+<!--</style>-->
+
 <template>
-  <div class="container">
-
-    <!--对于scroller默认高度总是占满父容器，虽然可以使用属性设置高度-->
-    <!--但在用一个div包住4会更简单点-->
-    <div style="height: 600px">
-
-      <!--scroller组件定位方式用relative 否则会溢出父容器-->
-      <scroller
-        class="scroller"
-        :on-refresh="refresh"
-        :on-infinite="infinite"
-        ref="my_scroller">
-        <div v-for="(item, index) in items" @click="onItemClick(index, item)"
-             class="row">
-          {{ item }}
-        </div>
-      </scroller>
+  <div class="sticky" :style="getPosition">
+    <div class="sticky-warp">
+      <slot></slot>
     </div>
-
-
   </div>
-
 </template>
-
-<script>
+<script type="text/babel">
   export default {
-
-    data() {
-      return {
-        items: [],
-        i: 0
+    data () {
+      return {}
+    },
+    computed: {
+      getPosition(){
+        var position = this.cssSupport('position', 'sticky') ? 'sticky' : 'relative';
+        return 'position:' + position;
       }
     },
-    mounted() {
-      for (let i = 1; i <= 20; i++) {
-        this.items.push(i)
+    props: {},
+    beforeMount () {
+    },
+    mounted(){
+      this.init();
+    },
+    deactivated(){
+      if(this.cssSupport('position', 'sticky')) {
+        return;
       }
+      /*复位*/
+      var elWarp = this.$el.querySelector('.sticky-warp');
+      elWarp.position = 'absolute';
     },
     methods: {
-      refresh(done) {
-        console.log('down');
-        this.items = [1, 2, 3, 4, 5, 6].map(() => parseInt(Math.random() * 10))
-        done()
-      },
-      infinite(done) {
-        console.log('test');
-        if(this.i < 10) {
-          this.i++;
-          console.log(this.i);
-          this.items = this.items.concat([12, 3, 4, 42,])
-          done()
-        }else{
-          console.log('end');
+      init(){
+        if (this.cssSupport('position', 'sticky')) {
+          return;
         }
-
+        var el = this.$el, target = this.$el.parentNode,
+          elWarp = this.$el.querySelector('.sticky-warp'),
+          top = this.getNumberValue(document.defaultView.getComputedStyle(el).top);
+        this.addScrollListen(target, (event)=> {
+          if (el.getBoundingClientRect().top <= top) {
+            elWarp.style.position = 'fixed';
+          }
+          if (el.getBoundingClientRect().top >= 0 && elWarp.style.position != 'absolute') {
+            elWarp.style.position = 'absolute';
+          }
+        })
       },
-      onItemClick(index, item) {
-        console.log(index)
+      cssSupport: function (attr, value) {
+        var element = document.createElement('div');
+        if (attr in element.style) {
+          element.style[attr] = value;
+          return element.style[attr] === value;
+        } else {
+          return false;
+        }
+      },
+      getNumberValue(pxValue){
+        var value = String(pxValue).match(/^\-?\+?[0-9]+/g);
+        return value ? Number(value) : undefined;
+      },
+      addScrollListen(target, cb){
+        target.addEventListener('y-scroll', (event)=> {
+          cb && cb(event);
+        });
       }
-    }
+    },
   }
 </script>
 
-
-<style scoped>
-  .container {
-    height: 100vh;
-    overflow-y: scroll;
-  }
-
-  .row {
-    height: 100px;
-    width: 100px;
-    background: deepskyblue;
-    margin: 10px;
-  }
-
-  .scroller {
-    position: relative;
+<style lang="less">
+  .sticky {
+    width: 100%;
+    .sticky-warp {
+      width: 100%;
+      background: inherit;
+      will-change: change;
+      height: inherit;
+      top: inherit;
+    }
   }
 </style>

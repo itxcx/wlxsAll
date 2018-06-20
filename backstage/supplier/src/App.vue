@@ -33,7 +33,7 @@
     width: 100vw;
     height: 100vh;
     font-family: "PingFang SC";
-    font-size: 1vh!important;
+    font-size: 1vh;
     overflow-x: hidden;
     -webkit-user-select: none;
   }

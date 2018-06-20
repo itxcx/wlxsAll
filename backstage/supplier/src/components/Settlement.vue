@@ -74,33 +74,33 @@
 
           })
           ///////////////////////////////////////////////////
-          let settleContent = document.getElementsByClassName('settleContent')[0];
-          function navChangeArea(message, height) {
-            console.log(height);
-            console.log(message);
-            var liveDiv = $("#" + message).length ? $("#" + message) : $("." + message);
-            // let liveDiv = document.getElementsByClassName('stickyBox');
-            if(/android/i.test(navigator.userAgent)){
-              let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-              console.log(scrollTop);
-              if (scrollTop < height) {
-                liveDiv.css("position", "relative");
-                // liveDiv.style.position = "relative";
-              } else {
-                liveDiv.css("position", "fixed");
-                // liveDiv.style.position = "fixed";
-              }
-            }
-            if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
-              liveDiv.addClass("sticky");
-            }
-          }
-          settleContent.addEventListener("scroll", function() {
-            navChangeArea("stickyBox", 100);
-          });
-          settleContent.addEventListener("touchmove", function() {
-            navChangeArea("stickyBox", 100);
-          });
+          // let settleContent = document.getElementsByClassName('settleContent')[0];
+          // function navChangeArea(message, height) {
+          //   console.log(height);
+          //   console.log(message);
+          //   var liveDiv = $("#" + message).length ? $("#" + message) : $("." + message);
+          //   // let liveDiv = document.getElementsByClassName('stickyBox');
+          //   if(/android/i.test(navigator.userAgent)){
+          //     let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+          //     console.log(scrollTop);
+          //     if (scrollTop < height) {
+          //       liveDiv.css("position", "relative");
+          //       // liveDiv.style.position = "relative";
+          //     } else {
+          //       liveDiv.css("position", "fixed");
+          //       // liveDiv.style.position = "fixed";
+          //     }
+          //   }
+          //   if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
+          //     liveDiv.addClass("sticky");
+          //   }
+          // }
+          // settleContent.addEventListener("scroll", function() {
+          //   navChangeArea("stickyBox", 100);
+          // });
+          // settleContent.addEventListener("touchmove", function() {
+          //   navChangeArea("stickyBox", 100);
+          // });
 ///////////////////////////////////////////////////
         },
         methods: {
@@ -274,7 +274,9 @@
           background: #fff;
           .stickyBox{
             width: 100%;
-            top: 0;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0vh;
             p{
               font-size: 1.949rem;
               color: #7b7b7b;

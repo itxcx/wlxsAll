@@ -40,6 +40,16 @@
         }
       },
       mounted() {
+        $('input').focus(() => {
+          $(this).css({
+            'font-size' : '2vh'
+          })
+        })
+        $('input').blur(() => {
+          $(this).css({
+            'font-size' : '1vh'
+          })
+        })
         this.$nextTick(() => {
           let phone = localStorage.getItem('phone');
           let password = localStorage.getItem('password');

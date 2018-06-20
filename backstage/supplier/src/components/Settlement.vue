@@ -273,7 +273,7 @@
           margin-bottom: 20px;
           background: #fff;
           .stickyBox{
-            width: 100%;
+            width: 100vw;
             position: -webkit-sticky;
             position: sticky;
             top: 0vh;

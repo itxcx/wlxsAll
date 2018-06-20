@@ -41,12 +41,12 @@
       },
       mounted() {
         $('input').focus(() => {
-          $(this).css({
-            'font-size' : '2vh'
+          $('html').css({
+            'font-size' : '1vh'
           })
         })
         $('input').blur(() => {
-          $(this).css({
+          $('html').css({
             'font-size' : '1vh'
           })
         })

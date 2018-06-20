@@ -41,13 +41,13 @@
       },
       mounted() {
         $('input').focus(() => {
-          $('html').css({
-            'font-size' : '1vh'
+          $(this).css({
+            'font-size' : '32px'
           })
         })
         $('input').blur(() => {
-          $('html').css({
-            'font-size' : '1vh'
+          $(this).css({
+            'font-size' : '32px'
           })
         })
         this.$nextTick(() => {

@@ -180,86 +180,144 @@
   <!--}-->
 <!--</style>-->
 
+<!--<template>-->
+  <!--<div class="sticky" :style="getPosition">-->
+    <!--<div class="sticky-warp">-->
+      <!--<slot></slot>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</template>-->
+<!--<script type="text/babel">-->
+  <!--export default {-->
+    <!--data () {-->
+      <!--return {}-->
+    <!--},-->
+    <!--computed: {-->
+      <!--getPosition(){-->
+        <!--var position = this.cssSupport('position', 'sticky') ? 'sticky' : 'relative';-->
+        <!--return 'position:' + position;-->
+      <!--}-->
+    <!--},-->
+    <!--props: {},-->
+    <!--beforeMount () {-->
+    <!--},-->
+    <!--mounted(){-->
+      <!--this.init();-->
+    <!--},-->
+    <!--deactivated(){-->
+      <!--if(this.cssSupport('position', 'sticky')) {-->
+        <!--return;-->
+      <!--}-->
+      <!--/*复位*/-->
+      <!--var elWarp = this.$el.querySelector('.sticky-warp');-->
+      <!--elWarp.position = 'absolute';-->
+    <!--},-->
+    <!--methods: {-->
+      <!--init(){-->
+        <!--if (this.cssSupport('position', 'sticky')) {-->
+          <!--return;-->
+        <!--}-->
+        <!--var el = this.$el, target = this.$el.parentNode,-->
+          <!--elWarp = this.$el.querySelector('.sticky-warp'),-->
+          <!--top = this.getNumberValue(document.defaultView.getComputedStyle(el).top);-->
+        <!--this.addScrollListen(target, (event)=> {-->
+          <!--if (el.getBoundingClientRect().top <= top) {-->
+            <!--elWarp.style.position = 'fixed';-->
+          <!--}-->
+          <!--if (el.getBoundingClientRect().top >= 0 && elWarp.style.position != 'absolute') {-->
+            <!--elWarp.style.position = 'absolute';-->
+          <!--}-->
+        <!--})-->
+      <!--},-->
+      <!--cssSupport: function (attr, value) {-->
+        <!--var element = document.createElement('div');-->
+        <!--if (attr in element.style) {-->
+          <!--element.style[attr] = value;-->
+          <!--return element.style[attr] === value;-->
+        <!--} else {-->
+          <!--return false;-->
+        <!--}-->
+      <!--},-->
+      <!--getNumberValue(pxValue){-->
+        <!--var value = String(pxValue).match(/^\-?\+?[0-9]+/g);-->
+        <!--return value ? Number(value) : undefined;-->
+      <!--},-->
+      <!--addScrollListen(target, cb){-->
+        <!--target.addEventListener('y-scroll', (event)=> {-->
+          <!--cb && cb(event);-->
+        <!--});-->
+      <!--}-->
+    <!--},-->
+  <!--}-->
+<!--</script>-->
+
+<!--<style lang="less">-->
+  <!--.sticky {-->
+    <!--width: 100%;-->
+    <!--.sticky-warp {-->
+      <!--width: 100%;-->
+      <!--background: inherit;-->
+      <!--will-change: change;-->
+      <!--height: inherit;-->
+      <!--top: inherit;-->
+    <!--}-->
+  <!--}-->
+<!--</style>-->
+
 <template>
-  <div class="sticky" :style="getPosition">
-    <div class="sticky-warp">
-      <slot></slot>
-    </div>
+  <div class="test">
+    <section class="container">
+      <ul>
+        <li>
+          <section class="header" style="background: pink; height: 10vh;">
+            <p>test1</p>
+            <section>test1</section>
+          </section>
+          <section style="height: 90vh;background: yellow;"></section>
+        </li>
+        <li>
+          <section class="header" style="background: pink; height: 10vh;">
+            <p>test2</p>
+            <section>test2</section>
+          </section>
+          <section style="height: 90vh;background: yellow;"></section>
+        </li>
+        <li>
+          <section class="header" style="background: pink; height: 10vh;">
+            <p>test3</p>
+            <section>test3</section>
+          </section>
+          <section style="height: 90vh;background: yellow;"></section>
+        </li>
+        <li>
+          <section class="header" style="background: pink; height: 10vh;">
+            <p>test4</p>
+            <section>test4</section>
+          </section>
+          <section style="height: 90vh;background: yellow;"></section>
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
-<script type="text/babel">
-  export default {
-    data () {
-      return {}
-    },
-    computed: {
-      getPosition(){
-        var position = this.cssSupport('position', 'sticky') ? 'sticky' : 'relative';
-        return 'position:' + position;
+
+<script>
+  export default({
+    name: 'test',
+    data() {
+      return {
+
       }
-    },
-    props: {},
-    beforeMount () {
-    },
-    mounted(){
-      this.init();
-    },
-    deactivated(){
-      if(this.cssSupport('position', 'sticky')) {
-        return;
-      }
-      /*复位*/
-      var elWarp = this.$el.querySelector('.sticky-warp');
-      elWarp.position = 'absolute';
-    },
-    methods: {
-      init(){
-        if (this.cssSupport('position', 'sticky')) {
-          return;
-        }
-        var el = this.$el, target = this.$el.parentNode,
-          elWarp = this.$el.querySelector('.sticky-warp'),
-          top = this.getNumberValue(document.defaultView.getComputedStyle(el).top);
-        this.addScrollListen(target, (event)=> {
-          if (el.getBoundingClientRect().top <= top) {
-            elWarp.style.position = 'fixed';
-          }
-          if (el.getBoundingClientRect().top >= 0 && elWarp.style.position != 'absolute') {
-            elWarp.style.position = 'absolute';
-          }
-        })
-      },
-      cssSupport: function (attr, value) {
-        var element = document.createElement('div');
-        if (attr in element.style) {
-          element.style[attr] = value;
-          return element.style[attr] === value;
-        } else {
-          return false;
-        }
-      },
-      getNumberValue(pxValue){
-        var value = String(pxValue).match(/^\-?\+?[0-9]+/g);
-        return value ? Number(value) : undefined;
-      },
-      addScrollListen(target, cb){
-        target.addEventListener('y-scroll', (event)=> {
-          cb && cb(event);
-        });
-      }
-    },
-  }
+    }
+  })
 </script>
 
 <style lang="less">
-  .sticky {
-    width: 100%;
-    .sticky-warp {
-      width: 100%;
-      background: inherit;
-      will-change: change;
-      height: inherit;
-      top: inherit;
+  .test{
+    .header{
+      top: 0;
+      position: sticky;
+      position: -webkit-sticky;
     }
   }
 </style>

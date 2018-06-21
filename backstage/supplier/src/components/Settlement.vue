@@ -352,7 +352,6 @@
             padding: 2.2488vh 0;
             text-align: center;
           }
-
         }
       }
     }

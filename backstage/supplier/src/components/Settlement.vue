@@ -212,10 +212,10 @@
 </script>
 
 <style lang="less">
-  .sticky {
-    position: -webkit-sticky;
-    position: sticky;
-  }
+  /*.sticky {*/
+    /*position: -webkit-sticky;*/
+    /*position: sticky;*/
+  /*}*/
   .Settlement{
     background: #f1f1f1;
     padding-top: 7vh;

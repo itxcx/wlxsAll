@@ -42,18 +42,18 @@
       mounted() {
         $('input').focus(() => {
           $(this).css({
-            'font-size' : '32px'
+            'font-size' : '2.398rem'
           })
           $('.modify').css({
-            'font-size' : '30px'
+            'font-size' : '2.2488rem'
           })
         })
         $('input').blur(() => {
           $('input').css({
-            'font-size' : '32px'
+            'font-size' : '2.398rem'
           })
           $('.modify').css({
-            'font-size' : '30px'
+            'font-size' : '2.2488rem'
           })
         })
         this.$nextTick(() => {

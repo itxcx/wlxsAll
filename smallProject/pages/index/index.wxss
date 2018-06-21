@@ -52,7 +52,7 @@ swiper{
    margin: auto;
 }
 .footer view:nth-of-type(2) image{
-  width: 40vw;
+  width: 42vw;
   height: 42vw;
 }
  .show{
@@ -108,7 +108,7 @@ swiper{
 .tipContent .items{
   display: block;
 }
-.bottomBanner{
+/* .bottomBanner{
   width: 94vw;
   height: 20vh;
   position: fixed;
@@ -118,4 +118,16 @@ swiper{
 .bottomBanner image{
   width: 94vw;
   height: 20vh;
+} */
+/* 6-21世界杯  */
+.bottomBanner{
+  width: 98vw;
+  height: 21vh;
+  position: fixed;
+  bottom: 1vh;
+  left: 1vw;
+}
+.bottomBanner image{
+  width: 98vw;
+  height: 21vh;
 }

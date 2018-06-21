@@ -50,11 +50,11 @@ Page({
            } else if (options.q != undefined) {
              console.log('用户类型：'+wx.getStorageSync('userType'));
              //首页模态框显示
-             if (wx.getStorageSync('userType') == 'old' ) {
+            //  if (wx.getStorageSync('userType') == 'old' ) {
                global_this.setData({
                  indexModal: true
                })
-             }
+            //  }
               var path = decodeURIComponent(options.q);
               var device_number = path.split('?')[1].split('=')[1];
               wx.setStorageSync('device_number', device_number);//设备id

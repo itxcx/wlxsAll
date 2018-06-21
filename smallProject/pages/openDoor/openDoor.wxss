@@ -39,7 +39,7 @@
 .tipContent .items{
   display: block;
 }
-.bottomBanner{
+/* .bottomBanner{
   width: 94vw;
   height: 20vh;
   position: fixed;
@@ -48,7 +48,19 @@
 }
 .bottomBanner image{
   width: 94vw;
-  height: 20vh;
+  height: 19vh;
+} */
+/* 6-21世界杯  */
+.bottomBanner{
+  width: 98vw;
+  height: 21vh;
+  position: fixed;
+  bottom: 1vh;
+  left: 1vw;
+}
+.bottomBanner image{
+  width: 98vw;
+  height: 21vh;
 }
 /* account  */
 .account, .accountFail{

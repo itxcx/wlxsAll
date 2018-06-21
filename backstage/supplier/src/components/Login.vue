@@ -44,10 +44,16 @@
           $(this).css({
             'font-size' : '32px'
           })
+          $('.modify').css({
+            'font-size' : '30px'
+          })
         })
         $('input').blur(() => {
-          $(this).css({
+          $('input').css({
             'font-size' : '32px'
+          })
+          $('.modify').css({
+            'font-size' : '30px'
           })
         })
         this.$nextTick(() => {

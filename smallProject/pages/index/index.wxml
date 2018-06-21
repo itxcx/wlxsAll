@@ -12,8 +12,9 @@
         </block>  
   </swiper>
 </view>  -->
-<view style="width: 100vw;height: 25vh;">
-   <image src="../../images/index/banner3.jpg" style="width: 100vw;height: 25vh;"></image>
+<view style="width: 100vw;height: 20vh;padding-top: 3vh;">
+   <!-- <image src="../../images/index/banner3.jpg" style="width: 100vw;height: 25vh;"></image> -->
+   <image src="../../images/index/world_cup_logo.gif" style="width: 100vw;height: 18vh;"></image>
 </view>
 <view class="content">
   <image src="{{contentImg}}"></image>
@@ -21,11 +22,11 @@
 </view>
 <view class="footer">
     <view class="index-service"><image src="../../images/index/bt_kehufuwu.png" bindtap="callService"></image></view>
-    <view class="index-scan"  bindtap="openDoorScan"><image src="../../images/index/bt_open.png"></image></view>
+     <view class="index-scan"  bindtap="openDoorScan"><image src="../../images/index/bt_open.png"></image></view> 
     <view class="index-setting"><image src="../../images/index/bt_gerenzhongxin.png" bindtap="goUserInfo"></image></view>
 </view>
     <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class="authorize {{fail ? 'hide': 'show'}}"></button> 
-          <view class="indexModal {{indexModal ? 'show' : 'hide'}}"> 
+          <view class="indexModal {{indexModal ? 'show' : 'hide'}}`"> 
            <view class="openningImg">
                   <image src="../../images/openDoor/openning.gif"></image>
             </view>

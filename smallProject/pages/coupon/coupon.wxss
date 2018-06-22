@@ -9,7 +9,7 @@
 .couponImg image{
   display: block;
   width:  48.933vw;
-  height:  27.511vh;
+  height:  48.933vw;
   margin: 0 auto;
 }
 .couponContent{

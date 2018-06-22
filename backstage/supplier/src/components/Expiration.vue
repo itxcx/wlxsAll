@@ -22,7 +22,7 @@
           <!--</li>-->
         </ul>
       </header>
-      <p class="countTime">仅统计保质期剩余<span>3天</span>内的商品</p>
+      <p class="countTime">仅统计保质期剩余<span>2天</span>内的商品</p>
       <section class="expirationContent">
         <!-- 设备列表 -->
         <section v-show="deviceDown" class="deviceList">
@@ -69,6 +69,7 @@
             </li>
           </ul>
         </section>
+        <section v-show="isExp" class="extText">{{extText}}</section>
       </section>
       <section class="tipModal" v-show="tipStatus">
         <p>{{tipText}}</p>
@@ -96,6 +97,8 @@
               active: true,
               allList: true,
               device_id: '',
+              isExp: false,
+              extText: '暂无数据',
               itemIsSelect: false, //是否选择具体商品
               showDeviceList: [],
               allProductArray: [], //全部商品
@@ -172,93 +175,26 @@
           //获取保质期商品数据
           getExpirationData(device_id) {
             this.itemListArray = [];
-            // this.$ajax({
-            //   url: `http://merchant.test.weilaixiansen.com/login/expirationGoods?device_id=${device_id}`,
-            //   method: 'GET'
-            // }).then((res) => {
-            //   if(res.data.code == 0) {
-            //     this.itemListArray = res.data.data;
-
-                this.itemListArray = [
-                  {
-                  "address": "创新大厦1层左柜（XALG0001）",
-                  "goods_name": "古都华天咖喱鸡肉盖饭",
-                  "date": "2018-06-21 23:59:59",
-                  "time": 0,
-                  "goods_id": 10001632
-                }, {
-                  "address": "创新大厦1层左柜（XALG0001）",
-                  "goods_name": "古都华天农家小炒肉盖饭",
-                  "date": "2018-06-21 23:59:59",
-                  "time": 0,
-                  "goods_id": 10001633
-                }, {
-                  "address": "瞪羚谷E座1层左柜（XALG0003）",
-                  "goods_name": "古都华天酱辣鸭脖",
-                  "date": "2018-06-25 23:59:59",
-                  "time": 95,
-                  "goods_id": 10001635
-                }, {
-                  "address": "中投国际B座9楼银联商务左柜（XALG0007）",
-                  "goods_name": "古都华天卤水鱼豆腐",
-                  "date": "2018-06-25 23:59:59",
-                  "time": 95,
-                  "goods_id": 10001640
-                }, {
-                  "address": "创新大厦1层左柜（XALG0001）",
-                  "goods_name": "古都华天排包",
-                  "date": "2018-06-23 23:59:59",
-                  "time": 47,
-                  "goods_id": 10001667
-                }, {
-                  "address": "创新大厦1层左柜（XALG0001）",
-                  "goods_name": "古都华天魔法棒面包",
-                  "date": "2018-06-23 23:59:59",
-                  "time": 47,
-                  "goods_id": 10001668
-                }, {
-                  "address": "创新大厦1层左柜（XALG0001）",
-                  "goods_name": "古都华天萝卜包",
-                  "date": "2018-06-23 23:59:59",
-                  "time": 47,
-                  "goods_id": 10001718
-                }, {
-                  "address": "创新大厦1层左柜（XALG0001）",
-                  "goods_name": "古都华天果仁包",
-                  "date": "2018-06-23 23:59:59",
-                  "time": 47,
-                  "goods_id": 10001719
-                }, {
-                  "address": "创新大厦1层左柜（XALG0001）",
-                  "goods_name": "古都华天黄金乳酪包",
-                  "date": "2018-06-23 23:59:59",
-                  "time": 47,
-                  "goods_id": 10001720
-                }, {
-                  "address": "瞪羚谷E座1层左柜（XALG0003）",
-                  "goods_name": "古都华天酸梅汤(瓶装)",
-                  "date": "2018-06-21 23:59:59",
-                  "time": 0,
-                  "goods_id": 10001736
-                }, {
-                  "address": "新增魔盒柜子",
-                  "goods_name": "蒙牛冠益乳250g",
-                  "date": "2018-06-27 23:59:59",
-                  "time": 143,
-                  "goods_id": 10001741
-                }, {
-                  "address": "新增魔盒柜子",
-                  "goods_name": "蒙牛冠益乳450g",
-                  "date": "2018-06-30 23:59:59",
-                  "time": 215,
-                  "goods_id": 10001742
-                }]
-
-
-            //   }
-            // }).catch((error) => {
-            //   console.log(error);
-            // })
+            this.loadingModal = true;
+            this.isExp = false;
+            this.$ajax({
+              url: `http://merchant.test.weilaixiansen.com/login/expirationGoods?device_id=${device_id}`,
+              method: 'GET'
+            }).then((res) => {
+              if(res.data.code == 0) {
+                this.loadingModal = false;
+                this.itemListArray = res.data.data;
+                if(res.data.data.length == 0) {
+                  this.isExp = true;
+                }
+              }else if(res.data.code == 3) {
+                this.$router.push({
+                  path: '/'
+                })
+              }
+            }).catch((error) => {
+              console.log(error);
+            })
           },
           //选择城市
           selectCity() {
@@ -305,7 +241,7 @@
               //console.log(this.showDeviceList[index]);
               this.cityDown = false;
               this.deviceDown = false;
-              this.productDown = false;
+              this.productDown = true;
               this.device_id = '';
               this.allList = true;
             }else{
@@ -313,8 +249,8 @@
               //console.log(this.showDeviceList[index]);
               this.cityDown = false;
               this.deviceDown = false;
-              this.productDown = true;
-              this.allList = false;
+              this.productDown = false;
+              this.allList = true;
               this.device_id = this.showDeviceList[index].device_id;
               this.selectProductArray = [];
               this.selectProductArray = this.showDeviceList[index];
@@ -440,6 +376,7 @@
       background: #fff;
       font-size: 2.098rem;
       color: #9f9f9f;
+      border-bottom: 1px solid #e5e5e5;
       span{
         color: #fa882c;
       }
@@ -554,6 +491,12 @@
             }
           }
         }
+      }
+      .extText{
+        padding: 1.2485vh 0;
+        text-align: center;
+        font-size: 2.2488rem;
+        font-weight: bold;
       }
     }
   }

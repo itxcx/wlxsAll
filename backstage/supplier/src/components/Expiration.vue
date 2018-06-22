@@ -46,6 +46,29 @@
             </ul>
           </aside>
         </section>
+        <!--商品列表-->
+        <section v-show="allList" class="productList">
+          <ul>
+            <li class="expItemList" v-for="item in itemListArray">
+              <dl class="itemInfo">
+                <dt></dt>
+                <dd>{{item.goods_name}}</dd>
+              </dl>
+              <section class="itemExp">
+                <p><span>过期时间:</span><span>{{item.date}}</span></p>
+                <p>{{item.address}}</p>
+                <p></p>
+              </section>
+              <dl class="itemExpTime">
+                <dt>
+                  <span>{{item.time}}</span>
+                  <span>小时</span>
+                </dt>
+                <dd>剩余保质期</dd>
+              </dl>
+            </li>
+          </ul>
+        </section>
       </section>
       <section class="tipModal" v-show="tipStatus">
         <p>{{tipText}}</p>
@@ -72,6 +95,7 @@
               productDown: false, //控制商品选择显示
               active: true,
               allList: true,
+              device_id: '',
               itemIsSelect: false, //是否选择具体商品
               showDeviceList: [],
               allProductArray: [], //全部商品
@@ -99,6 +123,7 @@
         mounted() {
           this.$nextTick(() => {
             this.getDeviceArray();
+            this.getExpirationData(this.device_id);
             //初始化方法 显示全部设备
             this.showDeviceList = this.allDeviceListArray[0].devicelist;
           })
@@ -144,6 +169,97 @@
               console.log(error);
             })
           },
+          //获取保质期商品数据
+          getExpirationData(device_id) {
+            this.itemListArray = [];
+            // this.$ajax({
+            //   url: `http://merchant.test.weilaixiansen.com/login/expirationGoods?device_id=${device_id}`,
+            //   method: 'GET'
+            // }).then((res) => {
+            //   if(res.data.code == 0) {
+            //     this.itemListArray = res.data.data;
+
+                this.itemListArray = [
+                  {
+                  "address": "创新大厦1层左柜（XALG0001）",
+                  "goods_name": "古都华天咖喱鸡肉盖饭",
+                  "date": "2018-06-21 23:59:59",
+                  "time": 0,
+                  "goods_id": 10001632
+                }, {
+                  "address": "创新大厦1层左柜（XALG0001）",
+                  "goods_name": "古都华天农家小炒肉盖饭",
+                  "date": "2018-06-21 23:59:59",
+                  "time": 0,
+                  "goods_id": 10001633
+                }, {
+                  "address": "瞪羚谷E座1层左柜（XALG0003）",
+                  "goods_name": "古都华天酱辣鸭脖",
+                  "date": "2018-06-25 23:59:59",
+                  "time": 95,
+                  "goods_id": 10001635
+                }, {
+                  "address": "中投国际B座9楼银联商务左柜（XALG0007）",
+                  "goods_name": "古都华天卤水鱼豆腐",
+                  "date": "2018-06-25 23:59:59",
+                  "time": 95,
+                  "goods_id": 10001640
+                }, {
+                  "address": "创新大厦1层左柜（XALG0001）",
+                  "goods_name": "古都华天排包",
+                  "date": "2018-06-23 23:59:59",
+                  "time": 47,
+                  "goods_id": 10001667
+                }, {
+                  "address": "创新大厦1层左柜（XALG0001）",
+                  "goods_name": "古都华天魔法棒面包",
+                  "date": "2018-06-23 23:59:59",
+                  "time": 47,
+                  "goods_id": 10001668
+                }, {
+                  "address": "创新大厦1层左柜（XALG0001）",
+                  "goods_name": "古都华天萝卜包",
+                  "date": "2018-06-23 23:59:59",
+                  "time": 47,
+                  "goods_id": 10001718
+                }, {
+                  "address": "创新大厦1层左柜（XALG0001）",
+                  "goods_name": "古都华天果仁包",
+                  "date": "2018-06-23 23:59:59",
+                  "time": 47,
+                  "goods_id": 10001719
+                }, {
+                  "address": "创新大厦1层左柜（XALG0001）",
+                  "goods_name": "古都华天黄金乳酪包",
+                  "date": "2018-06-23 23:59:59",
+                  "time": 47,
+                  "goods_id": 10001720
+                }, {
+                  "address": "瞪羚谷E座1层左柜（XALG0003）",
+                  "goods_name": "古都华天酸梅汤(瓶装)",
+                  "date": "2018-06-21 23:59:59",
+                  "time": 0,
+                  "goods_id": 10001736
+                }, {
+                  "address": "新增魔盒柜子",
+                  "goods_name": "蒙牛冠益乳250g",
+                  "date": "2018-06-27 23:59:59",
+                  "time": 143,
+                  "goods_id": 10001741
+                }, {
+                  "address": "新增魔盒柜子",
+                  "goods_name": "蒙牛冠益乳450g",
+                  "date": "2018-06-30 23:59:59",
+                  "time": 215,
+                  "goods_id": 10001742
+                }]
+
+
+            //   }
+            // }).catch((error) => {
+            //   console.log(error);
+            // })
+          },
           //选择城市
           selectCity() {
             // this.cityDown = true;
@@ -186,21 +302,24 @@
           entryDevice(index) {
             if(this.showDeviceList[index].address == '全部售货柜') {
               this.device = this.showDeviceList[index].address;
-              console.log(this.showDeviceList[index]);
+              //console.log(this.showDeviceList[index]);
               this.cityDown = false;
               this.deviceDown = false;
               this.productDown = false;
+              this.device_id = '';
               this.allList = true;
             }else{
               this.device = this.showDeviceList[index].address;
-              console.log(this.showDeviceList[index]);
+              //console.log(this.showDeviceList[index]);
               this.cityDown = false;
               this.deviceDown = false;
               this.productDown = true;
               this.allList = false;
+              this.device_id = this.showDeviceList[index].device_id;
               this.selectProductArray = [];
               this.selectProductArray = this.showDeviceList[index];
             }
+            this.getExpirationData(this.device_id);
           },
         }
     }
@@ -380,6 +499,58 @@
               /*color: #939393;*/
               /*padding: 2.6236vh 0;*/
               /*}*/
+            }
+          }
+        }
+      }
+      .productList{
+        ul{
+          .expItemList{
+            display: flex;
+            justify-content: space-around;
+            background: #fff;
+            padding: 1.499vh 4vw;
+            margin-bottom: 1.499vh;
+            .itemInfo{
+              width: 18.667%;
+              font-size: 2.098rem;
+              dt{
+                width: 16vw;
+                height: 16vw;
+                background: url(../../static/images/wlxs_logo.png) no-repeat center center;
+                background-size: cover;
+              }
+            }
+            .itemExp{
+              width: 60%;
+              p{
+                font-size: 2.098rem;
+                &:nth-of-type(1) {
+                  color: #2b2b2b;
+                  margin: 2.098vh 0;
+                }
+                &:nth-of-type(2) {
+                  font-size: 1.949rem;
+                  color: #9f9f9f;
+                }
+              }
+            }
+            .itemExpTime{
+              width: 20%;
+              margin-top: 2.698vh;
+              dt{
+                color: #fa882c;
+                span:nth-of-type(1) {
+                  font-size: 3.748rem;
+                }
+                span:nth-of-type(2) {
+                  font-size: 2.2488rem;
+                }
+              }
+              dd{
+                font-size: 1.799rem;
+                color: #9f9f9f;
+              }
             }
           }
         }

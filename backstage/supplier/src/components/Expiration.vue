@@ -47,6 +47,7 @@
           </aside>
         </section>
         <!--商品列表-->
+        <section v-show="isExp" class="extText">{{extText}}</section>
         <section v-show="allList" class="productList">
           <ul>
             <li class="expItemList" v-for="item in itemListArray">
@@ -69,7 +70,7 @@
             </li>
           </ul>
         </section>
-        <section v-show="isExp" class="extText">{{extText}}</section>
+
       </section>
       <section class="tipModal" v-show="tipStatus">
         <p>{{tipText}}</p>
@@ -442,6 +443,9 @@
       }
       .productList{
         ul{
+          height: 78vh;
+          overflow-y: auto;
+          -webkit-overflow-scrolling : touch;
           .expItemList{
             display: flex;
             justify-content: space-around;

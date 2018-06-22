@@ -23,7 +23,28 @@
         </ul>
       </header>
       <section class="expirationContent">
-
+        <!-- 设备列表 -->
+        <section v-show="deviceDown" class="deviceList">
+          <aside class="left">
+            <ul>
+              <li v-for="(item, index) in allDeviceListArray" @click="changeDistrict(index)" :class="item.show ? 'special' : 'normal'">
+                {{item.district}}
+              </li>
+            </ul>
+          </aside>
+          <aside class="right">
+            <ul>
+              <li v-for="(item, index) in showDeviceList">
+                <p @click="entryDevice(index)">{{item.address}}</p>
+                <p>
+                  <span></span>
+                  <span>{{item.area_name}}</span>
+                </p>
+                <!--<p>距当前定位地址5千米</p>-->
+              </li>
+            </ul>
+          </aside>
+        </section>
       </section>
       <section class="tipModal" v-show="tipStatus">
         <p>{{tipText}}</p>
@@ -76,7 +97,9 @@
         },
         mounted() {
           this.$nextTick(() => {
-
+            this.getDeviceArray();
+            //初始化方法 显示全部设备
+            this.showDeviceList = this.allDeviceListArray[0].devicelist;
           })
         },
         methods: {
@@ -92,6 +115,33 @@
           goMain() {
             this.$router.push({
               path: '/main'
+            })
+          },
+          //获取柜子列表方法
+          getDeviceArray() {
+            this.$ajax({
+              url: 'http://merchant.test.weilaixiansen.com/login/goodsList',
+              method: 'GET'
+            }).then((res) => {
+               if(res.data.code == 0) {
+                 let deviceData = res.data.data;
+                 for(let i = 0; i < deviceData.length; i++) {
+                   for(let j = 0; j < deviceData[i].devicelist.length; j++) {
+                     this.allDeviceListArray[0].devicelist.push(deviceData[i].devicelist[j]);
+                   }
+                 }
+                 for(let i = 0; i < deviceData.length; i++) {
+                   let obj = {
+                     "district": deviceData[i].address,
+                     "show": false,
+                     "devicelist": deviceData[i].devicelist
+                   }
+                   this.allDeviceListArray.push(obj);
+                 }
+                 console.log(this.allDeviceListArray);
+               }
+            }).catch((error) => {
+              console.log(error);
             })
           },
           //选择城市
@@ -258,6 +308,66 @@
             overflow: hidden;
             text-overflow:ellipsis;
             white-space: nowrap;
+          }
+        }
+      }
+    }
+    .expirationContent{
+      padding-top: 13.3688vh;
+      background: #f1f1f1;
+      .deviceList{
+        background: #fff;
+        height: 86.6312vh;
+        overflow: hidden;
+        .left{
+          width: 27.4466vw;
+          float: left;
+          font-size: 2.2488rem;
+          ul{
+            height: 79vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling : touch;
+            li{
+              padding: 2.2398vh 0;
+              text-align: center;
+            }
+          }
+
+        }
+        .right{
+          width: 72.5534vw;
+          float: right;
+          ul{
+            height: 79vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling : touch;
+            li{
+              font-size: 2.2488rem;
+              color: #373737;
+              padding: 0 4vw;
+              border-bottom: 1px solid #e5e5e5;
+              p:nth-of-type(1) {
+                padding: 2.6236vh 0 1.874vh 0;
+              }
+              p:nth-of-type(2) {
+                font-size: 1.949rem;
+                color: #999898;
+                padding-bottom: 2vh;
+                span:nth-of-type(1){
+                  display: inline-block;
+                  width: 3.733vw;
+                  height: 2.548vh;
+                  background: url("../../static/images/location_icon.png") no-repeat center center;
+                  background-size: cover;
+                  vertical-align: bottom;
+                }
+              }
+              /*p:nth-of-type(3) {*/
+              /*font-size: 1.799rem;*/
+              /*color: #939393;*/
+              /*padding: 2.6236vh 0;*/
+              /*}*/
+            }
           }
         }
       }

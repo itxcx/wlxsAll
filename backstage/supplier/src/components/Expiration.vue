@@ -22,6 +22,7 @@
           <!--</li>-->
         </ul>
       </header>
+      <p class="countTime">仅统计保质期剩余<span>3天</span>内的商品</p>
       <section class="expirationContent">
         <!-- 设备列表 -->
         <section v-show="deviceDown" class="deviceList">
@@ -138,7 +139,6 @@
                    }
                    this.allDeviceListArray.push(obj);
                  }
-                 console.log(this.allDeviceListArray);
                }
             }).catch((error) => {
               console.log(error);
@@ -211,6 +211,7 @@
     width: 100vw;
     height: 100vh;
     background: #f1f1f1;
+    padding-top: 20.3688vh;
     .loading{
       position: fixed;
       top: 0;
@@ -312,9 +313,21 @@
         }
       }
     }
+    .countTime{
+      position: fixed;
+      top: 13.3688vh;
+      width: 100vw;
+      padding: 2.2488vh 4vw;
+      background: #fff;
+      font-size: 2.098rem;
+      color: #9f9f9f;
+      span{
+        color: #fa882c;
+      }
+    }
     .expirationContent{
-      padding-top: 13.3688vh;
       background: #f1f1f1;
+      margin-top: 1.499vh;
       .deviceList{
         background: #fff;
         height: 86.6312vh;

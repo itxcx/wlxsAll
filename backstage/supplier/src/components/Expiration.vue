@@ -16,10 +16,6 @@
             <span v-html="device" class="selectInput"></span>
             <span :class="!deviceDown ? 'down' : 'up'"></span>
           </li>
-          <!--<li v-model="product" @click="selectProduct">-->
-          <!--<span v-html="product" class="selectInput"></span>-->
-          <!--<span :class="!productDown ? 'down' : 'up'"></span>-->
-          <!--</li>-->
         </ul>
       </header>
       <p class="countTime">仅统计保质期剩余<span>2天</span>内的商品</p>
@@ -120,7 +116,6 @@
               selectProductArray: [],
               // productItemDown: false,//选择商品没有选择柜子
               itemListArray: [],
-              commonArray: null,
               loadingModal: false,
             }
         },

@@ -256,7 +256,8 @@
           }).then((res) => {
             if(res.data.code == 0) {//返回数据成功
               this.productRank = res.data.data;
-              // this.deviceRank = [
+
+              // this.productRank = [
               //   {
               //   "sellmoney": "360.00",
               //   "device_address": "瞪羚谷A座",
@@ -282,12 +283,85 @@
               //   "device_id": 6101130010,
               //   "order_num": 3
               // }, {
+              //     "sellmoney": "360.00",
+              //     "device_address": "瞪羚谷A座",
+              //     "order_id": "A2DASDASDD",
+              //     "device_id": 1001001,
+              //     "order_num": 1
+              //   }, {
+              //     "sellmoney": "235.00",
+              //     "device_address": "中国银行E",
+              //     "order_id": "65165454",
+              //     "device_id": 6101131125,
+              //     "order_num": 1
+              //   }, {
+              //     "sellmoney": "180.00",
+              //     "device_address": "瞪羚谷E座sfdsafdsafsaf",
+              //     "order_id": "A00124525362",
+              //     "device_id": 1001002,
+              //     "order_num": 1
+              //   }, {
+              //     "sellmoney": 110,
+              //     "device_address": "都市之门",
+              //     "order_id": "51564",
+              //     "device_id": 6101130010,
+              //     "order_num": 3
+              //   },{
+              //     "sellmoney": "360.00",
+              //     "device_address": "瞪羚谷A座",
+              //     "order_id": "A2DASDASDD",
+              //     "device_id": 1001001,
+              //     "order_num": 1
+              //   }, {
+              //     "sellmoney": "235.00",
+              //     "device_address": "中国银行E",
+              //     "order_id": "65165454",
+              //     "device_id": 6101131125,
+              //     "order_num": 1
+              //   }, {
+              //     "sellmoney": "180.00",
+              //     "device_address": "瞪羚谷E座sfdsafdsafsaf",
+              //     "order_id": "A00124525362",
+              //     "device_id": 1001002,
+              //     "order_num": 1
+              //   }, {
+              //     "sellmoney": 110,
+              //     "device_address": "都市之门",
+              //     "order_id": "51564",
+              //     "device_id": 6101130010,
+              //     "order_num": 3
+              //   },{
+              //     "sellmoney": "360.00",
+              //     "device_address": "瞪羚谷A座",
+              //     "order_id": "A2DASDASDD",
+              //     "device_id": 1001001,
+              //     "order_num": 1
+              //   }, {
+              //     "sellmoney": "235.00",
+              //     "device_address": "中国银行E",
+              //     "order_id": "65165454",
+              //     "device_id": 6101131125,
+              //     "order_num": 1
+              //   }, {
+              //     "sellmoney": "180.00",
+              //     "device_address": "瞪羚谷E座sfdsafdsafsaf",
+              //     "order_id": "A00124525362",
+              //     "device_id": 1001002,
+              //     "order_num": 1
+              //   }, {
+              //     "sellmoney": 110,
+              //     "device_address": "都市之门",
+              //     "order_id": "51564",
+              //     "device_id": 6101130010,
+              //     "order_num": 3
+              //   },{
               //   "sellmoney": "20.00",
               //   "device_address": "招商银行E",
               //   "order_id": "201255",
               //   "device_id": 6101130013,
               //   "order_num": 1
               // }]
+
             }else if(res.data.code == -1) {//没有数据
 
             }else if(res.data.code == 1) {//未登录
@@ -319,6 +393,8 @@
               this.sellmoney = res.data.total.sellmoney;
               this.rankItemMsg = true;
               this.rankListData = res.data.data;
+
+              // this.rankItemMsg = true;
               // this.rankListData =  [
               //   {
               //   "goods_name": "果3代",
@@ -329,10 +405,92 @@
               //   "goods_num": 2,
               //   "sellmoney": "10.00"
               // }, {
+              //     "goods_name": "果3代",
+              //     "goods_num": 1,
+              //     "sellmoney": "100.00"
+              //   }, {
+              //     "goods_name": "果2代",
+              //     "goods_num": 2,
+              //     "sellmoney": "10.00"
+              //   },{
+              //     "goods_name": "果3代",
+              //     "goods_num": 1,
+              //     "sellmoney": "100.00"
+              //   }, {
+              //     "goods_name": "果2代",
+              //     "goods_num": 2,
+              //     "sellmoney": "10.00"
+              //   },{
+              //     "goods_name": "果3代",
+              //     "goods_num": 1,
+              //     "sellmoney": "100.00"
+              //   }, {
+              //     "goods_name": "果2代",
+              //     "goods_num": 2,
+              //     "sellmoney": "10.00"
+              //   },{
+              //     "goods_name": "果3代",
+              //     "goods_num": 1,
+              //     "sellmoney": "100.00"
+              //   }, {
+              //     "goods_name": "果2代",
+              //     "goods_num": 2,
+              //     "sellmoney": "10.00"
+              //   },{
+              //     "goods_name": "果3代",
+              //     "goods_num": 1,
+              //     "sellmoney": "100.00"
+              //   }, {
+              //     "goods_name": "果2代",
+              //     "goods_num": 2,
+              //     "sellmoney": "10.00"
+              //   },{
+              //     "goods_name": "果3代",
+              //     "goods_num": 1,
+              //     "sellmoney": "100.00"
+              //   }, {
+              //     "goods_name": "果2代",
+              //     "goods_num": 2,
+              //     "sellmoney": "10.00"
+              //   },{
+              //     "goods_name": "果3代",
+              //     "goods_num": 1,
+              //     "sellmoney": "100.00"
+              //   }, {
+              //     "goods_name": "果2代",
+              //     "goods_num": 2,
+              //     "sellmoney": "10.00"
+              //   },{
+              //     "goods_name": "果3代",
+              //     "goods_num": 1,
+              //     "sellmoney": "100.00"
+              //   }, {
+              //     "goods_name": "果2代",
+              //     "goods_num": 2,
+              //     "sellmoney": "10.00"
+              //   },{
+              //     "goods_name": "果3代",
+              //     "goods_num": 1,
+              //     "sellmoney": "100.00"
+              //   }, {
+              //     "goods_name": "果2代",
+              //     "goods_num": 2,
+              //     "sellmoney": "10.00"
+              //   },{
+              //     "goods_name": "果3代",
+              //     "goods_num": 1,
+              //     "sellmoney": "100.00"
+              //   }, {
+              //     "goods_name": "果2代",
+              //     "goods_num": 2,
+              //     "sellmoney": "10.00"
+              //   },{
               //   "goods_name": "合计",
               //   "goods_num": 3,
               //   "sellmoney": 110
               // }]
+
+
             }else if(res.data.code == 1) {//未登录
               this.$router.push({
                 path: '/'
@@ -379,6 +537,7 @@
         color: #65d172;
         padding: 1.1994vh 0;
         position: relative;
+        background: #fff;
         .timeValue{
           display: inline-block;
           padding: 0 2vw;
@@ -469,6 +628,9 @@
         }
       }
       .rankItemList{
+        height: 80vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling : touch;
         li{
           padding: 2.2488vh 0;
           &:nth-of-type(even) {
@@ -516,7 +678,7 @@
     }
     .rankItemMsg{
       background: rgba(0,0,0,.7);
-      position: absolute;
+      position: fixed;
       left: 0;
       top: 0;
       width: 100vw;

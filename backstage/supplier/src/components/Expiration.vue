@@ -6,6 +6,8 @@
         </span>
         <p>商品保质期</p>
       </section>
+      <!-- 按钮 -->
+      <section class="fixBtn" @click="shipProduct"></section>
       <header>
         <ul>
           <li v-model="city" @click="selectCity">
@@ -47,11 +49,12 @@
         <section v-show="allList" class="productList">
           <ul>
             <li class="expItemList" v-for="item in itemListArray">
-              <dl class="itemInfo">
-                <dt></dt>
-                <dd>{{item.goods_name}}</dd>
-              </dl>
+              <!--<dl class="itemInfo">-->
+                <!--<dt></dt>-->
+                <!--<dd>{{item.goods_name}}</dd>-->
+              <!--</dl>-->
               <section class="itemExp">
+                <div>{{item.goods_name}}</div>
                 <p><span>过期时间:</span><span>{{item.date}}</span></p>
                 <p>{{item.address}}</p>
                 <p>{{item.tag}}</p>
@@ -253,6 +256,40 @@
             }
             this.getExpirationData(this.device_id);
           },
+          //商品下货
+          shipProduct() {
+            localStorage.setItem('operate', 'ship'); //上货操作
+            this.wxScan();//调用扫码开门
+          },
+          //微信扫一扫
+          wxScan() {
+            wx.scanQRCode({
+              needResult: 1,
+              scanType: ["qrCode", "barCode"],
+              success: (res) => {
+                let result = res.resultStr;
+                let device_number = result.split('?')[1].split('=')[1];//设备id
+                if(device_number) {
+                  this.scanResult(device_number);
+                }
+              }
+            })
+          },
+          //扫一扫结果处理回调方法
+          scanResult(device_number) {
+            let operate = localStorage.getItem('operate'); //判断操作类型
+            if(operate === 'exhib') { //上货
+              this.$router.push({
+                path: '/exhibing',
+                query: {device_number: device_number}
+              })
+            }else if(operate === 'ship') { //下货
+              this.$router.push({
+                path: '/ship',
+                query: {device_number: device_number}
+              })
+            }
+          }
         }
     }
 </script>
@@ -320,6 +357,16 @@
         left: 4vw;
         top: 0;
       }
+    }
+    .fixBtn{
+      width: 24.26vw;
+      height: 24.26vw;
+      background: url(../../static/images/bt_shangpinxiahuo.png) no-repeat center center;
+      background-size: cover;
+      position: fixed;
+      bottom: 5vw;
+      right: 5vw;
+      z-index: 999;
     }
     header{
       position: fixed;
@@ -459,6 +506,11 @@
             }
             .itemExp{
               width: 60%;
+              div{
+                font-size: 2.098rem;
+                margin-top: 1.098vh;
+                color: #2b2b2b;
+              }
               p{
                 font-size: 2.098rem;
                 &:nth-of-type(1) {
@@ -469,6 +521,9 @@
                   font-size: 1.949rem;
                   color: #9f9f9f;
                   margin-bottom: 1.098vh;
+                }
+                &:nth-of-type(3) {
+                  color: #65d172;
                 }
               }
             }

@@ -8,6 +8,8 @@
           <p>销售结算</p>
         </section>
       </header>
+      <!-- 按钮 -->
+      <section class="fixBtn" @click="fixSettleData"></section>
       <section class="settleContent">
         <loadmore :bottomMethod="getMore">
           <ul class="settleItem">
@@ -16,9 +18,9 @@
                 <p>{{item.month}}</p>
                 <ul class="settleHeader">
                   <li>商品名称</li>
-                  <li>商品标价</li>
+                  <li>交易单价</li>
                   <li>交易数量</li>
-                  <li>交易金额</li>
+                  <li>交易总额</li>
                   <li>抽成金额</li>
                   <li>结算金额</li>
                 </ul>
@@ -206,6 +208,10 @@
                 date2: date2
               }
             })
+          },
+          //按钮查看数据
+          fixSettleData() {
+
           }
         }
     }
@@ -219,6 +225,16 @@
   .Settlement{
     background: #f1f1f1;
     padding-top: 7vh;
+    .fixBtn{
+      width: 24.26vw;
+      height: 24.26vw;
+      background: url(../../static/images/bt_xiaoshoushuju.png) no-repeat center center;
+      background-size: cover;
+      position: fixed;
+      bottom: 5vw;
+      right: 5vw;
+      z-index: 999;
+    }
     .loading{
       position: fixed;
       top: 0;

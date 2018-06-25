@@ -466,6 +466,9 @@
         }
       }
       .rankItemList{
+        height: 80vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling : touch;
         li{
           padding: 2.2488vh 0;
           &:nth-of-type(even) {
@@ -513,7 +516,7 @@
     }
     .rankItemMsg{
       background: rgba(0,0,0,.7);
-      position: absolute;
+      position: fixed;
       left: 0;
       top: 0;
       width: 100vw;

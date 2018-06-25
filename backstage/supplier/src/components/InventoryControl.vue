@@ -76,13 +76,14 @@
         yestoday: false,
         lastWeek: false,
         lastMonth: false,
-        pageTitle: ''
+        pageTitle: '',
+        type:''
       }
     },
     mounted() {
       this.$nextTick(() => {
-        let type = this.$route.query.type;
-        if(type == 0) {
+        this.type = this.$route.query.type;
+        if(this.type == 0) {
           this.pageTitle = '上货';
         }else{
           this.pageTitle = '下货';
@@ -90,7 +91,7 @@
         let date = new Date();
         this.startDate = this.Common.formatDate(date, "yyyy-MM-dd");
         this.endDate = this.Common.formatDate(date, "yyyy-MM-dd");
-        this.getInventoryControlData(this.startDate, this.endDate, type);
+        this.getInventoryControlData(this.startDate, this.endDate, this.type);
       })
     },
     methods: {
@@ -196,7 +197,7 @@
             break;
         }
         this.datePickerShow = false;
-        this.getSaleroomData(this.startDate, this.endDate);
+        this.getInventoryControlData(this.startDate, this.endDate, this.type);
       },
       //选择后的日期
       dateSelectSubmit() {
@@ -215,7 +216,7 @@
         }
         this.datePickerShow = false;
         this.dateRangeText = '';
-        this.getSaleroomData(this.startDate, this.endDate);
+        this.getInventoryControlData(this.startDate, this.endDate, this.type);
       },
       //当前时间销售额
       getInventoryControlData(startTime, endTime, type) {

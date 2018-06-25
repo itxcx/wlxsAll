@@ -97,7 +97,7 @@
         },
         //下货
         shipScan() {
-          localStorage.setItem('operate', 'ship'); //上货操作
+          localStorage.setItem('operate', 'ship'); //下货操作
           this.wxScan();//调用扫码开门
         },
         //微信扫一扫

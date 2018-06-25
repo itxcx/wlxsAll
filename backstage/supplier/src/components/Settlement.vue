@@ -10,21 +10,51 @@
       </header>
       <!-- 按钮 -->
       <section class="fixBtn" @click="fixSettleData"></section>
+      <!-- 销售数据 -->
+      <section class="salesModal" v-show="salesModal">
+        <section class="salesContent">
+          <h3>销售数据</h3>
+          <ul class="salesHeader">
+            <li>日期</li>
+            <li>上货</li>
+            <li>下货</li>
+            <li>销售</li>
+            <li>库存</li>
+          </ul>
+          <ul class="salesItem">
+            <li v-for="(item, index) in salesModalData.part">
+              <span>{{item.month.split('-')[1]}}月</span>
+              <span>{{item.counts.load ? item.counts.load : '0'}}</span>
+              <span>{{item.counts.unload ? item.counts.unload : '0'}}</span>
+              <span>{{item.counts.sale ? item.counts.sale : '0'}}</span>
+              <span>{{item.counts.store ? item.counts.store : '/'}}</span>
+            </li>
+          </ul>
+          <ul class="salesTotal">
+            <li>
+              <span>合计</span>
+              <span>{{salesModalData.sum.load ? salesModalData.sum.load : ''}}</span>
+              <span>{{salesModalData.sum.unload ? salesModalData.sum.unload : ''}}</span>
+              <span>{{salesModalData.sum.sale ? salesModalData.sum.sale : ''}}</span>
+              <span>{{salesModalData.sum.store? salesModalData.sum.store : ''}}</span>
+            </li>
+          </ul>
+          <section class="closeBtn" @click="closeBtn">关闭</section>
+        </section>
+      </section>
+      <ul class="settleHeader">
+        <li>商品名称</li>
+        <li>交易单价</li>
+        <li>交易数量</li>
+        <li>交易总额</li>
+        <li>抽成金额</li>
+        <li>结算金额</li>
+      </ul>
       <section class="settleContent">
-        <loadmore :bottomMethod="getMore">
+        <!--<loadmore :bottomMethod="getMore">-->
           <ul class="settleItem">
             <li v-for="(item, index) in settlementData" class="test">
-              <div class="stickyBox">
-                <p>{{item.month}}</p>
-                <ul class="settleHeader">
-                  <li>商品名称</li>
-                  <li>交易单价</li>
-                  <li>交易数量</li>
-                  <li>交易总额</li>
-                  <li>抽成金额</li>
-                  <li>结算金额</li>
-                </ul>
-              </div>
+              <p>{{item.month}}</p>
               <ul class="settleList">
                 <li v-for="(items, ids) in item.goods">
                   <span>{{items.goods_name}}</span>
@@ -47,7 +77,7 @@
             </li>
           </ul>
           <p class="getMore">{{tipText}}</p>
-        </loadmore>
+        <!--</loadmore>-->
       </section>
       <!-- 加载中提示框 -->
       <section class="loading" v-show="loadingModal">
@@ -68,6 +98,15 @@
               tipText: '',
               isRequest: true,
               loadingModal: false,
+              salesModal: false,
+              salesModalData: {
+                sum: {
+                  "load": 0,
+                  "unload": 0,
+                  "sale": 0,
+                  "store": 0
+                }
+              }
             }
         },
         mounted() {
@@ -211,20 +250,65 @@
           },
           //按钮查看数据
           fixSettleData() {
-
+            this.$ajax({
+              url: `http://merchant.test.weilaixiansen.com/login/totalcount`,
+              method: 'GET'
+            }).then((res) => {
+              if(res.data.code == 0) {
+                this.salesModal = true;
+                this.salesModalData = res.data.data;
+              }else if(res.data.code == 3) {
+                this.$router.push({
+                  path: '/'
+                })
+              }
+            }).catch((error) => {
+              console.log(error);
+            })
+            // this.salesModalData = {
+            //   "part": [{
+            //   "month": "2018-05",
+            //   "counts": {
+            //     "load": "119",
+            //     "unload": "46",
+            //     "sale": "112"
+            //   }
+            // }, {
+            //   "month": "2018-06",
+            //   "counts": {
+            //     "load": "254",
+            //     "unload": "45",
+            //     "sale": "49"
+            //   }
+            // }],
+            //   "sum": {
+            //   "load": 373,
+            //     "unload": 91,
+            //     "sale": 161,
+            //     "store": 45
+            // }
+            // }
+          },
+          //close
+          closeBtn() {
+            this.salesModal = false;
+            this.salesModalData = {
+              sum: {
+                "load": 0,
+                  "unload": 0,
+                  "sale": 0,
+                  "store": 0
+              }
+            }
           }
         }
     }
 </script>
 
 <style lang="less">
-  /*.sticky {*/
-    /*position: -webkit-sticky;*/
-    /*position: sticky;*/
-  /*}*/
   .Settlement{
     background: #f1f1f1;
-    padding-top: 7vh;
+    padding-top: 14vh;
     .fixBtn{
       width: 24.26vw;
       height: 24.26vw;
@@ -233,7 +317,7 @@
       position: fixed;
       bottom: 5vw;
       right: 5vw;
-      z-index: 999;
+      z-index: 99;
     }
     .loading{
       position: fixed;
@@ -278,48 +362,41 @@
         }
       }
     }
+    .settleHeader{
+      border-bottom: 1px solid #e5e5e5;
+      overflow: hidden;
+      background: #fff;
+      position: fixed;
+      top: 6vh;
+      left: 0;
+      z-index: 99;
+      li{
+        float: left;
+        width: 16.666vw;
+        text-align: center;
+        font-size: 1.949rem;
+        color: #7b7b7b;
+        padding: 1.499vh 4vw;
+      }
+    }
     .settleContent{
-      /*height: auto;*/
-      /*width: 100%;*/
-      height: 93vh;
+      height: 86vh;
       overflow-y: auto;
-      -webkit-overflow-scrolling : touch;
+      -webkit-overflow-scrolling: touch;
       .settleItem{
         >li{
           margin-bottom: 20px;
           background: #fff;
-          .stickyBox{
+          p{
+            font-size: 1.949rem;
+            color: #7b7b7b;
             width: 100vw;
+            padding: 1.649vh 4vw;
+            border-bottom: 1px solid #e5e5e5;
+            background: #fff;
             position: -webkit-sticky;
             position: sticky;
-            top: 0vh;
-            p{
-              font-size: 1.949rem;
-              color: #7b7b7b;
-              width: 100vw;
-              padding: 1.649vh 4vw;
-              border-bottom: 1px solid #e5e5e5;
-              background: #fff;
-              /*position: -webkit-sticky;*/
-              /*position: sticky;*/
-              /*top: 0;*/
-            }
-            .settleHeader{
-              border-bottom: 1px solid #e5e5e5;
-              overflow: hidden;
-              background: #fff;
-              /*position: -webkit-sticky;*/
-              /*position: sticky;*/
-              /*top: 6.3vh;*/
-              li{
-                float: left;
-                width: 16.666vw;
-                text-align: center;
-                font-size: 1.949rem;
-                color: #7b7b7b;
-                padding: 1.499vh 4vw;
-              }
-            }
+            top: 0;
           }
           .settleList{
             li{
@@ -370,6 +447,7 @@
           }
         }
       }
+
     }
     .getMore{
       text-align: center;
@@ -377,6 +455,79 @@
       font-weight: bold;
       font-size: 1.924rem;
       width: 100vw;
+    }
+    .salesModal{
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      right: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 100;
+      .salesContent{
+        background: #fff;
+        width: 94vw;
+        margin: 10vh auto;
+        border-radius: 5px;
+        padding: 3.448vh 6vw;
+        h3{
+          text-align: center;
+          font-size: 2.548rem;
+          color: #373737;
+          font-weight: bold;
+        }
+        .salesHeader{
+          overflow: hidden;
+          margin-top: 3.448vh;
+          font-size: 2.2488rem;
+          padding-bottom: 1.499vh;
+          border-bottom: 1px solid #e5e5e5;
+          li{
+            width: 20%;
+            float: left;
+            text-align: center;
+          }
+        }
+        .salesItem{
+          height: 42vh;
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+          li{
+            border-bottom: 1px solid #e5e5e5;
+            padding: 3.3733vh 0;
+            span{
+              display: inline-block;
+              font-size: 2.0488rem;
+              width: 19%;
+              text-align: center;
+            }
+          }
+        }
+        .salesTotal{
+          li{
+            padding: 3.3733vh 0;
+            span{
+              font-size: 2.0488rem;
+              display: inline-block;
+              width: 19%;
+              text-align: center;
+            }
+          }
+        }
+        .closeBtn{
+          width: 79.2vw;
+          height: 10.4198vh;
+          background: url("../../static/images/button_bg.png") no-repeat center center;
+          background-size: cover;
+          text-align: center;
+          font-size: 2.2488rem;
+          color: #fff;
+          line-height: 8.4198vh;
+          position: absolute;
+          bottom: 0;
+          left: 10.4vw;
+        }
+      }
     }
   }
 </style>

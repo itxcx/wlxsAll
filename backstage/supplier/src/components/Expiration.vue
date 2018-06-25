@@ -54,7 +54,7 @@
               <section class="itemExp">
                 <p><span>过期时间:</span><span>{{item.date}}</span></p>
                 <p>{{item.address}}</p>
-                <p></p>
+                <p>{{item.tag}}</p>
               </section>
               <dl class="itemExpTime">
                 <dt>
@@ -463,16 +463,17 @@
                 font-size: 2.098rem;
                 &:nth-of-type(1) {
                   color: #2b2b2b;
-                  margin: 2.098vh 0;
+                  margin: 1.098vh 0;
                 }
                 &:nth-of-type(2) {
                   font-size: 1.949rem;
                   color: #9f9f9f;
+                  margin-bottom: 1.098vh;
                 }
               }
             }
             .itemExpTime{
-              width: 20%;
+              width: 21%;
               margin-top: 2.698vh;
               dt{
                 color: #fa882c;

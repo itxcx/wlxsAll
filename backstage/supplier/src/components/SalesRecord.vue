@@ -59,7 +59,7 @@
       <section class="allSale" v-show="allSaleDown">
         <!--<scroller class="scroller" :on-refresh="refresh" :on-infinite="infinite" ref="my_scroller">-->
         <!--<scroller class="scroller" :on-infinite="infinite" ref="my_scroller">-->
-        <loadmore :bottomMethod="getMoreSalesData" class="scroller">
+        <!--<loadmore :bottomMethod="getMoreSalesData" class="scroller">-->
           <ul>
             <li v-for="(item, index) in allSale">
               <section class="saleListAddr">
@@ -76,8 +76,8 @@
               </section>
             </li>
           </ul>
-          <p class="ctrlTipTxt">{{ctrlTipTxt}}</p>
-        </loadmore>
+          <p class="ctrlTipTxt" @click="getMoreSalesData">{{ctrlTipTxt}}</p>
+        <!--</loadmore>-->
         <!--</scroller>-->
 
       </section>
@@ -288,7 +288,7 @@
             if(this.address == '场地') {
               area_name = '';
             }
-            if(this.ctrlTipTxt == '上划加载更多...') {
+            if(this.ctrlTipTxt == '点击加载更多...') {
               this.$ajax({
                 url: `http://merchant.test.weilaixiansen.com/login/selllist?date1=${this.startDate}&date2=${this.endDate}&device_id=${this.device_id}&area_name=${area_name}&page=${this.page}`,
                 method: 'GET'
@@ -296,7 +296,7 @@
                 if(res.data.code == 0) {
                   this.page++;
                   let data = res.data.data;
-                  this.ctrlTipTxt = '上划加载更多...';
+                  this.ctrlTipTxt = '点击加载更多...';
                   if(data.length == 0) {
                     this.ctrlTipTxt = '没有更多数据';
                   }
@@ -316,6 +316,7 @@
             //参数 ： page 页数     date1     date2  起止时间
             //device_id  设备编号    area_name 分区名称
             this.allSale = [];
+            this.page = 1;
             this.ctrlTipTxt = '';
             this.loadingModal = true;
             if(area_name == '场地') {
@@ -329,7 +330,7 @@
                 this.loadingModal = false;
                 let data = res.data.data;
                 this.allSale = data;
-                this.ctrlTipTxt = '上划加载更多...';
+                this.ctrlTipTxt = '点击加载更多...';
                 if(this.allSale.length == 0) {
                   this.ctrlTipTxt = '没有更多数据';
                 }
@@ -616,8 +617,8 @@
         font-size: 1.924rem;
         width: 100vw;
       }
-      .scroller{
-        position: relative;
+      /*.scroller{*/
+        /*position: relative;*/
         ul{
           background: #f1f1f1;
           li{
@@ -677,7 +678,7 @@
             }
           }
         }
-      }
+      /*}*/
 
     }
     .addressList, .deviceList{

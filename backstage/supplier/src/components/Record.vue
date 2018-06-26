@@ -131,11 +131,17 @@
               actionList: false,
               canGetDevice: true,
               loadingModal: false,
+              area_name: ''
             }
         },
         mounted() {
           this.$nextTick(() => {
-            this.getOrderListData();
+            if(this.address == '所有地址') {
+              this.area_name = '';
+            }else{
+              this.area_name = this.address;
+            }
+            this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0, this.area_name);
           })
         },
         methods: {
@@ -150,8 +156,13 @@
           //获取更多数据方法
           getMore() {
             if(this.canGetData) {
+              if(this.address == '所有地址') {
+                this.area_name = '';
+              }else{
+                this.area_name = this.address;
+              }
               this.page++;
-              this.getMoreData(this.date1, this.date2, this.actionValue, this.device_id, this.page);
+              this.getMoreData(this.date1, this.date2, this.actionValue, this.device_id, this.page, this.area_name);
             }
           },
           goBack() {
@@ -164,11 +175,11 @@
             this.date1 = e[0];
             this.date2 = e[1];
           },
-          getMoreData(date1 = '', date2 = '', action = '', device_id = '', page = 1) {
+          getMoreData(date1 = '', date2 = '', action = '', device_id = '', page = 1, area_name) {
             // alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
             this.canGetData = false;
             this.$ajax({
-              url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}`,
+              url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}&area_name=${area_name}`,
               method: 'GET'
             }).then((res) => {
               if(res.data.code == 0) {
@@ -182,10 +193,12 @@
                     this.recordList[i].callName = '都市之门B座';
                   }else if(this.recordList[i].address.search('创新大厦') !== -1) {
                     this.recordList[i].callName = '高新一路创新大厦';
-                  }else if(this.recordList[i].address.search('数字出版') !== -1) {
+                  }else if(this.recordList[i].address.search('数字') !== -1) {
                     this.recordList[i].callName = '国家数字出版基地';
                   }else if(this.recordList[i].address.search('魔盒') !== -1) {
                     this.recordList[i].callName = '魔盒';
+                  }else if(this.recordList[i].address.search('中投') !== -1) {
+                    this.recordList[i].callName = '中投国际';
                   }
                 }
                 this.canGetData = true;
@@ -198,33 +211,35 @@
             })
           },
           //请求上下架列表方法
-          getOrderListData(date1 = '', date2 = '', action = '', device_id = '', page = 0) {
+          getOrderListData(date1 = '', date2 = '', action = '', device_id = '', page = 0, area_name) {
             // alert(`${date1}--${date2}--${action}--${device_id}--${page}`);
             this.loadingModal = true;
             this.recordList = [];
             this.ctrlTipTitle = '';
             this.$ajax({
-              url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}`,
+              url: `http://merchant.test.weilaixiansen.com/login/updownlist?date1=${date1}&date2=${date2}&action=${action}&device_id=${device_id}&page=${page}&area_name=${area_name}`,
               method: 'GET'
             }).then((res) => {
+                this.loadingModal = false;
                 if(res.data.code == 0) {
-                  this.loadingModal = false;
                   this.recordList = res.data.data;
                   // this.ctrlTipTitle = '上划加载更多...';
                   this.ctrlTipTitle = '点击加载更多...';
                   for(let i = 0; i < this.recordList.length; i++) {
                     if(this.recordList[i].address.search('E座') !== -1) {
                       this.recordList[i].callName = '瞪羚谷E座';
-                    }else if(this.recordList[i].address.search('招招商银行') !== -1) {
+                    }else if(this.recordList[i].address.search('招商银行') !== -1) {
                       this.recordList[i].callName = '雁塔区招商银行';
                     }else if(this.recordList[i].address.search('都市') !== -1) {
                       this.recordList[i].callName = '都市之门B座';
                     }else if(this.recordList[i].address.search('创新大厦') !== -1) {
                       this.recordList[i].callName = '高新一路创新大厦';
-                    }else if(this.recordList[i].address.search('数字出版') !== -1) {
+                    }else if(this.recordList[i].address.search('数字') !== -1) {
                       this.recordList[i].callName = '国家数字出版基地';
                     }else if(this.recordList[i].address.search('魔盒') !== -1) {
                       this.recordList[i].callName = '魔盒';
+                    }else if(this.recordList[i].address.search('中投') !== -1) {
+                      this.recordList[i].callName = '中投国际';
                     }
                   }
                   if(this.recordList.length === 0) {
@@ -299,13 +314,15 @@
               this.device_id = '';
               // this.ctrlTipTitle = '上滑加载更多...';
               this.ctrlTipTitle = '点击加载更多...';
-              this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
+              this.area_name = this.address;
+              this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0, this.area_name);
             }else{
               this.addressDown = false;
               this.deviceDown = false;
               this.actionDown = true;
               this.actionList = false;
-              this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
+              this.area_name = '';
+              this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0, this.area_name);
             }
           },
           //展示设备
@@ -335,7 +352,12 @@
             this.actionList = false;
             this.ctrlTipTitle = '点击加载更多...';
             // this.ctrlTipTitle = '上滑加载更多...';
-            this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
+            if(this.address == '所有地址') {
+              this.area_name = '';
+            }else{
+              this.area_name = this.address;
+            }
+            this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0 , this.area_name);
           },
           //展示方式
           selectAction() {
@@ -366,7 +388,12 @@
             this.ctrlTipTitle = '点击加载更多...';
             this.canGetData = true;
             this.page = 0;
-            this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
+            if(this.address == '所有地址') {
+              this.area_name = '';
+            }else{
+              this.area_name = this.address;
+            }
+            this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0, this.area_name);
           },
           //查看详情
           showOrderInfo(index) {
@@ -398,7 +425,7 @@
     .Record{
       width: 100vw;
       height: 100vh;
-      padding-top: 13.5vh;
+      padding-top: 14.5vh;
       background: #f1f1f1;
       .tipModal{
         background: rgba(0,0,0,.7);

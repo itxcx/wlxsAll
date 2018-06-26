@@ -38,7 +38,7 @@
         </li>
       </ul>
     </section>
-    <section class="checkOtherContent">
+    <section class="checkOtherContent" v-show="checkOther">
       <p>错拿商品</p>
       <ul class="headerList">
         <li>商品名称</li>
@@ -81,11 +81,15 @@
         modalToggle: false, //标签列表查看显示
         labelInfo: {},
         itemList: {}, //商品列表
+        checkOther: false
       }
     },
     mounted() {
       this.$nextTick(() => {
         this.itemList = JSON.parse(localStorage.getItem('exhibData'));
+        if(this.itemList.sale_goods.length > 0) {
+          this.checkOther = true;
+        }
         // this.itemList = {
         //   "goods": [{
         //                           "goods_name": "摆渡乐源壹品(芒果)",
@@ -241,7 +245,7 @@
         height: 2.923vh;
         span:nth-of-type(1) {
           display: inline-block;
-          width: 3.5666vw;
+          width: 4.0666vw;
           height: 3.123vh;
           background: url("../../static/images/image_tips.png") no-repeat center center;
           background-size: cover;

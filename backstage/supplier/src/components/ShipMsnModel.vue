@@ -6,7 +6,7 @@
         </div>
         <div class="location">
           <span></span>
-          <span v-html="location">{{location}}</span>
+          <span>{{location}}</span>
         </div>
       </header>
       <section class="exhibInfo">
@@ -34,7 +34,7 @@
           </li>
         </ul>
       </section>
-      <section class="checkContent">
+      <section class="checkContent" v-show="checkOut">
         <p>其他商品</p>
         <ul class="headerList">
           <li>序号</li>
@@ -80,6 +80,7 @@
               labelInfo: {},
               itemList: {}, //商品列表
               price: 0,//价格
+              checkOut: false
             }
         },
         mounted() {
@@ -100,6 +101,7 @@
               if(res.data.code == 0) {
                 this.itemList = res.data.data;
                 if(this.itemList.sale_goods.length > 0) {
+                  this.checkOut = true;
                   for(let i = 0; i < this.itemList.sale_goods.length; i++) {
                     this.price += this.itemList.sale_goods[i].goods_count;
                   }

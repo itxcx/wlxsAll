@@ -6,7 +6,7 @@
         </div>
         <div class="location">
           <span></span>
-          <span v-html="location">{{location}}</span>
+          <span>{{location}}</span>
         </div>
       </header>
       <section class="exhibInfo">
@@ -35,7 +35,7 @@
           </li>
         </ul>
       </section>
-      <section class="checkOtherContent">
+      <section class="checkOtherContent" v-show="checkOther">
         <p>错拿商品</p>
         <ul class="headerList">
           <li>商品名称</li>
@@ -77,6 +77,7 @@
               modalToggle: false, //标签列表查看显示
               labelInfo: {},
               itemList: {}, //商品列表
+              checkOther: false
             }
         },
         mounted() {
@@ -95,13 +96,14 @@
             }).then((res) => {
               if(res.data.code == 0) {
                 this.itemList = res.data.data;
+                this.location = this.itemList.address;
                 if(this.itemList.sale_goods.length > 0) {
+                  this.checkOther = true;
                   for(let i = 0; i < this.itemList.sale_goods.length; i++) {
                     this.price += this.itemList.sale_goods[i].goods_count;
                   }
                 }
                 this.price = this.price.toFixed(2);//显示价格
-                this.location = this.itemList.address;
               }
             }).catch((error) => {
               console.log(error);
@@ -180,7 +182,7 @@
         height: 2.923vh;
         span:nth-of-type(1) {
           display: inline-block;
-          width: 3.5666vw;
+          width: 4.0666vw;
           height: 3.123vh;
           background: url("../../static/images/image_tips.png") no-repeat center center;
           background-size: cover;

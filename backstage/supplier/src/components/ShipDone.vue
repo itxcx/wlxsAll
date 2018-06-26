@@ -35,7 +35,7 @@
         </li>
       </ul>
     </section>
-    <section class="checkContent">
+    <section class="checkContent" v-show="checkOut">
       <p>其他商品</p>
       <ul class="headerList">
         <li>序号</li>
@@ -79,6 +79,7 @@
         labelInfo: {},
         itemList: {}, //商品列表
         price: 0,//价格
+        checkOut: false,
       }
     },
     mounted() {
@@ -147,6 +148,7 @@
         //   "total_count": 2
         // }
         if(this.itemList.sale_goods.length > 0) {
+          this.checkOut = true;
           for(let i = 0; i < this.itemList.sale_goods.length; i++) {
             this.price += this.itemList.sale_goods[i].goods_count;
           }

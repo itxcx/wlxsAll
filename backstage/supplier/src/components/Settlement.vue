@@ -178,7 +178,7 @@
                       clsoe_totalCount += Number(this.settlementData[i].goods[j].close_total);
                       profitCount += Number(this.settlementData[i].goods[j].profit);
                     }
-                    this.settlementData[i].numberCount = numberCount.toFixed(2);
+                    this.settlementData[i].numberCount = numberCount;
                     this.settlementData[i].deal_totalCount = deal_totalCount.toFixed(2);
                     this.settlementData[i].profitCount = profitCount.toFixed(2);
                     this.settlementData[i].clsoe_totalCount = clsoe_totalCount.toFixed(2);
@@ -212,7 +212,7 @@
                       clsoe_totalCount += Number(this.settlementData[i].goods[j].close_total);
                       profitCount += Number(this.settlementData[i].goods[j].profit);
                     }
-                    this.settlementData[i].numberCount = numberCount.toFixed(2);
+                    this.settlementData[i].numberCount = numberCount;
                     this.settlementData[i].deal_totalCount = deal_totalCount.toFixed(2);
                     this.settlementData[i].profitCount = profitCount.toFixed(2);
                     this.settlementData[i].clsoe_totalCount = clsoe_totalCount.toFixed(2);

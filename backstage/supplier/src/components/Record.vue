@@ -60,7 +60,7 @@
       <!--上下架-->
       <section class="action" v-show="actionDown">
         <!--<Scroll class="Scroll" height="83vh" :on-reach-bottom="handleReachBottom">-->
-        <loadmore :bottomMethod="getMore">
+        <!--<loadmore :bottomMethod="getMore">-->
           <ul>
             <li v-for="(item, index) in recordList">
               <p class="recordListInfo">
@@ -85,8 +85,8 @@
               </p>
             </li>
           </ul>
-          <p class="getMore">{{ctrlTipTitle}}</p>
-        </loadmore>
+          <p class="getMore" @click="getMore">{{ctrlTipTitle}}</p>
+        <!--</loadmore>-->
         <!--</Scroll>-->
       </section>
       <section class="tipModal" v-show="tipStatus">
@@ -210,7 +210,8 @@
                 if(res.data.code == 0) {
                   this.loadingModal = false;
                   this.recordList = res.data.data;
-                  this.ctrlTipTitle = '上划加载更多...';
+                  // this.ctrlTipTitle = '上划加载更多...';
+                  this.ctrlTipTitle = '点击加载更多...';
                   for(let i = 0; i < this.recordList.length; i++) {
                     if(this.recordList[i].address.search('E座') !== -1) {
                       this.recordList[i].callName = '瞪羚谷E座';
@@ -296,7 +297,8 @@
               this.canGetData = true;
               this.page = 0;
               this.device_id = '';
-              this.ctrlTipTitle = '上滑加载更多...';
+              // this.ctrlTipTitle = '上滑加载更多...';
+              this.ctrlTipTitle = '点击加载更多...';
               this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
             }else{
               this.addressDown = false;
@@ -331,7 +333,8 @@
             this.page = 0;
             this.actionDown = true;
             this.actionList = false;
-            this.ctrlTipTitle = '上滑加载更多...';
+            this.ctrlTipTitle = '点击加载更多...';
+            // this.ctrlTipTitle = '上滑加载更多...';
             this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);
           },
           //展示方式
@@ -359,7 +362,8 @@
             }else{
               this.actionValue = '';
             }
-            this.ctrlTipTitle = '上滑加载更多...';
+            // this.ctrlTipTitle = '上滑加载更多...';
+            this.ctrlTipTitle = '点击加载更多...';
             this.canGetData = true;
             this.page = 0;
             this.getOrderListData(this.date1, this.date2, this.actionValue, this.device_id, 0);

@@ -30,6 +30,8 @@ import MistakeInfo from '../components/MistakeInfo' //错拿详情信息
 import Settlement from '../components/Settlement' //销售结算
 import SettleListInfo from '../components/SettleListInfo' //销售结算详情
 import Expiration from '../components/Expiration' //保质期
+import ShipMsnModel from '../components/ShipMsnModel' //下货消息模板
+import ExhibingMsnModel from '../components/ExhibingMsnModel' //上货消息模板
 //引入主要的数据模块
 //测试模块
 import Test from '../components/Test'
@@ -187,6 +189,16 @@ export default new Router({
       path: '/expiration',
       name: 'expiration',
       component: Expiration
+    },
+    {
+      path: '/shipMsnModel',
+      name: 'shipMsnModel',
+      component: ShipMsnModel
+    },
+    {
+      path: '/exhibingMsnModel',
+      name: 'exhibingMsnModel',
+      component: ExhibingMsnModel
     }
   ]
 })

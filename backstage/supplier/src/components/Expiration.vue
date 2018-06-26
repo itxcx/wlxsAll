@@ -79,6 +79,12 @@
         <Spin size="large"></Spin>
         <p>数据获取中...</p>
       </section>
+      <section class="circleLoading" v-show="circleLoading">
+        <p @click="reload">
+          <Icon type="loop"></Icon>
+          <span>重新加载</span>
+        </p>
+      </section>
     </div>
 </template>
 
@@ -119,10 +125,13 @@
               selectProductArray: [],
               // productItemDown: false,//选择商品没有选择柜子
               itemListArray: [],
-              loadingModal: false,
+              loadingModal: false, //获取数据
+              circleLoading: false, //重新加载
             }
         },
         mounted() {
+          document.body.addEventListener('touchstart', function () {
+          });
           this.$nextTick(() => {
             this.getDeviceArray();
             this.getExpirationData(this.device_id);
@@ -131,6 +140,10 @@
           })
         },
         methods: {
+          //重新加载方法
+          reload() {
+            this.getExpirationData(this.device_id);
+          },
           //暂未开放提示方法
           closeCity() {
             this.tipStatus = true;
@@ -174,14 +187,15 @@
           //获取保质期商品数据
           getExpirationData(device_id) {
             this.itemListArray = [];
+            this.circleLoading = false;
             this.loadingModal = true;
             this.isExp = false;
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/expirationGoods?device_id=${device_id}`,
               method: 'GET'
             }).then((res) => {
+              this.loadingModal = false;
               if(res.data.code == 0) {
-                this.loadingModal = false;
                 this.itemListArray = res.data.data;
                 if(res.data.data.length == 0) {
                   this.isExp = true;
@@ -190,9 +204,13 @@
                 this.$router.push({
                   path: '/'
                 })
+              }else{
+                this.circleLoading = true;
               }
             }).catch((error) => {
               console.log(error);
+              this.loadingModal = false;
+              this.circleLoading = true;
             })
           },
           //选择城市
@@ -322,6 +340,33 @@
         background: #65d172;
       }
     }
+    .circleLoading{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width: 16vh;
+      height: 8vh;
+      text-align: center;
+      color: #65d172;
+      border-radius: 10px;
+      font-size: 2.088rem;
+      .ivu-icon-loop{
+        font-size: 2.5rem;
+      }
+      p{
+        border: 1px solid #65d172;
+        padding: 0.8vh 0;
+        border-radius: 8px;
+
+        span{
+          display: inline-block;
+        }
+      }
+
+    }
     .tipModal{
       background: rgba(0,0,0,.7);
       border-radius: 10px;
@@ -367,6 +412,10 @@
       bottom: 5vw;
       right: 5vw;
       z-index: 999;
+      transition: all 0.15s linear;
+      &:active{
+       opacity: 0.9;
+      }
     }
     header{
       position: fixed;

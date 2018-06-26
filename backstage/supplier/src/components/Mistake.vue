@@ -9,7 +9,7 @@
         </section>
       </header>
       <section class="mistakeList">
-        <loadmore :bottomMethod="getMore" class="">
+        <!--<loadmore :bottomMethod="getMore" class="">-->
           <ul>
             <li v-for="(item, index) in mistakeArray">
               <section class="misAddress" @click="goMistakeInfo(index)">
@@ -25,8 +25,8 @@
               </section>
             </li>
           </ul>
-          <p class="getMore">{{ctrlTipTitle}}</p>
-        </loadmore>
+          <p class="getMore" @click="getMore">{{ctrlTipTitle}}</p>
+        <!--</loadmore>-->
       </section>
       <!-- 加载中提示框 -->
       <section class="loading" v-show="loadingModal">
@@ -69,7 +69,7 @@
             }).then((res) => {
                 if(res.data.code == 0) {
                   this.loadingModal = false;
-                  this.ctrlTipTitle = '上划加载更多...';
+                  this.ctrlTipTitle = '点击加载更多...';
                   if(res.data.data == 0 || res.data.data < 5) {
                     this.ctrlTipTitle = '暂时没有更多数据';
                     this.isRequest = false;

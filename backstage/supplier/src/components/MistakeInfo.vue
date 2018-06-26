@@ -204,6 +204,7 @@
             text-align: center;
             &:nth-of-type(1) {
               width: 27%;
+              text-align: left;
             }
             &:nth-of-type(2) {
               width: 27%;
@@ -224,6 +225,7 @@
           font-size: 2.098rem;
           border-top: 1px solid #e5e5e5;
           vertical-align: bottom;
+          text-align: center;
           section{
             float: left;
             &:nth-of-type(1) {

@@ -76,7 +76,7 @@
               <section class="showDetail" @click="showDetail(index)">查看详情</section>
             </li>
           </ul>
-          <p class="getMore">{{tipText}}</p>
+          <p class="getMore" @click="getMore">{{tipText}}</p>
         <!--</loadmore>-->
       </section>
       <!-- 加载中提示框 -->
@@ -153,7 +153,7 @@
           },
           //获取更多
           getMore() {
-            if(this.tipText == '上划加载更多...' && this.isRequest) {
+            if(this.tipText == '点击加载更多...' && this.isRequest) {
               this.isRequest = false;
               this.$ajax({
                 url: `http://merchant.test.weilaixiansen.com/login/checkoutbymonth?page=${this.page}`,
@@ -165,7 +165,7 @@
                   }else if(res.data.data[0].goods.length !== 0 && res.data.data[1].goods.length === 0) {
                     this.tipText = '暂无更多数据';
                     this.settlementData = this.settlementData.concat(res.data.data[0]);
-                  }else {
+                  }else{
                     this.settlementData = this.settlementData.concat(res.data.data);
                     this.isRequest = true;
                     this.page++;
@@ -202,7 +202,7 @@
             }).then((res) => {
                 if(res.data.code == 0) {
                   this.loadingModal = false;
-                  this.tipText = '上划加载更多...';
+                  this.tipText = '点击加载更多...';
                   this.settlementData = res.data.data;
                   for(let i = 0; i < this.settlementData.length; i++) {
                     let numberCount = 0, deal_totalCount = 0, profitCount = 0, clsoe_totalCount = 0;

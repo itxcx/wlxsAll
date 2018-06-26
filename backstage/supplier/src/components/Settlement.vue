@@ -33,10 +33,10 @@
           <ul class="salesTotal">
             <li>
               <span>合计</span>
-              <span>{{salesModalData.sum.load ? salesModalData.sum.load : ''}}</span>
-              <span>{{salesModalData.sum.unload ? salesModalData.sum.unload : ''}}</span>
-              <span>{{salesModalData.sum.sale ? salesModalData.sum.sale : ''}}</span>
-              <span>{{salesModalData.sum.store? salesModalData.sum.store : ''}}</span>
+              <span>{{salesModalData.sum.load ? salesModalData.sum.load : '0'}}</span>
+              <span>{{salesModalData.sum.unload ? salesModalData.sum.unload : '0'}}</span>
+              <span>{{salesModalData.sum.sale ? salesModalData.sum.sale : '0'}}</span>
+              <span>{{salesModalData.sum.store? salesModalData.sum.store : '0'}}</span>
             </li>
           </ul>
           <section class="closeBtn" @click="closeBtn">关闭</section>
@@ -250,12 +250,12 @@
           },
           //按钮查看数据
           fixSettleData() {
+            this.salesModal = true;
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/totalcount`,
               method: 'GET'
             }).then((res) => {
               if(res.data.code == 0) {
-                this.salesModal = true;
                 this.salesModalData = res.data.data;
               }else if(res.data.code == 3) {
                 this.$router.push({

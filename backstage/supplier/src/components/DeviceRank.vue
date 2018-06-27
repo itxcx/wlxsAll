@@ -649,6 +649,11 @@
         margin: 6.371vh auto;
         text-align: center;
         line-height: 7.419vh;
+        transition: all 0.15s linear;
+        &:active{
+          opacity: 0.9;
+          transform: scale(0.98);
+        }
       }
     }
     .ivu-input-icon{

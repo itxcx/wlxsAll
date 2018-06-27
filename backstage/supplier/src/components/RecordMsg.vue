@@ -212,6 +212,11 @@
         position: absolute;
         bottom: 0;
         left: 10.4vw;
+        transition: all 0.15s linear;
+        &:active{
+          opacity: 0.9;
+          transform: scale(0.98);
+        }
       }
     }
   }

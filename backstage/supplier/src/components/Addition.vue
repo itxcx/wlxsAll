@@ -176,6 +176,11 @@
         background: url("../../static/images/button_bg.png") no-repeat center center;
         background-size: cover;
         line-height: 7.419vh;
+        transition: all 0.15s linear;
+        &:active{
+          opacity: 0.9;
+          transform: scale(0.98);
+        }
       }
     }
   }

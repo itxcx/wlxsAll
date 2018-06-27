@@ -53,6 +53,11 @@
         color: #fff;
         line-height: 7.496vh;
         font-size: 2.248rem;
+        transition: all 0.15s linear;
+        &:active{
+          opacity: 0.9;
+          transform: scale(0.98);
+        }
       }
     }
   }

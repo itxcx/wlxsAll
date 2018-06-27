@@ -251,11 +251,13 @@
           //按钮查看数据
           fixSettleData() {
             this.salesModal = true;
+            this.loadingModal = true;
             this.$ajax({
               url: `http://merchant.test.weilaixiansen.com/login/totalcount`,
               method: 'GET'
             }).then((res) => {
               if(res.data.code == 0) {
+                this.loadingModal = false;
                 this.salesModalData = res.data.data;
               }else if(res.data.code == 3) {
                 this.$router.push({
@@ -337,6 +339,7 @@
       color: #65d172;
       border-radius: 10px;
       font-size: 2.388rem;
+      z-index: 999;
       .ivu-spin{
         width: 10vw;
         height: 10vw;

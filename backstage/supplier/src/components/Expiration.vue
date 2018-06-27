@@ -415,6 +415,7 @@
       transition: all 0.15s linear;
       &:active{
        opacity: 0.9;
+        transform: scale(0.98);
       }
     }
     header{

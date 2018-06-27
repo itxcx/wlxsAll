@@ -256,6 +256,11 @@
       font-size: 2.5488rem;
       color: #fff;
       line-height: 6.2198rem;
+      transition: all 0.15s linear;
+      &:active{
+        opacity: 0.9;
+        transform: scale(0.98);
+      }
     }
   }
 </style>

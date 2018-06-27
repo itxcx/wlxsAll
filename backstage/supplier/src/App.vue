@@ -7,6 +7,11 @@
 <script>
   export default {
     name: 'app',
+    data() {},
+    mounted() {
+      document.body.addEventListener('touchstart', function () {
+      });
+    }
   }
 
 </script>

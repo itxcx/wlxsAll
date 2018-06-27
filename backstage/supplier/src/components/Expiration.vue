@@ -130,8 +130,6 @@
             }
         },
         mounted() {
-          document.body.addEventListener('touchstart', function () {
-          });
           this.$nextTick(() => {
             this.getDeviceArray();
             this.getExpirationData(this.device_id);

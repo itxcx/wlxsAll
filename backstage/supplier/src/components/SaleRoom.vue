@@ -356,7 +356,7 @@
         margin-top: 2.6235vh;
         height: 5.397vh;
         dl{
-          width: 44.333vw;
+          width: 46vw;
           float: left;
           text-align: center;
           &:nth-last-of-type(1) {

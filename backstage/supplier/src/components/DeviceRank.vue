@@ -56,6 +56,7 @@
           </li>
         </ul>
       </section>
+      <transition name="fade">
       <section class="rankItemMsg" v-show="rankItemMsg">
         <section>
           <h3>商品销售明细</h3>
@@ -84,6 +85,7 @@
         </section>
         <p @click="closeRankList">关闭</p>
       </section>
+      </transition>
     </div>
 </template>
 

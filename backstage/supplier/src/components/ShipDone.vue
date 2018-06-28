@@ -55,6 +55,7 @@
     <section class="confirmBtn">
       <p @click="exhibDone">完成</p>
     </section>
+    <transition name="fade">
     <section class="labelModal" v-show="modalToggle">
       <section class="labelContent">
         <p>{{labelInfo.goods_name}}-标签标号</p>
@@ -66,6 +67,7 @@
       </section>
       <section class="closeBtn" @click="closeBtn">关闭</section>
     </section>
+    </transition>
   </div>
 </template>
 

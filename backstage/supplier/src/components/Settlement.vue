@@ -11,6 +11,7 @@
       <!-- 按钮 -->
       <section class="fixBtn" @click="fixSettleData"></section>
       <!-- 销售数据 -->
+      <transition name="fade">
       <section class="salesModal" v-show="salesModal">
         <section class="salesContent">
           <h3>销售数据</h3>
@@ -42,6 +43,7 @@
           <section class="closeBtn" @click="closeBtn">关闭</section>
         </section>
       </section>
+      </transition>
       <ul class="settleHeader">
         <li>商品名称</li>
         <li>交易单价</li>

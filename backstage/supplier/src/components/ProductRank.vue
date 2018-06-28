@@ -56,34 +56,36 @@
           </li>
         </ul>
       </section>
-      <section class="rankItemMsg" v-show="rankItemMsg">
-        <section>
-          <h3>{{goods_name}}销售明细</h3>
-          <ul class="rankItemMsgHeader">
-            <li>序号</li>
-            <li>售货柜</li>
-            <li>数量</li>
-            <li>金额</li>
-          </ul>
-          <ul class="rankItemMsgList">
-            <li v-for="(item, index) in rankListData">
-              <span>{{index + 1}}</span>
-              <span>{{item.device_address}}</span>
-              <span>{{item.goods_num}}</span>
-              <span>{{item.sellmoney}}</span>
-            </li>
-          </ul>
-          <ul class="rankItemTotal">
-            <li>
-              <span>总计</span>
-              <span>/</span>
-              <span>{{goods_number}}</span>
-              <span>{{sellmoney}}</span>
-            </li>
-          </ul>
-        </section>
-        <p @click="closeRankList">关闭</p>
+      <transition name="fade">
+        <section class="rankItemMsg" v-show="rankItemMsg">
+          <section>
+            <h3>{{goods_name}}销售明细</h3>
+            <ul class="rankItemMsgHeader">
+              <li>序号</li>
+              <li>售货柜</li>
+              <li>数量</li>
+              <li>金额</li>
+            </ul>
+            <ul class="rankItemMsgList">
+              <li v-for="(item, index) in rankListData">
+                <span>{{index + 1}}</span>
+                <span>{{item.device_address}}</span>
+                <span>{{item.goods_num}}</span>
+                <span>{{item.sellmoney}}</span>
+              </li>
+            </ul>
+            <ul class="rankItemTotal">
+              <li>
+                <span>总计</span>
+                <span>/</span>
+                <span>{{goods_number}}</span>
+                <span>{{sellmoney}}</span>
+              </li>
+            </ul>
+          </section>
+          <p @click="closeRankList">关闭</p>
       </section>
+      </transition>
     </div>
 </template>
 
@@ -489,7 +491,6 @@
               //   "goods_num": 3,
               //   "sellmoney": 110
               // }]
-
 
             }else if(res.data.code == 1) {//未登录
               this.$router.push({

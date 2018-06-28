@@ -74,7 +74,7 @@
           },
           //手机号输入失焦
           phoneBlur(){
-            let phoneCheck = /^1[345789]\d{9}$/;
+            let phoneCheck = /^1[3456789]\d{9}$/;
             if(!phoneCheck.test(this.phone)){
               this.modalFun('手机号输入错误', 1500);
             } else {

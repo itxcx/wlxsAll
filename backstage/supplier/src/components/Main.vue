@@ -23,16 +23,13 @@
             <dd>放入售货柜中</dd>
           </dl>
         </aside>
-        <aside class="ship"  @click="shipScan">
+        <aside class="ship" @click="shipScan">
           <div></div>
           <dl>
             <dt>商品下货</dt>
             <dd>售货柜中取出</dd>
           </dl>
         </aside>
-      </section>
-      <section class="tipModal" v-show="tipStatus">
-        <p>{{tipText}}</p>
       </section>
       <Footer-bar></Footer-bar>
     </div>
@@ -44,8 +41,6 @@
       name: "Main",
       data() {
           return {
-            tipStatus: false,
-            tipText: '正在建设，马上开放...'
           }
       },
       components:{

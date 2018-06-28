@@ -1,7 +1,9 @@
 <template>
     <div class="RecordMsg">
       <header>
-        <span @click="goBackRecord"><Icon type="chevron-left"></Icon></span>
+        <span @click="goBackRecord">
+          <Icon type="chevron-left"></Icon>
+        </span>
         <p>明细</p>
       </header>
       <section class="recordMsg_content">

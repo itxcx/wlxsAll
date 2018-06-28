@@ -120,7 +120,7 @@
             this.modalToggle = true;
             if(type === 'own') {
               this.labelInfo = this.itemList.goods[index];
-            }else if(type === 'other'){
+            }else if(type === 'other') {
               this.labelInfo = this.itemList.sale_goods[index];
             }
           },

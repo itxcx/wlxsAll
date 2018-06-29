@@ -39,6 +39,7 @@ swiper{
     justify-content: space-around;
     padding-bottom: 2vh;
     position: relative;
+    transition: all 0.1s ease; 
 }
 .footer view:nth-child(2) {
    width: 40vw;
@@ -51,6 +52,7 @@ swiper{
   top: 0;right: 0; bottom: 0; left: 0;
    margin: auto;
 }
+
 .footer view:nth-of-type(2) image{
   width: 42vw;
   height: 42vw;
@@ -130,4 +132,7 @@ swiper{
 .bottomBanner image{
   width: 98vw;
   height: 21vh;
+}
+.hoverScale{
+  transform: scale(0.95);
 }

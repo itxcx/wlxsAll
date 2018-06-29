@@ -21,9 +21,9 @@
   <text style="display: block;">购物完成后记得关闭柜门哦!</text>
 </view>
 <view class="footer">
-    <view class="index-service"><image src="../../images/index/bt_kehufuwu.png" bindtap="callService"></image></view>
-     <view class="index-scan"  bindtap="openDoorScan"><image src="../../images/index/bt_open.png"></image></view> 
-    <view class="index-setting"><image src="../../images/index/bt_gerenzhongxin.png" bindtap="goUserInfo"></image></view>
+    <view class="index-service" hover-class='hoverScale'><image src="../../images/index/bt_kehufuwu.png" bindtap="callService"></image></view>
+     <view class="index-scan"  bindtap="openDoorScan" hover-class='hoverScale'><image src="../../images/index/bt_open.png"></image></view> 
+    <view class="index-setting" hover-class='hoverScale'><image src="../../images/index/bt_gerenzhongxin.png" bindtap="goUserInfo"></image></view>
 </view>
     <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class="authorize {{fail ? 'hide': 'show'}}"></button> 
           <view class="indexModal {{indexModal ? 'show' : 'hide'}}`"> 

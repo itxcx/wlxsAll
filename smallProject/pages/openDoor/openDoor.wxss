@@ -149,6 +149,7 @@
   height: 20vh;
   text-align: center;
   margin-top: 4vh;
+  transition: all 0.1s ease;
 }
 .openAgain image{
   width: 20vh;
@@ -368,4 +369,7 @@
   width: 35vh;
   height: 35vh;
   margin: 0 auto;
+}
+.hoverScale{
+  transform: scale(0.95);
 }

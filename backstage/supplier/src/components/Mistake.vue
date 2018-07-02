@@ -173,7 +173,7 @@
       }
     }
     .mistakeList{
-      height: 100vh;
+      height: 94vh;
       width: 100vh;
       overflow-y: auto;
       -webkit-overflow-scrolling : touch;

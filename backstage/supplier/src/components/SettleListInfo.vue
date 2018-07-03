@@ -27,7 +27,10 @@
       <section class="settleContent">
         <ul class="settleItem">
           <li v-for="(item, index) in settleListArray" class="test">
-            <p>{{item.date}}</p>
+            <p>
+              <span>{{item.date}}</span>
+              <span>结算金额:{{item.close_total}}</span>
+            </p>
             <ul class="settleList">
               <li v-for="(items, ids) in item.goods">
                 <span>{{items.goods_name}}</span>
@@ -84,6 +87,15 @@
               this.loadingModal = false;
               if(res.data.code == 0) {
                 this.settleListArray = res.data.data;
+                for(let i = 0; i < this.settleListArray.length; i++) {
+                  let close_total = 0;
+                  for(let j = 0; j <this.settleListArray[i].goods.length; j++) {
+                    close_total += this.settleListArray[i].goods[j].clsoe_total - 0;
+                  }
+                  close_total = close_total.toFixed(2);
+                  this.settleListArray[i].close_total = close_total;
+                  //console.log(close_total);
+                }
               }else if(res.data.code == 3) {
                 this.$router.push({
                   path: '/'
@@ -202,6 +214,9 @@
             position: -webkit-sticky;
             position: sticky;
             top: 1vh;
+            span:nth-of-type(2) {
+              float: right;
+            }
           }
           .settleList{
             li{

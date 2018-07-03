@@ -117,6 +117,7 @@
           },
           //查看标签
           showLabel(index, type) {
+            this.labelInfo = {};
             this.modalToggle = true;
             if(type === 'own') {
               this.labelInfo = this.itemList.goods[index];
@@ -316,8 +317,10 @@
         }
         .labelList{
           height: 66vh;
-          overflow: auto;
+          /*overflow: auto;*/
           padding: 1.5vh 0;
+          overflow-y: auto;
+          -webkit-overflow-scrolling : touch;
           ul{
             li{
               margin: 0 4vw;

@@ -112,9 +112,15 @@
             })
           },
           //查看标签
-          showLabel(index) {
+          showLabel(index, type) {
+            this.labelInfo = {};
             this.modalToggle = true;
-            this.labelInfo = this.itemList.goods[index];
+            // this.labelInfo = this.itemList.goods[index];
+            if(type === 'own') {
+              this.labelInfo = this.itemList.goods[index];
+            }else if(type === 'other') {
+              this.labelInfo = this.itemList.sale_goods[index];
+            }
           },
           //关闭显示框
           closeBtn() {
@@ -381,8 +387,10 @@
         }
         .labelList{
           height: 66vh;
-          overflow: auto;
+          /*overflow: auto;*/
           padding: 1.5vh 0;
+          overflow-y: auto;
+          -webkit-overflow-scrolling : touch;
           ul{
             li{
               margin: 0 4vw;

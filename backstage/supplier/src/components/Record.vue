@@ -203,6 +203,7 @@
           //返回
           goBackRecord() {
             // this.$router.back(-1);
+            this.loadingModal = false;
             this.RecodeMsg = false;
           },
           //点击城市
@@ -463,8 +464,9 @@
             this.loadingModal = true;
             let order_id = this.recordList[index].order_id;
             let action = this.recordList[index].is_unload;
+            let list = 1;
             this.$ajax({
-              url: `http://merchant.test.weilaixiansen.com/login/closeDetailbyOrderId?action=${action}&order_id=${order_id}`,
+              url: `http://merchant.test.weilaixiansen.com/login/closeDetailbyOrderId?action=${action}&order_id=${order_id}&list=${list}`,
               method: 'GET'
             }).then((res) => {
               if(res.data.code == 0) {

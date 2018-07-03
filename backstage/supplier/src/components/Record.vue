@@ -422,7 +422,8 @@
           //展示方式
           selectAction() {
             // this.actionTypeSelect = !this.actionTypeSelect;
-            this.actionList = !this.actionList;
+            // this.actionList = !this.actionList;
+            this.actionList = true;
             this.actionDown = false;
             this.deviceDown = false;
             this.addressDown = false;

@@ -161,6 +161,7 @@
       }
       .location{
         margin-top: 3.3733vh;
+        width: 100vw;
         span:nth-of-type(1) {
           margin-left: 4.6667vw;
           display: inline-block;

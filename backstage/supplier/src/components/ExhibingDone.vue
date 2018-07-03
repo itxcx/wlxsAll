@@ -160,7 +160,13 @@
       //查看标签
       showLabel(index) {
         this.modalToggle = true;
-        this.labelInfo = this.itemList.goods[index];
+        // this.labelInfo = this.itemList.goods[index];
+        this.labelInfo = {};
+        if(type === 'own') {
+          this.labelInfo = this.itemList.goods[index];
+        }else if(type === 'other') {
+          this.labelInfo = this.itemList.sale_goods[index];
+        }
       },
       //完成按钮方法
       exhibDone() {
@@ -184,8 +190,8 @@
 <style lang="less">
   .ExhibingDone{
     padding-top: 15vh;
-    padding-bottom: 12vh;
     width: 100vw;
+    height: 100vh;
     header{
       position: fixed;
       top: 0;
@@ -217,7 +223,7 @@
         span:nth-of-type(1) {
           margin-left: 4.6667vw;
           display: inline-block;
-          width: 4.6667vw;
+          width: 4.8667vw;
           height: 3.598vh;
           background: url("../../static/images/green_location.png") no-repeat center center;
           background-size: cover;
@@ -247,8 +253,8 @@
         height: 2.923vh;
         span:nth-of-type(1) {
           display: inline-block;
-          width: 4.0666vw;
-          height: 3.123vh;
+          width: 4.1666vw;
+          height: 3.423vh;
           background: url("../../static/images/image_tips.png") no-repeat center center;
           background-size: cover;
           vertical-align: bottom;

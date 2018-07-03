@@ -162,6 +162,7 @@
     methods: {
       //查看标签
       showLabel(index, type) {
+        this.labelInfo = {};
         this.modalToggle = true;
         if(type === 'own') {
           this.labelInfo = this.itemList.goods[index];
@@ -191,8 +192,8 @@
 <style lang="less">
   .ShipDone{
     padding-top: 15vh;
-    padding-bottom: 12vh;
     width: 100vw;
+    height: 100vh;
     header{
       position: fixed;
       top: 0;

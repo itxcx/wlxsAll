@@ -1,9 +1,6 @@
 <template>
     <div class="MsnModel">
       <header>
-        <div class="pageTitle">
-          <span>下架完成</span>
-        </div>
         <div class="location">
           <span></span>
           <span>{{location}}</span>
@@ -17,40 +14,43 @@
           (扣款: <span>{{price}}</span>元)
         </p>
       </section>
-      <section class="checkContent">
-        <p>自家商品</p>
-        <ul class="headerList">
-          <li>序号</li>
-          <li>商品名称</li>
-          <li>数量</li>
-          <li>编号</li>
-        </ul>
-        <ul class="checkItemList">
-          <li v-for="(item, index) in itemList.goods">
-            <span>{{index + 1}}</span>
-            <span>{{item.goods_name}}</span>
-            <span>{{item.goods_count}}</span>
-            <span @click="showLabel(index, 'own')">查看</span>
-          </li>
-        </ul>
+      <section class="contentCheck">
+        <section class="checkContent" v-show="ownCheck">
+          <p>自家商品</p>
+          <ul class="headerList">
+            <li>序号</li>
+            <li>商品名称</li>
+            <li>数量</li>
+            <li>编号</li>
+          </ul>
+          <ul class="checkItemList">
+            <li v-for="(item, index) in itemList.goods">
+              <span>{{index + 1}}</span>
+              <span>{{item.goods_name}}</span>
+              <span>{{item.goods_count}}</span>
+              <span @click="showLabel(index, 'own')">查看</span>
+            </li>
+          </ul>
+        </section>
+        <section class="checkContent" v-show="checkOut">
+          <p>其他商品</p>
+          <ul class="headerList">
+            <li>序号</li>
+            <li>商品名称</li>
+            <li>数量</li>
+            <li>编号</li>
+          </ul>
+          <ul class="checkItemList">
+            <li v-for="(item, index) in itemList.sale_goods">
+              <span>{{index + 1}}</span>
+              <span>{{item.goods_name}}</span>
+              <span>{{item.goods_count}}</span>
+              <span @click="showLabel(index, 'other')">查看</span>
+            </li>
+          </ul>
+        </section>
       </section>
-      <section class="checkContent" v-show="checkOut">
-        <p>其他商品</p>
-        <ul class="headerList">
-          <li>序号</li>
-          <li>商品名称</li>
-          <li>数量</li>
-          <li>编号</li>
-        </ul>
-        <ul class="checkItemList">
-          <li v-for="(item, index) in itemList.sale_goods">
-            <span>{{index + 1}}</span>
-            <span>{{item.goods_name}}</span>
-            <span>{{item.goods_count}}</span>
-            <span @click="showLabel(index, 'other')">查看</span>
-          </li>
-        </ul>
-      </section>
+
       <!--<section class="confirmBtn">-->
         <!--<p @click="exhibDone">完成</p>-->
       <!--</section>-->
@@ -82,7 +82,8 @@
               labelInfo: {},
               itemList: {}, //商品列表
               price: 0,//价格
-              checkOut: false
+              checkOut: false,
+              ownCheck: false
             }
         },
         mounted() {
@@ -102,6 +103,9 @@
             }).then((res) => {
               if(res.data.code == 0) {
                 this.itemList = res.data.data;
+                if(this.itemList.goods.length > 0) {
+                  this.ownCheck = true;
+                }
                 if(this.itemList.sale_goods.length > 0) {
                   this.checkOut = true;
                   for(let i = 0; i < this.itemList.sale_goods.length; i++) {
@@ -136,8 +140,8 @@
 <style lang="less">
   .MsnModel{
     padding-top: 15vh;
-    padding-bottom: 12vh;
     width: 100vw;
+    height: 100vh;
     header{
       position: fixed;
       top: 0;
@@ -164,7 +168,7 @@
           margin-left: 4.6667vw;
           display: inline-block;
           width: 4.6667vw;
-          height: 3.598vh;
+          height: 3.798vh;
           background: url("../../static/images/green_location.png") no-repeat center center;
           background-size: cover;
           vertical-align: bottom;
@@ -201,70 +205,73 @@
         }
       }
     }
-    .checkContent{
-      p{
-        font-size: 2.3988rem;
-        font-weight: bold;
-        padding-left: 1.6667vw;
-      }
-      .headerList{
-        border-bottom: 1px solid #e5e5e5;
-        overflow: hidden;
-        li{
-          float: left;
-          text-align: center;
-          font-size: 2.2488rem;
-          color: #7b7b7b;
-          padding: 1.499vh 0;
-          &:nth-of-type(1), &:nth-of-type(3) {
-            width: 11%;
-          }
-          &:nth-of-type(2) {
-            width: 50%;
-          }
-          &:nth-of-type(4) {
-            width: 25%;
-          }
+    .contentCheck{
+      .checkContent{
+        p{
+          font-size: 2.3988rem;
+          font-weight: bold;
+          padding-left: 1.6667vw;
         }
-      }
-      .checkItemList{
-        height: 20vh;
-        overflow-y: auto;
-        -webkit-overflow-scrolling : touch;
-        li{
-          span{
+        .headerList{
+          border-bottom: 1px solid #e5e5e5;
+          overflow: hidden;
+          li{
+            float: left;
             text-align: center;
             font-size: 2.2488rem;
-            display: inline-block;
-            width: 21%;
-            color: #373737;
-            padding: 1.874vh 0;
-            &:nth-of-type(1){
-              width: 10%;
-              font-weight: bold;
-            }
-            &:nth-of-type(3) {
-              width: 10%;
+            color: #7b7b7b;
+            padding: 1.499vh 0;
+            &:nth-of-type(1), &:nth-of-type(3) {
+              width: 11%;
             }
             &:nth-of-type(2) {
               width: 50%;
-              font-weight: bold;
             }
             &:nth-of-type(4) {
-              width: 16%;
-              border: 1px solid #65d172;
-              color: #65d172;
-              border-radius: 20px;
-              padding: 0;
-              margin-left: 5%;
+              width: 25%;
             }
           }
-          &:nth-of-type(even) {
-            background: #f7f7f7;
+        }
+        .checkItemList{
+          height: 22vh;
+          overflow-y: auto;
+          -webkit-overflow-scrolling : touch;
+          li{
+            span{
+              text-align: center;
+              font-size: 2.2488rem;
+              display: inline-block;
+              width: 21%;
+              color: #373737;
+              padding: 1.874vh 0;
+              &:nth-of-type(1){
+                width: 10%;
+                font-weight: bold;
+              }
+              &:nth-of-type(3) {
+                width: 10%;
+              }
+              &:nth-of-type(2) {
+                width: 50%;
+                font-weight: bold;
+              }
+              &:nth-of-type(4) {
+                width: 16%;
+                border: 1px solid #65d172;
+                color: #65d172;
+                border-radius: 20px;
+                padding: 0;
+                margin-left: 5%;
+              }
+            }
+            &:nth-of-type(even) {
+              background: #f7f7f7;
+            }
           }
         }
       }
     }
+
     .confirmBtn{
       position: fixed;
       left: 10.4vw;

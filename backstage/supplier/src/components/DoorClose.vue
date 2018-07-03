@@ -50,6 +50,8 @@
                   path: '/shipDone'
                 })
               }
+            }else{
+
             }
             console.log(res);
           }).catch((error) => {

@@ -18,7 +18,7 @@
         (扣款: <span>{{price}}</span>元)
       </p>
     </section>
-    <section class="checkContent">
+    <section class="checkContent" v-show="ownCheck">
       <p>自家商品</p>
       <ul class="headerList">
         <li>序号</li>
@@ -82,11 +82,15 @@
         itemList: {}, //商品列表
         price: 0,//价格
         checkOut: false,
+        ownCheck: false
       }
     },
     mounted() {
       this.$nextTick(() => {
         this.itemList = JSON.parse(localStorage.getItem('exhibData'));
+        if(this.itemList.goods.length > 0) {
+          this.ownCheck = true;
+        }
         // this.itemList = {
         //   "goods": [
         //   {

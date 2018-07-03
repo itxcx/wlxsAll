@@ -21,7 +21,7 @@
         <span>以实际上货数量为标准，问题商品请开柜带走</span>
       </p>
     </section>
-    <section class="checkContent">
+    <section class="checkContent" v-show="ownCheck">
       <p>上货商品</p>
       <ul class="headerList">
         <li>序号</li>
@@ -83,12 +83,16 @@
         modalToggle: false, //标签列表查看显示
         labelInfo: {},
         itemList: {}, //商品列表
-        checkOther: false
+        checkOther: false,
+        ownCheck: false
       }
     },
     mounted() {
       this.$nextTick(() => {
         this.itemList = JSON.parse(localStorage.getItem('exhibData'));
+        if(this.itemList.goods.length > 0) {
+          this.ownCheck = true;
+        }
         if(this.itemList.sale_goods.length > 0) {
           this.checkOther = true;
         }
@@ -158,7 +162,7 @@
     },
     methods: {
       //查看标签
-      showLabel(index) {
+      showLabel(index, type) {
         this.modalToggle = true;
         // this.labelInfo = this.itemList.goods[index];
         this.labelInfo = {};
@@ -253,8 +257,8 @@
         height: 2.923vh;
         span:nth-of-type(1) {
           display: inline-block;
-          width: 4.1666vw;
-          height: 3.423vh;
+          width: 4.1067vw;
+          height: 3.598vh;
           background: url("../../static/images/image_tips.png") no-repeat center center;
           background-size: cover;
           vertical-align: bottom;

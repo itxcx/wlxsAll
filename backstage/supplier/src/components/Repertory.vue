@@ -817,13 +817,7 @@
             }
           }
         }
-        //0.console.log(this.itemListArray);
-
-        // localStorage.setItem('itemListArray',JSON.stringify(this.itemListArray));
-        // this.$router.push({
-        //   path: '/repertoryList',
-        //   query: {goods_name: goods_name}
-        // })
+        
         this.titleText = goods_name;
         this.RepertoryList = true;
         //this.productItemDown = true;

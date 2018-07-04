@@ -26,7 +26,6 @@ import InventoryControl from '../components/InventoryControl' //上下货报表�
 import ModifyPassword from '../components/ModifyPassword' //修改密码
 import SalesRecord from '../components/SalesRecord' //销售记录
 import Mistake from '../components/Mistake' //错拿记录
-import MistakeInfo from '../components/MistakeInfo' //错拿详情信息
 import Settlement from '../components/Settlement' //销售结算
 import SettleListInfo from '../components/SettleListInfo' //销售结算详情
 import Expiration from '../components/Expiration' //保质期
@@ -169,11 +168,6 @@ export default new Router({
       path: '/mistake',
       name: 'mistake',
       component: Mistake
-    },
-    {
-      path: '/mistakeInfo',
-      name: 'mistakeInfo',
-      component: MistakeInfo
     },
     {
       path: '/settlement',

@@ -359,10 +359,12 @@
             this.address = '所有地址';
             this.device = '所有售货柜';
             // this.action = '上下架';
+            this.loadingModal = false;
           },
           //选择地址
           clickAddress(e) {
             this.address = e.target.innerHTML;
+            this.loadingModal = false;
             if(this.address !== '所有地址') {
               this.addressDown = false;
               this.deviceDown = false;
@@ -389,6 +391,7 @@
           //展示设备
           selectDevice() {
             this.deviceList = [];
+            this.loadingModal = false;
             this.deviceDown = true;
             this.addressDown = false;
             this.actionDown = false;
@@ -402,6 +405,7 @@
           },
           //选择设备
           clickDevice(index) {
+            this.loadingModal = false;
             this.device = this.deviceList[index].address;
             this.device_id = this.deviceList[index].device_id;
             //localStorage.setItem('device_id', device_id);
@@ -428,9 +432,11 @@
             this.actionDown = false;
             this.deviceDown = false;
             this.addressDown = false;
+            this.loadingModal = false;
           },
           //选择方式-
           clickAction(e) {
+            this.loadingModal = false;
             // this.actionTypeSelect = !this.actionTypeSelect;
             this.actionList = !this.actionList;
             this.actionDown = true;

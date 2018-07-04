@@ -130,6 +130,51 @@
       <Spin size="large"></Spin>
       <p>数据获取中...</p>
     </section>
+
+    <!-- 点击商品查看详情 7.4 -->
+    <section class="RepertoryList" v-show="RepertoryList">
+      <section class="login_top">
+        <span @click="goMain">
+          <Icon type="chevron-left"></Icon>
+        </span>
+        <p>{{titleText}}库存</p>
+      </section>
+      <!-- 选择商品不分柜子 -->
+      <section class="productItem">
+        <!-- 显示模式 -->
+        <section class="productContent">
+          <!--<section class="updateTime">-->
+          <!--<p>-->
+          <!--<span>上次库存更新时间:</span>-->
+          <!--<span>{{refreshTime}}</span>-->
+          <!--</p>-->
+          <!--<div v-show="!mapMode" @click="changeMode">-->
+          <!--<span>地图模式 ></span>-->
+          <!--</div>-->
+          <!--<div v-show="mapMode" @click="changeMode">-->
+          <!--<span>列表模式 ></span>-->
+          <!--</div>-->
+          <!--</section>-->
+          <section class="itemListInfo" v-show="!mapMode">
+            <ul class="level1">
+              <li v-for="item in itemListArray" class="itemInfo">
+                <dl>
+                  <dt>{{item.area_name}}</dt>
+                  <!--<dd>智能售货柜</dd>-->
+                </dl>
+                <ul>
+                  <li>
+                    <p>{{item.address}}</p>
+                    <p>库存<span>{{item.count}}</span>件</p>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+          <section id="allmap" class="map" v-show="mapMode"></section>
+        </section>
+      </section>
+    </section>
   </div>
 </template>
 
@@ -171,6 +216,7 @@
         itemListArray: [],
         commonArray: null,
         loadingModal: false,
+        
       }
     },
     mounted() {
@@ -598,10 +644,10 @@
   //     }]
   //   }]
   // }]
-        let data = Data;
-        let defaultData = JSON.stringify(Data);
-        localStorage.setItem('data', defaultData);
-        localStorage.setItem('deviceData', defaultData);
+            let data = Data;
+            let defaultData = JSON.stringify(Data);
+            localStorage.setItem('data', defaultData);
+            localStorage.setItem('deviceData', defaultData);
         //处理全部商品
         //所有柜子的同一商品数量相加
             for(let i = 0; i < data.length; i++) {
@@ -646,6 +692,10 @@
           this.allDeviceListArray.push(obj);
         }
         //console.log(this.allDeviceListArray);
+          }else if(res.data.code == 3) {
+            this.$router.push({
+              path: '/'
+            })
           }
         }).catch((error) => {
           console.log(error);

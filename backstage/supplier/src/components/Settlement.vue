@@ -54,7 +54,10 @@
         <!--<loadmore :bottomMethod="getMore">-->
           <ul class="settleItem">
             <li v-for="(item, index) in settlementData" class="test">
-              <p>{{item.month}}</p>
+              <p>
+                <span>{{item.month}}</span>
+                <span @click="showDetail(index)">每日销售明细</span>
+              </p>
               <ul class="settleList">
                 <li v-for="(items, ids) in item.goods">
                   <span>{{items.goods_name}}</span>
@@ -73,7 +76,7 @@
                 <span>{{item.profitCount}}</span>
                 <span>{{item.clsoe_totalCount}}</span>
               </section>
-              <section class="showDetail" @click="showDetail(index)">查看详情</section>
+              <!--<section class="showDetail" @click="showDetail(index)">查看详情</section>-->
             </li>
           </ul>
           <p class="getMore" @click="getMore">{{tipText}}</p>
@@ -407,6 +410,12 @@
             position: -webkit-sticky;
             position: sticky;
             top: 0;
+            span:nth-of-type(2) {
+              color: #65d172;
+              float: right;
+              font-weight: bold;
+              font-size: 2.198rem;
+            }
           }
           .settleList{
             li{

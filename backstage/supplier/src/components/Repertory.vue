@@ -817,7 +817,7 @@
             }
           }
         }
-        
+
         this.titleText = goods_name;
         this.RepertoryList = true;
         //this.productItemDown = true;
